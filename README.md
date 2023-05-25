@@ -1,4 +1,4 @@
-![tp2](https://github.com/AlejoSendra1/AlgoIII_tower_defense/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/AlejoSendra1/AlgoIII_tower_defense/branch/master/graph/badge.svg)](https://codecov.io/gh/AlejoSendra1/AlgoIII_tower_defense)
+![tp2](https://github.com/AlejoSendra/AlgoIII_tower_defense/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/AlejoSendra1/AlgoIII_tower_defense/branch/master/graph/badge.svg)](https://codecov.io/gh/AlejoSendra1/AlgoIII_tower_defense)
 
 # TP2 Algoritmos 3: {nombre} 
 
