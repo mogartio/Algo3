@@ -15,7 +15,7 @@ Existen distintas maneras de configurar el ambiente de desarrollo:
 
 ## Empaquetado
 
-Cuando se genera un **tag** que comienza con `v` (ejemplo `v0.0.1`) automáticamente se produce un [release](https://github.com/AlejoSendra/AlgoIII_tower_defense/releases) con la aplicación empaquetada. Para el nombre de la versión se recomienda utilizar [versionado semántico](https://semver.org/lang/es/), por ejemplo:
+Cuando se genera un **tag** que comienza con `v` (ejemplo `v0.0.1`) automáticamente se produce un [release](https://github.com/AlejoSendra1/AlgoIII_tower_defense/releases) con la aplicación empaquetada. Para el nombre de la versión se recomienda utilizar [versionado semántico](https://semver.org/lang/es/), por ejemplo:
 
 ```bash
 $ git tag v0.0.1   # Genera el tag sobre el commit actual
