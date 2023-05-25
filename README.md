@@ -7,8 +7,8 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo {N}
 
 * **Integrante 1** - Sendra Alejo (https://github.com/AlejoSendra1)
-* **Integrante 2** - Daniel Agustin Marianetti (https://github.com/DanielMarianetti)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
+* **Integrante 2** - Amundarain Tomas (https://github.com/Tomy07417)
+* **Integrante 3** - Daniel Agustin Marianetti (https://github.com/DanielMarianetti)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 
 Corrector: **{Corrector}**
