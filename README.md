@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 1** - Sendra Alejo (https://github.com/AlejoSendra1)
 * **Integrante 2** - Amundarain Tomas (https://github.com/Tomy07417)
 * **Integrante 3** - Daniel Agustin Marianetti (https://github.com/DanielMarianetti)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Integrante 4** - Martín Osan (https://github.com/mmosan)
 
 Corrector: **{Corrector}**
 
