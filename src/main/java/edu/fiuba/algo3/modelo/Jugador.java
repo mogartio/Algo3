@@ -20,6 +20,6 @@ public class Jugador {
     }
 
     public Stack<Defensa> verificarConstruccionesPosibles(Tienda proveedor) {
-        proveedor.catalogoDisponible(creditos);
+        return proveedor.catalogoDisponible(creditos);
     }
 }
