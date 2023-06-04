@@ -4,7 +4,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 6
 
 * **Integrante 1** - Alejo Sendra (https://github.com/AlejoSendra1)
 * **Integrante 2** - Tomas Amundarain (https://github.com/Tomy07417)
