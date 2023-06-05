@@ -1,0 +1,23 @@
+@startuml
+
+class Mapa {}
+abstract Parcela {}
+interface Defensa {}
+interface Enemigo {}
+abstract Tierra {}
+class Rocoso {}
+class Pasarela {}
+class Jugador{}
+
+
+Parcela "*" --o Mapa
+
+Enemigo "*" -o Pasarela
+Tierra o- Defensa
+
+Rocoso --|> Parcela
+Pasarela --|> Parcela
+Tierra --|> Parcela
+
+Jugador -o Mapa
+@enduml

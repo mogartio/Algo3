@@ -2,7 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 public class TorreBlanca extends Defensa{
 
-    public TorreBlanca(){
+    public TorreBlanca(Rango rango){
+        super(rango, 1);
         estadoDeConstruccion = 1;
     }
 }

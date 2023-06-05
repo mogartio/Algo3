@@ -1,0 +1,13 @@
+@startuml
+
+actor Interface
+
+Interface -> Mapa: crear(Defensa torre)
+Mapa -> Tierra: disponible()
+Tierra --> Mapa: [True]
+|||
+Mapa -> Tierra: almacenar(Defensa torre)
+
+Mapa --> Interface: [Mapa (actualizado)]
+
+@enduml
