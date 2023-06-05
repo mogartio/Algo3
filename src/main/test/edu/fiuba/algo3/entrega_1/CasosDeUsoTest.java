@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_1;
 
-
+import java.util.ArrayList;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -99,11 +99,15 @@ public class CasosDeUsoTest {
         Pasarela pasarela3 = new Pasarela(coordenada);
 
         Enemigo enemigo = new Enemigo();
-
         pasarela2.añadirEnemigo(enemigo);
 
-        Rango rango = new Rango([pasarela1, pasarela2, pasarela3]);
-        Defensa torre = new TorreBlanca(rango);
+        ArrayList<Pasarela> lista = new ArrayList<Pasarela>();
+        lista.add(pasarela1);
+        lista.add(pasarela2);
+        lista.add(pasarela3);
+
+        Rango rango = new Rango(lista);
+        TorreBlanca torre = new TorreBlanca(rango);
         torre.pasarTurno();
         torre.atacar();
 
