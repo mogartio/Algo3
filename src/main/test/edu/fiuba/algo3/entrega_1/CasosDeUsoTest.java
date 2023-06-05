@@ -116,7 +116,31 @@ public class CasosDeUsoTest {
     }
 
     @Test
-    public void test06VerificarQueLasUnidadesEnemigosSonDañadasAcordeAlAtaqueRecibido(){}
+    public void test06VerificarQueLasUnidadesEnemigosSonDañadasAcordeAlAtaqueRecibido(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Pasarela pasarela1 = new Pasarela(coordenada);
+        Pasarela pasarela2 = new Pasarela(coordenada);
+        Pasarela pasarela3 = new Pasarela(coordenada);
+
+        Enemigo enemigo = new Enemigo();
+        Enemigo enemigo2 = new Enemigo();
+
+        pasarela3.añadirEnemigo(enemigo2);
+        pasarela2.añadirEnemigo(enemigo);
+
+        ArrayList<Pasarela> lista = new ArrayList<Pasarela>();
+        lista.add(pasarela1);
+        lista.add(pasarela2);
+        lista.add(pasarela3);
+
+        Rango rango = new Rango(lista);
+        TorreBlanca torre = new TorreBlanca(rango);
+        torre.pasarTurno();
+        torre.atacar();
+
+        assertFalse(enemigo.muerto());
+        assertTrue(enemigo2.muerto());
+    }
 
 }
 

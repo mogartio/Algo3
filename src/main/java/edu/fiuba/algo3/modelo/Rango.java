@@ -9,7 +9,7 @@ public class Rango {
 
     public Pasarela buscarPasarelaConEnemigo(){
         Pasarela pasarelaSeleccionada = null;
-        for (int posicion = this.pasarelas.size() - 1; posicion >= 0; posicion-- ){
+        for (int posicion = 0; posicion < this.pasarelas.size() ; posicion++ ){
             if(this.pasarelas.get(posicion).tieneEnemigos()){
                 pasarelaSeleccionada = this.pasarelas.get(posicion);
             };
