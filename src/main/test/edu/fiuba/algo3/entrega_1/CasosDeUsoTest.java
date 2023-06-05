@@ -18,12 +18,12 @@ public class CasosDeUsoTest {
 
     @Test
     public void test01LaVidaYCreditosDelJugadorSonLosCorrectosAlEmpezar() {
-    //el jugador comienza con 20 puntos de vida y con 100 creditos
+        //el jugador comienza con 20 puntos de vida y con 100 creditos
         Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida,100);
+        Jugador jugador = new Jugador(vida, 100);
 
-        assertEquals (100,jugador.obtenerCreditos());
-        assertEquals (20,jugador.obtenerVida());
+        assertEquals(100, jugador.obtenerCreditos());
+        assertEquals(20, jugador.obtenerVida());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class CasosDeUsoTest {
     public void test03SeVerficaQueElJugadorDispongaDeCreditoParaConstruirTorres() {
         // se crea un jugador con los recursos base (tambien podrian ser otros)
         Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida,100);
+        Jugador jugador = new Jugador(vida, 100);
 
         //se crea la tienda que sera quien proveera y verificara las torres comprables
         Tienda proveedor = new Tienda();
@@ -75,11 +75,11 @@ public class CasosDeUsoTest {
     }
 
     @Test
-    public void test04VerificarSoloSePuedaConstruirDefensasSobreTierra(){
+    public void test04VerificarSoloSePuedaConstruirDefensasSobreTierra() {
         Defensa torre = new TorrePlateada();
 
-        Coordenada coordTierra = new Coordenada(0,0);
-        Coordenada coordRocosa = new Coordenada(1,0);
+        Coordenada coordTierra = new Coordenada(0, 0);
+        Coordenada coordRocosa = new Coordenada(1, 0);
 
         Tierra tierra = new Tierra(coordTierra);
         Rocosa rocosa = new Rocosa(coordRocosa);
@@ -92,13 +92,13 @@ public class CasosDeUsoTest {
     }
 
     @Test
-    public void test05VerificarQueLasDefensasAtaquenDentroDelRangoEsperado(){
-        Coordenada coordenada = new Coordenada(0,0);
-        Pasarela pasarela1 = new Pasarela(coordenada);
-        Pasarela pasarela2 = new Pasarela(coordenada);
-        Pasarela pasarela3 = new Pasarela(coordenada);
+    public void test05VerificarQueLasDefensasAtaquenDentroDelRangoEsperado() {
+        Coordenada coordenada = new Coordenada(0, 0);
+        Pasarela pasarela1 = new Pasarela(coordenada, null);
+        Pasarela pasarela2 = new Pasarela(coordenada, null);
+        Pasarela pasarela3 = new Pasarela(coordenada, null);
 
-        Enemigo enemigo = new Enemigo();
+        Enemigo enemigo = new Araña(null);
         pasarela2.añadirEnemigo(enemigo);
 
         ArrayList<Pasarela> lista = new ArrayList<Pasarela>();
@@ -116,14 +116,14 @@ public class CasosDeUsoTest {
     }
 
     @Test
-    public void test06VerificarQueLasUnidadesEnemigosSonDañadasAcordeAlAtaqueRecibido(){
-        Coordenada coordenada = new Coordenada(0,0);
-        Pasarela pasarela1 = new Pasarela(coordenada);
-        Pasarela pasarela2 = new Pasarela(coordenada);
-        Pasarela pasarela3 = new Pasarela(coordenada);
+    public void test06VerificarQueLosEnemigosSonDañadosAcordeAlAtaqueRecibido() {
+        Coordenada coordenada = new Coordenada(0, 0);
+        Pasarela pasarela1 = new Pasarela(coordenada, null);
+        Pasarela pasarela2 = new Pasarela(coordenada, null);
+        Pasarela pasarela3 = new Pasarela(coordenada, null);
 
-        Enemigo enemigo = new Enemigo();
-        Enemigo enemigo2 = new Enemigo();
+        Enemigo enemigo = new Araña(null);
+        Enemigo enemigo2 = new Araña(null);
 
         pasarela3.añadirEnemigo(enemigo2);
         pasarela2.añadirEnemigo(enemigo);
@@ -140,6 +140,74 @@ public class CasosDeUsoTest {
 
         assertFalse(enemigo.muerto());
         assertTrue(enemigo2.muerto());
+    }
+
+
+    @Test
+    public void test07aVerificarQueLasArañasSeDesplazanLaCantidadCorrectaDeParcelas() {
+
+        Coordenada coordenadaFinal = new Coordenada(1, 1);
+        Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, null);
+
+        Coordenada coordenadaMedio = new Coordenada(1, 2);
+        Pasarela pasarelaMedio = new Pasarela(coordenadaMedio, pasarelaFinal);
+
+        Coordenada coordenadaInicial = new Coordenada(1, 3);
+        Pasarela pasarelaInicial = new Pasarela(coordenadaInicial, pasarelaMedio);
+        Enemigo enemigo = new Araña(pasarelaInicial);
+
+        enemigo.avanzar();
+
+        assertEquals(enemigo.verPosicion(), pasarelaFinal);
+    }
+
+    @Test
+    public void test07bVerificarQueLasArañasSeDesplazanLaCantidadCorrectaDeParcelas() {
+
+        Coordenada coordenadaFinal = new Coordenada(2, 1);
+        Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, null);
+
+        Coordenada coordenadaInicial = new Coordenada(1, 1);
+        Pasarela pasarelaInicial = new Pasarela(coordenadaInicial, pasarelaFinal);
+        Enemigo enemigo = new Hormiga(pasarelaInicial);
+
+        enemigo.avanzar();
+
+        assertEquals(enemigo.verPosicion(), pasarelaFinal);
+    }
+
+    @Test
+    public void test08aHormigaDaCreditosCorrespondientesAlMorirOnceVeces() {
+        Vida vida = new Vida(20);
+        Jugador jugador = new Jugador(vida, 0);
+        int creditoInicial = jugador.getInstance().obtenerCreditos();
+
+        for (int i = 0; i < 11; i++) {
+            Enemigo hormiga = new Hormiga(null);
+            hormiga.morir();
+        }
+
+        assertEquals((14 + creditoInicial), jugador.getInstance().obtenerCreditos()); //Corregir tests. Al ser singleton cada test hace la prueba sobre la misma instancia de juagdor
+    }
+
+    @Test
+    public void test08bHormigaDaCreditosCorrespondientesAlMorirUnaVez() {
+        Vida vida = new Vida(20);
+        Jugador jugador = new Jugador(vida, 0);
+        int creditoInicial = jugador.getInstance().obtenerCreditos();
+        System.out.println(creditoInicial);
+        Enemigo hormiga = new Hormiga(null);
+
+        hormiga.morir();
+
+        assertEquals((1 + creditoInicial), jugador.getInstance().obtenerCreditos());
+    }
+
+    @Test
+    public void test08cArañaDaCreditosCorrespondientesAlMorir() {
+        Vida vida = new Vida(20);
+        Jugador jugador = new Jugador(vida, 0);
+        assertFalse((Jugador.getInstance().obtenerCreditos() > 10) || (Jugador.getInstance().obtenerCreditos() < 0));
     }
 
 }

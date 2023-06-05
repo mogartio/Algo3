@@ -5,9 +5,14 @@ import java.util.ArrayList;
 public class Pasarela extends Parcela {
     private ArrayList<Enemigo> enemigos = new ArrayList<Enemigo>();
 
-    public Pasarela(Coordenada coordenada){
+    public Pasarela siguientePasarela;
+
+    public Pasarela(Coordenada coordenada, Pasarela pasarelaSiguiente){
         super(coordenada, new NoDisponible());
+        this.siguientePasarela = pasarelaSiguiente;
     }
+
+    public Pasarela verSiguiente() { return siguientePasarela; }
 
     public void añadirEnemigo(Enemigo nuevoEnemigo){
         this.enemigos.add(nuevoEnemigo);
