@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CasosDeUso {
+public class CasosDeUsoTest {
 
     @Test
     public void test01LaVidaYCreditosDelJugadorSonLosCorrectosAlEmpezar() {
@@ -73,5 +73,48 @@ public class CasosDeUso {
         assertTrue(torresComprables.pop() instanceof TorrePlateada);
         assertTrue(torresComprables.pop() instanceof TorreBlanca);
     }
+
+    @Test
+    public void test04VerificarSoloSePuedaConstruirDefensasSobreTierra(){
+        Defensa torre = new TorrePlateada();
+
+        Coordenada coordTierra = new Coordenada(0,0);
+        Coordenada coordRocosa = new Coordenada(1,0);
+
+        Tierra tierra = new Tierra(coordTierra);
+        Rocosa rocosa = new Rocosa(coordRocosa);
+
+        rocosa.construirDefensa(torre);
+        tierra.construirDefensa(torre);
+
+        assertTrue(tierra.ocupada());
+        assertFalse(rocosa.ocupada());
+    }
+
+    @Test
+    public void test05VerificarQueLasDefensasAtaquenDentroDelRangoEsperado(){
+        Coordenada coordenada = new Coordenada(0,0);
+        Pasarela pasarela1 = new Pasarela(coordenada);
+        Pasarela pasarela2 = new Pasarela(coordenada);
+        Pasarela pasarela3 = new Pasarela(coordenada);
+
+        Enemigo enemigo = new Enemigo();
+
+        pasarela2.añadirEnemigo(enemigo);
+
+        Rango rango = new Rango([pasarela1, pasarela2, pasarela3]);
+        Defensa torre = new TorreBlanca(rango);
+        torre.pasarTurno();
+        torre.atacar();
+
+        assertTrue(enemigo.muerto());
+
+    }
+
+    @Test
+    public void test06VerificarQueLasUnidadesEnemigosSonDañadasAcordeAlAtaqueRecibido(){}
+
 }
+
+
 

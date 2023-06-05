@@ -1,0 +1,8 @@
+@startuml
+actor Mapa
+create "d:Defensa"
+Mapa -> "d:Defensa"
+Mapa -> "t:Tierra" : construirDefensa(d)
+
+
+@enduml

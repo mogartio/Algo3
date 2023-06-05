@@ -1,0 +1,92 @@
+@startuml
+
+abstract Parcela{
+- construible:Construible
+- coordenadas:Coordenadas
+
++ Parcela(coord:Coordenadas)
++ construirDefensa(d:Defensa)
++ equals(coord:Coordenadas):Boolean
+- setConstruible(c:Construible)
+}
+
+class Rocosa{
+
+}
+class Tierra{
++ atacar()
+}
+class Pasarela{
++ añadirEnemigo(e:Enemigo)
++ moverEnemigos(camino:Camino)
++ dañarEnemigo(Int daño)
+}
+
+interface Construible{
++puedeConstruir():Boolean
+}
+class Coordenadas{
+-coordX:Int
+-coordY:Int
++Coordenadas(x:Int, y:Int)
++equals(coord:Coordenadas):Boolean
+}
+
+class Disponible{
++puedeConstruir():Boolean
+}
+class NoDisponible{
++puedeConstruir():Boolean
+}
+
+class Nodo{
+-siguienteNodo:Nodo
+-anteriorNodo:Nodo
+
++ Nodo(siguiente:Nodo, anterior:Nodo)
++ siguiente():Nodo
++ anterior():Nodo
+}
+class Camino{
+-inicio:Pasarela
++ Camino(inicio:Nodo)
++ buscarNodo(coord:Coordenadas):Nodo
+}
+
+class Defensa {
++Defensa(Coordenada coordCentral)
++atacarEnemigo()
+
+}
+
+class Rango {
+- ArrayList<Parcela> coord;
++ Rango(ArrayList<Parcela> parcelas)
++ buscarCoordenada():Parcela
+}
+
+class Enemigo{
+- vida:Vida
++ recibirDaño(Int daño)
+}
+
+Parcela <|-- Pasarela
+Parcela <|-- Rocosa
+Parcela <|-- Tierra
+
+Construible -o Parcela
+Parcela o- Coordenadas
+
+Pasarela <- Nodo
+Nodo "*"--o Camino
+
+Construible <|-- Disponible
+Construible <|-- NoDisponible
+
+Rango -> Defensa
+Rango o-- "*"Parcela
+Defensa -> Tierra
+
+Pasarela o-- Enemigo
+
+@enduml
