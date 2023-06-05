@@ -7,8 +7,12 @@ public abstract class Defensa {
 
     protected Rango pasarelas;
 
+    public Defensa(){
+        this.pasarelas = null;
+        this.daño = 0;
+    }
     public Defensa(Rango rango, int daño){
-        this.rango = rango;
+        this.pasarelas = rango;
         this.daño = daño;
     }
 
@@ -23,7 +27,7 @@ public abstract class Defensa {
     }
 
     public void atacar(){
-        Pasarela pasarelaSeleccionada = this.rango.buscarPasarelaConEnemigo();
+        Pasarela pasarelaSeleccionada = this.pasarelas.buscarPasarelaConEnemigo();
         pasarelaSeleccionada.dañarEnemigo(this.daño);
     }
 }
