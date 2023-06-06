@@ -189,34 +189,33 @@ public class CasosDeUsoTest {
     @Test
     @Order(10)
 
-    public void test08aHormigaDaCreditosCorrespondientesAlMorirUnaVez() {
+    public void test08aHormigaDaCreditosCorrespondientesAlMorirSinMultiplicador() {
         Jugador.getInstance();
         int creditoInicial = Jugador.getInstance().obtenerCreditos();
 
         Coordenada coordenadaInicializadora = new Coordenada(1, 1);
         Pasarela pasarelaInicializadora = new PasarelaIntermedia(coordenadaInicializadora, null);
-        Enemigo hormiga = new Hormiga(pasarelaInicializadora);
 
-        hormiga.morir();
-
-        assertEquals((1 + creditoInicial), Jugador.getInstance().obtenerCreditos());
+        for (int i=1; i<9; i++){
+            Enemigo hormiga = new Hormiga(pasarelaInicializadora);
+            hormiga.morir();
+            assertEquals((i + creditoInicial), Jugador.getInstance().obtenerCreditos());
+        }
     }
 
     @Test
     @Order(11)
-    public void test08bHormigaDaCreditosCorrespondientesAlMorirOnceVeces() {
-        Vida vida = new Vida(20);
+    public void test08bHormigaDaCreditosCorrespondientesAlMorirConMultiplicador() { //El multiplicador ya esta aplicado porque el jugador mato a 9 hormigas en la prueba anterior
         Jugador jugador = Jugador.getInstance();
         int creditoInicial = Jugador.getInstance().obtenerCreditos();
+        Coordenada coordenadaInicializadora = new Coordenada(1, 1);
+        Pasarela pasarelaInicializadora = new PasarelaIntermedia(coordenadaInicializadora, null);
 
-        for (int i = 0; i < 11; i++) {
-            Coordenada coordenadaInicializadora = new Coordenada(1, 1);
-            Pasarela pasarelaInicializadora = new PasarelaIntermedia(coordenadaInicializadora, null);
+        for (int i=1; i<10; i++){
             Enemigo hormiga = new Hormiga(pasarelaInicializadora);
             hormiga.morir();
+            assertEquals((i * 2 + creditoInicial), Jugador.getInstance().obtenerCreditos());
         }
-
-        assertEquals((15 + creditoInicial), jugador.getInstance().obtenerCreditos()); //Corregir tests. Al ser singleton cada test hace la prueba sobre la misma instancia de juagdor
     }
 
     @Test
@@ -375,7 +374,6 @@ public class CasosDeUsoTest {
     @Test
     @Order(18)
     public void test11ElJugadorSobreviveConUnEnemigoLlegandoALaMetaYGanaIgual() {
-        Vida vida = new Vida(20);
         Jugador jugador = Jugador.getInstance();
         Juego juego = new Juego(jugador);
 
@@ -390,6 +388,29 @@ public class CasosDeUsoTest {
         juego.pasarTurno();
         assertTrue(juego.estado() instanceof Ganado);
     }
+
+    @Test
+    @Order(19)
+    public void test12ElJugadorMuereYPierdeElJuego() {
+        Jugador jugador = Jugador.getInstance();
+        Juego juego = new Juego(jugador);
+
+        Coordenada coordenadaFinal = new Coordenada(2,3);
+        Pasarela pasarelaFinal = new PasarelaFinal(coordenadaFinal, null);
+
+        Coordenada coordenadaPrimera = new Coordenada(2, 2);
+        Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, pasarelaFinal);
+
+        int vidaInicial = Jugador.getInstance().obtenerVida();
+
+        for(int i=0; i<vidaInicial; i++){
+            Enemigo hormiga = new Hormiga(pasarelaPrimera);
+            juego.nuevoEnemigo(hormiga);
+            juego.pasarTurno();
+        }
+        assertTrue(juego.estado() instanceof Perdido);
+    }
+
 }
 
 
