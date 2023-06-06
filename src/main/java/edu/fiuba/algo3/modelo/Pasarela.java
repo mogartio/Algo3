@@ -2,20 +2,29 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-public class Pasarela extends Parcela {
-    private ArrayList<Enemigo> enemigos = new ArrayList<Enemigo>();
+public abstract class Pasarela extends Parcela {
+
+    protected ArrayList<Enemigo> enemigos = new ArrayList<Enemigo>();
 
     public Pasarela siguientePasarela;
 
-    public Pasarela(Coordenada coordenada, Pasarela pasarelaSiguiente){
+    public Pasarela(Coordenada coordenada) {
         super(coordenada, new NoDisponible());
-        this.siguientePasarela = pasarelaSiguiente;
     }
 
-    public Pasarela verSiguiente() { return siguientePasarela; }
+    public abstract Pasarela verSiguiente();
 
-    public void añadirEnemigo(Enemigo nuevoEnemigo){
-        this.enemigos.add(nuevoEnemigo);
+    public abstract Pasarela verSiguiente(int cantidadPasos);
+
+    public abstract void recibir(Enemigo nuevoEnemigo);
+    public void actualizarPosicion(Enemigo enemigo, int desplazamientoEnemigo) {
+        Pasarela proximaPasarela = this.verSiguiente(desplazamientoEnemigo);
+        proximaPasarela.recibir(enemigo);
+        enemigos.remove(enemigo);
+    }
+
+    public void añadirEnemigo(Enemigo enemigo) {
+        enemigos.add(enemigo);
     }
 
     public void construirDefensa(Defensa defensa){}

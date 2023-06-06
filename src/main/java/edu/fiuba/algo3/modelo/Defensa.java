@@ -18,7 +18,7 @@ public abstract class Defensa {
 
     public void pasarTurno(){
         if (estadoDeConstruccion == 0) {
-        }else {
+        } else {
             estadoDeConstruccion = estadoDeConstruccion - 1;
         }
     }
