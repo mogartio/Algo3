@@ -12,4 +12,6 @@ public class NoComenzado implements EstadoJuego {
     public EstadoJuego actualizarConVidaDeJugador(int cantVida) {
         return this;
     }
+
+    public void pasarTurno() {};
 }

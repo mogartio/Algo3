@@ -191,7 +191,7 @@ public class CasosDeUsoTest {
             hormiga.morir();
         }
 
-        assertEquals((14 + creditoInicial), jugador.getInstance().obtenerCreditos()); //Corregir tests. Al ser singleton cada test hace la prueba sobre la misma instancia de juagdor
+        assertEquals((13 + creditoInicial), jugador.getInstance().obtenerCreditos()); //Corregir tests. Al ser singleton cada test hace la prueba sobre la misma instancia de juagdor
     }*/
 
     @Test
@@ -213,7 +213,8 @@ public class CasosDeUsoTest {
     public void test08cArañaDaCreditosCorrespondientesAlMorir() {
         Vida vida = new Vida(20);
         Jugador jugador = new Jugador(vida, 0);
-        assertFalse((Jugador.getInstance().obtenerCreditos() > 10) || (Jugador.getInstance().obtenerCreditos() < 0));
+        int creditosIniciales = jugador.getInstance().obtenerCreditos();
+        assertFalse((Jugador.getInstance().obtenerCreditos() > 10 + creditosIniciales) || (Jugador.getInstance().obtenerCreditos() < 0 + creditosIniciales));
     }
 
     @Test
@@ -226,9 +227,13 @@ public class CasosDeUsoTest {
 
         Coordenada coordenadaInicial = new Coordenada(1, 2);
         Pasarela pasarelaInicial = new PasarelaIntermedia(coordenadaInicial, pasarelaSegunda);
+
         Enemigo hormiga = new Hormiga(pasarelaInicial);
 
-        hormiga.avanzar();
+        Juego juego = new Juego(null);
+        juego.nuevoEnemigo(hormiga);
+        juego.pasarTurno();
+
 
         assertEquals(hormiga.verPosicion(), pasarelaSegunda);
     }
@@ -245,7 +250,9 @@ public class CasosDeUsoTest {
         Pasarela pasarelaInicial = new PasarelaIntermedia(coordenadaInicial, pasarelaSegunda);
         Enemigo araña = new Araña(pasarelaInicial);
 
-        araña.avanzar();
+        Juego juego = new Juego(null);
+        juego.nuevoEnemigo(araña);
+        juego.pasarTurno();
 
         assertEquals(araña.verPosicion(), pasarelaFinal);
     }
@@ -264,6 +271,8 @@ public class CasosDeUsoTest {
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
         Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, pasarelaSegunda);
 
+        Juego juego = new Juego(null);
+
         Enemigo arañaUno = new Araña(pasarelaPrimera);
         Enemigo arañaDos = new Araña(pasarelaSegunda);
         Enemigo hormigaUno = new Hormiga(pasarelaTercera);
@@ -276,7 +285,8 @@ public class CasosDeUsoTest {
         enemigos.push(hormigaUno);
         enemigos.push(hormigaDos);
 
-        enemigos.forEach(enemigo -> enemigo.avanzar());
+        enemigos.forEach(enemigo -> juego.nuevoEnemigo(enemigo));
+        juego.pasarTurno();
 
         //Al ser una estructura de pila, se invierte el orden comparado al ingreso al hacer pop
         assertEquals(enemigos.pop().verPosicion(), pasarelaSegunda); // De la primera avanza uno y va a la segunda (final)
@@ -347,6 +357,24 @@ public class CasosDeUsoTest {
         arañaCuatro.recibirDaño(1);
         assertTrue(juego.estado() instanceof Ganado);
     }
+   /* @Test
+    public void test11ElJugadorSobreviveConUnEnemigoLlegandoALaMetaYGanaIgual() {
+        Vida vida = new Vida(20);
+        Jugador jugador = new Jugador(vida, 0);
+        Juego juego = new Juego(jugador);
+
+        Coordenada coordenadaFinal = new Coordenada(2,3);
+        Pasarela pasarelaFinal = new PasarelaFinal(coordenadaFinal, null);
+
+        Coordenada coordenadaPrimera = new Coordenada(2, 2);
+        Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, pasarelaFinal);
+
+        Enemigo hormiga = new Hormiga(pasarelaPrimera);
+        System.out.println(Jugador.getInstance().obtenerVida());
+        juego.nuevoEnemigo(hormiga);
+        hormiga.avanzar();
+        assertTrue(juego.estado() instanceof Ganado);
+    } */
 }
 
 

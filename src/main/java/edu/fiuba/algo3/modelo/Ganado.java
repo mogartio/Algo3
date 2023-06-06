@@ -7,4 +7,5 @@ public class Ganado implements EstadoJuego {
     public EstadoJuego actualizarConVidaDeJugador(int cantVida) {
         return this;
     }
+    public void pasarTurno() {};
 }
