@@ -8,4 +8,6 @@ public class Perdido implements EstadoJuego {
     public EstadoJuego actualizarConVidaDeJugador(int cantVida) {
         return this;
     }
+
+    public void pasarTurno() {};
 }

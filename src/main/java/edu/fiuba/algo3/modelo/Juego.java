@@ -28,5 +28,6 @@ public class Juego {
         return estadoJuego;
     }
 
+    public void pasarTurno() {estadoJuego.pasarTurno();};
 
 }

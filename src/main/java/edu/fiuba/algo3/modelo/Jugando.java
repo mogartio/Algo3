@@ -22,4 +22,7 @@ public class Jugando implements EstadoJuego {
         else
             return this;
     }
+    public void pasarTurno(){
+        enemigos.forEach(enemigo -> enemigo.avanzar());
+    }
 }

@@ -11,9 +11,7 @@ public class Vida {
         return puntos > 0;
     }
 
-    public void quitarVida(int puntos){
-        this.puntos -= puntos;
-    }
+    public void quitarVida(int puntos){ this.puntos -= puntos; }
 
     public int obtenerPuntos(){
         return puntos;
