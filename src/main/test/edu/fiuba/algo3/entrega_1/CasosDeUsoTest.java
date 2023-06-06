@@ -8,7 +8,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import edu.fiuba.algo3.modelo.*;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
 import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -16,22 +17,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CasosDeUsoTest {
 
     @Test
+    @Order(1)
     public void test01LaVidaYCreditosDelJugadorSonLosCorrectosAlEmpezar() {
         //el jugador comienza con 20 puntos de vida y con 100 creditos
-        Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida, 100);
-
+        Jugador jugador = Jugador.getInstance();
         assertEquals(100, jugador.obtenerCreditos());
         assertEquals(20, jugador.obtenerVida());
     }
 
     @Test
+    @Order(2)
     public void test02aLaTorreBlancaTardaEnConstruirse1Turno() {
         Defensa torre = new TorrePlateada();
-
         assertFalse(torre.estaConstruida());
 
         torre.pasarTurno();
@@ -39,6 +41,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(3)
     public void test02bLaTorrePlateadaTardaEnConstruirse2Turnos() {
         Defensa torre = new TorrePlateada();
 
@@ -59,10 +62,10 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(4)
     public void test03SeVerficaQueElJugadorDispongaDeCreditoParaConstruirTorres() {
         // se crea un jugador con los recursos base (tambien podrian ser otros)
-        Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida, 100);
+        Jugador jugador = Jugador.getInstance();
 
         //se crea la tienda que sera quien proveera y verificara las torres comprables
         Tienda proveedor = new Tienda();
@@ -77,6 +80,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(5)
     public void test04VerificarSoloSePuedaConstruirDefensasSobreTierra() {
         Defensa torre = new TorrePlateada();
 
@@ -94,6 +98,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(6)
     public void test05VerificarQueLasDefensasAtaquenDentroDelRangoEsperado() {
         Coordenada coordenada = new Coordenada(0, 0);
         Pasarela pasarela1 = new PasarelaIntermedia(coordenada, null);
@@ -122,6 +127,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(7)
     public void test06VerificarQueLosEnemigosSonDañadosAcordeAlAtaqueRecibido() {
         Coordenada coordenada = new Coordenada(0, 0);
         Pasarela pasarela1 = new PasarelaIntermedia(coordenada, null);
@@ -147,6 +153,7 @@ public class CasosDeUsoTest {
 
 
     @Test
+    @Order(8)
     public void test07aVerificarQueLasArañasSeDesplazanLaCantidadCorrectaDeParcelas() {
 
         Coordenada coordenadaFinal = new Coordenada(1, 1);
@@ -165,6 +172,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(9)
     public void test07bVerificarQueLasArañasSeDesplazanLaCantidadCorrectaDeParcelas() {
 
         Coordenada coordenadaFinal = new Coordenada(2, 1);
@@ -178,11 +186,28 @@ public class CasosDeUsoTest {
 
         assertEquals(enemigo.verPosicion(), pasarelaFinal);
     }
-    /*@Test
-    public void test08aHormigaDaCreditosCorrespondientesAlMorirOnceVeces() {
+    @Test
+    @Order(10)
+
+    public void test08aHormigaDaCreditosCorrespondientesAlMorirUnaVez() {
+        Jugador.getInstance();
+        int creditoInicial = Jugador.getInstance().obtenerCreditos();
+
+        Coordenada coordenadaInicializadora = new Coordenada(1, 1);
+        Pasarela pasarelaInicializadora = new PasarelaIntermedia(coordenadaInicializadora, null);
+        Enemigo hormiga = new Hormiga(pasarelaInicializadora);
+
+        hormiga.morir();
+
+        assertEquals((1 + creditoInicial), Jugador.getInstance().obtenerCreditos());
+    }
+
+    @Test
+    @Order(11)
+    public void test08bHormigaDaCreditosCorrespondientesAlMorirOnceVeces() {
         Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida, 0);
-        int creditoInicial = jugador.getInstance().obtenerCreditos();
+        Jugador jugador = Jugador.getInstance();
+        int creditoInicial = Jugador.getInstance().obtenerCreditos();
 
         for (int i = 0; i < 11; i++) {
             Coordenada coordenadaInicializadora = new Coordenada(1, 1);
@@ -191,33 +216,19 @@ public class CasosDeUsoTest {
             hormiga.morir();
         }
 
-        assertEquals((13 + creditoInicial), jugador.getInstance().obtenerCreditos()); //Corregir tests. Al ser singleton cada test hace la prueba sobre la misma instancia de juagdor
-    }*/
-
-    @Test
-    public void test08bHormigaDaCreditosCorrespondientesAlMorirUnaVez() {
-        Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida, 0);
-        int creditoInicial = jugador.getInstance().obtenerCreditos();
-
-        Coordenada coordenadaInicializadora = new Coordenada(1, 1);
-        Pasarela pasarelaInicializadora = new PasarelaIntermedia(coordenadaInicializadora, null);
-        Enemigo hormiga = new Hormiga(pasarelaInicializadora);
-
-        hormiga.morir();
-
-        assertEquals((1 + creditoInicial), jugador.getInstance().obtenerCreditos());
+        assertEquals((15 + creditoInicial), jugador.getInstance().obtenerCreditos()); //Corregir tests. Al ser singleton cada test hace la prueba sobre la misma instancia de juagdor
     }
 
     @Test
+    @Order(12)
     public void test08cArañaDaCreditosCorrespondientesAlMorir() {
-        Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida, 0);
+        Jugador jugador = Jugador.getInstance();
         int creditosIniciales = jugador.getInstance().obtenerCreditos();
         assertFalse((Jugador.getInstance().obtenerCreditos() > 10 + creditosIniciales) || (Jugador.getInstance().obtenerCreditos() < 0 + creditosIniciales));
     }
 
     @Test
+    @Order(13)
     public void test09aCrearHormigaYAvanzarHaceQueAvanceUnaPosicion() {
         Coordenada coordenadaFinal = new Coordenada(0, 1);
         Pasarela pasarelaFinal = new PasarelaIntermedia(coordenadaFinal, null);
@@ -239,6 +250,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(14)
     public void test09bCrearArañaYAvarnzarHaceQueAvanceDosPosiciones() {
         Coordenada coordenadaFinal = new Coordenada(1, 3);
         Pasarela pasarelaFinal = new PasarelaIntermedia(coordenadaFinal, null);
@@ -258,6 +270,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(15)
     public void test09cCrearUnaColeccionDeEnemigosYHacerQueAvanzenActualizaLasPosicionesDeTodos() {
         Coordenada coordenadaFinal = new Coordenada(0, 1);
         Pasarela pasarelaFinal = new PasarelaIntermedia(coordenadaFinal, null);
@@ -296,9 +309,10 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(16)
     public void test10aCrearUnJuegoConUnEnemigoSeGanaCuandoElEnemigoMuere() {
         Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida, 0);
+        Jugador jugador = Jugador.getInstance();
         Juego juego = new Juego(jugador);
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
@@ -315,10 +329,11 @@ public class CasosDeUsoTest {
     }
 
     @Test
+    @Order(17)
     public void test10bCrearUnJuegoConMuchosEnemigosSeGanaSoloCuandoTodosMueren() {
 
         Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida, 0);
+        Jugador jugador = Jugador.getInstance();
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
         Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, null);
@@ -357,10 +372,11 @@ public class CasosDeUsoTest {
         arañaCuatro.recibirDaño(1);
         assertTrue(juego.estado() instanceof Ganado);
     }
-   /* @Test
+    @Test
+    @Order(18)
     public void test11ElJugadorSobreviveConUnEnemigoLlegandoALaMetaYGanaIgual() {
         Vida vida = new Vida(20);
-        Jugador jugador = new Jugador(vida, 0);
+        Jugador jugador = Jugador.getInstance();
         Juego juego = new Juego(jugador);
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
@@ -370,11 +386,10 @@ public class CasosDeUsoTest {
         Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, pasarelaFinal);
 
         Enemigo hormiga = new Hormiga(pasarelaPrimera);
-        System.out.println(Jugador.getInstance().obtenerVida());
         juego.nuevoEnemigo(hormiga);
-        hormiga.avanzar();
+        juego.pasarTurno();
         assertTrue(juego.estado() instanceof Ganado);
-    } */
+    }
 }
 
 

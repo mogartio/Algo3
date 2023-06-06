@@ -4,16 +4,18 @@ import java.util.Stack;
 
 public class Jugador {
     private static final Jugador INSTANCE = new Jugador();
-    private Jugador() {}
+    private Jugador() {
+        final int VIDA_INICIAL = 20;
+        final int CREDITOS_INICIALES = 100;
+        Vida vidaNueva = new Vida(VIDA_INICIAL);
+        vida = vidaNueva;
+        creditos = CREDITOS_INICIALES;
+        contadorHormigasMuertas = 0;
+    }
     public static Jugador getInstance() { return INSTANCE; }
     private Vida vida;
     private int creditos;
     private int contadorHormigasMuertas;
-    public Jugador(Vida vidaInicial, int creditosIniciales){
-        vida = vidaInicial;
-        creditos = creditosIniciales;
-        contadorHormigasMuertas = 0;
-    }
     public int obtenerCreditos() { return creditos; }
 
     public Stack<Defensa> verificarConstruccionesPosibles(Tienda proveedor) {
