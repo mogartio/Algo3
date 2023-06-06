@@ -139,7 +139,7 @@ public class CasosDeUsoTest {
 
         ArrayList<Pasarela> lista = new ArrayList<Pasarela>();
         lista.add(pasarela1);
-        //lista.add(pasarela2);
+        lista.add(pasarela2);
         lista.add(pasarela3);
 
         Rango rango = new Rango(lista);
