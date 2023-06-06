@@ -1,30 +1,45 @@
 package edu.fiuba.algo3.modelo;
 
 public abstract class Enemigo {
-    private Vida vida = new Vida(1);
-
-    public int cantidadMovimientos;
-    public int creditosRecompensa;
-
+    protected Vida vida;
+    protected int cantidadMovimientos;
+    protected int creditosRecompensa;
+    protected int poderAtaque;
     public Pasarela posicionActual;
+
+    public boolean estaVivo() {
+        return vida.sigueVivo();
+    }
 
     public void recibirDaño(int daño){
         this.vida.quitarVida(daño);
-        if (vida.obtenerPuntos() == 0) {
+        if (!vida.sigueVivo()) {
             this.morir();
         }
     }
+
+    public void actualizarPosicionActual(Pasarela pasarelaActual) {
+        this.posicionActual = pasarelaActual;
+    }
+
+    public void dañarJugador() {
+        Jugador.getInstance().recibirDaño(poderAtaque);
+        vida = new Vida(0);
+    }
+
     public abstract void morir();
 
     public void avanzar() {
-        for (int i = 0; i < cantidadMovimientos; i++) {
+        /*for (int i = 0; i < cantidadMovimientos; i++) {
             this.posicionActual = posicionActual.verSiguiente();
-        }
+        }*/
+        if (vida.sigueVivo())
+            posicionActual.actualizarPosicion(this, this.cantidadMovimientos);
     }
 
     public Pasarela verPosicion() { return posicionActual; }
 
-    public boolean muerto(){
+    /*public boolean muerto(){
         return (this.vida.obtenerPuntos() == 0);
-    }
+    }*/
 }

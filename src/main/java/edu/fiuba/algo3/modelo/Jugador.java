@@ -9,7 +9,7 @@ public class Jugador {
     private Vida vida;
     private int creditos;
     private int contadorHormigasMuertas;
-    public Jugador(Vida vidaInicial,int creditosIniciales){
+    public Jugador(Vida vidaInicial, int creditosIniciales){
         vida = vidaInicial;
         creditos = creditosIniciales;
         contadorHormigasMuertas = 0;
@@ -29,6 +29,14 @@ public class Jugador {
         if (esHormiga && contadorHormigasMuertas >= REQUISITO_HORMIGAS_MUERTAS)
             creditosRecibidos = creditosRecibidos * MULTIPLICADOR_HORMIGAS_MUERTAS;
         this.creditos += creditosRecibidos;
+    }
+
+    public void recibirDaño(int unDaño) {
+        vida.quitarVida(unDaño);
+    }
+
+    public boolean estaVivo(){
+        return vida.sigueVivo();
     }
 
     public void registrarHormigaMuerta() {

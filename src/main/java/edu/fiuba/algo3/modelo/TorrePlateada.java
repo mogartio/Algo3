@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 public class TorrePlateada extends Defensa{
 
+
+
     public TorrePlateada(){
         super();
         this.estadoDeConstruccion = 2;

@@ -10,10 +10,13 @@ public class Araña extends Enemigo {
     private final int MINIMO = 0;
     private final int MAXIMO = 10;
     public Araña(Pasarela pasarelaInicial) {
-         this.cantidadMovimientos = 2;
-         this.posicionActual = pasarelaInicial;
-     }
-     public void morir(){
-        Jugador.getInstance().recompensar(ThreadLocalRandom.current().nextInt(MINIMO, MAXIMO + 1), false); // devuelve int entre 0 y 10
-     }
+        pasarelaInicial.recibir(this);
+        this.vida = new Vida(2);
+        this.poderAtaque = 2;
+        this.cantidadMovimientos = 2;
+        this.posicionActual = pasarelaInicial;
+    }
+    public void morir(){
+    Jugador.getInstance().recompensar(ThreadLocalRandom.current().nextInt(MINIMO, MAXIMO + 1), false); // devuelve int entre 0 y 10
+    }
 }
