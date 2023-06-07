@@ -240,7 +240,7 @@ public class CasosDeUsoTest {
 
         Enemigo hormiga = new Hormiga(pasarelaInicial);
 
-        Juego juego = new Juego(null);
+        Juego juego = new Juego();
         juego.nuevoEnemigo(hormiga);
         juego.pasarTurno();
 
@@ -261,7 +261,7 @@ public class CasosDeUsoTest {
         Pasarela pasarelaInicial = new PasarelaIntermedia(coordenadaInicial, pasarelaSegunda);
         Enemigo araña = new Araña(pasarelaInicial);
 
-        Juego juego = new Juego(null);
+        Juego juego = new Juego();
         juego.nuevoEnemigo(araña);
         juego.pasarTurno();
 
