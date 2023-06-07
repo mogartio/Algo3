@@ -5,7 +5,7 @@ public class Perdido implements EstadoJuego {
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
         return this;
     }
-    public EstadoJuego actualizarConVidaDeJugador(int cantVida) {
+    public EstadoJuego actualizarSegunEstadoDeJugador(boolean estaVivo) {
         return this;
     }
 

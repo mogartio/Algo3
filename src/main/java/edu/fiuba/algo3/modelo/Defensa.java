@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.modelo.Observer.Emisor;
+import edu.fiuba.algo3.modelo.Observer.Observable;
 
-public abstract class Defensa {
+public abstract class Defensa extends Observable {
     protected int daño;
     protected int estadoDeConstruccion; // empieza en un numero y a medida que pasan los turnos se decrementa
     //si es = 0 es porque la torre esta construida (bastante rancio)
@@ -27,6 +29,7 @@ public abstract class Defensa {
     }
 
     public void atacar(){
+        emisor.notificarSubscriptores("log", "Aca deberia decir cómo atacó el enemigo");
         Pasarela pasarelaSeleccionada = this.pasarelas.buscarPasarelaConEnemigo();
         pasarelaSeleccionada.dañarEnemigo(this.daño);
     }
