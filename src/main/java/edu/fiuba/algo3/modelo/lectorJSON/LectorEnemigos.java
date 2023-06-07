@@ -11,10 +11,10 @@ import org.json.simple.parser.ParseException;
 
 public class LectorEnemigos {
     public Queue<ArrayList<Enemigo>> colaSpawner;
-
     LectorEnemigos(){
         colaSpawner = new LinkedList<>();
     }
+
     public Queue<ArrayList<Enemigo>> leerEnemigos() {
         JSONParser jsonParser = new JSONParser();
 

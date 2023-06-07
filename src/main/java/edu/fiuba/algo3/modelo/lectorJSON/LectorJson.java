@@ -7,10 +7,13 @@ import java.util.Queue;
 
 public class LectorJson {
     private final LectorEnemigos lectorEnemigos;
+    private final LectorMapa lectorMapa;
 
     public LectorJson(){
         lectorEnemigos = new LectorEnemigos();
+        lectorMapa = new LectorMapa();
     }
     public Queue<ArrayList<Enemigo>> leerEnemigos() { return (lectorEnemigos.leerEnemigos()); }
+    public void leerMapa() {lectorMapa.leerMapa();}
 }
 
