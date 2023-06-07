@@ -1,21 +1,16 @@
 package edu.fiuba.algo3.entrega_1;
 
-import java.util.ArrayList;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import edu.fiuba.algo3.modelo.*;
-import org.junit.jupiter.api.*;
+import edu.fiuba.algo3.modelo.lectorJSON.LectorJson;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
+import java.util.ArrayList;
 import java.util.Stack;
-import java.util.concurrent.ThreadLocalRandom;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -410,7 +405,6 @@ public class CasosDeUsoTest {
         }
         assertTrue(juego.estado() instanceof Perdido);
     }
-
 }
 
 
