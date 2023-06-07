@@ -1,11 +1,17 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.modelo.Observer.Emisor;
+import edu.fiuba.algo3.modelo.Observer.Observable;
 
-public abstract class Enemigo {
+public abstract class Enemigo extends Observable {
     protected Vida vida;
     protected int cantidadMovimientos;
     protected int creditosRecompensa;
     protected int poderAtaque;
     public Pasarela posicionActual;
+
+    public Enemigo(){
+        super();
+    }
 
     public boolean estaVivo() {
         return vida.sigueVivo();
@@ -28,6 +34,8 @@ public abstract class Enemigo {
     }
 
     public abstract void morir();
+
+    public abstract String representacionString();
 
     public void avanzar() {
         /*for (int i = 0; i < cantidadMovimientos; i++) {

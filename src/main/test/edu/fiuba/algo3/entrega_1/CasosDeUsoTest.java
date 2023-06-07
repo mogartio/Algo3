@@ -141,7 +141,7 @@ public class CasosDeUsoTest {
 
         ArrayList<Pasarela> lista = new ArrayList<Pasarela>();
         lista.add(pasarela1);
-        //lista.add(pasarela2);
+        lista.add(pasarela2);
         lista.add(pasarela3);
 
         Rango rango = new Rango(lista);
@@ -242,7 +242,7 @@ public class CasosDeUsoTest {
 
         Enemigo hormiga = new Hormiga(pasarelaInicial);
 
-        Juego juego = new Juego(null);
+        Juego juego = new Juego();
         juego.nuevoEnemigo(hormiga);
         juego.pasarTurno();
 
@@ -263,7 +263,7 @@ public class CasosDeUsoTest {
         Pasarela pasarelaInicial = new PasarelaIntermedia(coordenadaInicial, pasarelaSegunda);
         Enemigo araña = new Araña(pasarelaInicial);
 
-        Juego juego = new Juego(null);
+        Juego juego = new Juego();
         juego.nuevoEnemigo(araña);
         juego.pasarTurno();
 
@@ -285,7 +285,7 @@ public class CasosDeUsoTest {
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
         Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, pasarelaSegunda);
 
-        Juego juego = new Juego(null);
+        Juego juego = new Juego();
 
         Enemigo arañaUno = new Araña(pasarelaPrimera);
         Enemigo arañaDos = new Araña(pasarelaSegunda);
@@ -313,8 +313,7 @@ public class CasosDeUsoTest {
     @Order(16)
     public void test10aCrearUnJuegoConUnEnemigoSeGanaCuandoElEnemigoMuere() {
         Vida vida = new Vida(20);
-        Jugador jugador = Jugador.getInstance();
-        Juego juego = new Juego(jugador);
+        Juego juego = new Juego();
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
         Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, null);
@@ -332,10 +331,6 @@ public class CasosDeUsoTest {
     @Test
     @Order(17)
     public void test10bCrearUnJuegoConMuchosEnemigosSeGanaSoloCuandoTodosMueren() {
-
-        Vida vida = new Vida(20);
-        Jugador jugador = Jugador.getInstance();
-
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
         Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, null);
         Araña arañaUno = new Araña(pasarelaPrimera);
@@ -358,7 +353,7 @@ public class CasosDeUsoTest {
         enemigos.add(HormigaTres);
         enemigos.add(HormigaCuatro);
 
-        Juego juego = new Juego(jugador, enemigos);
+        Juego juego = new Juego(enemigos);
         assertTrue(juego.estado() instanceof Jugando);
 
         enemigos.forEach(enemigo -> enemigo.recibirDaño(1)); //Las hormigas mueren pero las arañas siguen vivas
@@ -376,8 +371,7 @@ public class CasosDeUsoTest {
     @Test
     @Order(18)
     public void test11ElJugadorSobreviveConUnEnemigoLlegandoALaMetaYGanaIgual() {
-        Jugador jugador = Jugador.getInstance();
-        Juego juego = new Juego(jugador);
+        Juego juego = new Juego();
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
         Pasarela pasarelaFinal = new PasarelaFinal(coordenadaFinal, null);
@@ -394,8 +388,7 @@ public class CasosDeUsoTest {
     @Test
     @Order(19)
     public void test12ElJugadorMuereYPierdeElJuego() {
-        Jugador jugador = Jugador.getInstance();
-        Juego juego = new Juego(jugador);
+        Juego juego = new Juego();
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
         Pasarela pasarelaFinal = new PasarelaFinal(coordenadaFinal, null);
