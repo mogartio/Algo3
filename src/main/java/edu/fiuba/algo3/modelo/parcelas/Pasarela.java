@@ -40,4 +40,8 @@ public abstract class Pasarela extends Parcela {
     public boolean tieneEnemigos(){
         return !(enemigos.isEmpty());
     }
+
+    public boolean equals(Pasarela pasarela){
+        return pasarela.verificarPosicion(this.coordenada);
+    }
 }

@@ -15,6 +15,10 @@ public class Tierra extends Parcela {
         setConstruible(new NoDisponible());
     }
 
+    public boolean equals(Tierra tierra){
+        return tierra.verificarPosicion(this.coordenada);
+    }
+
     public boolean ocupada(){
         return !(construible.puedeConstruir());
     }

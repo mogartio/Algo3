@@ -15,8 +15,12 @@ public abstract class Parcela {
 
     public abstract void construirDefensa(Defensa defensa);
 
-    public boolean equals(Coordenada coordenada){
-        return (this.coordenada.equals(coordenada));
+    public boolean equals(Object pasarela){
+        return false;
+    }
+
+    public boolean verificarPosicion(Coordenada coordenada){
+        return coordenada.equals(this.coordenada);
     }
 
     protected void setConstruible(Construible nuevoConstruible){

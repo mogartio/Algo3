@@ -10,14 +10,10 @@ public class Coordenada {
     }
 
     public boolean equals(Coordenada coordenada){
-        return (this.coordY == coordenada.devolverY() && this.coordX == coordenada.devolverX());
+        return coordenada.verificarCoordenadas(this.coordX, this.coordY);
     }
 
-    public int devolverY(){
-        return this.coordY;
-    }
-
-    public int devolverX(){
-        return this.coordX;
+    public boolean verificarCoordenadas(int coordX, int coordY){
+        return (this.coordX == coordX && this.coordY == coordY);
     }
 }
