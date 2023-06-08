@@ -1,10 +1,14 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.modelo.Observer.Emisor;
+import edu.fiuba.algo3.modelo.Observer.Observable;
 
 import java.util.Stack;
 
-public class Jugador {
+public class Jugador extends Observable {
+
     private static final Jugador INSTANCE = new Jugador();
     private Jugador() {
+        super();
         final int VIDA_INICIAL = 20;
         final int CREDITOS_INICIALES = 100;
         Vida vidaNueva = new Vida(VIDA_INICIAL);
@@ -25,6 +29,9 @@ public class Jugador {
         return vida.obtenerPuntos();
     }
     public void recompensar(int creditosRecibidos, boolean esHormiga){
+
+        emisor.notificarSubscriptores("log", "Recompensan al jugador con " + creditosRecibidos + " créditos");
+
         int MULTIPLICADOR_HORMIGAS_MUERTAS = 2;
         int REQUISITO_HORMIGAS_MUERTAS = 10;
 
@@ -34,6 +41,7 @@ public class Jugador {
     }
 
     public void recibirDaño(int unDaño) {
+        emisor.notificarSubscriptores("log", "Jugador recibe " + unDaño + " puntos de daño");
         vida.quitarVida(unDaño);
     }
 
