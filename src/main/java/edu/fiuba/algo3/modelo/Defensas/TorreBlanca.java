@@ -8,7 +8,8 @@ public class TorreBlanca extends Defensa{
         super();
     }
 
-    public TorreBlanca(Rango rango){
+    public TorreBlanca(Rango rango,EstadoConstruccion estado){
         super(rango, 1);
+        this.estadoDeConstruccion = estado;
     }
 }

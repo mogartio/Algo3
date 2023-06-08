@@ -39,19 +39,37 @@ public class CasosDeUsoTest {
     @Test
     @Order(2)
     public void test02aLaTorreBlancaTardaEnConstruirse1Turno() {
-        EstadoConstruccion estadoInicial = new EnConstruccion(2);
-        Defensa torre = new TorrePlateada(estadoInicial);
+        Coordenada coordenada = new Coordenada(0, 0);
+        Pasarela pasarela1 = new PasarelaIntermedia(coordenada, null);
+
+        ArrayList<Pasarela> lista = new ArrayList<Pasarela>();
+        lista.add(pasarela1);
+
+        Rango rango = new Rango(lista);
+
+        EstadoConstruccion estadoInicial = new EnConstruccion(1);
+        Defensa torre = new TorreBlanca(rango,estadoInicial);
 
         assertFalse(torre.estaConstruida());
 
         torre.pasarTurno();
-        assertFalse(torre.estaConstruida());
+        assertTrue(torre.estaConstruida());
     }
 
     @Test
     @Order(3)
     public void test02bLaTorrePlateadaTardaEnConstruirse2Turnos() {
-        Defensa torre = new TorrePlateada();
+        EstadoConstruccion estadoInicial = new EnConstruccion(2);
+
+        Coordenada coordenada = new Coordenada(0, 0);
+        Pasarela pasarela1 = new PasarelaIntermedia(coordenada, null);
+
+        ArrayList<Pasarela> lista = new ArrayList<Pasarela>();
+        lista.add(pasarela1);
+
+        Rango rango = new Rango(lista);
+
+        Defensa torre = new TorrePlateada(rango,estadoInicial);
 
         //se verifica que la torre no se encuentra construida
         assertFalse(torre.estaConstruida());
@@ -121,7 +139,8 @@ public class CasosDeUsoTest {
         lista.add(pasarela3);
 
         Rango rango = new Rango(lista);
-        TorreBlanca torre = new TorreBlanca(rango);
+        EstadoConstruccion estadoInicial = new Construido();
+        TorreBlanca torre = new TorreBlanca(rango,estadoInicial), e;
         torre.pasarTurno();
         torre.atacar();
 
@@ -151,7 +170,8 @@ public class CasosDeUsoTest {
         lista.add(pasarela3);
 
         Rango rango = new Rango(lista);
-        TorreBlanca torre = new TorreBlanca(rango);
+        EstadoConstruccion estadoInicial = new Construido();
+        TorreBlanca torre = new TorreBlanca(rango,estadoInicial);
         torre.pasarTurno();
         torre.atacar();
 

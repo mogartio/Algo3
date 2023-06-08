@@ -5,6 +5,7 @@ public class Construido implements EstadoConstruccion {
         return new Construido();
     }
     public boolean estoyConstruida(){
+
         return true;
     }
 }
