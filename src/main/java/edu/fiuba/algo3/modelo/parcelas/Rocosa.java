@@ -9,6 +9,10 @@ public class Rocosa extends Parcela {
     }
     public void construirDefensa(Defensa defensa){}
 
+    public boolean equals(Rocosa rocosa){
+        return rocosa.verificarPosicion(this.coordenada);
+    }
+
     public boolean ocupada(){
         return false;
     }

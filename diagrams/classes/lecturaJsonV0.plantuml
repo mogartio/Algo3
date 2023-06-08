@@ -1,0 +1,40 @@
+@startuml
+
+class CreadorNivel{
+- lectorEnemigos : LectorEnemigo
+- lectorMapa : LectorMapa
+
++ crearMapa(jsonMapa, jsonEnemigos):Mapa
+- crearCamino(jsonMapa, jsonEnemigos):Camino
+- crearRango(jsonMapa):Rango
+}
+class LectorMapa{
++crearMapa(json):Rango
+}
+class LectorEnemigo{
++crearOleadas(json):Oleadas
+}
+
+class Camino{
+- pasarelas : ArrayList<Pasarelas>
+- oleadas: Oleadas
+
++ agregarPasarela(nuevaPasarela: Pasarela)
+}
+
+class Oleadas{}
+
+class Mapa{
+-parcelas: ArrayList<Parcela>
+
++ Mapa(Rango parcelas, Camino camino)
+}
+
+LectorMapa --o CreadorNivel
+CreadorNivel o-- LectorEnemigo
+Camino --o Mapa
+Mapa <. CreadorNivel
+LectorEnemigo ..> Oleadas
+
+
+@enduml
