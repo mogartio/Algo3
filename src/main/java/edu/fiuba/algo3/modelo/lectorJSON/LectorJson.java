@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.lectorJSON;
 
-import edu.fiuba.algo3.modelo.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 
 import java.util.ArrayList;
 import java.util.Queue;

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.miscelanea;
 
 public class Vida {
     private int puntos;

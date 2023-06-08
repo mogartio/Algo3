@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.lectorJSON;
 
-import edu.fiuba.algo3.modelo.Parcela;
+import edu.fiuba.algo3.modelo.parcelas.Parcela;
 
 import java.util.ArrayList;
 

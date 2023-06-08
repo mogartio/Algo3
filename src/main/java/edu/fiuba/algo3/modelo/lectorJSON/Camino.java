@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.lectorJSON;
 
-import edu.fiuba.algo3.modelo.Coordenada;
-import edu.fiuba.algo3.modelo.Pasarela;
-import edu.fiuba.algo3.modelo.PasarelaFinal;
-import edu.fiuba.algo3.modelo.PasarelaIntermedia;
+import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Pasarela;
+import edu.fiuba.algo3.modelo.parcelas.PasarelaFinal;
+import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
 
 import java.util.ArrayList;
 

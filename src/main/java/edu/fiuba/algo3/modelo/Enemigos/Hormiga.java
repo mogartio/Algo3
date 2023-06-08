@@ -1,6 +1,9 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.Observer.Emisor;
+import edu.fiuba.algo3.modelo.parcelas.Pasarela;
+import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
 public class Hormiga extends Enemigo{
     private final int CREDITOS_HORMIGA = 1;

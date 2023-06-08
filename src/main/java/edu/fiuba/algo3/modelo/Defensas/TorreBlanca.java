@@ -1,14 +1,14 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.Defensas;
+
+import edu.fiuba.algo3.modelo.miscelanea.Rango;
 
 public class TorreBlanca extends Defensa{
 
     public TorreBlanca(){
         super();
-        this.estadoDeConstruccion = 1;
     }
 
     public TorreBlanca(Rango rango){
         super(rango, 1);
-        estadoDeConstruccion = 1;
     }
 }

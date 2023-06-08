@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo.lectorJSON;
 
-import edu.fiuba.algo3.modelo.*;
-import org.json.simple.JSONArray;
+import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Rocosa;
+import edu.fiuba.algo3.modelo.parcelas.Tierra;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;

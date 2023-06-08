@@ -1,7 +1,13 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Enemigos.Araña;
+import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Observer.Logger;
+import edu.fiuba.algo3.modelo.juego.Juego;
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Pasarela;
+import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

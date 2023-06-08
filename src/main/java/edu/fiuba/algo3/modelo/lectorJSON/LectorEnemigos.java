@@ -3,7 +3,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Enemigos.Araña;
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
+import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Pasarela;
+import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -27,7 +32,7 @@ public class LectorEnemigos {
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        System.out.println(colaSpawner);
+        //System.out.println(colaSpawner);
         return colaSpawner;
     }
     private void crearTurno(JSONObject turno) {

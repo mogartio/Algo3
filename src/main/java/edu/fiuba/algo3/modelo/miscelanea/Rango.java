@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.miscelanea;
+import edu.fiuba.algo3.modelo.parcelas.Pasarela;
+
 import java.util.ArrayList;
 public class Rango {
     private ArrayList<Pasarela> pasarelas;

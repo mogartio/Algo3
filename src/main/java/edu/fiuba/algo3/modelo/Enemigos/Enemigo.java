@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.modelo;
-import edu.fiuba.algo3.modelo.Observer.Emisor;
+package edu.fiuba.algo3.modelo.Enemigos;
+import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.Observer.Observable;
+import edu.fiuba.algo3.modelo.parcelas.Pasarela;
+import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
 public abstract class Enemigo extends Observable {
     protected Vida vida;

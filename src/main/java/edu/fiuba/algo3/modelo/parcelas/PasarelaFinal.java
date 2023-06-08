@@ -1,4 +1,7 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.parcelas;
+
+import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 
 public class PasarelaFinal extends Pasarela {
 

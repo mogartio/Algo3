@@ -2,19 +2,23 @@ package edu.fiuba.algo3.entrega_1;
 
 import java.util.ArrayList;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.lectorJSON.LectorJson;
-import org.junit.jupiter.api.*;
+
+import edu.fiuba.algo3.modelo.Defensas.*;
+import edu.fiuba.algo3.modelo.Enemigos.Araña;
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
+import edu.fiuba.algo3.modelo.juego.*;
+import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.miscelanea.Rango;
+import edu.fiuba.algo3.modelo.miscelanea.Tienda;
+import edu.fiuba.algo3.modelo.miscelanea.Vida;
+import edu.fiuba.algo3.modelo.parcelas.*;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,7 +39,9 @@ public class CasosDeUsoTest {
     @Test
     @Order(2)
     public void test02aLaTorreBlancaTardaEnConstruirse1Turno() {
-        Defensa torre = new TorrePlateada();
+        EstadoConstruccion estadoInicial = new EnConstruccion(2);
+        Defensa torre = new TorrePlateada(estadoInicial);
+
         assertFalse(torre.estaConstruida());
 
         torre.pasarTurno();

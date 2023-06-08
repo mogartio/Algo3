@@ -1,4 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.miscelanea;
+
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.modelo.Defensas.TorreBlanca;
+import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
 
 import java.util.Stack;
 
