@@ -21,25 +21,55 @@ import org.junit.jupiter.api.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CasosDeUsoTest2 {
-  /*  @Test
-    public void test13SeVerificaLaValidesDelJSONDeEnemigos(){
+    @Test
+    public void test13SeVerificaLaValidesDelJSONDeEnemigosDePrueba(){
         Lector lectorDeEnemigos = new Lector();
-
+        ArrayList< HashMap<String,String> > enemigosEnArchivo = new ArrayList<>();
         JSONArray parseoDeEnemigos = null;
-        parseoDeEnemigos = Lector.leer("ArchivosJson/enemigosDePrueba.json");
+
+        HashMap<String,String> turno1EnArchivo = new HashMap<String,String>();
+        HashMap<String,String> turno2EnArchivo = new HashMap<String,String>();
+        HashMap<String,String> turno3EnArchivo = new HashMap<String,String>();
+
+        turno1EnArchivo.put("arana","1");
+        turno1EnArchivo.put("hormiga","2");
+        turno2EnArchivo.put("arana","1");
+        turno2EnArchivo.put("hormiga","0");
+        turno3EnArchivo.put("arana","1");
+        turno3EnArchivo.put("hormiga","1");
+
+        enemigosEnArchivo.add(turno1EnArchivo);
+        enemigosEnArchivo.add(turno2EnArchivo);
+        enemigosEnArchivo.add(turno3EnArchivo);
+
+        parseoDeEnemigos = Lector.leer("ArchivosJson/enemigosDePrueba");
+
+        for (int numeroDeturno = 1; numeroDeturno <= parseoDeEnemigos.size(); numeroDeturno++){ //se inicializa el ciclo en 1 para que sea representativo
+            JSONObject informacionDelTurno = (JSONObject) parseoDeEnemigos.get(numeroDeturno-1);
+
+            JSONObject enemigosEnTurno = (JSONObject) informacionDelTurno.get("enemigos");
+            String aranasEnTurno = enemigosEnTurno.get("arana").toString();
+            String hormigasEnTurno = enemigosEnTurno.get("hormiga").toString();
+
+            assertEquals(informacionDelTurno.get("turno").toString(),String.valueOf(numeroDeturno));
+            assertEquals(enemigosEnArchivo.get(numeroDeturno-1).get("arana"),aranasEnTurno);
+            assertEquals(enemigosEnArchivo.get(numeroDeturno-1).get("hormiga"),hormigasEnTurno);
+        }
+
 
         //JSONObject resultado = (JSONObject) parseoDeEnemigos.get(0);
-        System.out.println(parseoDeEnemigos);
+
         // JSONArray filas = (JSONArray) parseoDeEnemigos.get();
-    }*/
+    }
 
     @Test
-    public void test14SeVerificaLaValidesDelJSONDeMapa(){
+    public void test14SeVerificaLaValidesDelJSONDeMapaDePrueba(){
         Lector lectorDeEnemigos = new Lector();
         ArrayList <ArrayList<String> > filasEnArchivo = new ArrayList<ArrayList<String> >();
         filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
@@ -52,10 +82,10 @@ public class CasosDeUsoTest2 {
                 "Tierra","Pasarela","Tierra","Tierra","Tierra"
         )));
 
-        JSONArray parseoDeEnemigos = null;
-        parseoDeEnemigos = Lector.leer("ArchivosJson/mapaDePrueba");
+        JSONArray parseoDeMapa = null;
+        parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
 
-        JSONObject filas = (JSONObject) parseoDeEnemigos.get(1);//saltea a "Mapa" y obtiene un diccionario de filas
+        JSONObject filas = (JSONObject) parseoDeMapa.get(1);//saltea a "Mapa" y obtiene un diccionario de filas
 
         for (int i = 1; i <= filas.size(); i++){ //por cada fila en filas
 

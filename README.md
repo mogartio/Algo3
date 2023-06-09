@@ -1,6 +1,6 @@
 ![tp2](https://github.com/AlejoSendra1/AlgoIII_tower_defense/actions/workflows/build.yml/badge.svg) [![codecov](https://codecov.io/gh/AlejoSendra1/AlgoIII_tower_defense/branch/master/graph/badge.svg)](https://codecov.io/gh/AlejoSendra1/AlgoIII_tower_defense)
 
-# TP2 Algoritmos 3: {nombre} 
+# TP2 Algoritmos 3: Tower Defense
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
@@ -11,7 +11,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 3** - Daniel Agustin Marianetti (https://github.com/DanielMarianetti)
 * **Integrante 4** - Martín Osan (https://github.com/mmosan)
 
-Corrector: **{Corrector}**
+Corrector: **Santiago Valdez**
 
 ## Aplicación
 
