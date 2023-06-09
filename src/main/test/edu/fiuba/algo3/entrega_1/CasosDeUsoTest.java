@@ -36,9 +36,8 @@ public class CasosDeUsoTest {
 
         for (int i=1 ; i <= 5 ; i++) {
             Defensa torre1 = jugador.comprar(proveedor,"TorrePlateada");
-            System.out.println(torre1 instanceof TorreBlanca);
         }
-        
+
         ArrayList<String> torresDisponibles = jugador.verificarConstruccionesPosibles(proveedor);
 
         assertTrue(torresDisponibles.isEmpty());
