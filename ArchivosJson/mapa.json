@@ -1,5 +1,5 @@
-{
-"Mapa": {
+[
+   "Mapa", {
    "1":["Rocoso","Pasarela","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Rocoso","Rocoso","Rocoso","Rocoso","Rocoso"],
    "2":["Tierra","Pasarela","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Rocoso","Rocoso","Rocoso","Rocoso","Rocoso"],
    "3":["Tierra","Pasarela","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Rocoso","Rocoso","Rocoso","Rocoso","Rocoso"],
@@ -16,4 +16,4 @@
    "14":["Rocoso","Rocoso","Rocoso","Rocoso","Rocoso","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra"],
    "15":["Rocoso","Rocoso","Rocoso","Rocoso","Rocoso","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra"]
 }
-}
+]

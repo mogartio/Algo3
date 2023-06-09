@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.modelo.Creador;
 
 
@@ -50,3 +51,4 @@ public class CreadorMapa implements Creador {
         }
     }
 }
+*/

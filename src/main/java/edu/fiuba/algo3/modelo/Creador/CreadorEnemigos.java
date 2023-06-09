@@ -1,3 +1,4 @@
+/*
 package edu.fiuba.algo3.modelo.Creador;
 
 import edu.fiuba.algo3.modelo.*;
@@ -41,3 +42,4 @@ public class CreadorEnemigos implements Creador {
     }
 }
 
+*/

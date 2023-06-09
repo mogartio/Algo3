@@ -5,15 +5,62 @@ import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CasosDeUsoTest2 {
+  /*  @Test
+    public void test13SeVerificaLaValidesDelJSONDeEnemigos(){
+        Lector lectorDeEnemigos = new Lector();
+
+        JSONArray parseoDeEnemigos = null;
+        parseoDeEnemigos = Lector.leer("ArchivosJson/enemigosDePrueba.json");
+
+        //JSONObject resultado = (JSONObject) parseoDeEnemigos.get(0);
+        System.out.println(parseoDeEnemigos);
+        // JSONArray filas = (JSONArray) parseoDeEnemigos.get();
+    }*/
+
+    @Test
+    public void test14SeVerificaLaValidesDelJSONDeMapa(){
+        Lector lectorDeEnemigos = new Lector();
+        ArrayList <ArrayList<String> > filasEnArchivo = new ArrayList<ArrayList<String> >();
+        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                "Rocoso","Pasarela","Tierra","Tierra","Tierra"
+        )));
+        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                "Tierra","Pasarela","Tierra","Tierra","Tierra"
+        )));
+        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                "Tierra","Pasarela","Tierra","Tierra","Tierra"
+        )));
+
+        JSONArray parseoDeEnemigos = null;
+        parseoDeEnemigos = Lector.leer("ArchivosJson/mapaDePrueba");
+
+        JSONObject filas = (JSONObject) parseoDeEnemigos.get(1);//saltea a "Mapa" y obtiene un diccionario de filas
+
+        for (int i = 1; i <= filas.size(); i++){ //por cada fila en filas
+
+            JSONArray filaAComparar = (JSONArray) filas.get(String.valueOf(i)); //crea un array con lo que hay en la fila
+
+            for (int j = 0; j < filaAComparar.size(); j++){ // por cada elemento en el en el JSONArray
+                assertEquals(filaAComparar.get(j),filasEnArchivo.get(i-1).get(j));
+            }
+        }
+
+    }
 
     @Test
     public void test20aSiNoSubsriboAlLoggerNoCausaQueElLoggerRecibaUnaNotificacion() {

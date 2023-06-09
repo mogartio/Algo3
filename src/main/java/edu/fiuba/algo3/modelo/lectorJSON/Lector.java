@@ -9,11 +9,29 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class Lector{
+    public static JSONArray leer(String archivo) {
+        JSONParser jsonParser = new JSONParser();
+        JSONArray lecturaDelJSON = null;
 
+        try (FileReader reader = new FileReader(archivo)) {
+            //diccionario medio raro
+            JSONArray parser = (JSONArray) jsonParser.parse(reader);
+
+            lecturaDelJSON = parser;
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return lecturaDelJSON;
+    }
+    /*
     public static JSONArray leer(String archivo, String tipoJson){
+
         JSONParser jsonParser = new JSONParser();
         JSONArray jsonArray = null;
+
         try (FileReader reader = new FileReader(archivo)) {
+            //diccionario medio raro
             Object obj = jsonParser.parse(reader);
             try{
                 return (JSONArray) obj;
@@ -35,4 +53,5 @@ public class Lector{
         }
         return jsonArray;
     }
+    */
 }
