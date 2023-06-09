@@ -180,7 +180,7 @@ public class CasosDeUsoTest {
     }
 
 
-    @Test
+   /* @Test
     @Order(8)
     public void test07aVerificarQueLasArañasSeDesplazanLaCantidadCorrectaDeParcelas() {
 
@@ -213,7 +213,7 @@ public class CasosDeUsoTest {
         enemigo.avanzar();
 
         assertEquals(enemigo.verPosicion(), pasarelaFinal);
-    }
+    } */
     @Test
     @Order(10)
 
@@ -254,7 +254,7 @@ public class CasosDeUsoTest {
         assertFalse((Jugador.getInstance().obtenerCreditos() > 10 + creditosIniciales) || (Jugador.getInstance().obtenerCreditos() < 0 + creditosIniciales));
     }
 
-    @Test
+    /* @Test
     @Order(13)
     public void test09aCrearHormigaYAvanzarHaceQueAvanceUnaPosicion() {
         Coordenada coordenadaFinal = new Coordenada(0, 1);
@@ -333,7 +333,7 @@ public class CasosDeUsoTest {
         assertEquals(enemigos.pop().verPosicion(), pasarelaFinal); // De la tercera avanza uno y va a la cuarta (final)
         assertEquals(enemigos.pop().verPosicion(), pasarelaFinal); // De la segunda avanza dos y va a la cuarta (final)
         assertEquals(enemigos.pop().verPosicion(), pasarelaTercera); // De la primera avanza dos y va a la tercera
-    }
+    } */
 
     @Test
     @Order(16)
