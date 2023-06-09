@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Creador.Creador;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
+import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Enemigos.Araña;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
@@ -9,6 +10,7 @@ import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
+import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
@@ -16,12 +18,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Queue;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CasosDeUsoTest2 {
   /*  @Test
@@ -68,7 +70,7 @@ public class CasosDeUsoTest2 {
     @Test
     public void test15aJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
         Creador creadorEnemigo = new CreadorEnemigos();
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/enemigosTest15a.txt");
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/test15/enemigosTest15a.txt");
         ArrayList<Enemigo> arrayList = colaEnemigos.remove();
         Enemigo enemigo = arrayList.remove(0);
         assertTrue(enemigo instanceof Hormiga);
@@ -78,7 +80,7 @@ public class CasosDeUsoTest2 {
     @Test
     public void test15bJSONConUnSoloTurnoYDosEnemigos(){
         Creador creadorEnemigo = new CreadorEnemigos();
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/enemigoTest15b.txt");
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/test15/enemigoTest15b.txt");
         ArrayList<Enemigo> arrayList = colaEnemigos.remove();
         Enemigo enemigoA = arrayList.remove(0);
         Enemigo enemigoB = arrayList.remove(0);
@@ -91,7 +93,7 @@ public class CasosDeUsoTest2 {
     public void test15cJSONConVariosTurnosYVariosEnemigos(){
         Creador creadorEnemigo = new CreadorEnemigos();
         ArrayList<ClassValue> arrayAComparar = new ArrayList<>();
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/enemigosTest15c.txt");
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/test15/enemigosTest15c.txt");
         while (colaEnemigos.isEmpty()) equals(false);{
             ArrayList<Enemigo> turno = colaEnemigos.remove();
             turno.forEach(enemigo -> assertTrue(enemigo instanceof Enemigo));
@@ -99,11 +101,26 @@ public class CasosDeUsoTest2 {
     }
 
     @Test
-    public void test16a() {
-
+    public void test16aElMapaCreadoNoEsNull() {
+        Creador creadorMapa = new CreadorDeMapa();
+        Mapa mapa = (Mapa) creadorMapa.crear("ArchivosJson/tests/Test16/mapaTest16");
+        assertFalse(mapa.equals(null));
     }
 
-    
+    /* @Test
+    public void test16b() {
+        Creador creadorMapa = new CreadorDeMapa();
+        Mapa mapa = (Mapa) creadorMapa.crear("ArchivosJson/tests/Test16/mapaTest16");
+        String arrayAComparar[] = new String[] {
+                "Rocoso","Pasarela","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Rocoso","Rocoso","Rocoso","Rocoso","Rocoso"
+        };
+        for(int i=1; i<arrayAComparar.length; i++){
+            Coordenada coordenada = new Coordenada(1, 1);
+            assertEquals(mapa.ver(coordenada), Array.get(arrayAComparar,0));
+        }
+    } */
+
+
 
 
 

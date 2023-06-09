@@ -9,45 +9,50 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Rocosa;
 import edu.fiuba.algo3.modelo.parcelas.Tierra;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CreadorMapa implements Creador {
+public class CreadorDeMapa implements Creador {
     public Camino camino;
     public Mapa mapa;
 
-    public CreadorMapa(){
+    public CreadorDeMapa(){
         mapa = new Mapa();
         camino = new Camino(mapa);
     }
 
     public Object crear(String direccionArchivoJSON){
-        crearMapa(Lector.leer(direccionArchivoJSON));
+        JSONArray jsonArray = Lector.leer(direccionArchivoJSON);
+        crearMapa((JSONObject) jsonArray.get(1));
         return mapa;
     }
 
-    private void crearMapa(JSONArray jsonArray) {
-        AtomicInteger coordY = new AtomicInteger(1);
-        jsonArray.forEach(listaParcelas -> {
-            coordY.getAndIncrement();
-            AtomicInteger coordX = new AtomicInteger(1);
-            ((JSONArray) listaParcelas).forEach(tipoDeTerreno -> {
-                coordX.getAndIncrement();
-                crearParcela((String) tipoDeTerreno, coordY.intValue(), coordX.intValue());
-            });
-        });
+    private void crearMapa(JSONObject listaFilas) {
+        listaFilas.keySet().forEach(numeroFila -> crearFila(numeroFila, listaFilas));
+    }
+
+    private void crearFila(Object numeroFila, JSONObject listaFilas) {
+        JSONArray fila = (JSONArray) listaFilas.get(numeroFila);
+
+        int coordenadaY = Integer.parseInt((String) numeroFila);
+        AtomicInteger coordenadaX = new AtomicInteger(1);
+        fila.forEach(parcela -> {
+                    crearParcela((String) parcela, coordenadaY, coordenadaX.get());
+                    coordenadaX.getAndIncrement();
+                });
     }
 
     private void crearParcela(String tipoDeTerreno, int coordY, int coordX){
         Coordenada nuevaCoordenada = new Coordenada(coordX, coordY);
         if (tipoDeTerreno.equals("Rocoso")) {
-            mapa.agregar(new Rocosa(nuevaCoordenada));
+            mapa.agregar(nuevaCoordenada, new Rocosa(nuevaCoordenada));
         }
         if (tipoDeTerreno.equals("Pasarela")) {
             camino.agregar(nuevaCoordenada);
         }
         if (tipoDeTerreno.equals("Tierra")) {
-            mapa.agregar(new Tierra(nuevaCoordenada));
+            mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));
         }
     }
 }

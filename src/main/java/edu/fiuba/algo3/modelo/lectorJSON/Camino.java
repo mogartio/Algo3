@@ -24,6 +24,6 @@ public class Camino {
       } else {
          nuevaPasarela = new PasarelaIntermedia(coordenadaNueva, camino.get(camino.size()));
       }
-      mapa.agregar(nuevaPasarela);
+      mapa.agregar(coordenadaNueva, nuevaPasarela);
    }
 }
