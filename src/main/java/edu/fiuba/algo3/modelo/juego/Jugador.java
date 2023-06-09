@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Observer.Observable;
 import edu.fiuba.algo3.modelo.miscelanea.Tienda;
 import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class Jugador extends Observable {
@@ -12,19 +13,21 @@ public class Jugador extends Observable {
     private Jugador() {
         super();
         final int VIDA_INICIAL = 20;
-        final int CREDITOS_INICIALES = 100;
+        final Credito CREDITOS_INICIALES = new Credito(100);
         Vida vidaNueva = new Vida(VIDA_INICIAL);
         vida = vidaNueva;
         creditos = CREDITOS_INICIALES;
         contadorHormigasMuertas = 0;
     }
     public static Jugador getInstance() { return INSTANCE; }
-    private Vida vida;
-    private int creditos;
-    private int contadorHormigasMuertas;
-    public int obtenerCreditos() { return creditos; }
 
-    public Stack<Defensa> verificarConstruccionesPosibles(Tienda proveedor) {
+    private Vida vida;
+    private Credito creditos;
+    private int contadorHormigasMuertas;
+
+    public int obtenerCreditos() { return creditos.obtenerCreditos(); } // esta funcion se sacara
+
+    public ArrayList<String> verificarConstruccionesPosibles(Tienda proveedor) {
         return proveedor.catalogoDisponible(creditos);
     }
     public int obtenerVida() {
@@ -39,7 +42,7 @@ public class Jugador extends Observable {
 
         if (esHormiga && contadorHormigasMuertas >= REQUISITO_HORMIGAS_MUERTAS)
             creditosRecibidos = creditosRecibidos * MULTIPLICADOR_HORMIGAS_MUERTAS;
-        this.creditos += creditosRecibidos;
+        this.creditos.agregar(creditosRecibidos);
     }
 
     public void recibirDaño(int unDaño) {
@@ -53,5 +56,9 @@ public class Jugador extends Observable {
 
     public void registrarHormigaMuerta() {
         this.contadorHormigasMuertas ++;
+    }
+
+    public Defensa comprar(Tienda proveedor,String torreAComprar){
+        return proveedor.vendeme(torreAComprar,creditos);
     }
 }

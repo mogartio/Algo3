@@ -32,7 +32,17 @@ public class CasosDeUsoTest {
     public void test01LaVidaYCreditosDelJugadorSonLosCorrectosAlEmpezar() {
         //el jugador comienza con 20 puntos de vida y con 100 creditos
         Jugador jugador = Jugador.getInstance();
-        assertEquals(100, jugador.obtenerCreditos());
+        Tienda proveedor = new Tienda();
+
+        for (int i=1 ; i <= 5 ; i++) {
+            Defensa torre1 = jugador.comprar(proveedor,"TorrePlateada");
+            System.out.println(torre1 instanceof TorreBlanca);
+        }
+        
+        ArrayList<String> torresDisponibles = jugador.verificarConstruccionesPosibles(proveedor);
+
+        assertTrue(torresDisponibles.isEmpty());
+
         assertEquals(20, jugador.obtenerVida());
     }
 
@@ -98,11 +108,11 @@ public class CasosDeUsoTest {
 
         //el jugador le envia sus creditos a instancia de tienda para que esta provea un
         //stack/pila con las estructuras que este puede comprar
-        Stack<Defensa> torresComprables = jugador.verificarConstruccionesPosibles(proveedor);
+        ArrayList<String> torresComprables = jugador.verificarConstruccionesPosibles(proveedor);
 
         //assertions
-        assertTrue(torresComprables.pop() instanceof TorrePlateada);
-        assertTrue(torresComprables.pop() instanceof TorreBlanca);
+        assertTrue(torresComprables.contains("TorrePlateada"));
+        assertTrue(torresComprables.contains("TorreBlanca"));
     }
 
     @Test
