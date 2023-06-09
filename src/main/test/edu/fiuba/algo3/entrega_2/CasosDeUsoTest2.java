@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.Creador.Creador;
+import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Araña;
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Juego;
@@ -15,6 +18,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -59,8 +63,49 @@ public class CasosDeUsoTest2 {
                 assertEquals(filaAComparar.get(j),filasEnArchivo.get(i-1).get(j));
             }
         }
+    }
+
+    @Test
+    public void test15aJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
+        Creador creadorEnemigo = new CreadorEnemigos();
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/enemigosTest15a.txt");
+        ArrayList<Enemigo> arrayList = colaEnemigos.remove();
+        Enemigo enemigo = arrayList.remove(0);
+        assertTrue(enemigo instanceof Hormiga);
+        assertTrue(colaEnemigos.isEmpty());
+        assertTrue(arrayList.isEmpty());
+    }
+    @Test
+    public void test15bJSONConUnSoloTurnoYDosEnemigos(){
+        Creador creadorEnemigo = new CreadorEnemigos();
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/enemigoTest15b.txt");
+        ArrayList<Enemigo> arrayList = colaEnemigos.remove();
+        Enemigo enemigoA = arrayList.remove(0);
+        Enemigo enemigoB = arrayList.remove(0);
+        assertTrue(enemigoA instanceof Hormiga && enemigoB instanceof Araña);
+        assertTrue(colaEnemigos.isEmpty());
+        assertTrue(arrayList.isEmpty());
+    }
+
+    @Test
+    public void test15cJSONConVariosTurnosYVariosEnemigos(){
+        Creador creadorEnemigo = new CreadorEnemigos();
+        ArrayList<ClassValue> arrayAComparar = new ArrayList<>();
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/enemigosTest15c.txt");
+        while (colaEnemigos.isEmpty()) equals(false);{
+            ArrayList<Enemigo> turno = colaEnemigos.remove();
+            turno.forEach(enemigo -> assertTrue(enemigo instanceof Enemigo));
+        }
+    }
+
+    @Test
+    public void test16a() {
 
     }
+
+    
+
+
 
     @Test
     public void test20aSiNoSubsriboAlLoggerNoCausaQueElLoggerRecibaUnaNotificacion() {

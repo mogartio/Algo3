@@ -1,4 +1,4 @@
-/*
+
 package edu.fiuba.algo3.modelo.Creador;
 
 
@@ -21,8 +21,8 @@ public class CreadorMapa implements Creador {
         camino = new Camino(mapa);
     }
 
-    public Object crear(){
-        crearMapa(Lector.leer("ArchivosJson/mapa.json", "Mapa"));
+    public Object crear(String direccionArchivoJSON){
+        crearMapa(Lector.leer(direccionArchivoJSON));
         return mapa;
     }
 
@@ -51,4 +51,3 @@ public class CreadorMapa implements Creador {
         }
     }
 }
-*/
