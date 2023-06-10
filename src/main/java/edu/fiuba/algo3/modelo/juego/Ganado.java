@@ -6,8 +6,10 @@ public class Ganado implements EstadoJuego {
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
         return this;
     }
-    public EstadoJuego actualizarSegunEstadoDeJugador(boolean estaVivo) {
+    public boolean finalizado() {
+        return true;
+    }
+    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno) {
         return this;
     }
-    public void pasarTurno() {};
 }

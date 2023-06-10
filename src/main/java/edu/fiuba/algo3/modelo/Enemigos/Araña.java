@@ -14,17 +14,17 @@ public class Araña extends Enemigo {
 
     private final int MINIMO = 0;
     private final int MAXIMO = 10;
-    public Araña(Pasarela pasarelaInicial) {
-        super();
-        pasarelaInicial.recibir(this);
-        this.vida = new Vida(2);
-        this.poderAtaque = 2;
-        this.cantidadMovimientos = 2;
-        this.posicionActual = pasarelaInicial;
+    public Araña() {
+        super(2, 2, 2);
+    }
+
+    public Araña(Pasarela posicionActual) { //Constructor para test
+        super(2, 2, 2);
+        this.posicionActual = posicionActual;
     }
     public void morir(){
         int cantidadARecompensar = ThreadLocalRandom.current().nextInt(MINIMO, MAXIMO + 1);
-        emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");
+        this.emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");
         Jugador.getInstance().recompensar(cantidadARecompensar, false); // devuelve int entre 0 y 10
     }
 

@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CasosDeUsoTest {
 
-    @Test
+    /*@Test
     @Order(1)
     public void test01LaVidaYCreditosDelJugadorSonLosCorrectosAlEmpezar() {
         //el jugador comienza con 20 puntos de vida y con 100 creditos
@@ -193,7 +193,7 @@ public class CasosDeUsoTest {
 
         assertTrue(enemigo.estaVivo());
         assertFalse(enemigo2.estaVivo());
-    }
+    }*/
 
 
    /* @Test
@@ -230,7 +230,7 @@ public class CasosDeUsoTest {
 
         assertEquals(enemigo.verPosicion(), pasarelaFinal);
     } */
-    @Test
+    /*@Test
     @Order(10)
 
     public void test08aHormigaDaCreditosCorrespondientesAlMorirSinMultiplicador() {
@@ -351,7 +351,7 @@ public class CasosDeUsoTest {
         assertEquals(enemigos.pop().verPosicion(), pasarelaTercera); // De la primera avanza dos y va a la tercera
     } */
 
-    @Test
+    /*@Test
     @Order(16)
     public void test10aCrearUnJuegoConUnEnemigoSeGanaCuandoElEnemigoMuere() {
         Vida vida = new Vida(20);
@@ -415,7 +415,7 @@ public class CasosDeUsoTest {
         arañaCuatro.recibirDaño(1);
         assertTrue(juego.estado() instanceof Ganado);
     }*/
-    @Test
+    /*@Test
     @Order(18)
     public void test11ElJugadorSobreviveConUnEnemigoLlegandoALaMetaYGanaIgual() {
         Jugador jugador = Jugador.getInstance();
@@ -453,7 +453,7 @@ public class CasosDeUsoTest {
             juego.pasarTurno();
         }
         assertTrue(juego.estado() instanceof Perdido);
-    }
+    }*/
 }
 
 

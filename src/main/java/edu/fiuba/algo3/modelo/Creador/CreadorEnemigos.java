@@ -17,14 +17,16 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CreadorEnemigos implements Creador {
-    Queue<ArrayList<Enemigo>> colaSpawner;
-    public CreadorEnemigos(){
+public class CreadorEnemigos {
+    private static LinkedList<ArrayList<Enemigo>> colaSpawner;
+    private String filePath;
+    public CreadorEnemigos(String filePath){
+        this.filePath = filePath;
         colaSpawner = new LinkedList<>();
     }
 
-    public Object crear(String direccionArchivoJSON) {
-        crearTurnoEnemigos(Lector.leer(direccionArchivoJSON));
+    public LinkedList<ArrayList<Enemigo>> crearEnemigos() {
+        crearTurnoEnemigos(Lector.leer(this.filePath));
         return colaSpawner;
     }
 
@@ -32,7 +34,7 @@ public class CreadorEnemigos implements Creador {
         listaTurnos.forEach( turno -> crearTurno( (JSONObject) turno) );
     }
 
-    private void crearTurno(JSONObject turno) {
+    private static void crearTurno(JSONObject turno) {
         final int POSICION_HORMIGAS = 0;
         final int POSICION_ARAÑAS = 1;
 
