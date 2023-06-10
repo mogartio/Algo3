@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
@@ -36,7 +37,13 @@ public class Jugando implements EstadoJuego {
     }
     public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno){
         mapa.agregarEnemigosDelTurno(this.enemigos);
-        enemigos.forEach(enemigo -> enemigo.avanzar());
+        enemigos.forEach(enemigo -> {
+            try {
+                enemigo.avanzar();
+            } catch (PasarelaInexistente e) {
+                throw new RuntimeException(e);
+            }
+        });
         return actualizarSegunEstadoDeJugador(jugadorVivo);
     }
 }

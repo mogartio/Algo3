@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Creador.Creador;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Enemigos.Araña;
@@ -13,13 +12,12 @@ import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
-import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -215,7 +213,7 @@ public class CasosDeUsoTest2 {
     public void test20dUnaHormigaQueMuereCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new PasarelaIntermedia(coord, null);
+        Pasarela pasarela = new Pasarela(coord, null, new Normal());
 
         Hormiga hormiga = new Hormiga(pasarela);
         hormiga.agregarSubscriptor(logger);
@@ -230,7 +228,7 @@ public class CasosDeUsoTest2 {
     public void test20eUnaArañaQueMuereCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new PasarelaIntermedia(coord, null);
+        Pasarela pasarela = new Pasarela(coord, null, new Normal());
 
         Araña araña = new Araña(pasarela);
         araña.agregarSubscriptor(logger);
@@ -245,7 +243,7 @@ public class CasosDeUsoTest2 {
     public void test20fAgregarUnEnemigoAlJuegoCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new PasarelaIntermedia(coord, null);
+        Pasarela pasarela = new Pasarela(coord, null, new Normal());
 
         Araña araña = new Araña(pasarela);
         Juego juego = new Juego();
@@ -260,7 +258,7 @@ public class CasosDeUsoTest2 {
     public void test20gSubscribirElMismoLoggerADistintosObservablesCausaQueSeAcumulenLasNotificaciones() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new PasarelaIntermedia(coord, null);
+        Pasarela pasarela = new Pasarela(coord, null, new Normal());
 
         Araña araña = new Araña(pasarela);
         Hormiga hormiga = new Hormiga(pasarela);

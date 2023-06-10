@@ -6,44 +6,41 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 
 import java.util.ArrayList;
 
-public abstract class Pasarela extends Parcela {
+public class Pasarela extends Parcela {
+    private TipoPasarela tipo;
 
-    protected ArrayList<Enemigo> enemigos = new ArrayList<>();
-    public Pasarela siguientePasarela;
+    private Pasarela siguientePasarela;
 
-    public Pasarela(Coordenada coordenada, Pasarela siguientePasarela) {
+    public Pasarela(Coordenada coordenada, Pasarela siguientePasarela, TipoPasarela tipo) {
         super(coordenada, new NoDisponible());
         this.siguientePasarela = siguientePasarela;
+        this.tipo = tipo;
     }
 
-    public abstract Pasarela verSiguiente();
+    public Pasarela verSiguiente(){return siguientePasarela;};
 
-    public abstract Pasarela verSiguiente(int cantidadPasos);
+    public Pasarela verSiguiente(int cantidadPasos){
+        Pasarela pasarelaAux = this;
 
-    public abstract void recibir(Enemigo nuevoEnemigo);
-    public void actualizarPosicion(Enemigo enemigo, int desplazamientoEnemigo) {
+        if(cantidadPasos >= 0) { // Este caso no deberia pasar
+            for(int i = 0; i < cantidadPasos; i++) {
+                pasarelaAux = pasarelaAux.verSiguiente();
+            }
+        }
+
+        return pasarelaAux;
+    };
+
+    public Pasarela actualizarPosicion(int desplazamientoEnemigo) {
         Pasarela proximaPasarela = this.verSiguiente(desplazamientoEnemigo);
-        proximaPasarela.recibir(enemigo);
-        enemigos.remove(enemigo);
+        return proximaPasarela;
     }
 
     public boolean estaEnRango(Coordenada otraCoordenada, int distancia) {
         return coordenada.estaEnRango(otraCoordenada, distancia);
     }
 
-    public void añadirEnemigo(Enemigo enemigo) {
-        enemigos.add(enemigo);
-    }
-
     public void construirDefensa(Defensa defensa){}
-
-    public void dañarEnemigo(int daño){
-        this.enemigos.get(0).recibirDaño(daño);
-    }
-
-    public boolean tieneEnemigos(){
-        return !(enemigos.isEmpty());
-    }
 
     public boolean equals(Pasarela pasarela){
         return pasarela.verificarPosicion(this.coordenada);

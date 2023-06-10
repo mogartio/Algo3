@@ -48,10 +48,10 @@ public class ParcelasTest {
 
         Coordenada mockedCoordenada = mock(Coordenada.class);
         when(mockedCoordenada.equals(mockedCoordenada)).thenReturn(true);
-        Pasarela mockedPasarela = mock(PasarelaIntermedia.class);
+        Pasarela mockedPasarela = mock(Pasarela.class);
 
-        Pasarela pasarela1 = new PasarelaIntermedia(mockedCoordenada, mockedPasarela);
-        Pasarela pasarela2= new PasarelaIntermedia(mockedCoordenada, mockedPasarela);
+        Pasarela pasarela1 = new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
+        Pasarela pasarela2= new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
 
         assertTrue(pasarela1.equals(pasarela2));
     }
@@ -59,10 +59,10 @@ public class ParcelasTest {
     @Test
     public void test05SeCreaUnaTierraYUnaPasarelaConCoordenadasIgualesYSonDiferentes(){
         Coordenada mockedCoordenada = mock(Coordenada.class);
-        Pasarela mockedPasarela = mock(PasarelaIntermedia.class);
+        Pasarela mockedPasarela = mock(Pasarela.class);
 
         Tierra tierra = new Tierra(mockedCoordenada);
-        Pasarela pasarela = new PasarelaIntermedia(mockedCoordenada, mockedPasarela);
+        Pasarela pasarela = new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
 
         assertFalse(tierra.equals(pasarela));
     }
@@ -70,10 +70,10 @@ public class ParcelasTest {
     @Test
     public void test06SeCreaUnaRocosaYUnaPasarelaConCoordenadasIgualesYSonDiferentes(){
         Coordenada mockedCoordenada = mock(Coordenada.class);
-        Pasarela mockedPasarela = mock(PasarelaIntermedia.class);
+        Pasarela mockedPasarela = mock(Pasarela.class);
 
         Rocosa rocosa = new Rocosa(mockedCoordenada);
-        PasarelaIntermedia pasarela = new PasarelaIntermedia(mockedCoordenada, mockedPasarela);
+        Pasarela pasarela = new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
 
         assertFalse(rocosa.equals(pasarela));
     }
