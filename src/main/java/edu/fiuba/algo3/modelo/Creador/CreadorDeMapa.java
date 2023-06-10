@@ -2,6 +2,7 @@
 package edu.fiuba.algo3.modelo.Creador;
 
 
+import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.lectorJSON.Camino;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
@@ -13,23 +14,26 @@ import org.json.simple.JSONObject;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CreadorDeMapa implements Creador {
+public class CreadorDeMapa {
     public Camino camino;
     public Mapa mapa;
+    String path;
 
-    public CreadorDeMapa(){
+    public CreadorDeMapa(String path){
         mapa = new Mapa();
         camino = new Camino(mapa);
+        this.path = path;
     }
 
-    public Object crear(String direccionArchivoJSON){
-        JSONArray jsonArray = Lector.leer(direccionArchivoJSON);
+    public Mapa crearMapa() throws NoHayCamino {
+        JSONArray jsonArray = Lector.leer(this.path);
         crearMapa((JSONObject) jsonArray.get(1));
         return mapa;
     }
 
-    private void crearMapa(JSONObject listaFilas) {
+    private void crearMapa(JSONObject listaFilas) throws NoHayCamino {
         listaFilas.keySet().forEach(numeroFila -> crearFila(numeroFila, listaFilas));
+        mapa.setPasarelaInicial(camino.inicial());
     }
 
     private void crearFila(Object numeroFila, JSONObject listaFilas) {
@@ -48,10 +52,10 @@ public class CreadorDeMapa implements Creador {
         if (tipoDeTerreno.equals("Rocoso")) {
             mapa.agregar(nuevaCoordenada, new Rocosa(nuevaCoordenada));
         }
-        if (tipoDeTerreno.equals("Pasarela")) {
+        else if (tipoDeTerreno.equals("Pasarela")) {
             camino.agregar(nuevaCoordenada);
         }
-        if (tipoDeTerreno.equals("Tierra")) {
+        else if (tipoDeTerreno.equals("Tierra")) {
             mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));
         }
     }

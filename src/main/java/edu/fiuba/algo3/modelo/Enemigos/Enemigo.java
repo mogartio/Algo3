@@ -9,13 +9,11 @@ import edu.fiuba.algo3.modelo.miscelanea.Vida;
 public abstract class Enemigo extends Observable {
     protected Vida vida;
     protected int cantidadMovimientos;
-
-    protected Emisor emisor;
     protected int poderAtaque;
     public Pasarela posicionActual;
 
     public Enemigo( int puntosVida, int ataque, int cantidadMovimientos){
-        this.emisor = new Emisor();
+        super();
         this.vida = new Vida(puntosVida);
         this.poderAtaque = ataque;
         this.cantidadMovimientos = cantidadMovimientos;

@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Enemigos.Araña;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
+import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
@@ -99,8 +100,8 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test15aJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
-        Creador creadorEnemigo = new CreadorEnemigos();
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/test15/enemigosTest15a.txt");
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigosTest15a.txt");
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
         ArrayList<Enemigo> arrayList = colaEnemigos.remove();
         Enemigo enemigo = arrayList.remove(0);
         assertTrue(enemigo instanceof Hormiga);
@@ -109,8 +110,8 @@ public class CasosDeUsoTest2 {
     }
     @Test
     public void test15bJSONConUnSoloTurnoYDosEnemigos(){
-        Creador creadorEnemigo = new CreadorEnemigos();
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/test15/enemigoTest15b.txt");
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigoTest15b.txt");
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
         ArrayList<Enemigo> arrayList = colaEnemigos.remove();
         Enemigo enemigoA = arrayList.remove(0);
         Enemigo enemigoB = arrayList.remove(0);
@@ -121,9 +122,8 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test15cJSONConVariosTurnosYVariosEnemigos(){
-        Creador creadorEnemigo = new CreadorEnemigos();
-        ArrayList<ClassValue> arrayAComparar = new ArrayList<>();
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crear("ArchivosJson/tests/test15/enemigosTest15c.txt");
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigosTest15c.txt");
+        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
         while (colaEnemigos.isEmpty()) equals(false);{
             ArrayList<Enemigo> turno = colaEnemigos.remove();
             turno.forEach(enemigo -> assertTrue(enemigo instanceof Enemigo));
@@ -132,9 +132,24 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test16aElMapaCreadoNoEsNull() {
-        Creador creadorMapa = new CreadorDeMapa();
-        Mapa mapa = (Mapa) creadorMapa.crear("ArchivosJson/tests/Test16/mapaTest16");
-        assertFalse(mapa.equals(null));
+        CreadorDeMapa creadorMapa = new CreadorDeMapa("ArchivosJson/tests/Test16/mapaTest16");
+        try {
+            Mapa mapa = creadorMapa.crearMapa();
+            assertNotNull(mapa);
+        } catch (NoHayCamino noHayCamino) {
+            fail();
+        }
+    }
+
+    @Test
+    public void test16bCrearUnMapaSinCaminoDevuelveExcepcion() {
+        CreadorDeMapa creadorMapa = new CreadorDeMapa("ArchivosJson/tests/Test16/mapaSinCaminoTest16b");
+        try {
+            Mapa mapa = creadorMapa.crearMapa();
+            fail();
+        } catch (NoHayCamino noHayCamino) {
+            assertTrue(true);
+        }
     }
 
     /* @Test
