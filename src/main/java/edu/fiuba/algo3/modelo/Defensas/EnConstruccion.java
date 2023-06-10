@@ -6,7 +6,6 @@ public class EnConstruccion implements EstadoConstruccion{
 
     public EstadoConstruccion pasoUnTurno(){
         if (turnosHastaTerminar - 1 == 0){
-            System.out.println("paso");
             return new Construido();
         }
 

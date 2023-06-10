@@ -34,15 +34,22 @@ public class CasosDeUsoTest {
         Jugador jugador = Jugador.getInstance();
         Tienda proveedor = new Tienda();
 
-        for (int i=1 ; i <= 5 ; i++) {
+        Coordenada coordenada = new Coordenada(1,2);
+        Pasarela pasarelaFinal = new PasarelaFinal(coordenada,null); // nefasto.... lo mismo si se pusieran tres pasarelas
+        Enemigo enemigoDePrueba = new Araña(pasarelaFinal);
+
+        for (int i=1 ; i <= 5 ; i++) { //se gastan los creditos
             Defensa torre1 = jugador.comprar(proveedor,"TorrePlateada");
         }
+        ArrayList<String> torresDisponibles = jugador.verificarConstruccionesPosibles(proveedor); //se obtienen el listado de compras posibles
 
-        ArrayList<String> torresDisponibles = jugador.verificarConstruccionesPosibles(proveedor);
+        for (int i=0 ; i <= 19 ; i++){
+            enemigoDePrueba.dañarJugador();
+        }
 
-        assertTrue(torresDisponibles.isEmpty());
 
-        assertEquals(20, jugador.obtenerVida());
+        assertTrue(torresDisponibles.isEmpty()); // se verifica que el listado de torres comprables este vacio
+        assertFalse(jugador.estaVivo());
     }
 
     @Test
@@ -105,8 +112,8 @@ public class CasosDeUsoTest {
         //se crea la tienda que sera quien proveera y verificara las torres comprables
         Tienda proveedor = new Tienda();
 
-        //el jugador le envia sus creditos a instancia de tienda para que esta provea un
-        //stack/pila con las estructuras que este puede comprar
+        //el jugador le envia sus creditos a instancia de tienda para que esta provea una
+        //lista con las estructuras que este puede comprar
         ArrayList<String> torresComprables = jugador.verificarConstruccionesPosibles(proveedor);
 
         //assertions
