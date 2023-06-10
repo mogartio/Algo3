@@ -1,27 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
-import java.util.ArrayList;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import edu.fiuba.algo3.modelo.Defensas.*;
-import edu.fiuba.algo3.modelo.Enemigos.Araña;
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
-import edu.fiuba.algo3.modelo.juego.*;
-import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.miscelanea.Rango;
-import edu.fiuba.algo3.modelo.miscelanea.Tienda;
-import edu.fiuba.algo3.modelo.miscelanea.Vida;
-import edu.fiuba.algo3.modelo.parcelas.*;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-
-import java.util.Stack;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

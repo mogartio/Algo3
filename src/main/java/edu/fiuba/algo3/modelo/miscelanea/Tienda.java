@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Defensas.TorreBlanca;
 import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
 import edu.fiuba.algo3.modelo.juego.Credito;
+import edu.fiuba.algo3.modelo.juego.Jugador;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,12 +35,10 @@ public class Tienda { // se encargara de administrar los precios de las defensas
         return defensasDisponibles;
     }
 
-    public Defensa vendeme(String unaDefensa, Credito tarasca){
+    public Defensa vendeme(String unaDefensa){
         Credito cantidadACobrar = catalogo.get(unaDefensa);
-        tarasca.descontar(cantidadACobrar);
+        Jugador.getInstance().descontarCreditos(cantidadACobrar);
 
-        Defensa defensa = creador.crear(unaDefensa);
-
-        return defensa;
+        return creador.crear(unaDefensa);
     }
 }

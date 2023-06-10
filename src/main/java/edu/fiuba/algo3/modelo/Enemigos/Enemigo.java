@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo.Enemigos;
+import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
 import edu.fiuba.algo3.modelo.Observer.Emisor;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.Observer.Observable;
@@ -17,6 +18,7 @@ public abstract class Enemigo extends Observable {
         this.vida = new Vida(puntosVida);
         this.poderAtaque = ataque;
         this.cantidadMovimientos = cantidadMovimientos;
+        this.posicionActual = null;
     }
     public boolean estaVivo() {
         return vida.sigueVivo();
@@ -42,21 +44,17 @@ public abstract class Enemigo extends Observable {
 
     public abstract String representacionString();
 
-    public void avanzar() {
-        /*for (int i = 0; i < cantidadMovimientos; i++) {
-            this.posicionActual = posicionActual.verSiguiente();
-        }*/
-        if (vida.sigueVivo())
-            posicionActual.actualizarPosicion(this, this.cantidadMovimientos);
-    }
+    public void avanzar() throws PasarelaInexistente{
 
-    public Pasarela verPosicion() { return posicionActual; }
+        if (vida.sigueVivo())
+            this.posicionActual = posicionActual.actualizarPosicion(this.cantidadMovimientos);
+            if(this.posicionActual == null){
+                throw new PasarelaInexistente("El enemigo se movio a un lugar invalido");
+            }
+    }
 
     public boolean estaEnRango(Coordenada posicion, int distancia){
         return this.posicionActual.estaEnRango(posicion, distancia);
     }
-
-    /*public boolean muerto(){
-        return (this.vida.obtenerPuntos() == 0);
-    }*/
+    
 }
