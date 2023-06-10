@@ -6,7 +6,7 @@ public interface EstadoJuego {
 
     public EstadoJuego introducirEnemigo(Enemigo enemigo);
 
-    public EstadoJuego actualizarSegunEstadoDeJugador(boolean estaVivo);
+    public EstadoJuego actualizarSegunEstadoDeJugador(boolean jugadorVivo);
 
     void pasarTurno();
 }

@@ -17,13 +17,23 @@ public class Camino {
       mapa = mapaNuevo;
    }
 
+   public Pasarela inicial(){
+      return camino.get(camino.size() - 1);
+   }
+
    public void agregar(Coordenada coordenadaNueva) {
+
       Pasarela nuevaPasarela;
-      if (camino.isEmpty()) {
-         nuevaPasarela = new PasarelaFinal(coordenadaNueva, null);
-      } else {
-         nuevaPasarela = new PasarelaIntermedia(coordenadaNueva, camino.get(camino.size()));
+      TipoPasarela tipoPasarela = new Final();
+      Pasarela proximaPasarela = null;
+
+      if (!camino.isEmpty()) {
+         tipoPasarela = new Intermedia();
+         proximaPasarela = camino.get(camino.size());
       }
+
+      nuevaPasarela = new Pasarela(coordenadaNueva, proximaPasarela, tipoPasarela);
+
       mapa.agregar(coordenadaNueva, nuevaPasarela);
    }
 }

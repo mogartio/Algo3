@@ -8,12 +8,18 @@ import java.util.ArrayList;
 
 public abstract class Pasarela extends Parcela {
 
-    protected ArrayList<Enemigo> enemigos = new ArrayList<Enemigo>();
+    TipoPasarela tipoPasarela;
 
+    protected ArrayList<Enemigo> enemigos = new ArrayList<Enemigo>();
     public Pasarela siguientePasarela;
 
-    public Pasarela(Coordenada coordenada) {
+    public Pasarela(Coordenada coordenada, TipoPasarela tipoPasarela) {
         super(coordenada, new NoDisponible());
+        this.tipoPasarela = tipoPasarela;
+    }
+
+    public cambiarTipoPasarela(TipoPasarela nuevoTipoPasarela) {
+        this.tipoPasarela = nuevoTipoPasarela;
     }
 
     public abstract Pasarela verSiguiente();
@@ -21,6 +27,7 @@ public abstract class Pasarela extends Parcela {
     public abstract Pasarela verSiguiente(int cantidadPasos);
 
     public abstract void recibir(Enemigo nuevoEnemigo);
+
     public void actualizarPosicion(Enemigo enemigo, int desplazamientoEnemigo) {
         Pasarela proximaPasarela = this.verSiguiente(desplazamientoEnemigo);
         proximaPasarela.recibir(enemigo);

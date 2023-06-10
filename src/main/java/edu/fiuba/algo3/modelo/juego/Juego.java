@@ -8,15 +8,14 @@ import java.util.ArrayList;
 public class Juego extends Observable {
 
     Jugador jugador;
-
     EstadoJuego estadoJuego;
     public Juego() {
         this.jugador = Jugador.getInstance();
         estadoJuego = new Jugando();
     }
-    public Juego(ArrayList<Enemigo> enemigos) {
+    public Juego(Mapa mapa) {
         this.jugador = Jugador.getInstance();
-        estadoJuego = new Jugando(enemigos);
+        estadoJuego = new Jugando(mapa);
     }
     public void nuevoEnemigo(Enemigo nuevoEnemigo) {
         emisor.notificarSubscriptores("log", "Se agrega a la partida un nuevo enemigo " + nuevoEnemigo.representacionString());
