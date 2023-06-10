@@ -2,9 +2,9 @@ package edu.fiuba.algo3.modelo.lectorJSON;
 
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Meta;
+import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
-import edu.fiuba.algo3.modelo.parcelas.PasarelaFinal;
-import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
 
 import java.util.ArrayList;
 
@@ -29,9 +29,9 @@ public class Camino {
       Pasarela nuevaPasarela;
 
       if (camino.isEmpty()) {
-         nuevaPasarela = new PasarelaFinal(coordenadaNueva);
+         nuevaPasarela = new Pasarela(coordenadaNueva, null , new Meta());
       } else {
-         nuevaPasarela = new PasarelaIntermedia(coordenadaNueva, camino.get(camino.size()));
+         nuevaPasarela = new Pasarela(coordenadaNueva, camino.get(camino.size()), new Normal());
       }
       camino.add(nuevaPasarela);
       mapa.agregar(coordenadaNueva, nuevaPasarela);

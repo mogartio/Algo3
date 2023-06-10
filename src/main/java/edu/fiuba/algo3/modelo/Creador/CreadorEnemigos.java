@@ -7,15 +7,14 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
-import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class CreadorEnemigos {
     private static LinkedList<ArrayList<Enemigo>> colaSpawner;
@@ -39,7 +38,7 @@ public class CreadorEnemigos {
         final int POSICION_ARAÑAS = 1;
 
         Coordenada coordenadaInicial = new Coordenada(0, 0);
-        Pasarela pasarelaInicial = new PasarelaIntermedia(coordenadaInicial, null);
+        Pasarela pasarelaInicial = new Pasarela(coordenadaInicial, null, new Normal());
 
         ArrayList<Enemigo> enemigosTurnoActual = new ArrayList<Enemigo>();
 
