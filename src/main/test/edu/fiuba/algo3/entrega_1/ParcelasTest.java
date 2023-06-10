@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.modelo.Defensas.TorreBlanca;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.miscelanea.*;
 import edu.fiuba.algo3.modelo.parcelas.*;
@@ -76,5 +78,40 @@ public class ParcelasTest {
         Pasarela pasarela = new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
 
         assertFalse(rocosa.equals(pasarela));
+    }
+
+    @Test
+    public void test07SeInicializaUnaTierraYPorDefaultEstaDesocupada(){
+        Coordenada mockedCoordenada = mock(Coordenada.class);
+        Tierra tierra = new Tierra(mockedCoordenada);
+
+        assertFalse(tierra.ocupada());
+    }
+
+    @Test
+    public void test08SeConstruyeUnaDefensaEnUnaTierraYLuegoLaTierraEstaOcupada(){
+        Coordenada mockedCoordenada = mock(Coordenada.class);
+        Defensa mockedTorre = mock(TorreBlanca.class);
+
+        Tierra tierra = new Tierra(mockedCoordenada);
+        tierra.construirDefensa(mockedTorre);
+
+        assertTrue(tierra.ocupada());
+    }
+
+    @Test
+    public void test09SeInicializaUnaParcelaRocosaYPorDefaultEstaOcupada(){
+        Coordenada mockedCoordenada = mock(Coordenada.class);
+        Rocosa rocosa = new Rocosa(mockedCoordenada);
+
+        assertTrue(rocosa.ocupada());
+    }
+
+    @Test
+    public void test10SeInicializaUnaPasarelaNormalYPorDefaultEstaOcupadaParaConstruirDefensas(){
+        Coordenada mockedCoordenada = mock(Coordenada.class);
+        Pasarela pasarela = new Pasarela(mockedCoordenada, null, new Normal());
+
+        assertTrue(pasarela.ocupada());
     }
 }
