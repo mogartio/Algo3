@@ -1,15 +1,14 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
-import edu.fiuba.algo3.modelo.miscelanea.Rango;
+import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 public class TorreBlanca extends Defensa{
 
     public TorreBlanca(){
-        super();
+        super( 1, 1, 3);
     }
 
-    public TorreBlanca(Rango rango,EstadoConstruccion estado){
-        super(rango, 1);
-        this.estadoDeConstruccion = estado;
+    public TorreBlanca(Coordenada posicion){
+        super(posicion, 1, 1, 3);
     }
 }

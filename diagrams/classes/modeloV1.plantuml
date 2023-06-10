@@ -1,0 +1,48 @@
+@startuml
+
+class Lector{}
+class CreadorNivel{}
+class Mapa{}
+class Camino{}
+
+abstract class Parcela{}
+interface Construible{}
+class Disponible{}
+class NoDisponible{}
+
+class Jugador{}
+class Juego{
+- mapaJuego:Mapa
+- caminoEnemigos:Camino
+- oleadasEnemigos:Oleadas
+}
+interface EstadoJuego{}
+class Ganado{}
+class Perdido{}
+class Jugando{}
+
+abstract class Enemigo{}
+abstract class Defensa{}
+
+Mapa <.. Lector
+Camino <.. Lector
+Oleadas <.. Lector
+
+Construible -> Parcela
+Parcela "*" -o Mapa
+Construible <|.. Disponible
+Construible <|.. NoDisponible
+
+CreadorNivel o- Lector
+CreadorNivel ..> Juego
+
+Juego o- Jugador
+EstadoJuego -o Juego
+EstadoJuego <|.. Ganado
+EstadoJuego <|.. Perdido
+EstadoJuego <|.. Jugando
+
+Jugando o-- Enemigo
+Jugando o-- Defensa
+
+@enduml

@@ -7,14 +7,9 @@ import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
 public class Hormiga extends Enemigo{
     private final int CREDITOS_HORMIGA = 1;
-    public Hormiga(Pasarela pasarelaInicial) {
-        super();
-        emisor = new Emisor();
-        pasarelaInicial.recibir(this);
-        this.poderAtaque = 1;
-        this.vida = new Vida(1);
-        this.cantidadMovimientos = 1;
-        this.posicionActual = pasarelaInicial;
+
+    public Hormiga() {
+        super(1, 1, 1);
     }
     public void morir(){
         emisor.notificarSubscriptores("log", "Hormiga muere y otorga " + CREDITOS_HORMIGA + " créditos al jugador");
