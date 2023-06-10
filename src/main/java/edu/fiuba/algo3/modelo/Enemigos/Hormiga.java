@@ -11,6 +11,10 @@ public class Hormiga extends Enemigo{
     public Hormiga() {
         super(1, 1, 1);
     }
+    public Hormiga(Pasarela posicionActual) { //Constructor para test
+        super(1, 1, 1);
+        this.posicionActual = posicionActual;
+    }
     public void morir(){
         emisor.notificarSubscriptores("log", "Hormiga muere y otorga " + CREDITOS_HORMIGA + " créditos al jugador");
         Jugador.getInstance().registrarHormigaMuerta();

@@ -6,8 +6,7 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 public class PasarelaIntermedia extends Pasarela {
 
     public PasarelaIntermedia(Coordenada coordenada, Pasarela pasarelaSiguiente) {
-        super(coordenada);
-        this.siguientePasarela = pasarelaSiguiente;
+        super(coordenada, pasarelaSiguiente);
     }
 
     public void recibir(Enemigo nuevoEnemigo){

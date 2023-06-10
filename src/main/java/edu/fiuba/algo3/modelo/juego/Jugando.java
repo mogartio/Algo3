@@ -22,7 +22,11 @@ public class Jugando implements EstadoJuego {
         return this;
     }
 
-    public EstadoJuego actualizarSegunEstadoDeJugador(boolean jugadorVivo) {
+    public boolean finalizado() {
+        return false;
+    }
+
+    private EstadoJuego actualizarSegunEstadoDeJugador(boolean jugadorVivo) {
         if (!jugadorVivo)
             return new Perdido();
         else if (enemigos.stream().filter(enemigo -> enemigo.estaVivo()).count() == 0)
@@ -30,7 +34,9 @@ public class Jugando implements EstadoJuego {
         else
             return this;
     }
-    public void pasarTurno(){
+    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno){
+        mapa.agregarEnemigosDelTurno(this.enemigos);
         enemigos.forEach(enemigo -> enemigo.avanzar());
+        return actualizarSegunEstadoDeJugador(jugadorVivo);
     }
 }

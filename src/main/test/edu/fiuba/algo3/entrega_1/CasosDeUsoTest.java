@@ -453,7 +453,7 @@ public class CasosDeUsoTest {
             juego.pasarTurno();
         }
         assertTrue(juego.estado() instanceof Perdido);
-    }
+    }*/
 }
 
 
