@@ -45,16 +45,4 @@ public class CreadorDeJuego { // fachada
 
         return turnero;
     }
-/*
-    public Juego crearJuego(String rutaArchivoDeMapa , String rutaArchivoDeEnemigos){
-
-        lectorDeArchivos.leer(rutaArchivoDeEnemigos);
-        //creadorDeEnemigos.crearNivel();
-
-        lectorDeArchivos.leer(rutaArchivoDeMapa);
-        // mapa = creadorDeMapa.crearMapa();
-        Juego juego = new juego();
-        return juego;
-    }
-*/
 }

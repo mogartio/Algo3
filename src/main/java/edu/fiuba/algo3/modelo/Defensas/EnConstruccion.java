@@ -5,7 +5,7 @@ public class EnConstruccion implements EstadoConstruccion{
     public EnConstruccion(int turnosHastaTerminar) { this.turnosHastaTerminar = turnosHastaTerminar; }
 
     public EstadoConstruccion pasoUnTurno(){
-        if (turnosHastaTerminar - 1 == 0){
+        if (turnosHastaTerminar - 1 <= 0){
             return new Construido();
         }
 

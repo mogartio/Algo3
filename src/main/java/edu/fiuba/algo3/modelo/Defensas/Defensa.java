@@ -10,7 +10,6 @@ public abstract class Defensa {
     protected Coordenada posicion;
     protected EstadoConstruccion estadoDeConstruccion;
     protected int tiempoDeConstruccion;
-
     protected int rangoAtaque;
 
     public Defensa(int danio, int tiempoDeConstruccion, int rangoAtaque){
@@ -26,6 +25,7 @@ public abstract class Defensa {
         this.rangoAtaque = rangoAtaque;
         this.estadoDeConstruccion = new EnConstruccion(tiempoDeConstruccion);
     }
+
     public void asignarPosicion(Coordenada nuevaPosicion){
         this.posicion = nuevaPosicion;
     }
@@ -33,12 +33,14 @@ public abstract class Defensa {
     public void pasarTurno(){
         this.estadoDeConstruccion = estadoDeConstruccion.pasoUnTurno();
     }
+
     //borrar esta funcion mas adelante
     public boolean estaConstruida(){
         return estadoDeConstruccion.estoyConstruida();
     }
 
     public void atacar(ArrayList<Enemigo> enemigos ){
+
 
         for(int i = 0; i < enemigos.size(); i++){
             if (enemigos.get(i).estaEnRango(this.posicion, this.rangoAtaque)){

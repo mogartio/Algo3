@@ -10,6 +10,7 @@ public class Juego extends Observable {
 
     Jugador jugador;
     EstadoJuego estadoJuego;
+
     public Juego() {
         this.jugador = Jugador.getInstance();
         estadoJuego = new Jugando();

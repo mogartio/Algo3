@@ -33,6 +33,7 @@ public class Jugador extends Observable {
     public int obtenerVida() {
         return vida.obtenerPuntos();
     }
+
     public void recompensar(int creditosRecibidos, boolean esHormiga){
 
         emisor.notificarSubscriptores("log", "Recompensan al jugador con " + creditosRecibidos + " créditos");

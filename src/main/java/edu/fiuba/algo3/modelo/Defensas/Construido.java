@@ -4,8 +4,8 @@ public class Construido implements EstadoConstruccion {
     public EstadoConstruccion pasoUnTurno(){
         return new Construido();
     }
-    public boolean estoyConstruida(){
 
+    public boolean estoyConstruida(){
         return true;
     }
 }
