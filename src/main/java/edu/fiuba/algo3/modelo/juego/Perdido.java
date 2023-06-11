@@ -1,10 +1,14 @@
 package edu.fiuba.algo3.modelo.juego;
 
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 
 public class Perdido implements EstadoJuego {
 
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
+        return this;
+    }
+    public EstadoJuego introducirDefensa(Defensa defensa) {
         return this;
     }
     public boolean finalizado() {

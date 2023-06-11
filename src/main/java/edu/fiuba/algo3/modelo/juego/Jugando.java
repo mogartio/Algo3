@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.juego;
 
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
@@ -9,9 +10,12 @@ import java.util.ArrayList;
 public class Jugando implements EstadoJuego {
 
     ArrayList<Enemigo> enemigos;
+    ArrayList<Defensa> defensas;
     Mapa mapa;
     public Jugando(){
+
         this.enemigos = new ArrayList<>();
+        this.defensas = new ArrayList<>();
     }
 
     public Jugando(Mapa mapa) {
@@ -25,6 +29,11 @@ public class Jugando implements EstadoJuego {
 
     public boolean finalizado() {
         return false;
+    }
+
+    public EstadoJuego introducirDefensa(Defensa nuevaDefensa) {
+        defensas.add(nuevaDefensa);
+        return this;
     }
 
     private EstadoJuego actualizarSegunEstadoDeJugador(boolean jugadorVivo) {
@@ -43,6 +52,10 @@ public class Jugando implements EstadoJuego {
             } catch (PasarelaInexistente e) {
                 throw new RuntimeException(e);
             }
+        });
+        defensas.forEach(defensa -> {
+                defensa.pasarTurno();
+                defensa.atacar(enemigos);
         });
         return actualizarSegunEstadoDeJugador(jugadorVivo);
     }
