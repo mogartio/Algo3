@@ -39,4 +39,5 @@ public class Mapa {
     public Parcela ver(Coordenada coordenada) {
         return (mapa.get(coordenada));
     }
+
 }

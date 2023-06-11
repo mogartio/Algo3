@@ -12,7 +12,6 @@ import edu.fiuba.algo3.modelo.parcelas.Tierra;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class CreadorDeMapa {
     public Camino camino;
@@ -32,7 +31,11 @@ public class CreadorDeMapa {
     }
 
     private void crearMapa(JSONObject listaFilas) throws NoHayCamino {
-        listaFilas.keySet().forEach(numeroFila -> crearFila(numeroFila, listaFilas));
+
+        for(int i = 1; i <= listaFilas.size(); i++){
+            crearFila(Integer.toString(i), listaFilas);
+        }
+
         mapa.setPasarelaInicial(camino.inicial());
     }
 
@@ -40,23 +43,27 @@ public class CreadorDeMapa {
         JSONArray fila = (JSONArray) listaFilas.get(numeroFila);
 
         int coordenadaY = Integer.parseInt((String) numeroFila);
-        AtomicInteger coordenadaX = new AtomicInteger(1);
-        fila.forEach(parcela -> {
-                    crearParcela((String) parcela, coordenadaY, coordenadaX.get());
-                    coordenadaX.getAndIncrement();
-                });
+
+        for(int coordenadaX = 1; coordenadaX <= fila.size(); coordenadaX++){
+            crearParcela((String) fila.get(coordenadaX - 1), coordenadaY, coordenadaX);
+
+        }
     }
 
     private void crearParcela(String tipoDeTerreno, int coordY, int coordX){
+
         Coordenada nuevaCoordenada = new Coordenada(coordX, coordY);
-        if (tipoDeTerreno.equals("Rocoso")) {
-            mapa.agregar(nuevaCoordenada, new Rocosa(nuevaCoordenada));
-        }
-        else if (tipoDeTerreno.equals("Pasarela")) {
-            camino.agregar(nuevaCoordenada);
-        }
-        else if (tipoDeTerreno.equals("Tierra")) {
-            mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));
+
+        switch (tipoDeTerreno) {
+            case "Rocoso":
+                mapa.agregar(nuevaCoordenada, new Rocosa(nuevaCoordenada));
+                break;
+            case "Pasarela":
+                camino.agregar(nuevaCoordenada);
+                break;
+            case "Tierra":
+                mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));
+                break;
         }
     }
 }
