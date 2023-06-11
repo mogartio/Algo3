@@ -15,8 +15,9 @@ public class Jugador extends Observable {
         final int VIDA_INICIAL = 20;
         final Credito CREDITOS_INICIALES = new Credito(100);
         Vida vidaNueva = new Vida(VIDA_INICIAL);
+
         vida = vidaNueva;
-        creditos = CREDITOS_INICIALES;
+        creditos = new Credito(100);;
         contadorHormigasMuertas = 0;
     }
     public static Jugador getInstance() { return INSTANCE; }
@@ -33,6 +34,7 @@ public class Jugador extends Observable {
     public int obtenerVida() {
         return vida.obtenerPuntos();
     }
+
     public void recompensar(int creditosRecibidos, boolean esHormiga){
 
         emisor.notificarSubscriptores("log", "Recompensan al jugador con " + creditosRecibidos + " créditos");
@@ -58,7 +60,7 @@ public class Jugador extends Observable {
         this.contadorHormigasMuertas ++;
     }
 
-    public Defensa comprar(Tienda proveedor,String torreAComprar){
-        return proveedor.vendeme(torreAComprar,creditos);
-    }
+    public void descontarCreditos(Credito creditos) { this.creditos.descontar(creditos); }
+
+
 }

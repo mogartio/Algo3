@@ -22,6 +22,7 @@ public class Araña extends Enemigo {
         super(2, 2, 2);
         this.posicionActual = posicionActual;
     }
+
     public void morir(){
         int cantidadARecompensar = ThreadLocalRandom.current().nextInt(MINIMO, MAXIMO + 1);
         this.emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");

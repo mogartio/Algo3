@@ -24,34 +24,4 @@ public class Lector{
         }
         return lecturaDelJSON;
     }
-    /*
-    public static JSONArray leer(String archivo, String tipoJson){
-
-        JSONParser jsonParser = new JSONParser();
-        JSONArray jsonArray = null;
-
-        try (FileReader reader = new FileReader(archivo)) {
-            //diccionario medio raro
-            Object obj = jsonParser.parse(reader);
-            try{
-                return (JSONArray) obj;
-            } catch (IncompatibleClassChangeError | Exception e ) {
-                JSONObject jsonObject = (JSONObject) obj;
-                jsonArray = iterarJsonObject((JSONObject) jsonObject.get(tipoJson));
-            }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
-        return jsonArray;
-    }
-    private static JSONArray iterarJsonObject(JSONObject jsonObject) {
-        Iterator x = jsonObject.keySet().iterator();
-        JSONArray jsonArray = new JSONArray();
-        while (x.hasNext()) {
-            String key = (String) x.next();
-            jsonArray.add(jsonObject.get(key));
-        }
-        return jsonArray;
-    }
-    */
 }

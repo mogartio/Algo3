@@ -25,6 +25,7 @@ public class CreadorDeJuego { // fachada
         this.lectorDeArchivos = new Lector();
     }*/
 
+    /* para probar otra cosa
     public static Jugable crearJugable(String pathArchivoEnemigos, String pathArchivoMapa) throws NoHayCamino {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos(pathArchivoEnemigos);
@@ -44,17 +45,5 @@ public class CreadorDeJuego { // fachada
         Turnero turnero = new Turnero(juego);
 
         return turnero;
-    }
-/*
-    public Juego crearJuego(String rutaArchivoDeMapa , String rutaArchivoDeEnemigos){
-
-        lectorDeArchivos.leer(rutaArchivoDeEnemigos);
-        //creadorDeEnemigos.crearNivel();
-
-        lectorDeArchivos.leer(rutaArchivoDeMapa);
-        // mapa = creadorDeMapa.crearMapa();
-        Juego juego = new juego();
-        return juego;
-    }
-*/
+    }*/
 }

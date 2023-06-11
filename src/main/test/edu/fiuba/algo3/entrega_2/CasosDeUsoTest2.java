@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Creador.Creador;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Enemigos.Araña;
@@ -13,17 +12,13 @@ import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
-import edu.fiuba.algo3.modelo.parcelas.PasarelaIntermedia;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Queue;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -71,63 +66,82 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test14SeVerificaLaValidesDelJSONDeMapaDePrueba(){
-        Lector lectorDeEnemigos = new Lector();
-        ArrayList <ArrayList<String> > filasEnArchivo = new ArrayList<ArrayList<String> >();
-        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                "Rocoso","Pasarela","Tierra","Tierra","Tierra"
-        )));
-        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                "Tierra","Pasarela","Tierra","Tierra","Tierra"
-        )));
-        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                "Tierra","Pasarela","Tierra","Tierra","Tierra"
-        )));
+            Lector lectorDeEnemigos = new Lector();
+            ArrayList <ArrayList<String> > filasEnArchivo = new ArrayList<ArrayList<String> >();
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Rocoso","Pasarela","Tierra","Tierra","Tierra"
+            )));
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Tierra","Pasarela","Tierra","Tierra","Tierra"
+            )));
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Tierra","Pasarela","Tierra","Tierra","Tierra"
+            )));
 
-        JSONArray parseoDeMapa = null;
-        parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
+            JSONArray parseoDeMapa = null;
+            parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
 
-        JSONObject filas = (JSONObject) parseoDeMapa.get(1);//saltea a "Mapa" y obtiene un diccionario de filas
+            JSONObject filas = (JSONObject) parseoDeMapa.get(1);//saltea a "Mapa" y obtiene un diccionario de filas
 
-        for (int i = 1; i <= filas.size(); i++){ //por cada fila en filas
+            for (int i = 1; i <= filas.size(); i++){ //por cada fila en filas
 
-            JSONArray filaAComparar = (JSONArray) filas.get(String.valueOf(i)); //crea un array con lo que hay en la fila
+                JSONArray filaAComparar = (JSONArray) filas.get(String.valueOf(i)); //crea un array con lo que hay en la fila
 
-            for (int j = 0; j < filaAComparar.size(); j++){ // por cada elemento en el en el JSONArray
-                assertEquals(filaAComparar.get(j),filasEnArchivo.get(i-1).get(j));
+                for (int j = 0; j < filaAComparar.size(); j++){ // por cada elemento en el en el JSONArray
+                    assertEquals(filaAComparar.get(j),filasEnArchivo.get(i-1).get(j));
+                }
             }
-        }
     }
 
     @Test
-    public void test15aJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
-        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigosTest15a.txt");
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
-        ArrayList<Enemigo> arrayList = colaEnemigos.remove();
-        Enemigo enemigo = arrayList.remove(0);
+    public void test15aCreadorDeEnemigosCreaDeJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
+
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15a.txt");
+
+        ArrayList<Enemigo> enemigosEnTurno = colaDeEnemigos.pop();
+
+        Enemigo enemigo = enemigosEnTurno.get(0);
+
+        assertTrue(colaDeEnemigos.isEmpty());
         assertTrue(enemigo instanceof Hormiga);
-        assertTrue(colaEnemigos.isEmpty());
-        assertTrue(arrayList.isEmpty());
+        assertTrue(colaDeEnemigos.isEmpty());
     }
     @Test
-    public void test15bJSONConUnSoloTurnoYDosEnemigos(){
-        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigoTest15b.txt");
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
-        ArrayList<Enemigo> arrayList = colaEnemigos.remove();
-        Enemigo enemigoA = arrayList.remove(0);
-        Enemigo enemigoB = arrayList.remove(0);
+    public void test15bCreadorDeEnemigosCreaDeJSONConUnSoloTurnoYDosEnemigos(){
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15b.txt");
+
+        ArrayList<Enemigo> enemigosEnTurno = colaDeEnemigos.pop();
+
+        Enemigo enemigoA = enemigosEnTurno.get(0);
+        Enemigo enemigoB = enemigosEnTurno.get(1);
+
         assertTrue(enemigoA instanceof Hormiga && enemigoB instanceof Araña);
-        assertTrue(colaEnemigos.isEmpty());
-        assertTrue(arrayList.isEmpty());
+        assertTrue(colaDeEnemigos.isEmpty());
     }
 
     @Test
-    public void test15cJSONConVariosTurnosYVariosEnemigos(){
-        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigosTest15c.txt");
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
-        while (colaEnemigos.isEmpty()) equals(false);{
-            ArrayList<Enemigo> turno = colaEnemigos.remove();
-            turno.forEach(enemigo -> assertTrue(enemigo instanceof Enemigo));
-        }
+    public void test15cCreadorDeEnemigosCreaDeJSONCon3TurnosYVariosEnemigosCorrectamente(){
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15c.txt");
+
+        ArrayList<Enemigo> primerTurnoDeCreador = colaDeEnemigos.pop();
+        ArrayList<Enemigo> segundoTurnoDeCreador = colaDeEnemigos.pop();
+        ArrayList<Enemigo> tercerTurnoDeCreador = colaDeEnemigos.pop();
+
+
+        assertTrue(primerTurnoDeCreador.size() == 1);
+        assertTrue(primerTurnoDeCreador.get(0) instanceof Hormiga);
+
+        assertTrue(segundoTurnoDeCreador.size() == 2);
+        assertTrue(segundoTurnoDeCreador.get(0) instanceof Hormiga);
+        assertTrue(segundoTurnoDeCreador.get(1) instanceof Araña);
+
+        assertTrue(tercerTurnoDeCreador.size() == 3);
+        assertTrue(tercerTurnoDeCreador.get(0) instanceof Hormiga);
+        assertTrue(tercerTurnoDeCreador.get(1) instanceof Hormiga);
+        assertTrue(tercerTurnoDeCreador.get(2) instanceof Araña);
     }
 
     @Test
@@ -215,7 +229,7 @@ public class CasosDeUsoTest2 {
     public void test20dUnaHormigaQueMuereCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new PasarelaIntermedia(coord, null);
+        Pasarela pasarela = new Pasarela(coord, new Normal());
 
         Hormiga hormiga = new Hormiga(pasarela);
         hormiga.agregarSubscriptor(logger);
@@ -230,7 +244,7 @@ public class CasosDeUsoTest2 {
     public void test20eUnaArañaQueMuereCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new PasarelaIntermedia(coord, null);
+        Pasarela pasarela = new Pasarela(coord, new Normal());
 
         Araña araña = new Araña(pasarela);
         araña.agregarSubscriptor(logger);
@@ -245,7 +259,7 @@ public class CasosDeUsoTest2 {
     public void test20fAgregarUnEnemigoAlJuegoCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new PasarelaIntermedia(coord, null);
+        Pasarela pasarela = new Pasarela(coord, new Normal());
 
         Araña araña = new Araña(pasarela);
         Juego juego = new Juego();
@@ -260,7 +274,7 @@ public class CasosDeUsoTest2 {
     public void test20gSubscribirElMismoLoggerADistintosObservablesCausaQueSeAcumulenLasNotificaciones() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new PasarelaIntermedia(coord, null);
+        Pasarela pasarela = new Pasarela(coord, new Normal());
 
         Araña araña = new Araña(pasarela);
         Hormiga hormiga = new Hormiga(pasarela);
