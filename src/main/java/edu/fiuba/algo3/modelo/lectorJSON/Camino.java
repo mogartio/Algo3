@@ -21,19 +21,19 @@ public class Camino {
       if (camino.size() == 0)
          throw new NoHayCamino();
       //Agrego ternario para que pasen los tests, en uso real no llegará nunca a esta cond
-      return camino.get(camino.size() - 1);
+      camino.get(camino.size() - 1 ).actualizarTipo(new Meta());
+      return camino.get(0);
    }
 
    public void agregar(Coordenada coordenadaNueva) {
 
-      Pasarela nuevaPasarela;
+      Pasarela nuevaPasarela = new Pasarela(coordenadaNueva, new Normal());
 
       if (camino.isEmpty()) {
-         nuevaPasarela = new Pasarela(coordenadaNueva, null , new Meta());
-      } else {
-         nuevaPasarela = new Pasarela(coordenadaNueva, camino.get(camino.size()), new Normal());
+         camino.add(nuevaPasarela);
+      }else{
+         camino.get(camino.size() - 1).agregarSiguiente(nuevaPasarela);
+         camino.add(nuevaPasarela);
       }
-      camino.add(nuevaPasarela);
-      mapa.agregar(coordenadaNueva, nuevaPasarela);
    }
 }

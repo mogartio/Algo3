@@ -15,7 +15,15 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+/*IMPORTANTE
 
+    crearOleadas()
+*   Tiene que devolver una cola con las diferentes listas de enemigos que se van a generar por turno (LinkedList<ArrayList<Enemigo>>)
+
+    crearEnemigos()
+*   Tiene que ser un constructor de los enemigos que construye en base al string que lea
+
+*/
 public class CreadorEnemigos {
     private static LinkedList<ArrayList<Enemigo>> colaSpawner;
     private String filePath;
@@ -24,6 +32,7 @@ public class CreadorEnemigos {
         colaSpawner = new LinkedList<>();
     }
 
+    /* esto si es importante */
     public LinkedList<ArrayList<Enemigo>> crearEnemigos() {
         crearTurnoEnemigos(Lector.leer(this.filePath));
         return colaSpawner;
@@ -37,9 +46,6 @@ public class CreadorEnemigos {
         final int POSICION_HORMIGAS = 0;
         final int POSICION_ARAÑAS = 1;
 
-        Coordenada coordenadaInicial = new Coordenada(0, 0);
-        Pasarela pasarelaInicial = new Pasarela(coordenadaInicial, null, new Normal());
-
         ArrayList<Enemigo> enemigosTurnoActual = new ArrayList<Enemigo>();
 
         JSONObject enemigoObject = (JSONObject) turno.get("enemigos");
@@ -52,11 +58,11 @@ public class CreadorEnemigos {
         }
         int cantidadHormigas = ((Long) jsonArray.get(POSICION_HORMIGAS)).intValue();
         for (int i = 0; i < cantidadHormigas; i++) {
-            enemigosTurnoActual.add(new Hormiga(pasarelaInicial));
+            enemigosTurnoActual.add(new Hormiga());
         }
         int cantidadArañas = ((Long) jsonArray.get(POSICION_ARAÑAS)).intValue();
         for (int i = 0; i < cantidadArañas; i++) {
-            enemigosTurnoActual.add(new Araña(pasarelaInicial));
+            enemigosTurnoActual.add(new Araña());
         }
         colaSpawner.add(enemigosTurnoActual);
     }
