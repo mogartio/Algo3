@@ -28,12 +28,16 @@ public class Mapa {
     }
 
     public void agregarEnemigosDelTurno(ArrayList<Enemigo> enemigosDelJuego) {
-        ArrayList<Enemigo> enemigosDelTurno = oleadas.pop();
+        if (!oleadas.isEmpty()){
 
-        enemigosDelTurno.forEach(enemigo -> {
-            enemigo.actualizarPosicionActual(pasarelaInicial);
-            enemigosDelJuego.add(enemigo);
-        });
+            ArrayList<Enemigo> enemigosDelTurno = oleadas.pop();
+
+            enemigosDelTurno.forEach(enemigo -> {
+                enemigo.actualizarPosicionActual(pasarelaInicial);
+                enemigosDelJuego.add(enemigo);
+            });
+
+        }
     }
     public void agregar(Coordenada coordenadaNueva, Parcela parcelaNueva) { mapa.put(coordenadaNueva, parcelaNueva);}
 

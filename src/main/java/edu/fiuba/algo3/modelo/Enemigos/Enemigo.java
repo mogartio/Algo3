@@ -47,7 +47,9 @@ public abstract class Enemigo extends Observable {
     public void avanzar() throws PasarelaInexistente{
 
         if (vida.sigueVivo())
-            this.posicionActual = posicionActual.actualizarPosicion(this.cantidadMovimientos);
+            for(int pasos = 0; pasos < this.cantidadMovimientos; pasos++){
+                posicionActual.actualizarPosicion(this);
+            }
             if(this.posicionActual == null){
                 throw new PasarelaInexistente("El enemigo se movio a un lugar invalido");
             }
