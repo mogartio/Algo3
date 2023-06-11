@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.entrega_1;
+package edu.fiuba.algo3.testUnitarios;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Defensas.TorreBlanca;
