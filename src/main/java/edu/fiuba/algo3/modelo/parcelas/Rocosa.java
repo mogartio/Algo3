@@ -14,6 +14,6 @@ public class Rocosa extends Parcela {
     }
 
     public boolean ocupada(){
-        return false;
+        return true;
     }
 }

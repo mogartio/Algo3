@@ -45,4 +45,8 @@ public class Pasarela extends Parcela {
     public boolean equals(Pasarela pasarela){
         return pasarela.verificarPosicion(this.coordenada);
     }
+
+    public boolean ocupada(){
+        return !(construible.puedeConstruir());
+    }
 }
