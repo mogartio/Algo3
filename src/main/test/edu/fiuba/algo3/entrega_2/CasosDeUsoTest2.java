@@ -18,10 +18,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Queue;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -97,35 +94,54 @@ public class CasosDeUsoTest2 {
     }
 
     @Test
-    public void test15aJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
-        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigosTest15a.txt");
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
-        ArrayList<Enemigo> arrayList = colaEnemigos.remove();
-        Enemigo enemigo = arrayList.remove(0);
+    public void test15aCreadorDeEnemigosCreaDeJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
+
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15a.txt");
+
+        ArrayList<Enemigo> enemigosEnTurno = colaDeEnemigos.pop();
+
+        Enemigo enemigo = enemigosEnTurno.get(0);
+
+        assertTrue(colaDeEnemigos.isEmpty());
         assertTrue(enemigo instanceof Hormiga);
-        assertTrue(colaEnemigos.isEmpty());
-        assertTrue(arrayList.isEmpty());
+        assertTrue(colaDeEnemigos.isEmpty());
     }
     @Test
-    public void test15bJSONConUnSoloTurnoYDosEnemigos(){
-        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigoTest15b.txt");
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
-        ArrayList<Enemigo> arrayList = colaEnemigos.remove();
-        Enemigo enemigoA = arrayList.remove(0);
-        Enemigo enemigoB = arrayList.remove(0);
+    public void test15bCreadorDeEnemigosCreaDeJSONConUnSoloTurnoYDosEnemigos(){
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15b.txt");
+
+        ArrayList<Enemigo> enemigosEnTurno = colaDeEnemigos.pop();
+
+        Enemigo enemigoA = enemigosEnTurno.get(0);
+        Enemigo enemigoB = enemigosEnTurno.get(1);
+
         assertTrue(enemigoA instanceof Hormiga && enemigoB instanceof Araña);
-        assertTrue(colaEnemigos.isEmpty());
-        assertTrue(arrayList.isEmpty());
+        assertTrue(colaDeEnemigos.isEmpty());
     }
 
     @Test
-    public void test15cJSONConVariosTurnosYVariosEnemigos(){
-        CreadorEnemigos creadorEnemigo = new CreadorEnemigos("ArchivosJson/tests/test15/enemigosTest15c.txt");
-        Queue<ArrayList<Enemigo>> colaEnemigos = (Queue<ArrayList<Enemigo>>) creadorEnemigo.crearEnemigos();
-        while (colaEnemigos.isEmpty()) equals(false);{
-            ArrayList<Enemigo> turno = colaEnemigos.remove();
-            turno.forEach(enemigo -> assertTrue(enemigo instanceof Enemigo));
-        }
+    public void test15cCreadorDeEnemigosCreaDeJSONCon3TurnosYVariosEnemigosCorrectamente(){
+        CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15c.txt");
+
+        ArrayList<Enemigo> primerTurnoDeCreador = colaDeEnemigos.pop();
+        ArrayList<Enemigo> segundoTurnoDeCreador = colaDeEnemigos.pop();
+        ArrayList<Enemigo> tercerTurnoDeCreador = colaDeEnemigos.pop();
+
+
+        assertTrue(primerTurnoDeCreador.size() == 1);
+        assertTrue(primerTurnoDeCreador.get(0) instanceof Hormiga);
+
+        assertTrue(segundoTurnoDeCreador.size() == 2);
+        assertTrue(segundoTurnoDeCreador.get(0) instanceof Hormiga);
+        assertTrue(segundoTurnoDeCreador.get(1) instanceof Araña);
+
+        assertTrue(tercerTurnoDeCreador.size() == 3);
+        assertTrue(tercerTurnoDeCreador.get(0) instanceof Hormiga);
+        assertTrue(tercerTurnoDeCreador.get(1) instanceof Hormiga);
+        assertTrue(tercerTurnoDeCreador.get(2) instanceof Araña);
     }
 
     @Test

@@ -25,6 +25,7 @@ public class CreadorDeJuego { // fachada
         this.lectorDeArchivos = new Lector();
     }*/
 
+    /* para probar otra cosa
     public static Jugable crearJugable(String pathArchivoEnemigos, String pathArchivoMapa) throws NoHayCamino {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos(pathArchivoEnemigos);
@@ -44,5 +45,5 @@ public class CreadorDeJuego { // fachada
         Turnero turnero = new Turnero(juego);
 
         return turnero;
-    }
+    }*/
 }

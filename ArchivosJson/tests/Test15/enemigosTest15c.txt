@@ -22,36 +22,5 @@
 			"arana": 1
 		}
 
-	},
-	{
-		"turno": 4,
-		"enemigos": {
-			"hormiga": 0,
-			"arana": 1
-		}
-
-	},
-	{
-		"turno": 5,
-		"enemigos": {
-			"hormiga": 1,
-			"arana": 1
-		}
-
-	},
-	{
-		"turno": 6,
-		"enemigos": {
-			"hormiga": 1,
-			"arana": 2
-		}
-
-	},	{
-		"turno": 7,
-		"enemigos": {
-			"hormiga": 0,
-			"arana": 1
-		}
-
 	}
 ]

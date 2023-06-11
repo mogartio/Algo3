@@ -15,56 +15,60 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-/*IMPORTANTE
 
-    crearOleadas()
-*   Tiene que devolver una cola con las diferentes listas de enemigos que se van a generar por turno (LinkedList<ArrayList<Enemigo>>)
-
-    crearEnemigos()
-*   Tiene que ser un constructor de los enemigos que construye en base al string que lea
-
-*/
 public class CreadorEnemigos {
-    private static LinkedList<ArrayList<Enemigo>> colaSpawner;
-    private String filePath;
+    Lector lector;
 
-    public CreadorEnemigos(String filePath){
-        this.filePath = filePath;
-        colaSpawner = new LinkedList<>();
+    public CreadorEnemigos(){
+        this.lector = new Lector();
     }
 
     /* esto si es importante */
-    public LinkedList<ArrayList<Enemigo>> crearEnemigos() {
-        crearTurnoEnemigos(Lector.leer(this.filePath));
-        return colaSpawner;
+    public LinkedList<ArrayList<Enemigo>> crearEnemigosDeNivel(String direccionDeArchivo) {
+        LinkedList<ArrayList<Enemigo>> enemigosDelNivel = new LinkedList<ArrayList<Enemigo>>();
+        JSONArray lectura =(JSONArray) Lector.leer(direccionDeArchivo);
+
+        for (int fila = 1 ; fila <= lectura.size() ; fila++ ) { // comienza en 1 para que sea representativo
+            //cada ciclo es un turno
+            //pensar el JSONObject como un diccionario
+            JSONObject informacionDelTurno = (JSONObject) lectura.get(fila - 1); // obtiene la informacion de la fila correspondiente
+
+            agregarEnemigosEnTurno(enemigosDelNivel, informacionDelTurno);
+        }
+        return enemigosDelNivel;
     }
 
-    public void crearTurnoEnemigos(JSONArray listaTurnos) {
-        listaTurnos.forEach( turno -> crearTurno( (JSONObject) turno) );
+    private void agregarEnemigosEnTurno(LinkedList<ArrayList<Enemigo>> enemigosDelNivel,JSONObject informacionDelTurno){
+
+        JSONObject enemigosEnTurno = (JSONObject) informacionDelTurno.get("enemigos");// obtiene el value asociado a al key "enemigos"
+        ArrayList<Enemigo> enemigosAAgregarEnNivelEnEsteTurno =  new ArrayList<Enemigo>();
+
+        enemigosEnTurno.forEach( (tipoDeEnemigo , cantidadDelTipo) -> {
+
+            //Dado que la bibliteca solo permite trabajar con strings
+            int cantidadDelTipoEnInt = Integer.valueOf( cantidadDelTipo.toString() ); // casteo el numero de cantidadDelTipo a int
+
+            for (int i = 0 ; i < cantidadDelTipoEnInt ; i++){
+                Enemigo enemigoAAgregar = crearInstanciaDeEnemigo( tipoDeEnemigo.toString());
+
+                enemigosAAgregarEnNivelEnEsteTurno.add( enemigoAAgregar );
+            }
+        });
+
+        enemigosDelNivel.add(enemigosAAgregarEnNivelEnEsteTurno);
     }
 
-    private static void crearTurno(JSONObject turno) {
-        final int POSICION_HORMIGAS = 0;
-        final int POSICION_ARAÑAS = 1;
+    public Enemigo crearInstanciaDeEnemigo(String tipoDeEnemigoACrear){
+        Enemigo instanciaDeEnemigo = null;
 
-        ArrayList<Enemigo> enemigosTurnoActual = new ArrayList<Enemigo>();
+        if (tipoDeEnemigoACrear.equals("hormiga") ){
+            instanciaDeEnemigo = new Hormiga();
 
-        JSONObject enemigoObject = (JSONObject) turno.get("enemigos");
-        JSONArray jsonArray = new JSONArray();
+        } else if (tipoDeEnemigoACrear.equals("arana") ){
+            instanciaDeEnemigo = new Araña();
+        }
+        return instanciaDeEnemigo;
 
-        Iterator x = enemigoObject.keySet().iterator();
-        while (x.hasNext()) {
-            String key = (String) x.next();
-            jsonArray.add(enemigoObject.get(key));
-        }
-        int cantidadHormigas = ((Long) jsonArray.get(POSICION_HORMIGAS)).intValue();
-        for (int i = 0; i < cantidadHormigas; i++) {
-            enemigosTurnoActual.add(new Hormiga());
-        }
-        int cantidadArañas = ((Long) jsonArray.get(POSICION_ARAÑAS)).intValue();
-        for (int i = 0; i < cantidadArañas; i++) {
-            enemigosTurnoActual.add(new Araña());
-        }
-        colaSpawner.add(enemigosTurnoActual);
     }
+
 }
