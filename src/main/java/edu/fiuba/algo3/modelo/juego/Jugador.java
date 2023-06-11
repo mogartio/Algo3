@@ -60,9 +60,7 @@ public class Jugador extends Observable {
         this.contadorHormigasMuertas ++;
     }
 
-    public void descontarCreditos(Credito creditos){
-        this.creditos.descontar(creditos);
-    }
+    public void descontarCreditos(Credito creditos) { this.creditos.descontar(creditos); }
 
 
 }

@@ -48,6 +48,5 @@ public abstract class Defensa {
                 break;
             }
         }
-
     }
 }
