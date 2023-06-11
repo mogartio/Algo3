@@ -40,11 +40,15 @@ public class CreadorDeMapa {
         JSONArray fila = (JSONArray) listaFilas.get(numeroFila);
 
         int coordenadaY = Integer.parseInt((String) numeroFila);
+
         AtomicInteger coordenadaX = new AtomicInteger(1);
+        for(int coordenadaX ; coordenadaX <= fila.size() ; coordenadaX++ ){
+            crefila.get(coordenadaX)
+        }
         fila.forEach(parcela -> {
-                    crearParcela((String) parcela, coordenadaY, coordenadaX.get());
-                    coordenadaX.getAndIncrement();
-                });
+            crearParcela((String) parcela, coordenadaY, coordenadaX);
+            coordenadaX.getAndIncrement();
+        });
     }
 
     private void crearParcela(String tipoDeTerreno, int coordY, int coordX){

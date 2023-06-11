@@ -19,6 +19,7 @@ import java.util.LinkedList;
 public class CreadorEnemigos {
     private static LinkedList<ArrayList<Enemigo>> colaSpawner;
     private String filePath;
+
     public CreadorEnemigos(String filePath){
         this.filePath = filePath;
         colaSpawner = new LinkedList<>();

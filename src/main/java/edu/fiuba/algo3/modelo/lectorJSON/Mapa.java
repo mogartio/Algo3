@@ -11,18 +11,19 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 
 public class Mapa {
-    Dictionary<Coordenada, Parcela> mapa;
-
-    LinkedList<ArrayList<Enemigo>> oleadas;
+    Hashtable<Coordenada, Parcela> mapa;
+    LinkedList< ArrayList<Enemigo> > oleadas;
     Pasarela pasarelaInicial;
 
     public Mapa() {
-        mapa = new Hashtable<>();
+        mapa = new Hashtable<Coordenada, Parcela>();
     }
+
     public void setPasarelaInicial(Pasarela pasarelaInicial) {
         this.pasarelaInicial = pasarelaInicial;
     }
-    public void cargarOleadas(LinkedList<ArrayList<Enemigo>> oleadas) {
+
+    public void cargarOleadas(LinkedList< ArrayList<Enemigo> > oleadas) {
         this.oleadas = oleadas;
     }
 

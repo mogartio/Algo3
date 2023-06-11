@@ -69,31 +69,31 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test14SeVerificaLaValidesDelJSONDeMapaDePrueba(){
-        Lector lectorDeEnemigos = new Lector();
-        ArrayList <ArrayList<String> > filasEnArchivo = new ArrayList<ArrayList<String> >();
-        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                "Rocoso","Pasarela","Tierra","Tierra","Tierra"
-        )));
-        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                "Tierra","Pasarela","Tierra","Tierra","Tierra"
-        )));
-        filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                "Tierra","Pasarela","Tierra","Tierra","Tierra"
-        )));
+            Lector lectorDeEnemigos = new Lector();
+            ArrayList <ArrayList<String> > filasEnArchivo = new ArrayList<ArrayList<String> >();
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Rocoso","Pasarela","Tierra","Tierra","Tierra"
+            )));
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Tierra","Pasarela","Tierra","Tierra","Tierra"
+            )));
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Tierra","Pasarela","Tierra","Tierra","Tierra"
+            )));
 
-        JSONArray parseoDeMapa = null;
-        parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
+            JSONArray parseoDeMapa = null;
+            parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
 
-        JSONObject filas = (JSONObject) parseoDeMapa.get(1);//saltea a "Mapa" y obtiene un diccionario de filas
+            JSONObject filas = (JSONObject) parseoDeMapa.get(1);//saltea a "Mapa" y obtiene un diccionario de filas
 
-        for (int i = 1; i <= filas.size(); i++){ //por cada fila en filas
+            for (int i = 1; i <= filas.size(); i++){ //por cada fila en filas
 
-            JSONArray filaAComparar = (JSONArray) filas.get(String.valueOf(i)); //crea un array con lo que hay en la fila
+                JSONArray filaAComparar = (JSONArray) filas.get(String.valueOf(i)); //crea un array con lo que hay en la fila
 
-            for (int j = 0; j < filaAComparar.size(); j++){ // por cada elemento en el en el JSONArray
-                assertEquals(filaAComparar.get(j),filasEnArchivo.get(i-1).get(j));
+                for (int j = 0; j < filaAComparar.size(); j++){ // por cada elemento en el en el JSONArray
+                    assertEquals(filaAComparar.get(j),filasEnArchivo.get(i-1).get(j));
+                }
             }
-        }
     }
 
     @Test
