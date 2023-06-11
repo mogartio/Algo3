@@ -26,8 +26,6 @@ public class Jugador extends Observable {
     private Credito creditos;
     private int contadorHormigasMuertas;
 
-    public int obtenerCreditos() { return creditos.obtenerCreditos(); } // esta funcion se sacara
-
     public ArrayList<String> verificarConstruccionesPosibles(Tienda proveedor) {
         return proveedor.catalogoDisponible(creditos);
     }
@@ -58,6 +56,10 @@ public class Jugador extends Observable {
 
     public void registrarHormigaMuerta() {
         this.contadorHormigasMuertas ++;
+    }
+
+    public Defensa comprar(Tienda tienda, String tipoDefensa){
+        return tienda.vendeme(tipoDefensa);
     }
 
     public void descontarCreditos(Credito creditos) { this.creditos.descontar(creditos); }

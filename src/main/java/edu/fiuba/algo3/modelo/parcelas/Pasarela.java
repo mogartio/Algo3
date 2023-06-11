@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.parcelas;
 
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 
@@ -24,21 +25,9 @@ public class Pasarela extends Parcela {
     }
     private Pasarela verSiguiente(){return siguientePasarela;}
 
-    public Pasarela verSiguiente(int cantidadPasos){
-        Pasarela pasarelaAux = this;
+    public void actualizarPosicion(Enemigo enemigo) {
 
-        if(cantidadPasos >= 0) { // Este caso no deberia pasar
-            for(int i = 0; i < cantidadPasos; i++) {
-                pasarelaAux = pasarelaAux.verSiguiente();
-            }
-        }
-
-        return pasarelaAux;
-    };
-
-    public Pasarela actualizarPosicion(int desplazamientoEnemigo) {
-        Pasarela proximaPasarela = this.verSiguiente(desplazamientoEnemigo);
-        return proximaPasarela;
+            tipo.moverEnemigos(enemigo, this.verSiguiente());
     }
 
     public boolean estaEnRango(Coordenada otraCoordenada, int distancia) {
@@ -52,7 +41,7 @@ public class Pasarela extends Parcela {
     }
 
     public boolean ocupada(){
-        return !(construible.puedeConstruir());
+        return false;
     }
 
     public void actualizarTipo(TipoPasarela tipoPasarela){
