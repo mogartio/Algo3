@@ -2,22 +2,27 @@ package edu.fiuba.algo3.modelo.parcelas;
 
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-
-import java.util.ArrayList;
 
 public class Pasarela extends Parcela {
     private TipoPasarela tipo;
 
     private Pasarela siguientePasarela;
 
-    public Pasarela(Coordenada coordenada, Pasarela siguientePasarela, TipoPasarela tipo) {
+    public Pasarela(Coordenada coordenada,Pasarela siguientePasarela, TipoPasarela tipo) {
         super(coordenada, new NoDisponible());
         this.siguientePasarela = siguientePasarela;
         this.tipo = tipo;
     }
+    public Pasarela(Coordenada coordenada, TipoPasarela tipo) {
+        super(coordenada, new NoDisponible());
+        this.siguientePasarela = null;
+        this.tipo = tipo;
+    }
 
-    public Pasarela verSiguiente(){return siguientePasarela;};
+    public void agregarSiguiente(Pasarela siguientePasarela){
+        this.siguientePasarela = siguientePasarela;
+    }
+    private Pasarela verSiguiente(){return siguientePasarela;}
 
     public Pasarela verSiguiente(int cantidadPasos){
         Pasarela pasarelaAux = this;
@@ -48,5 +53,9 @@ public class Pasarela extends Parcela {
 
     public boolean ocupada(){
         return !(construible.puedeConstruir());
+    }
+
+    public void actualizarTipo(TipoPasarela tipoPasarela){
+        this.tipo = tipoPasarela;
     }
 }

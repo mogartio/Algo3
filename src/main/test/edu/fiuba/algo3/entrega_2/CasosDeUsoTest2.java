@@ -213,7 +213,7 @@ public class CasosDeUsoTest2 {
     public void test20dUnaHormigaQueMuereCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new Pasarela(coord, null, new Normal());
+        Pasarela pasarela = new Pasarela(coord, new Normal());
 
         Hormiga hormiga = new Hormiga(pasarela);
         hormiga.agregarSubscriptor(logger);
@@ -228,7 +228,7 @@ public class CasosDeUsoTest2 {
     public void test20eUnaArañaQueMuereCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new Pasarela(coord, null, new Normal());
+        Pasarela pasarela = new Pasarela(coord, new Normal());
 
         Araña araña = new Araña(pasarela);
         araña.agregarSubscriptor(logger);
@@ -243,7 +243,7 @@ public class CasosDeUsoTest2 {
     public void test20fAgregarUnEnemigoAlJuegoCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new Pasarela(coord, null, new Normal());
+        Pasarela pasarela = new Pasarela(coord, new Normal());
 
         Araña araña = new Araña(pasarela);
         Juego juego = new Juego();
@@ -258,7 +258,7 @@ public class CasosDeUsoTest2 {
     public void test20gSubscribirElMismoLoggerADistintosObservablesCausaQueSeAcumulenLasNotificaciones() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
-        Pasarela pasarela = new Pasarela(coord, null, new Normal());
+        Pasarela pasarela = new Pasarela(coord, new Normal());
 
         Araña araña = new Araña(pasarela);
         Hormiga hormiga = new Hormiga(pasarela);
