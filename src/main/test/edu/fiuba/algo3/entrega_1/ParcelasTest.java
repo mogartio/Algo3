@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.miscelanea.*;
 import edu.fiuba.algo3.modelo.parcelas.*;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 public class ParcelasTest {
     @Test
@@ -30,7 +29,7 @@ public class ParcelasTest {
         Rocosa rocosa = new Rocosa(mockedCoordenada);
         Tierra tierra = new Tierra(mockedCoordenada);
 
-        assertFalse(rocosa.equals(tierra));
+        assertNotEquals(rocosa.equals(tierra), true);
     }
 
     @Test
@@ -66,7 +65,7 @@ public class ParcelasTest {
         Tierra tierra = new Tierra(mockedCoordenada);
         Pasarela pasarela = new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
 
-        assertFalse(tierra.equals(pasarela));
+        assertNotEquals(tierra.equals(pasarela), true);
     }
 
     @Test
@@ -77,7 +76,7 @@ public class ParcelasTest {
         Rocosa rocosa = new Rocosa(mockedCoordenada);
         Pasarela pasarela = new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
 
-        assertFalse(rocosa.equals(pasarela));
+        assertNotEquals(rocosa.equals(pasarela), true);
     }
 
     @Test
