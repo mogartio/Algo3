@@ -18,7 +18,7 @@ public class Credito {
         //este metodo se le aplica a una intacia de Credito a la cual se le quiera descontar el argumento
         recursos = otroCredito.descontar(recursos);
     }
-    public int descontar(int minuendo){
+    public int descontar(int minuendo) {
         //este metodo se encarga de el calculo del descuento sin violar encapsulamiento
         return minuendo - recursos;
     }

@@ -19,9 +19,15 @@ public class Coordenada {
         return coordenada.verificarDistancia(this.coordX, this.coordY, rango);
     }
 
+    public boolean esBorde(int maximo) {
+        return (this.coordX == 0 || this.coordX == maximo || this.coordY == 0 || this.coordY == maximo );
+    }
+
     public boolean verificarDistancia(int coordX, int coordY, int rango){
-        double distacia = Math.sqrt(Math.pow(coordX - this.coordX, 2) + Math.pow(coordY - this.coordY, 2));
-        return (distacia <= rango);
+        //double distacia = Math.sqrt(Math.pow(coordX - this.coordX, 2) + Math.pow(coordY - this.coordY, 2));
+        int distanciaX = Math.abs(this.coordX - coordX);
+        int distanciaY = Math.abs(this.coordY - coordY);
+        return ((distanciaX + distanciaY) <= rango);
     }
 
     public boolean estaEnRango(Coordenada otraCoordenada, int rango) {

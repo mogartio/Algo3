@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import edu.fiuba.algo3.mocks.VendedorMock;
 import edu.fiuba.algo3.modelo.Defensas.*;
-import edu.fiuba.algo3.modelo.Enemigos.Araña;
+import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
@@ -13,11 +11,12 @@ import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.miscelanea.Tienda;
-import edu.fiuba.algo3.modelo.miscelanea.Vida;
 import edu.fiuba.algo3.modelo.parcelas.*;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class CasosDeUsoTest {
@@ -26,15 +25,16 @@ public class CasosDeUsoTest {
     public void test01LaVidaYCreditosDelJugadorSonLosCorrectosAlEmpezar() {
         //el jugador comienza con 20 puntos de vida y con 100 creditos
         Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
         Tienda proveedor = new Tienda();
 
         for (int i=1 ; i <= 5 ; i++) { //se gastan los creditos
-            Defensa torre1 = jugador.comprar(proveedor,"TorrePlateada");
+            jugador.comprar(proveedor,"TorrePlateada");
         }
         ArrayList<String> torresDisponibles = jugador.verificarConstruccionesPosibles(proveedor); //se obtienen el listado de compras posibles
 
         for (int i=0 ; i <= 19 ; i++){
-            Jugador.getInstance().recibirDaño(1);
+            Jugador.getInstance().recibirDanio(1);
         }
 
 
@@ -55,8 +55,6 @@ public class CasosDeUsoTest {
 
     @Test
     public void test02bLaTorrePlateadaTardaEnConstruirse2Turnos() {
-        EstadoConstruccion estadoInicial = new EnConstruccion(2);
-
         Defensa torre = new TorrePlateada();
 
         //se verifica que la torre no se encuentra construida
@@ -75,11 +73,12 @@ public class CasosDeUsoTest {
         assertTrue(torre.estaConstruida());
     }
 
-    //CREAR UN METODO DE REGENERACION DE JUGADOR
-    /*@Test
+    @Test
     public void test03SeVerficaQueElJugadorDispongaDeCreditoParaConstruirTorres() {
         // se crea un jugador con los recursos base (tambien podrian ser otros)
         Jugador jugador = Jugador.getInstance();
+
+        jugador.reestablecerEstadoInicial();
 
         //se crea la tienda que sera quien proveera y verificara las torres comprables
         Tienda proveedor = new Tienda();
@@ -91,7 +90,7 @@ public class CasosDeUsoTest {
         //assertions
         assertTrue(torresComprables.contains("TorrePlateada"));
         assertTrue(torresComprables.contains("TorreBlanca"));
-    }*/
+    }
 
     @Test
     public void test04VerificarSoloSePuedaConstruirDefensasSobreTierra() {
@@ -118,13 +117,13 @@ public class CasosDeUsoTest {
         Coordenada coordenada2 = new Coordenada(6, 0);
         Pasarela pasarela2 = new Pasarela(coordenada2, new Normal());
 
-        Enemigo enemigo = new Araña();
+        Enemigo enemigo = new Arania();
         enemigo.actualizarPosicionActual(pasarela);
 
-        Enemigo enemigo2 = new Araña();
+        Enemigo enemigo2 = new Arania();
         enemigo2.actualizarPosicionActual(pasarela2);
 
-        ArrayList<Enemigo> listaDeEnemigos = new ArrayList<Enemigo>();
+        ArrayList<Enemigo> listaDeEnemigos = new ArrayList<>();
         listaDeEnemigos.add(enemigo);
         listaDeEnemigos.add(enemigo2);
 
@@ -146,17 +145,17 @@ public class CasosDeUsoTest {
     }
 
     @Test
-    public void test06VerificarQueLosEnemigosSonDañadosAcordeAlAtaqueRecibido() {
+    public void test06VerificarQueLosEnemigosSonDaniadosAcordeAlAtaqueRecibido() {
         Coordenada coordenada = new Coordenada(3, 0);
         Pasarela pasarela1 = new Pasarela(coordenada, new Normal());
         Pasarela pasarela2 = new Pasarela(coordenada, new Normal());
 
-        Enemigo enemigo = new Araña();
+        Enemigo enemigo = new Arania();
         Enemigo enemigo2 = new Hormiga();
         enemigo.actualizarPosicionActual(pasarela1);
         enemigo2.actualizarPosicionActual(pasarela2);
 
-        ArrayList<Enemigo> listaEnemigos = new ArrayList<Enemigo>();
+        ArrayList<Enemigo> listaEnemigos = new ArrayList<>();
         listaEnemigos.add(enemigo);
         listaEnemigos.add(enemigo2);
 
@@ -174,7 +173,7 @@ public class CasosDeUsoTest {
 
 
     @Test
-    public void test07aVerificarQueLasArañasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
+    public void test07aVerificarQueLasAraniasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
 
         Coordenada coordenadaFinal = new Coordenada(20, 1);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
@@ -191,9 +190,9 @@ public class CasosDeUsoTest {
         Defensa torre = new TorrePlateada();
         torre.asignarPosicion(new Coordenada(3,4));
 
-        ArrayList<Enemigo> lista = new ArrayList<Enemigo>();
+        ArrayList<Enemigo> lista = new ArrayList<>();
 
-        Enemigo enemigo = new Araña();
+        Enemigo enemigo = new Arania();
         enemigo.actualizarPosicionActual(pasarelaInicial);
 
         lista.add(enemigo);
@@ -206,7 +205,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
-    public void test07bVerificarQueLasArañasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
+    public void test07bVerificarQueLasAraniasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
 
         Coordenada coordenadaFinal = new Coordenada(1, 1);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
@@ -223,9 +222,9 @@ public class CasosDeUsoTest {
         Defensa torre = new TorrePlateada();
         torre.asignarPosicion(new Coordenada(3,4));
 
-        ArrayList<Enemigo> lista = new ArrayList<Enemigo>();
+        ArrayList<Enemigo> lista = new ArrayList<>();
 
-        Enemigo enemigo = new Araña();
+        Enemigo enemigo = new Arania();
         enemigo.actualizarPosicionActual(pasarelaInicial);
 
         lista.add(enemigo);
@@ -233,47 +232,62 @@ public class CasosDeUsoTest {
         enemigo.avanzar();
         torre.atacar(lista); // la araña debe estar dentro del rango de ataque de la torre por ende estaria muerta
 
-
         assertFalse(enemigo.estaVivo());
     }
 
-    /*@Test
+    @Test
     public void test08aHormigaDaCreditosCorrespondientesAlMorirSinMultiplicador() {
-        Jugador.getInstance();
-        int creditoInicial = Jugador.getInstance().obtenerCreditos();
+
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        VendedorMock vendedorMock = new VendedorMock();
 
         Coordenada coordenadaInicializadora = new Coordenada(1, 1);
-        Pasarela pasarelaInicializadora = new PasarelaIntermedia(coordenadaInicializadora, null);
+        Pasarela pasarelaInicializadora = new Pasarela(coordenadaInicializadora, new Normal());
 
         for (int i=1; i<9; i++){
             Enemigo hormiga = new Hormiga(pasarelaInicializadora);
             hormiga.morir();
-            assertEquals((i + creditoInicial), Jugador.getInstance().obtenerCreditos());
+            int creditosJugador = Integer.parseInt(jugador.verificarConstruccionesPosibles(vendedorMock).get(0));
+            assertEquals((i + 100), creditosJugador);
         }
     }
 
     @Test
-    @Order(11)
-    public void test08bHormigaDaCreditosCorrespondientesAlMorirConMultiplicador() { //El multiplicador ya esta aplicado porque el jugador mato a 9 hormigas en la prueba anterior
+    public void test08bHormigaDaCreditosCorrespondientesAlMorirConMultiplicador() {
         Jugador jugador = Jugador.getInstance();
-        int creditoInicial = Jugador.getInstance().obtenerCreditos();
-        Coordenada coordenadaInicializadora = new Coordenada(1, 1);
-        Pasarela pasarelaInicializadora = new PasarelaIntermedia(coordenadaInicializadora, null);
+        jugador.reestablecerEstadoInicial();
 
-        for (int i=1; i<10; i++){
+        Coordenada coordenadaInicializadora = new Coordenada(1, 1);
+        Pasarela pasarelaInicializadora = new Pasarela(coordenadaInicializadora, new Normal());
+
+        VendedorMock vendedorMock = new VendedorMock();
+        int cantidadCreditosAnteriores = Integer.parseInt(jugador.verificarConstruccionesPosibles(vendedorMock).get(0));
+
+        for (int i=1; i<15; i++){
             Enemigo hormiga = new Hormiga(pasarelaInicializadora);
             hormiga.morir();
-            assertEquals((i * 2 + creditoInicial), Jugador.getInstance().obtenerCreditos());
+            int creditosJugador = Integer.parseInt(jugador.verificarConstruccionesPosibles(vendedorMock).get(0));
+            if(i >= 10) {
+                assertEquals(cantidadCreditosAnteriores + 2, creditosJugador);
+            } else {
+                assertEquals(cantidadCreditosAnteriores + 1, creditosJugador);
+            }
+            cantidadCreditosAnteriores = creditosJugador;
         }
     }
 
     @Test
-    @Order(12)
-    public void test08cArañaDaCreditosCorrespondientesAlMorir() {
+    public void test08cAraniaDaCreditosCorrespondientesAlMorir() {
         Jugador jugador = Jugador.getInstance();
-        int creditosIniciales = jugador.getInstance().obtenerCreditos();
-        assertFalse((Jugador.getInstance().obtenerCreditos() > 10 + creditosIniciales) || (Jugador.getInstance().obtenerCreditos() < 0 + creditosIniciales));
-    }*/
+        jugador.reestablecerEstadoInicial();
+
+        VendedorMock vendedorMock = new VendedorMock();
+        int creditosJugador = Integer.parseInt(jugador.verificarConstruccionesPosibles(vendedorMock).get(0));
+
+        assertFalse((creditosJugador > 10 + 100) || (creditosJugador < 100));
+    }
 
     @Test
     public void test09aCrearHormigaYAvanzarHaceQueAvanceUnaPosicion() throws PasarelaInexistente {
@@ -288,7 +302,7 @@ public class CasosDeUsoTest {
         Defensa torre = new TorrePlateada();
         torre.asignarPosicion(new Coordenada(3,4));
 
-        ArrayList<Enemigo> lista = new ArrayList<Enemigo>();
+        ArrayList<Enemigo> lista = new ArrayList<>();
 
         Enemigo enemigo = new Hormiga();
         enemigo.actualizarPosicionActual(pasarelaInicial);
@@ -319,8 +333,8 @@ public class CasosDeUsoTest {
         Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, new Normal());
         pasarelaPrimera.agregarSiguiente(pasarelaSegunda);
 
-        Enemigo arañaUno = new Araña(pasarelaPrimera);
-        Enemigo arañaDos = new Araña(pasarelaSegunda);
+        Enemigo araniaUno = new Arania(pasarelaPrimera);
+        Enemigo araniaDos = new Arania(pasarelaSegunda);
         Enemigo hormigaUno = new Hormiga(pasarelaTercera);
         Enemigo hormigaDos = new Hormiga(pasarelaPrimera);
 
@@ -332,13 +346,13 @@ public class CasosDeUsoTest {
        mapaJuego.agregar(coordenadaTercera, pasarelaTercera);
        mapaJuego.agregar(coordenadaFinal, pasarelaFinal);
 
-       LinkedList<ArrayList<Enemigo>> oleadas = new LinkedList<ArrayList<Enemigo>>();
+       LinkedList<ArrayList<Enemigo>> oleadas = new LinkedList<>();
        mapaJuego.cargarOleadas(oleadas);
 
        Juego juego = new Juego(mapaJuego);
 
-       juego.nuevoEnemigo(arañaUno);
-       juego.nuevoEnemigo(arañaDos);
+       juego.nuevoEnemigo(araniaUno);
+       juego.nuevoEnemigo(araniaDos);
        juego.nuevoEnemigo(hormigaUno);
        juego.nuevoEnemigo(hormigaDos);
 
@@ -347,108 +361,131 @@ public class CasosDeUsoTest {
 
        assertTrue(hormigaDos.estaEnRango(coordenadaSegunda, 0));
        assertTrue(hormigaUno.estaEnRango(coordenadaFinal, 0));
-       assertTrue(arañaDos.estaEnRango(coordenadaFinal, 0));
-       assertTrue(arañaUno.estaEnRango(coordenadaTercera, 0));
+       assertTrue(araniaDos.estaEnRango(coordenadaFinal, 0));
+       assertTrue(araniaUno.estaEnRango(coordenadaTercera, 0));
 
     }
 
-    /*@Test
+    @Test
     public void test10aCrearUnJuegoConUnEnemigoSeGanaCuandoElEnemigoMuere() {
-        Jugador.getInstance().regenerar();
-        Vida vida = new Vida(20);
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
         Juego juego = new Juego();
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
         Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, null);
-        Enemigo araña = new Araña(pasarelaPrimera);
+        Enemigo arania = new Arania(pasarelaPrimera);
 
-        juego.nuevoEnemigo(araña);
+        juego.nuevoEnemigo(arania);
 
+        assertFalse(juego.finalizado());
+
+        arania.recibirDanio(2);
+        juego.jugarTurno(1);
+
+        assertTrue(jugador.estaVivo()); //Estos dos assert son equivalentes a decir que el juego esta en estado "ganado"
+        assertTrue(juego.finalizado());
     }
 
-   /* @Test
-    @Order(17)
+    @Test
     public void test10bCrearUnJuegoConMuchosEnemigosSeGanaSoloCuandoTodosMueren() {
 
-        Vida vida = new Vida(20);
         Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
 
-        Coordenada coordenadaPrimera = new Coordenada(2, 2);
-        Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, null);
-        Araña arañaUno = new Araña(pasarelaPrimera);
-        Araña arañaDos = new Araña(pasarelaPrimera);
-        Araña arañaTres = new Araña(pasarelaPrimera);
-        Araña arañaCuatro = new Araña(pasarelaPrimera);
+        Coordenada coordenada = new Coordenada(2, 2);
+        Pasarela pasarelaFinal = new Pasarela(coordenada, new Meta());
+        Pasarela pasarelaQuinta = new Pasarela(coordenada, pasarelaFinal, new Normal());
+        Pasarela pasarelaCuarta = new Pasarela(coordenada, pasarelaQuinta, new Normal());
+        Pasarela pasarelaTercera = new Pasarela(coordenada, pasarelaCuarta,  new Normal());
+        Pasarela pasarelaSegunda = new Pasarela(coordenada, pasarelaTercera,  new Normal());
+        Pasarela pasarelaPrimera = new Pasarela(coordenada, pasarelaSegunda,  new Normal());
+
+        Arania araniaUno = new Arania(pasarelaPrimera);
+        Arania araniaDos = new Arania(pasarelaPrimera);
+        Arania araniaTres = new Arania(pasarelaPrimera);
+        Arania araniaCuatro = new Arania(pasarelaPrimera);
         Hormiga HormigaUno = new Hormiga(pasarelaPrimera);
         Hormiga HormigaDos = new Hormiga(pasarelaPrimera);
         Hormiga HormigaTres = new Hormiga(pasarelaPrimera);
         Hormiga HormigaCuatro = new Hormiga(pasarelaPrimera);
 
-        ArrayList<Enemigo> enemigos = new ArrayList<Enemigo>();
+        ArrayList<Enemigo> enemigos = new ArrayList<>();
 
-        enemigos.add(arañaUno);
-        enemigos.add(arañaDos);
-        enemigos.add(arañaTres);
-        enemigos.add(arañaCuatro);
+        enemigos.add(araniaUno);
+        enemigos.add(araniaDos);
+        enemigos.add(araniaTres);
+        enemigos.add(araniaCuatro);
         enemigos.add(HormigaUno);
         enemigos.add(HormigaDos);
         enemigos.add(HormigaTres);
         enemigos.add(HormigaCuatro);
 
         Juego juego = new Juego();
-        assertTrue(juego.estado() instanceof Jugando);
+        enemigos.forEach(juego::nuevoEnemigo);
+        enemigos.forEach(enemigo -> enemigo.recibirDanio(1)); //Las hormigas mueren pero las arañas siguen vivas
+        juego.jugarTurno(1);
 
-        enemigos.forEach(enemigo -> enemigo.recibirDaño(1)); //Las hormigas mueren pero las arañas siguen vivas
-        assertTrue(juego.estado() instanceof Jugando);
+        assertFalse(juego.finalizado());
 
-        arañaUno.recibirDaño(1);
-        arañaDos.recibirDaño(1);
-        arañaTres.recibirDaño(1);
+        araniaUno.recibirDanio(1);
+        araniaDos.recibirDanio(1);
+        araniaTres.recibirDanio(1);
+        juego.jugarTurno(2);
         //Queda solo la última Araña viva
-        assertTrue(juego.estado() instanceof Jugando);
+        assertFalse(juego.finalizado());
 
-        arañaCuatro.recibirDaño(1);
-        assertTrue(juego.estado() instanceof Ganado);
-    }*/
-    /*@Test
-    @Order(18)
+        araniaCuatro.recibirDanio(1);
+        juego.jugarTurno(3);
+
+        assertTrue(jugador.estaVivo()); //Estos dos assert son equivalentes a decir que el juego esta en estado "ganado"
+        assertTrue(juego.finalizado());
+    }
+    @Test
     public void test11ElJugadorSobreviveConUnEnemigoLlegandoALaMetaYGanaIgual() {
         Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
         Juego juego = new Juego();
-
         Coordenada coordenadaFinal = new Coordenada(2,3);
-        Pasarela pasarelaFinal = new PasarelaFinal(coordenadaFinal, null);
-
+        Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
-        Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, pasarelaFinal);
-
+        Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, pasarelaFinal, new Normal());
         Enemigo hormiga = new Hormiga(pasarelaPrimera);
+
         juego.nuevoEnemigo(hormiga);
-        juego.pasarTurno();
-        assertTrue(juego.estado() instanceof Ganado);
+        juego.jugarTurno(1); //El enemigo llega a la meta
+
+        assertFalse(juego.finalizado());
+        juego.jugarTurno(2); //El enemigo llega a la meta
+
+        assertTrue(jugador.estaVivo()); //Estos dos assert son equivalentes a decir que el juego esta en estado "ganado"
+        assertTrue(juego.finalizado());
     }
 
     @Test
-    @Order(19)
     public void test12ElJugadorMuereYPierdeElJuego() {
         Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
         Juego juego = new Juego();
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
-        Pasarela pasarelaFinal = new PasarelaFinal(coordenadaFinal, null);
+        Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
-        Pasarela pasarelaPrimera = new PasarelaIntermedia(coordenadaPrimera, pasarelaFinal);
+        Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, pasarelaFinal, new Normal());
 
-        int vidaInicial = Jugador.getInstance().obtenerVida();
-
-        for(int i=0; i<vidaInicial; i++){
+        for(int i=0; i<20; i++){
             Enemigo hormiga = new Hormiga(pasarelaPrimera);
             juego.nuevoEnemigo(hormiga);
-            juego.pasarTurno();
+            juego.jugarTurno(i);
         }
-        assertTrue(juego.estado() instanceof Perdido);
-    }*/
+        assertFalse(juego.finalizado()); //Queda una hormiga sola en el mapa, si avanza hará el último punto de daño al jugador
+        juego.jugarTurno(20);
+
+        assertFalse(jugador.estaVivo()); //Estos dos assert son equivalentes a decir que el juego esta en estado "perdido"
+        assertTrue(juego.finalizado());
+    }
 }
 
 

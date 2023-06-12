@@ -6,19 +6,11 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.atMost;
-import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.mockito.InOrder;
 
 import java.util.ArrayList;
 
@@ -37,7 +29,7 @@ public class testDefensa {
         when(enemigoMockeado.estaEnRango(coordenadaMockeada,5)).thenReturn(true);
         defensa.atacar(listaDeEnemigos);
 
-        verify(enemigoMockeado , times(1)).recibirDaño(2);
+        verify(enemigoMockeado , times(1)).recibirDanio(2);
         }
 
     @Test
@@ -63,10 +55,10 @@ public class testDefensa {
 
         defensa.atacar(listaDeEnemigos);
 
-        verify(enemigoMockeado1 , times(1)).recibirDaño(2);
-        verify(enemigoMockeado2 , times(0)).recibirDaño(2);
-        verify(enemigoMockeado3 , times(0)).recibirDaño(2);
-        verify(enemigoMockeado4 , times(0)).recibirDaño(2);
+        verify(enemigoMockeado1 , times(1)).recibirDanio(2);
+        verify(enemigoMockeado2 , times(0)).recibirDanio(2);
+        verify(enemigoMockeado3 , times(0)).recibirDanio(2);
+        verify(enemigoMockeado4 , times(0)).recibirDanio(2);
     }
 
     @Test
@@ -89,9 +81,9 @@ public class testDefensa {
 
         defensa.atacar(listaDeEnemigos);
 
-        verify(enemigoMockeado1 , times(0)).recibirDaño(2);
-        verify(enemigoMockeado2 , times(0)).recibirDaño(2);
-        verify(enemigoMockeado3 , times(0)).recibirDaño(2);
+        verify(enemigoMockeado1 , times(0)).recibirDanio(2);
+        verify(enemigoMockeado2 , times(0)).recibirDanio(2);
+        verify(enemigoMockeado3 , times(0)).recibirDanio(2);
     }
 
 }

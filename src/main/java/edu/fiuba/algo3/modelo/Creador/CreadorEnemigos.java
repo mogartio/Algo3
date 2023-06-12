@@ -2,18 +2,14 @@
 package edu.fiuba.algo3.modelo.Creador;
 
 
-import edu.fiuba.algo3.modelo.Enemigos.Araña;
+import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
-import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.parcelas.Normal;
-import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class CreadorEnemigos {
@@ -65,7 +61,7 @@ public class CreadorEnemigos {
             instanciaDeEnemigo = new Hormiga();
 
         } else if (tipoDeEnemigoACrear.equals("arana") ){
-            instanciaDeEnemigo = new Araña();
+            instanciaDeEnemigo = new Arania();
         }
         return instanciaDeEnemigo;
 

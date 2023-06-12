@@ -26,7 +26,7 @@ public class CoordenadaTest {
     @Test
     public void test03SePruebaQueUnaCoordenadaEsteA5DeDistaciaDeOtraCoordenadaYEsVerdadero(){
         Coordenada coord1 = new Coordenada(0, 0);
-        Coordenada coord2 = new Coordenada(4,3);
+        Coordenada coord2 = new Coordenada(4,1);
 
         assertTrue(coord1.estaEnRango(coord2,5));
     }

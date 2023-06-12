@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
-import edu.fiuba.algo3.modelo.Observer.Emisor;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.Observer.Observable;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
@@ -24,7 +23,7 @@ public abstract class Enemigo extends Observable {
         return vida.sigueVivo();
     }
 
-    public void recibirDaño(int daño){
+    public void recibirDanio(int daño){
         this.vida.quitarVida(daño);
         if (!vida.sigueVivo()) {
             this.morir();
@@ -35,8 +34,8 @@ public abstract class Enemigo extends Observable {
         this.posicionActual = pasarelaActual;
     }
 
-    public void dañarJugador() {
-        Jugador.getInstance().recibirDaño(poderAtaque);
+    public void daniarJugador() {
+        Jugador.getInstance().recibirDanio(poderAtaque);
         this.vida = new Vida(0);
     }
 

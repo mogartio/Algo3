@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 
-public class Tienda { // se encargara de administrar los precios de las defensas y de comunicarse con
+public class Tienda implements Vendedor { // se encargara de administrar los precios de las defensas y de comunicarse con
     //un CreadorDeDefensas para obtener las intacias de las torres
     private HashMap<String,Credito> catalogo;
     private CreadorDeDefensas creador;

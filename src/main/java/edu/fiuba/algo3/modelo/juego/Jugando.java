@@ -13,15 +13,15 @@ public class Jugando implements EstadoJuego {
     ArrayList<Defensa> defensas;
     Mapa mapa;
     public Jugando(){
-        //ESTO TIENE QUE TIERRAR UN ERROR
-        this.enemigos = new ArrayList<Enemigo>();
-        this.defensas = new ArrayList<Defensa>();
+        this.mapa = new Mapa();
+        this.enemigos = new ArrayList<>();
+        this.defensas = new ArrayList<>();
     }
 
     public Jugando(Mapa mapa) {
         this.mapa = mapa;
-        enemigos = new ArrayList<>();
-        this.defensas = new ArrayList<Defensa>();
+        this.enemigos = new ArrayList<>();
+        this.defensas = new ArrayList<>();
     }
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
         enemigos.add(enemigo);

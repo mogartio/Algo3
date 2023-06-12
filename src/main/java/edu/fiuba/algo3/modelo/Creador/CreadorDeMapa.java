@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Creador;
 
 
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
+import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.lectorJSON.Camino;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
@@ -20,22 +21,23 @@ public class CreadorDeMapa {
 
     public CreadorDeMapa(String path){
         mapa = new Mapa();
-        camino = new Camino(mapa);
+        int MAXIMO_MAPA = 15;
+        camino = new Camino(MAXIMO_MAPA);
         this.path = path;
     }
 
-    public Mapa crearMapa() throws NoHayCamino {
+    public Mapa crearMapa() throws NoHayCamino, NoHayInicial {
         JSONArray jsonArray = Lector.leer(this.path);
         crearMapa((JSONObject) jsonArray.get(1));
         return mapa;
     }
 
-    private void crearMapa(JSONObject listaFilas) throws NoHayCamino {
+    private void crearMapa(JSONObject listaFilas) throws NoHayCamino, NoHayInicial {
 
         for(int i = 1; i <= listaFilas.size(); i++){
             crearFila(Integer.toString(i), listaFilas);
         }
-
+        camino.armar();
         mapa.setPasarelaInicial(camino.inicial());
     }
 
