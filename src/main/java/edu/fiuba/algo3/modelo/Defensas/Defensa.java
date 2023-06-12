@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Defensas;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import java.util.ArrayList;
-import edu.fiuba.algo3.modelo.Observer.Observable;
+
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 
@@ -44,7 +44,7 @@ public abstract class Defensa {
 
         for(int i = 0; i < enemigos.size(); i++){
             if (enemigos.get(i).estaEnRango(this.posicion, this.rangoAtaque)){
-                enemigos.get(i).recibirDaño(this.danio);
+                enemigos.get(i).recibirDanio(this.danio);
                 break;
             }
         }

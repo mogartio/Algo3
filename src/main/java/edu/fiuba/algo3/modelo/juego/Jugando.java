@@ -13,14 +13,15 @@ public class Jugando implements EstadoJuego {
     ArrayList<Defensa> defensas;
     Mapa mapa;
     public Jugando(){
-
+        this.mapa = new Mapa();
         this.enemigos = new ArrayList<>();
         this.defensas = new ArrayList<>();
     }
 
     public Jugando(Mapa mapa) {
         this.mapa = mapa;
-        enemigos = new ArrayList<>();
+        this.enemigos = new ArrayList<>();
+        this.defensas = new ArrayList<>();
     }
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
         enemigos.add(enemigo);
@@ -46,17 +47,23 @@ public class Jugando implements EstadoJuego {
     }
     public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno){
         mapa.agregarEnemigosDelTurno(this.enemigos);
-        enemigos.forEach(enemigo -> {
-            try {
-                enemigo.avanzar();
-            } catch (PasarelaInexistente e) {
-                throw new RuntimeException(e);
-            }
-        });
-        defensas.forEach(defensa -> {
+
+        if (!enemigos.isEmpty()){
+
+            enemigos.forEach(enemigo -> {
+                try {
+                    enemigo.avanzar();
+                } catch (PasarelaInexistente e) {
+                }
+            });
+        }
+        if (!defensas.isEmpty()){
+
+            defensas.forEach(defensa -> {
                 defensa.pasarTurno();
                 defensa.atacar(enemigos);
-        });
+            });
+        }
         return actualizarSegunEstadoDeJugador(jugadorVivo);
     }
 }

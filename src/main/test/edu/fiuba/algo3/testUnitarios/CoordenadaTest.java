@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoordenadaTest {
     @Test
-    public void SeComparanDosCordenadasDiferentesYNoSonIguales(){
+    public void test01SeComparanDosCordenadasDiferentesYNoSonIguales(){
         Coordenada coord1 = new Coordenada(0,0);
         Coordenada coord2 = new Coordenada(1,0);
 
@@ -16,11 +16,27 @@ public class CoordenadaTest {
     }
 
     @Test
-    public void SeComparanDosCoordenadasIgualesYSonIguales(){
+    public void test02SeComparanDosCoordenadasIgualesYSonIguales(){
         Coordenada coord1 = new Coordenada(1,1);
         Coordenada coord2 = new Coordenada(1,1);
 
         assertTrue(coord1.equals(coord2));
+    }
+
+    @Test
+    public void test03SePruebaQueUnaCoordenadaEsteA5DeDistaciaDeOtraCoordenadaYEsVerdadero(){
+        Coordenada coord1 = new Coordenada(0, 0);
+        Coordenada coord2 = new Coordenada(4,1);
+
+        assertTrue(coord1.estaEnRango(coord2,5));
+    }
+
+    @Test
+    public void test04SePruebaQueUnaCoordenadaEstaA3DeDistanciaDeOtraCoordendaYEsFalso(){
+        Coordenada coord1 = new Coordenada(0,0);
+        Coordenada coord2 = new Coordenada(4, 3);
+
+        assertFalse(coord1.estaEnRango(coord2, 3));
     }
 
 }

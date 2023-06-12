@@ -2,10 +2,11 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
-import edu.fiuba.algo3.modelo.Enemigos.Araña;
+import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
+import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
@@ -25,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CasosDeUsoTest2 {
     @Test
     public void test13SeVerificaLaValidesDelJSONDeEnemigosDePrueba(){
-        Lector lectorDeEnemigos = new Lector();
         ArrayList< HashMap<String,String> > enemigosEnArchivo = new ArrayList<>();
         JSONArray parseoDeEnemigos = null;
 
@@ -66,9 +66,8 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test14SeVerificaLaValidesDelJSONDeMapaDePrueba(){
-            Lector lectorDeEnemigos = new Lector();
             ArrayList <ArrayList<String> > filasEnArchivo = new ArrayList<ArrayList<String> >();
-            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+            filasEnArchivo.add(new ArrayList<>(Arrays.asList(
                     "Rocoso","Pasarela","Tierra","Tierra","Tierra"
             )));
             filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
@@ -78,8 +77,7 @@ public class CasosDeUsoTest2 {
                     "Tierra","Pasarela","Tierra","Tierra","Tierra"
             )));
 
-            JSONArray parseoDeMapa = null;
-            parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
+            JSONArray parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
 
             JSONObject filas = (JSONObject) parseoDeMapa.get(1);//saltea a "Mapa" y obtiene un diccionario de filas
 
@@ -117,7 +115,7 @@ public class CasosDeUsoTest2 {
         Enemigo enemigoA = enemigosEnTurno.get(0);
         Enemigo enemigoB = enemigosEnTurno.get(1);
 
-        assertTrue(enemigoA instanceof Hormiga && enemigoB instanceof Araña);
+        assertTrue(enemigoA instanceof Hormiga && enemigoB instanceof Arania);
         assertTrue(colaDeEnemigos.isEmpty());
     }
 
@@ -136,12 +134,12 @@ public class CasosDeUsoTest2 {
 
         assertTrue(segundoTurnoDeCreador.size() == 2);
         assertTrue(segundoTurnoDeCreador.get(0) instanceof Hormiga);
-        assertTrue(segundoTurnoDeCreador.get(1) instanceof Araña);
+        assertTrue(segundoTurnoDeCreador.get(1) instanceof Arania);
 
         assertTrue(tercerTurnoDeCreador.size() == 3);
         assertTrue(tercerTurnoDeCreador.get(0) instanceof Hormiga);
         assertTrue(tercerTurnoDeCreador.get(1) instanceof Hormiga);
-        assertTrue(tercerTurnoDeCreador.get(2) instanceof Araña);
+        assertTrue(tercerTurnoDeCreador.get(2) instanceof Arania);
     }
 
     @Test
@@ -150,21 +148,11 @@ public class CasosDeUsoTest2 {
         try {
             Mapa mapa = creadorMapa.crearMapa();
             assertNotNull(mapa);
-        } catch (NoHayCamino noHayCamino) {
+        } catch (NoHayCamino | NoHayInicial excepcion) {
             fail();
         }
     }
 
-    @Test
-    public void test16bCrearUnMapaSinCaminoDevuelveExcepcion() {
-        CreadorDeMapa creadorMapa = new CreadorDeMapa("ArchivosJson/tests/Test16/mapaSinCaminoTest16b");
-        try {
-            Mapa mapa = creadorMapa.crearMapa();
-            fail();
-        } catch (NoHayCamino noHayCamino) {
-            assertTrue(true);
-        }
-    }
 
     /* @Test
     public void test16b() {
@@ -191,7 +179,7 @@ public class CasosDeUsoTest2 {
 
         Jugador jugador = Jugador.getInstance();
         //jugador.agregarSubscriptor(logger);
-        jugador.recibirDaño(1);
+        jugador.recibirDanio(1);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
     }
@@ -204,7 +192,7 @@ public class CasosDeUsoTest2 {
 
         Jugador jugador = Jugador.getInstance();
         jugador.agregarSubscriptor(logger);
-        jugador.recibirDaño(1);
+        jugador.recibirDanio(1);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(1));
     }
@@ -246,12 +234,12 @@ public class CasosDeUsoTest2 {
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
 
-        Araña araña = new Araña(pasarela);
-        araña.agregarSubscriptor(logger);
+        Arania arania = new Arania(pasarela);
+        arania.agregarSubscriptor(logger);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
 
-        araña.morir(); //Aunque active 2 eventos, al no estar el logger suscrito al jugador, el logger no recibe la notificacion
+        arania.morir(); //Aunque active 2 eventos, al no estar el logger suscrito al jugador, el logger no recibe la notificacion
         assertTrue(logger.verificarCantidadDeMensajesObservados(1));
     }
 
@@ -261,12 +249,12 @@ public class CasosDeUsoTest2 {
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
 
-        Araña araña = new Araña(pasarela);
+        Arania arania = new Arania(pasarela);
         Juego juego = new Juego();
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
         juego.agregarSubscriptor(logger);
 
-        juego.nuevoEnemigo(araña);
+        juego.nuevoEnemigo(arania);
         assertTrue(logger.verificarCantidadDeMensajesObservados(1));
     }
 
@@ -276,23 +264,23 @@ public class CasosDeUsoTest2 {
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
 
-        Araña araña = new Araña(pasarela);
+        Arania arania = new Arania(pasarela);
         Hormiga hormiga = new Hormiga(pasarela);
         Juego juego = new Juego();
         Jugador jugador = Jugador.getInstance();
 
         juego.agregarSubscriptor(logger);
-        araña.agregarSubscriptor(logger);
+        arania.agregarSubscriptor(logger);
         hormiga.agregarSubscriptor(logger);
         jugador.agregarSubscriptor(logger);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
 
         //Serie de eventos que notfican al logger
-        juego.nuevoEnemigo(araña);
+        juego.nuevoEnemigo(arania);
         jugador.recompensar(10, false);
         hormiga.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
-        araña.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
+        arania.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(6));
     }

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.lectorJSON;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 
@@ -16,7 +17,10 @@ public class Mapa {
     Pasarela pasarelaInicial;
 
     public Mapa() {
-        mapa = new Hashtable<Coordenada, Parcela>();
+        mapa = new Hashtable<>();
+        oleadas = new LinkedList<>();
+        pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
+        //Para que el mapa quede en estado consistente, en un caso de uso real, la pasarelaInicial quedará determinada
     }
 
     public void setPasarelaInicial(Pasarela pasarelaInicial) {
@@ -28,13 +32,18 @@ public class Mapa {
     }
 
     public void agregarEnemigosDelTurno(ArrayList<Enemigo> enemigosDelJuego) {
-        ArrayList<Enemigo> enemigosDelTurno = oleadas.pop();
+        if (!oleadas.isEmpty()){
 
-        enemigosDelTurno.forEach(enemigo -> {
-            enemigo.actualizarPosicionActual(pasarelaInicial);
-            enemigosDelJuego.add(enemigo);
-        });
+            ArrayList<Enemigo> enemigosDelTurno = oleadas.pop();
+
+            enemigosDelTurno.forEach(enemigo -> {
+                enemigo.actualizarPosicionActual(pasarelaInicial);
+                enemigosDelJuego.add(enemigo);
+            });
+
+        }
     }
+
     public void agregar(Coordenada coordenadaNueva, Parcela parcelaNueva) { mapa.put(coordenadaNueva, parcelaNueva);}
 
     public Parcela ver(Coordenada coordenada) {

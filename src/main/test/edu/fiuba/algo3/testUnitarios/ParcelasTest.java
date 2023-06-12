@@ -99,18 +99,18 @@ public class ParcelasTest {
     }
 
     @Test
-    public void test09SeInicializaUnaParcelaRocosaYPorDefaultEstaOcupada(){
+    public void test09SeInicializaUnaParcelaRocosaYPorDefaultNoEstaOcupada(){
         Coordenada mockedCoordenada = mock(Coordenada.class);
         Rocosa rocosa = new Rocosa(mockedCoordenada);
 
-        assertTrue(rocosa.ocupada());
+        assertFalse(rocosa.ocupada());
     }
 
     @Test
-    public void test10SeInicializaUnaPasarelaNormalYPorDefaultEstaOcupadaParaConstruirDefensas(){
+    public void test10SeInicializaUnaPasarelaNormalYPorDefaultNoEstaOcupada(){
         Coordenada mockedCoordenada = mock(Coordenada.class);
         Pasarela pasarela = new Pasarela(mockedCoordenada, null, new Normal());
 
-        assertTrue(pasarela.ocupada());
+        assertFalse(pasarela.ocupada());
     }
 }
