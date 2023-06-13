@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo.lectorJSON;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.Observer.Emisor;
+import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
@@ -16,11 +18,17 @@ public class Mapa {
     LinkedList< ArrayList<Enemigo> > oleadas;
     Pasarela pasarelaInicial;
 
+    Emisor emisor;
+
     public Mapa() {
-        mapa = new Hashtable<>();
-        oleadas = new LinkedList<>();
-        pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
+        this.mapa = new Hashtable<>();
+        this.oleadas = new LinkedList<>();
+        this.pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
         //Para que el mapa quede en estado consistente, en un caso de uso real, la pasarelaInicial quedará determinada
+
+        Logger logger = new Logger();
+        this.emisor = new Emisor();
+        this.emisor.subcribir(logger);
     }
 
     public void setPasarelaInicial(Pasarela pasarelaInicial) {
@@ -36,7 +44,10 @@ public class Mapa {
 
             ArrayList<Enemigo> enemigosDelTurno = oleadas.pop();
 
+            this.emisor.notificarSubscriptores("log", "Se carga una nueva oleada");
+
             enemigosDelTurno.forEach(enemigo -> {
+                this.emisor.notificarSubscriptores("log", "Se agrega al mapa " + enemigo.representacionString());
                 enemigo.actualizarPosicionActual(pasarelaInicial);
                 enemigosDelJuego.add(enemigo);
             });

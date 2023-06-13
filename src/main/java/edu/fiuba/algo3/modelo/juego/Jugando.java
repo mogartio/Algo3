@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.juego;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
+import edu.fiuba.algo3.modelo.Observer.Emisor;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
@@ -45,18 +46,23 @@ public class Jugando implements EstadoJuego {
         else
             return this;
     }
-    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno){
-        mapa.agregarEnemigosDelTurno(this.enemigos);
+    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno, Emisor emisor){
+        emisor.notificarSubscriptores("log", "Se juega el turno N°: " + Integer.toString(numeroTurno));
 
         if (!enemigos.isEmpty()){
 
             enemigos.forEach(enemigo -> {
                 try {
-                    enemigo.avanzar();
+                    if(enemigo.estaVivo()){
+                        enemigo.avanzar();//cambiar
+                    }
                 } catch (PasarelaInexistente e) {
                 }
             });
         }
+
+        mapa.agregarEnemigosDelTurno(this.enemigos);
+
         if (!defensas.isEmpty()){
 
             defensas.forEach(defensa -> {

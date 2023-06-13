@@ -156,24 +156,6 @@ public class CasosDeUsoTest2 {
         }
     }
 
-
-    /* @Test
-    public void test16b() {
-        Creador creadorMapa = new CreadorDeMapa();
-        Mapa mapa = (Mapa) creadorMapa.crear("ArchivosJson/tests/Test16/mapaTest16");
-        String arrayAComparar[] = new String[] {
-                "Rocoso","Pasarela","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Rocoso","Rocoso","Rocoso","Rocoso","Rocoso"
-        };
-        for(int i=1; i<arrayAComparar.length; i++){
-            Coordenada coordenada = new Coordenada(1, 1);
-            assertEquals(mapa.ver(coordenada), Array.get(arrayAComparar,0));
-        }
-    } */
-
-
-
-
-
     @Test
     public void test20aSiNoSubsriboAlLoggerNoCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
@@ -289,9 +271,37 @@ public class CasosDeUsoTest2 {
     }
 
     @Test
-    public void test21SeSimulaUnaPartidaEnDondeElJugadorSeQuedaSinVidaYPierdeElJuego() throws NoHayCamino, NoHayInicial {
-        Jugable turnero = CreadorDeJuego.crearJugable("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+    public void test21SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+
+        Turnero turnero = new Turnero(juego);
+
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        //Empieza el jugador a hacer cambios en el juego
+
+        juego.comprarDefensa("TorrePlateada", new Coordenada(5,8));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(5,6));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(1,3));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(3,1));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(3,2));
+
+        //El jugador deja de hacer cambios
+
+        turnero.finTurnoJugador();
+
+        //Con el fin de probar si el jugador pierde o no solo vamos a pasar el turno del jugador sin hacer nada
+
+        while (!juego.finalizado()){
+            turnero.jugarTurnoMaquina();
+        }
+
+        assertTrue(juego.finalizado());
+        assertTrue(jugador.estaVivo());
 
     }
+
+
 
 }

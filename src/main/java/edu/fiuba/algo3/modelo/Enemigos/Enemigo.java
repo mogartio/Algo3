@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
+import edu.fiuba.algo3.modelo.Observer.Emisor;
+import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.Observer.Observable;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
@@ -10,7 +12,9 @@ public abstract class Enemigo extends Observable {
     protected Vida vida;
     protected int cantidadMovimientos;
     protected int poderAtaque;
-    public Pasarela posicionActual;
+    protected Pasarela posicionActual;
+
+    protected Emisor emisor;
 
     public Enemigo( int puntosVida, int ataque, int cantidadMovimientos){
         super();
@@ -18,13 +22,18 @@ public abstract class Enemigo extends Observable {
         this.poderAtaque = ataque;
         this.cantidadMovimientos = cantidadMovimientos;
         this.posicionActual = null;
+        this.emisor = new Emisor();
+        Logger logger = new Logger();
+        emisor.subcribir(logger);
     }
     public boolean estaVivo() {
         return vida.sigueVivo();
     }
 
-    public void recibirDanio(int daño){
-        this.vida.quitarVida(daño);
+    public void recibirDanio(int danio){
+        this.emisor.notificarSubscriptores("log", this.representacionString());
+        this.vida.quitarVida(danio);
+
         if (!vida.sigueVivo()) {
             this.morir();
         }
@@ -36,6 +45,7 @@ public abstract class Enemigo extends Observable {
 
     public void daniarJugador() {
         Jugador.getInstance().recibirDanio(poderAtaque);
+        this.emisor.notificarSubscriptores("log", "El enemigo causo daño al jugador");
         this.vida = new Vida(0);
     }
 
