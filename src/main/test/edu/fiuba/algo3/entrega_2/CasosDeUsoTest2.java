@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
+import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Enemigos.Arania;
@@ -7,7 +8,9 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
+import edu.fiuba.algo3.modelo.Jugable;
 import edu.fiuba.algo3.modelo.Observer.Logger;
+import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
@@ -284,4 +287,11 @@ public class CasosDeUsoTest2 {
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(6));
     }
+
+    @Test
+    public void test21SeSimulaUnaPartidaEnDondeElJugadorSeQuedaSinVidaYPierdeElJuego() throws NoHayCamino, NoHayInicial {
+        Jugable turnero = CreadorDeJuego.crearJugable("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+
+    }
+
 }
