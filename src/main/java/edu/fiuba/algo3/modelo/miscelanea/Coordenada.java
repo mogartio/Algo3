@@ -37,4 +37,8 @@ public class Coordenada {
     public boolean verificarCoordenadas(int coordX, int coordY){
         return (this.coordX == coordX && this.coordY == coordY);
     }
+
+    public String representacionString(){
+        return ("( " + Integer.toString(this.coordX) + ", " + Integer.toString(this.coordY) + " )");
+    }
 }

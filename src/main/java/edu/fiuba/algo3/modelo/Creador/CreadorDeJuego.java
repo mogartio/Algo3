@@ -2,10 +2,12 @@ package edu.fiuba.algo3.modelo.Creador;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
+import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.Jugable;
 import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
+import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
@@ -15,35 +17,33 @@ import java.util.Queue;
 
 public class CreadorDeJuego { // fachada
 
-    /*private CreadorEnemigos creadorDeEnemigos;
+    private CreadorEnemigos creadorDeEnemigos;
     private CreadorDeMapa creadorDeMapa;
     private Lector lectorDeArchivos;
 
     public CreadorDeJuego() {
-        this.creadorDeEnemigos = new CreadorEnemigos();
-        this.creadorDeMapa = new CreadorDeMapa();
+        this.creadorDeEnemigos = null;
+        this.creadorDeMapa = null;
         this.lectorDeArchivos = new Lector();
-    }*/
+    }
 
-    /* para probar otra cosa
-    public static Jugable crearJugable(String pathArchivoEnemigos, String pathArchivoMapa) throws NoHayCamino {
+    public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa) throws NoHayCamino, NoHayInicial {
 
-        CreadorEnemigos creadorEnemigos = new CreadorEnemigos(pathArchivoEnemigos);
+        CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa);
 
         Mapa mapa = creadorMapa.crearMapa();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigos();
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos);
 
         mapa.cargarOleadas(enemigos);
 
         Logger logger = new Logger();
 
-        Juego juego = new Juego(mapa);
+        mapa.agregarSubscriptor(logger);
+        Juego juego = new Juego(mapa, logger);
 
         juego.agregarSubscriptor(logger);
 
-        Turnero turnero = new Turnero(juego);
-
-        return turnero;
-    }*/
+        return juego;
+    }
 }

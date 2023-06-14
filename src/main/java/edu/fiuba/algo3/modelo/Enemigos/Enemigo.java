@@ -10,7 +10,10 @@ public abstract class Enemigo extends Observable {
     protected Vida vida;
     protected int cantidadMovimientos;
     protected int poderAtaque;
-    public Pasarela posicionActual;
+    protected Pasarela posicionActual;
+
+    protected Coordenada ubicacion;
+
 
     public Enemigo( int puntosVida, int ataque, int cantidadMovimientos){
         super();
@@ -23,8 +26,9 @@ public abstract class Enemigo extends Observable {
         return vida.sigueVivo();
     }
 
-    public void recibirDanio(int daño){
-        this.vida.quitarVida(daño);
+    public void recibirDanio(int danio){
+        this.vida.quitarVida(danio);
+
         if (!vida.sigueVivo()) {
             this.morir();
         }
@@ -34,8 +38,13 @@ public abstract class Enemigo extends Observable {
         this.posicionActual = pasarelaActual;
     }
 
+    public void actualizarUbicacion(Coordenada ubicacionNueva){
+        this.ubicacion = ubicacionNueva;
+    }
+
     public void daniarJugador() {
-        Jugador.getInstance().recibirDanio(poderAtaque);
+        this.emisor.notificarSubscriptores("log",this.representacionString() + " causo daño al jugador");
+        Jugador.getInstance().recibirDanio(this.poderAtaque);
         this.vida = new Vida(0);
     }
 
@@ -49,13 +58,17 @@ public abstract class Enemigo extends Observable {
             for(int pasos = 0; pasos < this.cantidadMovimientos; pasos++){
                 posicionActual.actualizarPosicion(this);
             }
-            if(this.posicionActual == null){
+        if(this.posicionActual == null){
                 throw new PasarelaInexistente("El enemigo se movio a un lugar invalido");
-            }
+        }
     }
 
     public boolean estaEnRango(Coordenada posicion, int distancia){
         return this.posicionActual.estaEnRango(posicion, distancia);
+    }
+
+    public String represtacionUbicacion(){
+        return this.ubicacion.representacionString();
     }
     
 }

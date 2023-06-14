@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.Observer.Emisor;
 
 public class Ganado implements EstadoJuego {
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
@@ -9,10 +10,11 @@ public class Ganado implements EstadoJuego {
     }
 
     public EstadoJuego introducirDefensa(Defensa defensa) { return this; }
-    public boolean finalizado() {
+    public boolean finalizado(Emisor emisor) {
+        emisor.notificarSubscriptores("log", "El jugador gana la partida");
         return true;
     }
-    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno) {
+    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno, Emisor emisor) {
         return this;
     }
 }

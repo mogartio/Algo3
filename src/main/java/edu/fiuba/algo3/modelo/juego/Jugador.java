@@ -46,7 +46,7 @@ public class Jugador extends Observable {
     }
 
     public void recibirDanio(int unDanio) {
-        emisor.notificarSubscriptores("log", "Jugador recibe " + unDanio + " puntos de daño");
+        this.emisor.notificarSubscriptores("log", "Jugador recibe " + unDanio + " puntos de daño");
         vida.quitarVida(unDanio);
     }
 

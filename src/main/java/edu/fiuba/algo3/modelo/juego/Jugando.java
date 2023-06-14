@@ -3,9 +3,11 @@ package edu.fiuba.algo3.modelo.juego;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
+import edu.fiuba.algo3.modelo.Observer.Emisor;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Jugando implements EstadoJuego {
 
@@ -28,7 +30,7 @@ public class Jugando implements EstadoJuego {
         return this;
     }
 
-    public boolean finalizado() {
+    public boolean finalizado(Emisor emisor) {
         return false;
     }
 
@@ -40,30 +42,40 @@ public class Jugando implements EstadoJuego {
     private EstadoJuego actualizarSegunEstadoDeJugador(boolean jugadorVivo) {
         if (!jugadorVivo)
             return new Perdido();
-        else if (enemigos.stream().filter(enemigo -> enemigo.estaVivo()).count() == 0)
+        else if (enemigos.isEmpty())
             return new Ganado();
         else
             return this;
     }
-    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno){
-        mapa.agregarEnemigosDelTurno(this.enemigos);
+    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno, Emisor emisor){
+        emisor.notificarSubscriptores("log", "Se juega el turno N°: " + Integer.toString(numeroTurno));
 
         if (!enemigos.isEmpty()){
 
             enemigos.forEach(enemigo -> {
                 try {
                     enemigo.avanzar();
-                } catch (PasarelaInexistente e) {
+                } catch (PasarelaInexistente ignored) {
                 }
             });
         }
+
+        this.limpiezaEnemigosMuertos();
+        mapa.agregarEnemigosDelTurno(this.enemigos);
+
         if (!defensas.isEmpty()){
 
             defensas.forEach(defensa -> {
-                defensa.pasarTurno();
                 defensa.atacar(enemigos);
+                defensa.pasarTurno();
             });
         }
+        this.limpiezaEnemigosMuertos();
+
         return actualizarSegunEstadoDeJugador(jugadorVivo);
+    }
+
+    private void limpiezaEnemigosMuertos(){
+        this.enemigos = this.enemigos.stream().filter(Enemigo::estaVivo).collect(Collectors.toCollection(ArrayList::new));;
     }
 }

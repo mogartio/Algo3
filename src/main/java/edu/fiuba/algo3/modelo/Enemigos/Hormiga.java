@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.Observer.Emisor;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
@@ -11,6 +12,7 @@ public class Hormiga extends Enemigo{
     public Hormiga() {
         super(1, 1, 1);
     }
+
     public Hormiga(Pasarela posicionActual) { //Constructor para test
         super(1, 1, 1);
         this.posicionActual = posicionActual;
@@ -23,6 +25,6 @@ public class Hormiga extends Enemigo{
     }
 
     public String representacionString() {
-        return "Hormiga con " + vida.obtenerPuntos() + " puntos de vida";
+        return "Hormiga";
     }
 }

@@ -10,4 +10,9 @@ public class TorrePlateada extends Defensa{
     public TorrePlateada(Coordenada posicion){
         super(posicion, 2, 2, 5);
     }
+
+    @Override
+    public String representationString(){
+        return "TorrePlateada";
+    }
 }

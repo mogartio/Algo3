@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
+import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
@@ -349,7 +350,8 @@ public class CasosDeUsoTest {
        LinkedList<ArrayList<Enemigo>> oleadas = new LinkedList<>();
        mapaJuego.cargarOleadas(oleadas);
 
-       Juego juego = new Juego(mapaJuego);
+       Logger logger = new Logger();
+       Juego juego = new Juego(mapaJuego, logger);
 
        juego.nuevoEnemigo(araniaUno);
        juego.nuevoEnemigo(araniaDos);

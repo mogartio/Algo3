@@ -29,6 +29,6 @@ public class Arania extends Enemigo {
     }
 
     public String representacionString() {
-        return "Araña con " + vida.obtenerPuntos() + " puntos de vida";
+        return "Araña";
     }
 }
