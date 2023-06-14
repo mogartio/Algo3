@@ -7,7 +7,6 @@ public class Normal implements TipoPasarela{
     @Override
     public void moverEnemigos(Enemigo enemigo, Pasarela pasarelaSiguiente) {
         enemigo.actualizarPosicionActual(pasarelaSiguiente);
-        pasarelaSiguiente.actualizarUbicacionAlEnemigo(enemigo);
 
     }
 }
