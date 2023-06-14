@@ -10,7 +10,8 @@ public class Ganado implements EstadoJuego {
     }
 
     public EstadoJuego introducirDefensa(Defensa defensa) { return this; }
-    public boolean finalizado() {
+    public boolean finalizado(Emisor emisor) {
+        emisor.notificarSubscriptores("log", "El jugador gana la partida");
         return true;
     }
     public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno, Emisor emisor) {

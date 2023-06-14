@@ -52,7 +52,8 @@ public abstract class Defensa extends Observable {
 
 
         for(int i = 0; i < enemigos.size(); i++){
-            if (enemigos.get(i).estaEnRango(this.posicion, this.rangoAtaque) && enemigos.get(i).estaVivo()){
+            if (enemigos.get(i).estaEnRango(this.posicion, this.rangoAtaque)){
+                this.emisor.notificarSubscriptores("log", this.representationString() + " ataca a " + enemigos.get(i).representacionString() + " en " + enemigos.get(i).represtacionUbicacion());
                 enemigos.get(i).recibirDanio(this.danio);
                 break;
             }

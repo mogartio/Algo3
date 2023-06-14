@@ -66,4 +66,12 @@ public class Pasarela extends Parcela {
     public void actualizarTipo(TipoPasarela tipoPasarela){
         this.tipo = tipoPasarela;
     }
+
+    public String imp(){
+        return this.coordenada.representacionString();
+    }
+
+    public void actualizarUbicacionAlEnemigo(Enemigo enemigo){
+        enemigo.actualizarUbicacion(this.coordenada);
+    }
 }

@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
-import edu.fiuba.algo3.modelo.Observer.Emisor;
-import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.Observer.Observable;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
@@ -14,7 +12,8 @@ public abstract class Enemigo extends Observable {
     protected int poderAtaque;
     protected Pasarela posicionActual;
 
-    protected Emisor emisor;
+    protected Coordenada ubicacion;
+
 
     public Enemigo( int puntosVida, int ataque, int cantidadMovimientos){
         super();
@@ -22,16 +21,12 @@ public abstract class Enemigo extends Observable {
         this.poderAtaque = ataque;
         this.cantidadMovimientos = cantidadMovimientos;
         this.posicionActual = null;
-        this.emisor = new Emisor();
-        Logger logger = new Logger();
-        emisor.subcribir(logger);
     }
     public boolean estaVivo() {
         return vida.sigueVivo();
     }
 
     public void recibirDanio(int danio){
-        this.emisor.notificarSubscriptores("log", this.representacionString());
         this.vida.quitarVida(danio);
 
         if (!vida.sigueVivo()) {
@@ -43,9 +38,13 @@ public abstract class Enemigo extends Observable {
         this.posicionActual = pasarelaActual;
     }
 
+    public void actualizarUbicacion(Coordenada ubicacionNueva){
+        this.ubicacion = ubicacionNueva;
+    }
+
     public void daniarJugador() {
-        Jugador.getInstance().recibirDanio(poderAtaque);
-        this.emisor.notificarSubscriptores("log", "El enemigo causo daño al jugador");
+        this.emisor.notificarSubscriptores("log",this.representacionString() + " causo daño al jugador");
+        Jugador.getInstance().recibirDanio(this.poderAtaque);
         this.vida = new Vida(0);
     }
 
@@ -59,13 +58,17 @@ public abstract class Enemigo extends Observable {
             for(int pasos = 0; pasos < this.cantidadMovimientos; pasos++){
                 posicionActual.actualizarPosicion(this);
             }
-            if(this.posicionActual == null){
+        if(this.posicionActual == null){
                 throw new PasarelaInexistente("El enemigo se movio a un lugar invalido");
-            }
+        }
     }
 
     public boolean estaEnRango(Coordenada posicion, int distancia){
         return this.posicionActual.estaEnRango(posicion, distancia);
+    }
+
+    public String represtacionUbicacion(){
+        return this.ubicacion.representacionString();
     }
     
 }

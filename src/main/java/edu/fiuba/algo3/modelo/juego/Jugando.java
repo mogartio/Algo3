@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Observer.Emisor;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Jugando implements EstadoJuego {
 
@@ -29,7 +30,7 @@ public class Jugando implements EstadoJuego {
         return this;
     }
 
-    public boolean finalizado() {
+    public boolean finalizado(Emisor emisor) {
         return false;
     }
 
@@ -41,7 +42,7 @@ public class Jugando implements EstadoJuego {
     private EstadoJuego actualizarSegunEstadoDeJugador(boolean jugadorVivo) {
         if (!jugadorVivo)
             return new Perdido();
-        else if (enemigos.stream().filter(enemigo -> enemigo.estaVivo()).count() == 0)
+        else if (enemigos.isEmpty())
             return new Ganado();
         else
             return this;
@@ -53,23 +54,28 @@ public class Jugando implements EstadoJuego {
 
             enemigos.forEach(enemigo -> {
                 try {
-                    if(enemigo.estaVivo()){
-                        enemigo.avanzar();//cambiar
-                    }
-                } catch (PasarelaInexistente e) {
+                    enemigo.avanzar();
+                } catch (PasarelaInexistente ignored) {
                 }
             });
         }
 
+        this.limpiezaEnemigosMuertos();
         mapa.agregarEnemigosDelTurno(this.enemigos);
 
         if (!defensas.isEmpty()){
 
             defensas.forEach(defensa -> {
-                defensa.pasarTurno();
                 defensa.atacar(enemigos);
+                defensa.pasarTurno();
             });
         }
+        this.limpiezaEnemigosMuertos();
+
         return actualizarSegunEstadoDeJugador(jugadorVivo);
+    }
+
+    private void limpiezaEnemigosMuertos(){
+        this.enemigos = this.enemigos.stream().filter(Enemigo::estaVivo).collect(Collectors.toCollection(ArrayList::new));;
     }
 }

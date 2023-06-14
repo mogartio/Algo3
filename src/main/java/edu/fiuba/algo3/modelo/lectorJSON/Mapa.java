@@ -1,24 +1,22 @@
 package edu.fiuba.algo3.modelo.lectorJSON;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Observer.Emisor;
-import edu.fiuba.algo3.modelo.Observer.Logger;
+import edu.fiuba.algo3.modelo.Observer.*;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
-public class Mapa {
+public class Mapa extends Observable {
     Hashtable<Coordenada, Parcela> mapa;
     LinkedList< ArrayList<Enemigo> > oleadas;
     Pasarela pasarelaInicial;
 
-    Emisor emisor;
+    Logger logger;
 
     public Mapa() {
         this.mapa = new Hashtable<>();
@@ -26,9 +24,7 @@ public class Mapa {
         this.pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
         //Para que el mapa quede en estado consistente, en un caso de uso real, la pasarelaInicial quedará determinada
 
-        Logger logger = new Logger();
-        this.emisor = new Emisor();
-        this.emisor.subcribir(logger);
+        this.logger = new Logger();
     }
 
     public void setPasarelaInicial(Pasarela pasarelaInicial) {
@@ -47,7 +43,9 @@ public class Mapa {
             this.emisor.notificarSubscriptores("log", "Se carga una nueva oleada");
 
             enemigosDelTurno.forEach(enemigo -> {
+                enemigo.agregarSubscriptor(logger);
                 this.emisor.notificarSubscriptores("log", "Se agrega al mapa " + enemigo.representacionString());
+
                 enemigo.actualizarPosicionActual(pasarelaInicial);
                 enemigosDelJuego.add(enemigo);
             });

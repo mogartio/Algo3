@@ -9,7 +9,7 @@ public interface EstadoJuego {
     EstadoJuego introducirEnemigo(Enemigo enemigo);
     EstadoJuego introducirDefensa(Defensa defensa);
 
-    boolean finalizado();
+    boolean finalizado(Emisor emisor);
     EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno, Emisor emisor);
 }
 

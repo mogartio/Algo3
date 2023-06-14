@@ -39,7 +39,8 @@ public class CreadorDeJuego { // fachada
 
         Logger logger = new Logger();
 
-        Juego juego = new Juego(mapa);
+        mapa.agregarSubscriptor(logger);
+        Juego juego = new Juego(mapa, logger);
 
         juego.agregarSubscriptor(logger);
 
