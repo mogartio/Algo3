@@ -131,6 +131,7 @@ public class CasosDeUsoTest {
         TorrePlateada torre = new TorrePlateada();
         torre.asignarPosicion(new Coordenada(0,0));
         torre.pasarTurno();
+        torre.pasarTurno();
 
         torre.atacar(listaDeEnemigos);
 
@@ -373,7 +374,13 @@ public class CasosDeUsoTest {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
 
-        Juego juego = new Juego();
+        Logger logger = new Logger();
+        Mapa mapa = new Mapa();
+
+
+        Juego juego = new Juego(mapa, logger);
+        juego.agregarSubscriptor(logger);
+
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
         Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, null);
@@ -395,6 +402,9 @@ public class CasosDeUsoTest {
 
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
+
+        Logger logger = new Logger();
+        Mapa mapa = new Mapa();
 
         Coordenada coordenada = new Coordenada(2, 2);
         Pasarela pasarelaFinal = new Pasarela(coordenada, new Meta());
@@ -424,7 +434,9 @@ public class CasosDeUsoTest {
         enemigos.add(HormigaTres);
         enemigos.add(HormigaCuatro);
 
-        Juego juego = new Juego();
+        Juego juego = new Juego(mapa, logger);
+        juego.agregarSubscriptor(logger);
+
         enemigos.forEach(juego::nuevoEnemigo);
         enemigos.forEach(enemigo -> enemigo.recibirDanio(1)); //Las hormigas mueren pero las arañas siguen vivas
         juego.jugarTurno(1);
@@ -448,7 +460,13 @@ public class CasosDeUsoTest {
     public void test11ElJugadorSobreviveConUnEnemigoLlegandoALaMetaYGanaIgual() {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
-        Juego juego = new Juego();
+
+        Logger logger = new Logger();
+        Mapa mapa = new Mapa();
+
+        Juego juego = new Juego(mapa, logger);
+        juego.agregarSubscriptor(logger);
+
         Coordenada coordenadaFinal = new Coordenada(2,3);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
@@ -469,7 +487,12 @@ public class CasosDeUsoTest {
     public void test12ElJugadorMuereYPierdeElJuego() {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
-        Juego juego = new Juego();
+
+        Logger logger = new Logger();
+        Mapa mapa = new Mapa();
+
+        Juego juego = new Juego(mapa, logger);
+        juego.agregarSubscriptor(logger);
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());

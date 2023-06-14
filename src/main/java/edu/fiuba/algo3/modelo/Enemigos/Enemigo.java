@@ -36,6 +36,7 @@ public abstract class Enemigo extends Observable {
 
     public void actualizarPosicionActual(Pasarela pasarelaActual) {
         this.posicionActual = pasarelaActual;
+        this.posicionActual.actualizarUbicacionAlEnemigo(this);
     }
 
     public void actualizarUbicacion(Coordenada ubicacionNueva){

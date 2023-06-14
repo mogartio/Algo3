@@ -1,0 +1,26 @@
+@startuml
+
+abstract class Enemigo{}
+
+interface Movimiento{}
+
+class SeguirPasarela{}
+class MovimientoCateto{}
+class MovimientoHipotenusa{}
+
+class Arania{}
+class Hormiga{}
+class Topo{}
+class Lechuza{}
+
+MovimientoCateto ..|> Movimiento
+MovimientoHipotenusa ..|> Movimiento
+SeguirPasarela ..|> Movimiento
+
+Enemigo <|-- Arania
+Enemigo <|-- Hormiga
+Enemigo <|-- Topo
+Enemigo <|-- Lechuza
+
+Enemigo <- Movimiento
+@enduml
