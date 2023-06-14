@@ -14,6 +14,7 @@ import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import org.json.simple.JSONArray;
@@ -191,7 +192,7 @@ public class CasosDeUsoTest2 {
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
 
-        jugador.recompensar(10, false);
+        jugador.recompensar(10);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(1));
     }
@@ -216,8 +217,9 @@ public class CasosDeUsoTest2 {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         arania.agregarSubscriptor(logger);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
@@ -231,8 +233,9 @@ public class CasosDeUsoTest2 {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         Juego juego = new Juego();
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
         juego.agregarSubscriptor(logger);
@@ -247,8 +250,9 @@ public class CasosDeUsoTest2 {
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
         Mapa mapa = new Mapa();
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         Hormiga hormiga = new Hormiga(pasarela);
         Juego juego = new Juego(mapa, logger);
         Jugador jugador = Jugador.getInstance();
@@ -262,7 +266,7 @@ public class CasosDeUsoTest2 {
 
         //Serie de eventos que notfican al logger
         juego.nuevoEnemigo(arania);
-        jugador.recompensar(10, false);
+        jugador.recompensar(10);
         hormiga.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
         arania.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
 

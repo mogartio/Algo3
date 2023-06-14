@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.juego;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Observer.Observable;
 import edu.fiuba.algo3.modelo.miscelanea.Tienda;
-import edu.fiuba.algo3.modelo.miscelanea.Vendedor;
 import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
 import java.util.ArrayList;
@@ -13,35 +12,30 @@ public class Jugador extends Observable {
 
     private Vida vida;
     private Credito creditos;
-    private int contadorHormigasMuertas;
+    private RachaDeHormigas rachaDeHormigas;
+
 
     private Jugador() {
         super();
-
         vida = new Vida(20);
-        creditos = new Credito(100);;
-        contadorHormigasMuertas = 0;
+        creditos = new Credito(100);
+        rachaDeHormigas = new RachaDeHormigas();
     }
+
     public static Jugador getInstance() { return INSTANCE; }
 
-    public ArrayList<String> verificarConstruccionesPosibles(Vendedor vendedor) {
+    public ArrayList<String> verificarConstruccionesPosibles(Tienda vendedor) {
         return vendedor.catalogoDisponible(creditos);
     }
 
     public void reestablecerEstadoInicial() {
         vida = new Vida(20);
-        creditos = new Credito(100);;
-        contadorHormigasMuertas = 0;
+        creditos = new Credito(100);
+        RachaDeHormigas rachaDeHormigas = new RachaDeHormigas();
     }
-    public void recompensar(int creditosRecibidos, boolean esHormiga){
 
+    public void recompensar(int creditosRecibidos){
         emisor.notificarSubscriptores("log", "Recompensan al jugador con " + creditosRecibidos + " créditos");
-
-        int MULTIPLICADOR_HORMIGAS_MUERTAS = 2;
-        int REQUISITO_HORMIGAS_MUERTAS = 10;
-
-        if (esHormiga && contadorHormigasMuertas >= REQUISITO_HORMIGAS_MUERTAS)
-            creditosRecibidos = creditosRecibidos * MULTIPLICADOR_HORMIGAS_MUERTAS;
         this.creditos.agregar(creditosRecibidos);
     }
 
@@ -54,15 +48,14 @@ public class Jugador extends Observable {
         return vida.sigueVivo();
     }
 
-    public void registrarHormigaMuerta() {
-        this.contadorHormigasMuertas ++;
-    }
-
     public Defensa comprar(Tienda tienda, String tipoDefensa){
         return tienda.vendeme(tipoDefensa);
     }
 
     public void descontarCreditos(Credito creditos) { this.creditos.descontar(creditos); }
 
+    public void agregarARachaDeHormigas(){
+        rachaDeHormigas.agregarALaRacha();
+    }
 
 }

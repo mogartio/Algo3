@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.testUnitarios;
 
 import edu.fiuba.algo3.modelo.Enemigos.*;
+import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +10,8 @@ public class EnemigoTest {
 
     @Test
     public void test01UnEnemigoRecibeDanioYMuere(){
-        Enemigo arania = new Arania();
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
+        Enemigo arania = new Arania(generadorRandom);
 
         arania.recibirDanio(2);
 
@@ -18,7 +20,8 @@ public class EnemigoTest {
 
     @Test
     public void test02UnEnemigoRecibeDanioYSigueVivo(){
-        Enemigo arania = new Arania();
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
+        Enemigo arania = new Arania(generadorRandom);
 
         arania.recibirDanio(1);
 
@@ -27,7 +30,8 @@ public class EnemigoTest {
 
     @Test
     public void test03UnEnemigoCausaDañoAlJugadorYDespuesMuere(){
-        Enemigo arania = new Arania();
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
+        Enemigo arania = new Arania(generadorRandom);
 
         arania.daniarJugador();
 
