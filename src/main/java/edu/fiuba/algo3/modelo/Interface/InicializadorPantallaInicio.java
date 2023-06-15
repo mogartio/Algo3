@@ -50,7 +50,7 @@ public class InicializadorPantallaInicio {
 
         TextField textField = new TextField();
 
-        layout.add(textField, 4, 5);
+        layout.add(textField, 4, 6);
 
 
     }
