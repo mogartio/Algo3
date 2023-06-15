@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.Interface.InicializadorVentana;
+import edu.fiuba.algo3.modelo.Interface.VentanaDeJuego;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import javafx.application.Application;
@@ -22,17 +23,10 @@ public class Main extends Application {
     @Override
 
     public void start(Stage stage) throws Exception {
+        VentanaDeJuego.setVentanaDelJuego(stage);
+        Stage ventanaDeJuego =VentanaDeJuego.getIntance();
 
-        try{
-            Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
-        }catch(NoHayCamino | NoHayInicial ex){
-            System.out.println("sarasa MAPA");
-        }
+        InicializadorVentana.start(ventanaDeJuego);
         return;
-
-/*
-        InicializadorVentana.start(stage);
-*/
-
     }
 }

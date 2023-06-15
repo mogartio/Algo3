@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Jugador extends Observable {
 
     private static final Jugador INSTANCE = new Jugador();
-
     private Vida vida;
     private Credito creditos;
     private RachaDeHormigas rachaDeHormigas;

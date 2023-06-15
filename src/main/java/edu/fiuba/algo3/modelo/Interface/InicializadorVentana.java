@@ -18,8 +18,6 @@ public class InicializadorVentana {
         stage.setTitle("TowerDefense: El juego!");
         stage.setFullScreen(false);
 
-
-
         //se crea la escena inicial
         GridPane layout = addGridPane();
         Scene scene = new Scene(layout);

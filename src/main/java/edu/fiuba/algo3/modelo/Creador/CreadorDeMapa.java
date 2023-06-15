@@ -32,6 +32,7 @@ public class CreadorDeMapa {
     public Mapa crearMapa() throws NoHayCamino, NoHayInicial {
         JSONArray jsonArray = Lector.leer(this.path);
         crearMapa((JSONObject) jsonArray.get(1));
+        visualizador.mostrar();
         return mapa;
     }
 
@@ -71,6 +72,6 @@ public class CreadorDeMapa {
                 break;
         }
 
-        visualizador.agregar(coordX,coordY,tipoDeTerreno);
+        visualizador.agregar(tipoDeTerreno);
     }
 }
