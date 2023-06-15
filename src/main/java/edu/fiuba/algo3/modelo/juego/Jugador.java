@@ -13,6 +13,7 @@ public class Jugador extends Observable {
     private Vida vida;
     private Credito creditos;
     private RachaDeHormigas rachaDeHormigas;
+    private String nombre;
 
 
     private Jugador() {
@@ -58,4 +59,7 @@ public class Jugador extends Observable {
         rachaDeHormigas.agregarALaRacha();
     }
 
+    public void setNombre(String nuevoNombre) {
+        nombre = nuevoNombre;
+    }
 }

@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.Interface;
 
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,7 +19,6 @@ public class InicializadorPantallaInicio {
     public static void start(GridPane layout) throws Exception {
         pedirNombreJugador(layout);
         crearBackground(layout);
-        inicializarBotonJugar(layout);
     }
 
     private static void crearBackground(GridPane layout) throws Exception {
@@ -40,6 +42,15 @@ public class InicializadorPantallaInicio {
         button.setPrefSize(400, 80);
 
         layout.add(button, 5, 10);
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent actionEvent) {
+
+                System.out.println("¡ Me han clickeado !");
+            }
+        });
+
     }
 
     private static void pedirNombreJugador(GridPane layout){
@@ -52,6 +63,13 @@ public class InicializadorPantallaInicio {
 
         layout.add(textField, 4, 5);
 
-
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                Jugador.getInstance().setNombre(textField.getText());
+                inicializarBotonJugar(layout);
+            }
+        };
+        textField.setOnAction(event);
     }
 }
