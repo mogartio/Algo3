@@ -8,15 +8,16 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class InicializadorPantallaInicio {
-    public static void start(GridPane layout) throws Exception {
+    public static void start(GridPane layout, Stage stage) throws Exception {
         pedirNombreJugador(layout);
         crearBackground(layout);
-        inicializarBotonJugar(layout);
+        inicializarBotonJugar(layout,stage);
     }
 
     private static void crearBackground(GridPane layout) throws Exception {
@@ -32,12 +33,14 @@ public class InicializadorPantallaInicio {
         layout.setBackground(bg);
     }
 
-    private static void inicializarBotonJugar(GridPane layout){
+    private static void inicializarBotonJugar(GridPane layout, Stage stage){
         Button button = new Button();
+        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego(button,stage);
 
         button.setText("Jugar");
         button.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
         button.setPrefSize(400, 80);
+        button.setOnAction(funcion);
 
         layout.add(button, 5, 10);
     }

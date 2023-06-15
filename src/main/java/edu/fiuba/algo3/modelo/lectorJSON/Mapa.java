@@ -53,7 +53,9 @@ public class Mapa extends Observable {
         }
     }
 
-    public void agregar(Coordenada coordenadaNueva, Parcela parcelaNueva) { mapa.put(coordenadaNueva, parcelaNueva);}
+    public void agregar(Coordenada coordenadaNueva, Parcela parcelaNueva) {
+        mapa.put(coordenadaNueva, parcelaNueva);
+    }
 
     public Parcela ver(Coordenada coordenada) {
         return (mapa.get(coordenada));

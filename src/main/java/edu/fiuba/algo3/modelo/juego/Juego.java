@@ -15,7 +15,6 @@ public class Juego extends Observable {
     Jugador jugador;
     EstadoJuego estadoJuego;
     Tienda tiendaDefensas = new Tienda();
-
     Logger logger;
 
     public Juego() {

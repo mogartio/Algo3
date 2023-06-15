@@ -16,17 +16,19 @@ public class InicializadorVentana {
     public static void start(Stage stage) throws Exception {
 
         stage.setTitle("TowerDefense: El juego!");
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
 
+
+
+        //se crea la escena inicial
         GridPane layout = addGridPane();
-
         Scene scene = new Scene(layout);
 
         stage.setScene(scene);
 
         stage.show();
 
-        InicializadorPantallaInicio.start(layout);
+        InicializadorPantallaInicio.start(layout,stage);
     }
 
     public static GridPane addGridPane() {

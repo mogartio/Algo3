@@ -4,6 +4,7 @@ package edu.fiuba.algo3.modelo.Creador;
 
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
+import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.lectorJSON.Camino;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
@@ -18,12 +19,14 @@ public class CreadorDeMapa {
     public Camino camino;
     public Mapa mapa;
     String path;
+    private VisualizadorDeMapa visualizador;
 
     public CreadorDeMapa(String path){
         mapa = new Mapa();
         int MAXIMO_MAPA = 15;
         camino = new Camino(MAXIMO_MAPA);
         this.path = path;
+        this.visualizador = new VisualizadorDeMapa();
     }
 
     public Mapa crearMapa() throws NoHayCamino, NoHayInicial {
@@ -67,5 +70,7 @@ public class CreadorDeMapa {
                 mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));
                 break;
         }
+
+        visualizador.agregar(coordX,coordY,tipoDeTerreno);
     }
 }
