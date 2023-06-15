@@ -15,8 +15,11 @@ public class Turnero implements Jugable{
         contadorTurnos = 0;
     }
 
-    public void jugar() {
-        while (!juego.finalizado()) {
+    public void finTurnoJugador(){
+        jugarTurnoMaquina();
+    }
+    public void jugarTurnoMaquina() {
+        if (!juego.finalizado()) {
             juego.jugarTurno(contadorTurnos);
             contadorTurnos++;
         }

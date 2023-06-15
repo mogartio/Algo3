@@ -11,4 +11,9 @@ public class TorreBlanca extends Defensa{
     public TorreBlanca(Coordenada posicion){
         super(posicion, 1, 1, 3);
     }
+
+    @Override
+    public String representationString(){
+        return "TorreBlanca";
+    }
 }

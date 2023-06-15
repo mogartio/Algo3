@@ -2,13 +2,11 @@ package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
-import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.Jugable;
 import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
@@ -16,6 +14,7 @@ import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import org.json.simple.JSONArray;
@@ -132,47 +131,83 @@ public class CasosDeUsoTest2 {
         ArrayList<Enemigo> tercerTurnoDeCreador = colaDeEnemigos.pop();
 
 
-        assertTrue(primerTurnoDeCreador.size() == 1);
+        assertEquals(1, primerTurnoDeCreador.size());
         assertTrue(primerTurnoDeCreador.get(0) instanceof Hormiga);
 
-        assertTrue(segundoTurnoDeCreador.size() == 2);
+        assertEquals(2, segundoTurnoDeCreador.size());
         assertTrue(segundoTurnoDeCreador.get(0) instanceof Hormiga);
         assertTrue(segundoTurnoDeCreador.get(1) instanceof Arania);
 
-        assertTrue(tercerTurnoDeCreador.size() == 3);
+        assertEquals(3, tercerTurnoDeCreador.size());
         assertTrue(tercerTurnoDeCreador.get(0) instanceof Hormiga);
         assertTrue(tercerTurnoDeCreador.get(1) instanceof Hormiga);
         assertTrue(tercerTurnoDeCreador.get(2) instanceof Arania);
     }
 
+
     @Test
-    public void test16aElMapaCreadoNoEsNull() {
-        CreadorDeMapa creadorMapa = new CreadorDeMapa("ArchivosJson/tests/Test16/mapaTest16");
-        try {
-            Mapa mapa = creadorMapa.crearMapa();
-            assertNotNull(mapa);
-        } catch (NoHayCamino | NoHayInicial excepcion) {
-            fail();
+    public void test18SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+
+        Turnero turnero = new Turnero(juego);
+
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        //Empieza el jugador a hacer cambios en el juego
+
+        juego.comprarDefensa("TorrePlateada", new Coordenada(5,8));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(5,6));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(1,3));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(3,1));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(3,2));
+
+        //El jugador deja de hacer cambios
+
+        turnero.finTurnoJugador();
+
+        //Con el fin de probar si el jugador pierde o no solo vamos a pasar el turno del jugador sin hacer nada
+
+        while (!juego.finalizado()){
+            turnero.jugarTurnoMaquina();
         }
+
+        assertTrue(jugador.estaVivo());
     }
 
+    @Test
+    public void test18bSeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosPeroIgualGanaLaPartida() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
 
-    /* @Test
-    public void test16b() {
-        Creador creadorMapa = new CreadorDeMapa();
-        Mapa mapa = (Mapa) creadorMapa.crear("ArchivosJson/tests/Test16/mapaTest16");
-        String arrayAComparar[] = new String[] {
-                "Rocoso","Pasarela","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Tierra","Rocoso","Rocoso","Rocoso","Rocoso","Rocoso"
-        };
-        for(int i=1; i<arrayAComparar.length; i++){
-            Coordenada coordenada = new Coordenada(1, 1);
-            assertEquals(mapa.ver(coordenada), Array.get(arrayAComparar,0));
+        Turnero turnero = new Turnero(juego);
+
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        juego.comprarDefensa("TorreBlanca", new Coordenada(1,2));
+
+        while (!juego.finalizado()){
+            turnero.jugarTurnoMaquina();
         }
-    } */
 
+        assertTrue(jugador.estaVivo());
+    }
 
+    @Test
+    public void test19SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosYPierdeLaPartida() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
 
+        Turnero turnero = new Turnero(juego);
 
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        while (!juego.finalizado()){
+            turnero.jugarTurnoMaquina();
+        }
+
+        assertFalse(jugador.estaVivo());
+    }
 
     @Test
     public void test20aSiNoSubsriboAlLoggerNoCausaQueElLoggerRecibaUnaNotificacion() {
@@ -188,7 +223,7 @@ public class CasosDeUsoTest2 {
     }
 
     @Test
-    public void test20bDañarAUnJugadorCausaQueElLoggerRecibaUnaNotificacion() {
+    public void test20bDaniarAUnJugadorCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
@@ -211,7 +246,7 @@ public class CasosDeUsoTest2 {
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
 
-        jugador.recompensar(10, false);
+        jugador.recompensar(10);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(1));
     }
@@ -232,12 +267,13 @@ public class CasosDeUsoTest2 {
     }
 
     @Test
-    public void test20eUnaArañaQueMuereCausaQueElLoggerRecibaUnaNotificacion() {
+    public void test20eUnaAraniaQueMuereCausaQueElLoggerRecibaUnaNotificacion() {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         arania.agregarSubscriptor(logger);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
@@ -251,8 +287,9 @@ public class CasosDeUsoTest2 {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         Juego juego = new Juego();
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
         juego.agregarSubscriptor(logger);
@@ -266,10 +303,12 @@ public class CasosDeUsoTest2 {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
+        Mapa mapa = new Mapa();
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         Hormiga hormiga = new Hormiga(pasarela);
-        Juego juego = new Juego();
+        Juego juego = new Juego(mapa, logger);
         Jugador jugador = Jugador.getInstance();
 
         juego.agregarSubscriptor(logger);
@@ -281,17 +320,10 @@ public class CasosDeUsoTest2 {
 
         //Serie de eventos que notfican al logger
         juego.nuevoEnemigo(arania);
-        jugador.recompensar(10, false);
+        jugador.recompensar(10);
         hormiga.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
         arania.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(6));
     }
-
-    @Test
-    public void test21SeSimulaUnaPartidaEnDondeElJugadorSeQuedaSinVidaYPierdeElJuego() throws NoHayCamino, NoHayInicial {
-        Jugable turnero = CreadorDeJuego.crearJugable("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
-
-    }
-
 }

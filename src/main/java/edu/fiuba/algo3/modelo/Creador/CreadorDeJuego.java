@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Jugable;
 import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
+import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
@@ -26,7 +27,7 @@ public class CreadorDeJuego { // fachada
         this.lectorDeArchivos = new Lector();
     }
 
-    public static Jugable crearJugable(String pathArchivoEnemigos, String pathArchivoMapa) throws NoHayCamino, NoHayInicial {
+    public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa) throws NoHayCamino, NoHayInicial {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa);
@@ -38,12 +39,11 @@ public class CreadorDeJuego { // fachada
 
         Logger logger = new Logger();
 
-        Juego juego = new Juego(mapa);
+        mapa.agregarSubscriptor(logger);
+        Juego juego = new Juego(mapa, logger);
 
         juego.agregarSubscriptor(logger);
 
-        Turnero turnero = new Turnero(juego);
-
-        return turnero;
+        return juego;
     }
 }
