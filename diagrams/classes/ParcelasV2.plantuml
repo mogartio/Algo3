@@ -1,0 +1,31 @@
+@startuml
+
+abstract class Parcela{}
+
+class Rocosa{}
+class Tierra{}
+class Pasarela{}
+
+interface TipoPasarela{}
+
+class Normal{}
+class Meta{}
+
+interface Construible{}
+
+class DisponibleAtaque{}
+class NoDisponible{}
+class DisponibleTrampa{}
+
+TipoPasarela <|.. Normal
+TipoPasarela <|.. Meta
+TipoPasarela -> Pasarela
+
+Parcela <- Construible
+
+Parcela <|-- Rocosa
+Parcela <|-- Tierra
+Parcela <|-- Pasarela
+
+
+@enduml

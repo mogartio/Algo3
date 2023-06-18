@@ -54,7 +54,7 @@ public class Jugando implements EstadoJuego {
 
             enemigos.forEach(enemigo -> {
                 try {
-                    enemigo.avanzar();
+                    enemigo.avanzar(this.mapa);
                 } catch (PasarelaInexistente ignored) {
                 }
             });

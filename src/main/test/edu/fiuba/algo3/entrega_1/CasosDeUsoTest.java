@@ -184,7 +184,11 @@ public class CasosDeUsoTest {
 
     @Test
     public void test07aVerificarQueLasAraniasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
+
+        Mapa mapa = new Mapa();
+
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
+
 
         Coordenada coordenadaFinal = new Coordenada(20, 1);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
@@ -208,7 +212,7 @@ public class CasosDeUsoTest {
 
         lista.add(enemigo);
 
-        enemigo.avanzar();
+        enemigo.avanzar(mapa);
         torre.atacar(lista); // la araña debe estar fuera del rango de ataque de la torre por ende estaria viva
 
 
@@ -217,6 +221,8 @@ public class CasosDeUsoTest {
 
     @Test
     public void test07bVerificarQueLasAraniasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
+        Mapa mapa = new Mapa();
+
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
         Coordenada coordenadaFinal = new Coordenada(1, 1);
@@ -234,6 +240,9 @@ public class CasosDeUsoTest {
         Defensa torre = new TorrePlateada();
         torre.asignarPosicion(new Coordenada(3,4));
 
+        torre.pasarTurno();
+        torre.pasarTurno();
+
         ArrayList<Enemigo> lista = new ArrayList<>();
 
         Enemigo enemigo = new Arania(generadorRandom);
@@ -241,7 +250,7 @@ public class CasosDeUsoTest {
 
         lista.add(enemigo);
 
-        enemigo.avanzar();
+        enemigo.avanzar(mapa);
         torre.atacar(lista); // la araña debe estar dentro del rango de ataque de la torre por ende estaria muerta
 
         assertFalse(enemigo.estaVivo());
@@ -323,6 +332,8 @@ public class CasosDeUsoTest {
 
     @Test
     public void test09aCrearHormigaYAvanzarHaceQueAvanceUnaPosicion() throws PasarelaInexistente {
+        Mapa mapa = new Mapa();
+
         Coordenada coordenadaMedio = new Coordenada(1, 2);
         Pasarela pasarelaMedio = new Pasarela(coordenadaMedio, new Normal());
 
@@ -334,6 +345,9 @@ public class CasosDeUsoTest {
         Defensa torre = new TorrePlateada();
         torre.asignarPosicion(new Coordenada(3,4));
 
+        torre.pasarTurno();
+        torre.pasarTurno();
+
         ArrayList<Enemigo> lista = new ArrayList<>();
 
         Enemigo enemigo = new Hormiga();
@@ -341,11 +355,27 @@ public class CasosDeUsoTest {
 
         lista.add(enemigo);
 
-        enemigo.avanzar();
+        enemigo.avanzar(mapa);
         torre.atacar(lista); // la hormiga debe estar dentro del rango de ataque de la torre por ende estaria muerta
 
 
         assertFalse(enemigo.estaVivo());
+    }
+
+    @Test
+    public void test09UnaAraniaAlLlegarALaMetaDejaDeMoverse() throws PasarelaInexistente {
+        Mapa mapa = new Mapa();
+
+        Coordenada coordenadaMeta = new Coordenada(1, 1);
+        Pasarela pasarelaMeta = new Pasarela(coordenadaMeta, new Meta());
+
+        Arania arania = new Arania(pasarelaMeta, new RandomGenerator(1,10));
+
+        try{
+            arania.avanzar(mapa);
+        }catch (PasarelaInexistente e) {
+            fail("Pasarela inexistente");
+        }
     }
 
    @Test
@@ -374,7 +404,7 @@ public class CasosDeUsoTest {
 
 
        Mapa mapaJuego = new Mapa();
-       mapaJuego.setPasarelaInicial(pasarelaPrimera);
+       mapaJuego.setPasarelaInicialFinal(pasarelaPrimera, pasarelaFinal);
        mapaJuego.agregar(coordenadaPrimera, pasarelaPrimera);
        mapaJuego.agregar(coordenadaSegunda, pasarelaSegunda);
        mapaJuego.agregar(coordenadaTercera, pasarelaTercera);
@@ -410,14 +440,23 @@ public class CasosDeUsoTest {
         Logger logger = new Logger();
         Mapa mapa = new Mapa();
 
-
         Juego juego = new Juego(mapa, logger);
         juego.agregarSubscriptor(logger);
 
+        Coordenada coordenadaTercera = new Coordenada(2, 0);
+        Pasarela pasarelaTercera = new Pasarela(coordenadaTercera, new Normal());
+
+        Coordenada coordenadaSegunda = new Coordenada(2,1);
+        Pasarela pasarelaSegunda = new Pasarela(coordenadaSegunda, new Normal());
+        pasarelaSegunda.agregarSiguiente(pasarelaTercera);
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
-        Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, null);
+
+        Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, new Normal());
+        pasarelaPrimera.agregarSiguiente(pasarelaSegunda);
+
         Enemigo arania = new Arania(pasarelaPrimera,generadorRandom);
+
 
         juego.nuevoEnemigo(arania);
 
