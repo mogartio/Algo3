@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
+import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -19,13 +20,16 @@ public class CreadorEnemigos {
         this.lector = new Lector();
     }
 
-    /* esto si es importante */
+
     public LinkedList<ArrayList<Enemigo>> crearEnemigosDeNivel(String direccionDeArchivo) {
-        LinkedList<ArrayList<Enemigo>> enemigosDelNivel = new LinkedList<ArrayList<Enemigo>>();
-        JSONArray lectura =(JSONArray) Lector.leer(direccionDeArchivo);
+
+        LinkedList< ArrayList<Enemigo> > enemigosDelNivel = new LinkedList<ArrayList<Enemigo>>();
+        JSONArray lectura = (JSONArray) Lector.leer(direccionDeArchivo);
+
 
         for (int fila = 1 ; fila <= lectura.size() ; fila++ ) { // comienza en 1 para que sea representativo
             //cada ciclo es un turno
+
             //pensar el JSONObject como un diccionario
             JSONObject informacionDelTurno = (JSONObject) lectura.get(fila - 1); // obtiene la informacion de la fila correspondiente
 
@@ -37,7 +41,7 @@ public class CreadorEnemigos {
     private void agregarEnemigosEnTurno(LinkedList<ArrayList<Enemigo>> enemigosDelNivel,JSONObject informacionDelTurno){
 
         JSONObject enemigosEnTurno = (JSONObject) informacionDelTurno.get("enemigos");// obtiene el value asociado a al key "enemigos"
-        ArrayList<Enemigo> enemigosAAgregarEnNivelEnEsteTurno =  new ArrayList<Enemigo>();
+        ArrayList<Enemigo> enemigosAAgregarEnEsteTurno =  new ArrayList<Enemigo>();
 
         enemigosEnTurno.forEach( (tipoDeEnemigo , cantidadDelTipo) -> {
 
@@ -47,11 +51,11 @@ public class CreadorEnemigos {
             for (int i = 0 ; i < cantidadDelTipoEnInt ; i++){
                 Enemigo enemigoAAgregar = crearInstanciaDeEnemigo( tipoDeEnemigo.toString());
 
-                enemigosAAgregarEnNivelEnEsteTurno.add( enemigoAAgregar );
+                enemigosAAgregarEnEsteTurno.add( enemigoAAgregar );
             }
         });
 
-        enemigosDelNivel.add(enemigosAAgregarEnNivelEnEsteTurno);
+        enemigosDelNivel.add(enemigosAAgregarEnEsteTurno);
     }
 
     public Enemigo crearInstanciaDeEnemigo(String tipoDeEnemigoACrear){
@@ -61,7 +65,8 @@ public class CreadorEnemigos {
             instanciaDeEnemigo = new Hormiga();
 
         } else if (tipoDeEnemigoACrear.equals("arana") ){
-            instanciaDeEnemigo = new Arania();
+            RandomGenerator generadorRandom = new RandomGenerator(0,10);
+            instanciaDeEnemigo = new Arania(generadorRandom);
         }
         return instanciaDeEnemigo;
 

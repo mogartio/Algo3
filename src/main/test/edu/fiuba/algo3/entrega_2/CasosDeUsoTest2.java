@@ -14,6 +14,7 @@ import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import org.json.simple.JSONArray;
@@ -143,16 +144,70 @@ public class CasosDeUsoTest2 {
         assertTrue(tercerTurnoDeCreador.get(2) instanceof Arania);
     }
 
-    /*@Test
-    public void test16aElMapaCreadoNoEsNull() {
-        CreadorDeMapa creadorMapa = new CreadorDeMapa("ArchivosJson/tests/Test16/mapaTest16");
-        try {
-            Mapa mapa = creadorMapa.crearMapa();
-            assertNotNull(mapa);
-        } catch (NoHayCamino | NoHayInicial excepcion) {
-            fail();
+
+    @Test
+    public void test18SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+
+        Turnero turnero = new Turnero(juego);
+
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        //Empieza el jugador a hacer cambios en el juego
+
+        juego.comprarDefensa("TorrePlateada", new Coordenada(5,8));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(5,6));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(1,3));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(3,1));
+        juego.comprarDefensa("TorrePlateada", new Coordenada(3,2));
+
+        //El jugador deja de hacer cambios
+
+        turnero.finTurnoJugador();
+
+        //Con el fin de probar si el jugador pierde o no solo vamos a pasar el turno del jugador sin hacer nada
+
+        while (!juego.finalizado()){
+            turnero.jugarTurnoMaquina();
         }
-    }*/
+
+        assertTrue(jugador.estaVivo());
+    }
+
+    @Test
+    public void test18bSeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosPeroIgualGanaLaPartida() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+
+        Turnero turnero = new Turnero(juego);
+
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        juego.comprarDefensa("TorreBlanca", new Coordenada(1,2));
+
+        while (!juego.finalizado()){
+            turnero.jugarTurnoMaquina();
+        }
+
+        assertTrue(jugador.estaVivo());
+    }
+
+    @Test
+    public void test19SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosYPierdeLaPartida() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+
+        Turnero turnero = new Turnero(juego);
+
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        while (!juego.finalizado()){
+            turnero.jugarTurnoMaquina();
+        }
+
+        assertFalse(jugador.estaVivo());
+    }
 
     @Test
     public void test20aSiNoSubsriboAlLoggerNoCausaQueElLoggerRecibaUnaNotificacion() {
@@ -191,7 +246,7 @@ public class CasosDeUsoTest2 {
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
 
-        jugador.recompensar(10, false);
+        jugador.recompensar(10);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(1));
     }
@@ -216,8 +271,9 @@ public class CasosDeUsoTest2 {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         arania.agregarSubscriptor(logger);
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
@@ -231,8 +287,9 @@ public class CasosDeUsoTest2 {
         Logger logger = new Logger();
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         Juego juego = new Juego();
         assertTrue(logger.verificarCantidadDeMensajesObservados(0));
         juego.agregarSubscriptor(logger);
@@ -247,8 +304,9 @@ public class CasosDeUsoTest2 {
         Coordenada coord = new Coordenada(10, 20);
         Pasarela pasarela = new Pasarela(coord, new Normal());
         Mapa mapa = new Mapa();
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Arania arania = new Arania(pasarela);
+        Arania arania = new Arania(pasarela,generadorRandom);
         Hormiga hormiga = new Hormiga(pasarela);
         Juego juego = new Juego(mapa, logger);
         Jugador jugador = Jugador.getInstance();
@@ -262,74 +320,10 @@ public class CasosDeUsoTest2 {
 
         //Serie de eventos que notfican al logger
         juego.nuevoEnemigo(arania);
-        jugador.recompensar(10, false);
+        jugador.recompensar(10);
         hormiga.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
         arania.morir(); //Activa 2 eventos, porque muere y recompensa al jugador
 
         assertTrue(logger.verificarCantidadDeMensajesObservados(6));
-    }
-
-    @Test
-    public void test21SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
-
-        Turnero turnero = new Turnero(juego);
-
-        Jugador jugador = Jugador.getInstance();
-        jugador.reestablecerEstadoInicial();
-
-        //Empieza el jugador a hacer cambios en el juego
-
-        juego.comprarDefensa("TorrePlateada", new Coordenada(5,8));
-        juego.comprarDefensa("TorrePlateada", new Coordenada(5,6));
-        juego.comprarDefensa("TorrePlateada", new Coordenada(1,3));
-        juego.comprarDefensa("TorrePlateada", new Coordenada(3,1));
-        juego.comprarDefensa("TorrePlateada", new Coordenada(3,2));
-
-        //El jugador deja de hacer cambios
-
-        turnero.finTurnoJugador();
-
-        //Con el fin de probar si el jugador pierde o no solo vamos a pasar el turno del jugador sin hacer nada
-
-        while (!juego.finalizado()){
-            turnero.jugarTurnoMaquina();
-        }
-
-        assertTrue(jugador.estaVivo());
-    }
-
-    @Test
-    public void test22SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosPeroIgualGanaLaPartida() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
-
-        Turnero turnero = new Turnero(juego);
-
-        Jugador jugador = Jugador.getInstance();
-        jugador.reestablecerEstadoInicial();
-
-        juego.comprarDefensa("TorreBlanca", new Coordenada(1,2));
-
-        while (!juego.finalizado()){
-            turnero.jugarTurnoMaquina();
-        }
-
-        assertTrue(jugador.estaVivo());
-    }
-
-    @Test
-    public void test23SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosYPierdeLaPartida() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
-
-        Turnero turnero = new Turnero(juego);
-
-        Jugador jugador = Jugador.getInstance();
-        jugador.reestablecerEstadoInicial();
-
-        while (!juego.finalizado()){
-            turnero.jugarTurnoMaquina();
-        }
-
-        assertFalse(jugador.estaVivo());
     }
 }

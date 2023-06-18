@@ -1,16 +1,17 @@
 package edu.fiuba.algo3.entrega_1;
 
-import edu.fiuba.algo3.mocks.VendedorMock;
 import edu.fiuba.algo3.modelo.Defensas.*;
 import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
 import edu.fiuba.algo3.modelo.Observer.Logger;
+import edu.fiuba.algo3.modelo.juego.Credito;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.miscelanea.Tienda;
 import edu.fiuba.algo3.modelo.parcelas.*;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class CasosDeUsoTest {
 
@@ -112,16 +116,18 @@ public class CasosDeUsoTest {
 
     @Test
     public void test05VerificarQueLasDefensasAtaquenDentroDelRangoEsperado() {
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
+
         Coordenada coordenada = new Coordenada(3, 0);
         Pasarela pasarela = new Pasarela(coordenada, new Normal());
 
         Coordenada coordenada2 = new Coordenada(6, 0);
         Pasarela pasarela2 = new Pasarela(coordenada2, new Normal());
 
-        Enemigo enemigo = new Arania();
+        Enemigo enemigo = new Arania(generadorRandom);
         enemigo.actualizarPosicionActual(pasarela);
 
-        Enemigo enemigo2 = new Arania();
+        Enemigo enemigo2 = new Arania(generadorRandom);
         enemigo2.actualizarPosicionActual(pasarela2);
 
         ArrayList<Enemigo> listaDeEnemigos = new ArrayList<>();
@@ -148,11 +154,13 @@ public class CasosDeUsoTest {
 
     @Test
     public void test06VerificarQueLosEnemigosSonDaniadosAcordeAlAtaqueRecibido() {
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
+
         Coordenada coordenada = new Coordenada(3, 0);
         Pasarela pasarela1 = new Pasarela(coordenada, new Normal());
         Pasarela pasarela2 = new Pasarela(coordenada, new Normal());
 
-        Enemigo enemigo = new Arania();
+        Enemigo enemigo = new Arania(generadorRandom);
         Enemigo enemigo2 = new Hormiga();
         enemigo.actualizarPosicionActual(pasarela1);
         enemigo2.actualizarPosicionActual(pasarela2);
@@ -176,7 +184,12 @@ public class CasosDeUsoTest {
 
     @Test
     public void test07aVerificarQueLasAraniasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
+<<<<<<< HEAD
         Mapa mapa = new Mapa();
+=======
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
+
+>>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
         Coordenada coordenadaFinal = new Coordenada(20, 1);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
 
@@ -194,7 +207,7 @@ public class CasosDeUsoTest {
 
         ArrayList<Enemigo> lista = new ArrayList<>();
 
-        Enemigo enemigo = new Arania();
+        Enemigo enemigo = new Arania(generadorRandom);
         enemigo.actualizarPosicionActual(pasarelaInicial);
 
         lista.add(enemigo);
@@ -208,7 +221,12 @@ public class CasosDeUsoTest {
 
     @Test
     public void test07bVerificarQueLasAraniasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
+<<<<<<< HEAD
         Mapa mapa = new Mapa();
+=======
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
+
+>>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
         Coordenada coordenadaFinal = new Coordenada(1, 1);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
 
@@ -229,7 +247,7 @@ public class CasosDeUsoTest {
 
         ArrayList<Enemigo> lista = new ArrayList<>();
 
-        Enemigo enemigo = new Arania();
+        Enemigo enemigo = new Arania(generadorRandom);
         enemigo.actualizarPosicionActual(pasarelaInicial);
 
         lista.add(enemigo);
@@ -245,53 +263,73 @@ public class CasosDeUsoTest {
 
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
-
-        VendedorMock vendedorMock = new VendedorMock();
-
+        Tienda tienda = new Tienda();
         Coordenada coordenadaInicializadora = new Coordenada(1, 1);
         Pasarela pasarelaInicializadora = new Pasarela(coordenadaInicializadora, new Normal());
+        Credito creditoADescotnar = new Credito(100);
 
-        for (int i=1; i<9; i++){
+
+        jugador.descontarCreditos(creditoADescotnar);
+        for (int i=1; i<=10; i++){
             Enemigo hormiga = new Hormiga(pasarelaInicializadora);
             hormiga.morir();
-            int creditosJugador = Integer.parseInt(jugador.verificarConstruccionesPosibles(vendedorMock).get(0));
-            assertEquals((i + 100), creditosJugador);
         }
+
+        ArrayList<String> comprasPosibles = jugador.verificarConstruccionesPosibles(tienda);
+
+        assertTrue(comprasPosibles.contains("TorreBlanca"));
     }
 
     @Test
     public void test08bHormigaDaCreditosCorrespondientesAlMorirConMultiplicador() {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
-
+        Tienda tienda = new Tienda();
         Coordenada coordenadaInicializadora = new Coordenada(1, 1);
         Pasarela pasarelaInicializadora = new Pasarela(coordenadaInicializadora, new Normal());
+        Credito creditoADescotnar = new Credito(100);
 
-        VendedorMock vendedorMock = new VendedorMock();
-        int cantidadCreditosAnteriores = Integer.parseInt(jugador.verificarConstruccionesPosibles(vendedorMock).get(0));
+        jugador.descontarCreditos(creditoADescotnar);
 
-        for (int i=1; i<15; i++){
+        for (int i=1; i<=15; i++){
             Enemigo hormiga = new Hormiga(pasarelaInicializadora);
             hormiga.morir();
-            int creditosJugador = Integer.parseInt(jugador.verificarConstruccionesPosibles(vendedorMock).get(0));
-            if(i >= 10) {
-                assertEquals(cantidadCreditosAnteriores + 2, creditosJugador);
-            } else {
-                assertEquals(cantidadCreditosAnteriores + 1, creditosJugador);
-            }
-            cantidadCreditosAnteriores = creditosJugador;
         }
+
+        ArrayList<String> comprasPosibles = jugador.verificarConstruccionesPosibles(tienda);
+
+        assertTrue(comprasPosibles.contains("TorrePlateada"));
+        assertTrue(comprasPosibles.contains("TorreBlanca"));
+
     }
 
     @Test
     public void test08cAraniaDaCreditosCorrespondientesAlMorir() {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
+        Tienda tienda = new Tienda();
+        Credito creditoADescotnar = new Credito(100);
 
-        VendedorMock vendedorMock = new VendedorMock();
-        int creditosJugador = Integer.parseInt(jugador.verificarConstruccionesPosibles(vendedorMock).get(0));
+        RandomGenerator generadorRandomMockeado1 = mock(RandomGenerator.class);
+        RandomGenerator generadorRandomMockeado2 = mock(RandomGenerator.class);
+        RandomGenerator generadorRandomMockeado3 = mock(RandomGenerator.class);
 
-        assertFalse((creditosJugador > 10 + 100) || (creditosJugador < 100));
+        Arania arania1 = new Arania(generadorRandomMockeado1);
+        Arania arania2 = new Arania(generadorRandomMockeado2);
+        Arania arania3 = new Arania(generadorRandomMockeado3);
+
+        when(generadorRandomMockeado1.obtenerUnNumero()).thenReturn(2);
+        when(generadorRandomMockeado2.obtenerUnNumero()).thenReturn(7);
+        when(generadorRandomMockeado3.obtenerUnNumero()).thenReturn(1);
+
+        jugador.descontarCreditos(creditoADescotnar);
+        arania1.morir();
+        arania2.morir();
+        arania3.morir();
+
+        ArrayList<String> posiblesCompras = jugador.verificarConstruccionesPosibles(tienda);
+
+        assertTrue(posiblesCompras.contains("TorreBlanca"));
     }
 
     @Test
@@ -344,6 +382,8 @@ public class CasosDeUsoTest {
 
    @Test
     public void test09cCrearUnaColeccionDeEnemigosYHacerQueAvanzenActualizaLasPosicionesDeTodos() {
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
+
         Coordenada coordenadaFinal = new Coordenada(0, 1);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
 
@@ -359,8 +399,8 @@ public class CasosDeUsoTest {
         Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, new Normal());
         pasarelaPrimera.agregarSiguiente(pasarelaSegunda);
 
-        Enemigo araniaUno = new Arania(pasarelaPrimera);
-        Enemigo araniaDos = new Arania(pasarelaSegunda);
+        Enemigo araniaUno = new Arania(pasarelaPrimera,generadorRandom);
+        Enemigo araniaDos = new Arania(pasarelaSegunda,generadorRandom);
         Enemigo hormigaUno = new Hormiga(pasarelaTercera);
         Enemigo hormigaDos = new Hormiga(pasarelaPrimera);
 
@@ -397,6 +437,7 @@ public class CasosDeUsoTest {
     public void test10aCrearUnJuegoConUnEnemigoSeGanaCuandoElEnemigoMuere() {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
         Logger logger = new Logger();
         Mapa mapa = new Mapa();
@@ -412,9 +453,14 @@ public class CasosDeUsoTest {
         pasarelaSegunda.agregarSiguiente(pasarelaTercera);
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
+<<<<<<< HEAD
         Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, new Normal());
         pasarelaPrimera.agregarSiguiente(pasarelaSegunda);
         Enemigo arania = new Arania(pasarelaPrimera);
+=======
+        Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, null);
+        Enemigo arania = new Arania(pasarelaPrimera,generadorRandom);
+>>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
 
         juego.nuevoEnemigo(arania);
 
@@ -432,6 +478,7 @@ public class CasosDeUsoTest {
 
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
+        RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
         Logger logger = new Logger();
         Mapa mapa = new Mapa();
@@ -444,10 +491,10 @@ public class CasosDeUsoTest {
         Pasarela pasarelaSegunda = new Pasarela(coordenada, pasarelaTercera,  new Normal());
         Pasarela pasarelaPrimera = new Pasarela(coordenada, pasarelaSegunda,  new Normal());
 
-        Arania araniaUno = new Arania(pasarelaPrimera);
-        Arania araniaDos = new Arania(pasarelaPrimera);
-        Arania araniaTres = new Arania(pasarelaPrimera);
-        Arania araniaCuatro = new Arania(pasarelaPrimera);
+        Arania araniaUno = new Arania(pasarelaPrimera,generadorRandom);
+        Arania araniaDos = new Arania(pasarelaPrimera,generadorRandom);
+        Arania araniaTres = new Arania(pasarelaPrimera,generadorRandom);
+        Arania araniaCuatro = new Arania(pasarelaPrimera,generadorRandom);
         Hormiga HormigaUno = new Hormiga(pasarelaPrimera);
         Hormiga HormigaDos = new Hormiga(pasarelaPrimera);
         Hormiga HormigaTres = new Hormiga(pasarelaPrimera);

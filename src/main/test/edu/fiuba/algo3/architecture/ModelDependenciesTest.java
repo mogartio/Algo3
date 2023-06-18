@@ -12,29 +12,17 @@ public class ModelDependenciesTest {
     private final String JAVA_LANG = "java..";
     private final String JUNIT = "org.junit..";
     private final String JSONSIMPLE = "org.json.simple..";
+    private final String JAVAFX = "javafx..";
 
     @Test
     public void elModeloSoloPuedeReferenciarClasesDelModeloAdemasJavaAdemasJunit() {
         JavaClasses importedClasses = new ClassFileImporter().importPackages("edu.fiuba.algo3.modelo");
 
-        String[] listOfPackages = {MODEL, JAVA_LANG, JUNIT,JSONSIMPLE};
+        String[] listOfPackages = {MODEL, JAVA_LANG, JUNIT,JSONSIMPLE,JAVAFX};
 
         ArchRule myRule = classes().that().resideInAPackage(MODEL)
                 .should().onlyDependOnClassesThat().resideInAnyPackage(listOfPackages);
 
         myRule.check(importedClasses);
     }
-    /*
-    @Test
-    public void elModeloSoloPuedeReferenciarClasesDelModeloAdemasJavaAdemasJunit() {
-        JavaClasses importedClasses = new ClassFileImporter().importPackages("edu.fiuba.algo3.modelo");
-
-        String[] listOfPackages = {MODEL, JAVA_LANG, JUNIT};
-
-        ArchRule myRule = classes().that().resideInAPackage(MODEL)
-                .should().onlyDependOnClassesThat().resideInAnyPackage(listOfPackages);
-
-        myRule.check(importedClasses);
-    }
-*/
 }

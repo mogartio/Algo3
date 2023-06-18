@@ -12,8 +12,11 @@ public abstract class Defensa extends Observable {
     protected Coordenada posicion;
     protected EstadoConstruccion estadoDeConstruccion;
     protected int rangoAtaque;
+<<<<<<< HEAD
     protected TipoDeDefensa tipoDeDefensa;
 
+=======
+>>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
     protected Emisor emisor;
 
     public Defensa(int tiempoDeConstruccion, int rangoAtaque, TipoDeDefensa tipoDeDefensa){

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 
-public class Tienda implements Vendedor { // se encargara de administrar los precios de las defensas y de comunicarse con
+public class Tienda { // se encargara de administrar los precios de las defensas y de comunicarse con
     //un CreadorDeDefensas para obtener las intacias de las torres
     private HashMap<String,Credito> catalogo;
     private CreadorDeDefensas creador;
@@ -26,7 +26,10 @@ public class Tienda implements Vendedor { // se encargara de administrar los pre
     public ArrayList<String> catalogoDisponible(Credito cantidadRecusos){
         ArrayList<String> defensasDisponibles = new ArrayList<String>();
 
+        //por cada torre en el catalogo
         for (String i : catalogo.keySet()){
+
+            //si los creditos pasados por parametro cubren el costo de la torre, entonces se la agrega
             if (cantidadRecusos.esMayorOIgualQue(catalogo.get(i))){
                 defensasDisponibles.add(i);
             }

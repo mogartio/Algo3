@@ -22,8 +22,7 @@ public class Hormiga extends Enemigo{
 
     public void morir(){
         emisor.notificarSubscriptores("log", "Hormiga muere y otorga " + CREDITOS_HORMIGA + " créditos al jugador");
-        Jugador.getInstance().registrarHormigaMuerta();
-        Jugador.getInstance().recompensar(CREDITOS_HORMIGA, true);
+        Jugador.getInstance().agregarARachaDeHormigas();
     }
 
     public String representacionString() {

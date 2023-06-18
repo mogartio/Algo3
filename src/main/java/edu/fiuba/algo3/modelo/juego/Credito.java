@@ -39,6 +39,8 @@ public class Credito {
         return recursos <= creditoAComparar;
     }
 
-
+    public int print(){
+        return recursos;
+    }
 
 }
