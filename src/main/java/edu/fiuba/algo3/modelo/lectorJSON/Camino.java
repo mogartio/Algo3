@@ -32,7 +32,6 @@ public class Camino {
 
    public void armar() {
       int cantidadConectadas = 1;
-
       Pasarela actualDeterminada = pasarelaInicial;
       Pasarela excluida = null;
       Pasarela anterior;

@@ -15,7 +15,6 @@ public class Mapa extends Observable {
     Hashtable<Coordenada, Parcela> mapa;
     LinkedList< ArrayList<Enemigo> > oleadas;
     Pasarela pasarelaInicial;
-
     Logger logger;
 
     public Mapa() {
@@ -61,4 +60,8 @@ public class Mapa extends Observable {
         return (mapa.get(coordenada));
     }
 
+
+    public Hashtable<Coordenada, Parcela> getMapa(){
+        return mapa;
+    }
 }

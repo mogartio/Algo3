@@ -21,12 +21,11 @@ public class CreadorDeMapa {
     String path;
     private VisualizadorDeMapa visualizador;
 
-    public CreadorDeMapa(String path){
+    public CreadorDeMapa(String path,int tamanioMax){
         mapa = new Mapa();
-        int MAXIMO_MAPA = 15;
-        camino = new Camino(MAXIMO_MAPA);
+        camino = new Camino(tamanioMax); //cuidado se parte del supuesto de que el mapa es cuadrado (misma cantidad de celdas tanto en Y como en X)
         this.path = path;
-        this.visualizador = new VisualizadorDeMapa();
+        this.visualizador = new VisualizadorDeMapa(tamanioMax);
     }
 
     public Mapa crearMapa() throws NoHayCamino, NoHayInicial {
@@ -65,7 +64,9 @@ public class CreadorDeMapa {
                 mapa.agregar(nuevaCoordenada, new Rocosa(nuevaCoordenada));
                 break;
             case "Pasarela":
+
                 camino.agregar(nuevaCoordenada);
+                mapa.agregar(nuevaCoordenada, new Pasarela(nuevaCoordenada));
                 break;
             case "Tierra":
                 mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));

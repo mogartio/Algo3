@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Pasarela extends Parcela {
     private TipoPasarela tipo;
-
     private Pasarela siguientePasarela;
 
     public Pasarela(Coordenada coordenada,Pasarela siguientePasarela, TipoPasarela tipo) {

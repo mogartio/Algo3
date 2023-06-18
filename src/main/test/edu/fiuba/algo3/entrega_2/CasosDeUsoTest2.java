@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
+import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
@@ -15,8 +16,7 @@ import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
-import edu.fiuba.algo3.modelo.parcelas.Normal;
-import edu.fiuba.algo3.modelo.parcelas.Pasarela;
+import edu.fiuba.algo3.modelo.parcelas.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
@@ -24,6 +24,7 @@ import org.junit.jupiter.api.*;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 public class CasosDeUsoTest2 {
     @Test
@@ -143,7 +144,47 @@ public class CasosDeUsoTest2 {
         assertTrue(tercerTurnoDeCreador.get(1) instanceof Hormiga);
         assertTrue(tercerTurnoDeCreador.get(2) instanceof Arania);
     }
+    @Test
+    public void test16CreadorDeMapaCreaLasParcelasYLasDisponeCorrectamenteEnElMapa(){
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapaDePrueba",5);
+        Mapa mapa = null;
 
+        Pasarela pasarela1 = new Pasarela(new Coordenada(1,1),new Normal());
+        Pasarela pasarela2 = new Pasarela(new Coordenada(1,1),new Normal());
+        Pasarela pasarela3 = new Pasarela(new Coordenada(1,2),new Meta());
+        pasarela1.agregarSiguiente(pasarela2);
+        pasarela2.agregarSiguiente(pasarela3);
+
+        try {
+            mapa = creadorDeMapa.crearMapa();
+        } catch (NoHayCamino | NoHayInicial er){}
+
+        Hashtable<Coordenada, Parcela> mapita = mapa.getMapa();
+        for (Coordenada key : mapita.keySet() ){
+            System.out.println("coordenada : " + key.representacionString() + " tipo de piso : " +mapita.get(key));
+        }
+
+        // primer fila
+        assertEquals(new Rocosa(new Coordenada(1,1)),mapa.ver(new Coordenada(0,0)));
+        assertEquals(pasarela1 ,mapa.ver(new Coordenada(1,0)));
+        assertEquals(new Tierra(new Coordenada(2,0)),mapa.ver(new Coordenada(2,0)));
+        assertEquals(new Tierra(new Coordenada(3,0)),mapa.ver(new Coordenada(3,0)));
+        assertEquals(new Tierra(new Coordenada(4,0)),mapa.ver(new Coordenada(4,0)));
+
+        //segunda
+        assertEquals(new Rocosa(new Coordenada(0,1)),mapa.ver(new Coordenada(0,1)));
+        assertEquals(pasarela2 ,mapa.ver(new Coordenada(1,1)));
+        assertEquals(new Tierra(new Coordenada(2,1)),mapa.ver(new Coordenada(2,1)));
+        assertEquals(new Tierra(new Coordenada(3,1)),mapa.ver(new Coordenada(3,1)));
+        assertEquals(new Tierra(new Coordenada(4,1)),mapa.ver(new Coordenada(4,1)));
+
+        //tercera
+        assertEquals(new Rocosa(new Coordenada(0,2)),mapa.ver(new Coordenada(0,2)));
+        assertEquals(pasarela3 ,mapa.ver(new Coordenada(1,2)));
+        assertEquals(new Tierra(new Coordenada(2,2)),mapa.ver(new Coordenada(2,2)));
+        assertEquals(new Tierra(new Coordenada(3,2)),mapa.ver(new Coordenada(3,2)));
+        assertEquals(new Tierra(new Coordenada(4,2)),mapa.ver(new Coordenada(4,2)));
+    }
 
     @Test
     public void test18SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {

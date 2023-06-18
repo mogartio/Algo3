@@ -1,3 +1,5 @@
+/*
+
 package edu.fiuba.algo3.testUnitarios;
 
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
@@ -20,3 +22,4 @@ public class CreadorDeMapaTest {
         Mapa m = cm.crearMapa();
     }
 }
+*/

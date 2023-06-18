@@ -18,13 +18,12 @@ public class VisualizadorDeMapa {
 
     private TilePane grilla;
 
-    public VisualizadorDeMapa(){
-        //crea una grilla de 5x5
+    public VisualizadorDeMapa(int largo){
+        //recordando que se parte del supuesto de la misma cantidad de celdas en Y como en X
         grilla = new TilePane();
-        grilla.setPrefColumns(15);
-        grilla.setPrefRows(15);
+        grilla.setPrefColumns(largo);
+        grilla.setPrefRows(largo);
 
-        //hmm.. nose
         grilla.setTileAlignment( Pos.CENTER );
     }
 
@@ -49,6 +48,10 @@ public class VisualizadorDeMapa {
 
     public void mostrar() {
         Stage ventana = VentanaDeJuego.getIntance();
+
+        if (ventana == null){
+            return;
+        }
 
         ventana.setScene(new Scene(grilla));
         ventana.setTitle("mapeanding");
