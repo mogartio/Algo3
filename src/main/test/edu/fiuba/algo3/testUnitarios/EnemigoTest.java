@@ -26,7 +26,7 @@ public class EnemigoTest {
     }
 
     @Test
-    public void test03UnEnemigoCausaDañoAlJugadorYDespuesMuere(){
+    public void test03UnEnemigoCausaDanioAlJugadorYDespuesMuere(){
         Enemigo arania = new Arania();
 
         arania.daniarJugador();

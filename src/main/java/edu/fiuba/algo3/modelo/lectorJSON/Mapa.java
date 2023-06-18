@@ -15,7 +15,7 @@ public class Mapa extends Observable {
     Hashtable<Coordenada, Parcela> mapa;
     LinkedList< ArrayList<Enemigo> > oleadas;
     Pasarela pasarelaInicial;
-
+    Pasarela pasarelaFinal;
     Logger logger;
 
     public Mapa() {
@@ -27,8 +27,9 @@ public class Mapa extends Observable {
         this.logger = new Logger();
     }
 
-    public void setPasarelaInicial(Pasarela pasarelaInicial) {
+    public void setPasarelaInicialFinal(Pasarela pasarelaInicial, Pasarela pasarelaFinal) {
         this.pasarelaInicial = pasarelaInicial;
+        this.pasarelaFinal = pasarelaFinal;
     }
 
     public void cargarOleadas(LinkedList< ArrayList<Enemigo> > oleadas) {
@@ -46,7 +47,7 @@ public class Mapa extends Observable {
                 enemigo.agregarSubscriptor(logger);
                 this.emisor.notificarSubscriptores("log", "Se agrega al mapa " + enemigo.representacionString());
 
-                enemigo.actualizarPosicionActual(pasarelaInicial);
+                enemigo.establecerInicioYMeta(this.pasarelaInicial, this.pasarelaFinal);
                 enemigosDelJuego.add(enemigo);
             });
 

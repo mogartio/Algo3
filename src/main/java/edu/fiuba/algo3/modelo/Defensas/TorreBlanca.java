@@ -5,11 +5,11 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 public class TorreBlanca extends Defensa{
 
     public TorreBlanca(){
-        super( 1, 1, 3);
+        super(1, 3, new Ataque(1));
     }
 
     public TorreBlanca(Coordenada posicion){
-        super(posicion, 1, 1, 3);
+        super(posicion, 1, 3);
     }
 
     @Override

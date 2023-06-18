@@ -15,11 +15,13 @@ public class Arania extends Enemigo {
     private final int MAXIMO = 10;
     public Arania() {
         super(2, 2, 2);
+        this.tipoMovimiento = new MovimientoPasarela(this);
     }
 
     public Arania(Pasarela posicionActual) { //Constructor para test
         super(2, 2, 2);
-        this.posicionActual = posicionActual;
+        this.tipoMovimiento = new MovimientoPasarela(this);
+        this.tipoMovimiento.actualizarPosicion(posicionActual);
     }
 
     public void morir(){

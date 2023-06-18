@@ -1,21 +1,75 @@
 @startuml
 
-abstract class Enemigo{}
+abstract class Enemigo{
+- cantPasos:Int
+}
 
-interface Movimiento{}
+interface Efecto{
++ aplicarEfecto(cantPasos):Int
+}
 
-class SeguirPasarela{}
-class MovimientoCateto{}
-class MovimientoHipotenusa{}
+class Relentizado{
+- porcentajeRelentizado : Int
+
++ Relentizado(porcentajeRelentizado : Int)
++ aplicarEfecto():Int
+}
+
+class SinEfecto{
++ aplicarEfecto():Int
+}
+
+interface Movimiento{
++ avanzar(cantPasos:Int)
+}
+
+class SeguirPasarela{
+- posicionActuial:Coordenada
+
++ SeguirPasarela(posicionActual:Coordenada)
++ avanzar(cantPasos:Int)
+}
+class MovimientoCateto{
+- posicionActuial:Coordenada
+
++ MovimientoCateto(posicionActual:Coordenada)
++ avanzar(cantPasos:Int)
+}
+class MovimientoHipotenusa{
+- posicionActuial:Coordenada
+
++ MovimientoHipotenusa(posicionActual:Coordenada)
++ avanzar(cantPasos:Int)
+}
 
 class Arania{}
 class Hormiga{}
 class Topo{}
 class Lechuza{}
 
+class Coordenada{
+- coordX:Int
+- coordY:Int
+
++ Coordenada(int: X, int: Y)
++ equals(Coordenada: coordenada):Boolean
++ estaEnRango(Coordenada: coordenada, int: rango):Boolean
++ aumentarX(int: numero):Void
++ aumentarY(int: numero):Void
++ mismaColumna(Coordenada: coordenada):Boolean
++ mismaFila(Coordenada: coordenada):Boolean
+- verificarIgualdad(int: X, int: Y):Boolean
+- verificarRango(int: X, int: Y, int: rango):Boolean
+
+}
+
+
 MovimientoCateto ..|> Movimiento
 MovimientoHipotenusa ..|> Movimiento
 SeguirPasarela ..|> Movimiento
+
+SinEfecto ..|> Efecto
+Relentizado ..|> Efecto
 
 Enemigo <|-- Arania
 Enemigo <|-- Hormiga
@@ -23,4 +77,5 @@ Enemigo <|-- Topo
 Enemigo <|-- Lechuza
 
 Enemigo <- Movimiento
+Efecto -> Enemigo
 @enduml

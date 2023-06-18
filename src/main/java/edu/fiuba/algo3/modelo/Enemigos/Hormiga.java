@@ -11,11 +11,13 @@ public class Hormiga extends Enemigo{
 
     public Hormiga() {
         super(1, 1, 1);
+        this.tipoMovimiento = new MovimientoPasarela(this);
     }
 
     public Hormiga(Pasarela posicionActual) { //Constructor para test
         super(1, 1, 1);
-        this.posicionActual = posicionActual;
+        this.tipoMovimiento = new MovimientoPasarela(this);
+        this.tipoMovimiento.actualizarPosicion(posicionActual);
     }
 
     public void morir(){
