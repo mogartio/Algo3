@@ -184,12 +184,12 @@ public class CasosDeUsoTest {
 
     @Test
     public void test07aVerificarQueLasAraniasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
-<<<<<<< HEAD
+
         Mapa mapa = new Mapa();
-=======
+
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
->>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
+
         Coordenada coordenadaFinal = new Coordenada(20, 1);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
 
@@ -221,12 +221,10 @@ public class CasosDeUsoTest {
 
     @Test
     public void test07bVerificarQueLasAraniasSeDesplazanLaCantidadCorrectaDeParcelas() throws PasarelaInexistente {
-<<<<<<< HEAD
         Mapa mapa = new Mapa();
-=======
+
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
->>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
         Coordenada coordenadaFinal = new Coordenada(1, 1);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
 
@@ -371,7 +369,7 @@ public class CasosDeUsoTest {
         Coordenada coordenadaMeta = new Coordenada(1, 1);
         Pasarela pasarelaMeta = new Pasarela(coordenadaMeta, new Meta());
 
-        Arania arania = new Arania(pasarelaMeta);
+        Arania arania = new Arania(pasarelaMeta, new RandomGenerator(1,10));
 
         try{
             arania.avanzar(mapa);
@@ -453,14 +451,12 @@ public class CasosDeUsoTest {
         pasarelaSegunda.agregarSiguiente(pasarelaTercera);
 
         Coordenada coordenadaPrimera = new Coordenada(2, 2);
-<<<<<<< HEAD
+
         Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, new Normal());
         pasarelaPrimera.agregarSiguiente(pasarelaSegunda);
-        Enemigo arania = new Arania(pasarelaPrimera);
-=======
-        Pasarela pasarelaPrimera = new Pasarela(coordenadaPrimera, null);
+
         Enemigo arania = new Arania(pasarelaPrimera,generadorRandom);
->>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
+
 
         juego.nuevoEnemigo(arania);
 

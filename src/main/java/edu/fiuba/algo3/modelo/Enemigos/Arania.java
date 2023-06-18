@@ -15,22 +15,18 @@ public class Arania extends Enemigo {
 
     public Arania(RandomGenerator generadorRandom) {
         super(2, 2, 2);
-<<<<<<< HEAD
         this.tipoMovimiento = new MovimientoPasarela(this);
-=======
+
         this.generadorRandom = generadorRandom;
->>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
     }
 
     public Arania(Pasarela posicionActual,RandomGenerator generadorRandom) { //Constructor para test
         super(2, 2, 2);
-<<<<<<< HEAD
+
         this.tipoMovimiento = new MovimientoPasarela(this);
         this.tipoMovimiento.actualizarPosicion(posicionActual);
-=======
-        this.posicionActual = posicionActual;
         this.generadorRandom = generadorRandom;
->>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
+
     }
 
     public void morir(){

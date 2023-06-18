@@ -29,14 +29,9 @@ public class EnemigoTest {
     }
 
     @Test
-<<<<<<< HEAD
-    public void test03UnEnemigoCausaDanioAlJugadorYDespuesMuere(){
-        Enemigo arania = new Arania();
-=======
     public void test03UnEnemigoCausaDañoAlJugadorYDespuesMuere(){
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
         Enemigo arania = new Arania(generadorRandom);
->>>>>>> 829fc41bf286f6e0365c850723bf592e74f5011b
 
         arania.daniarJugador();
 
