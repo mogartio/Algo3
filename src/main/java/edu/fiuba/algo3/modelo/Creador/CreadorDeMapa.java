@@ -41,7 +41,7 @@ public class CreadorDeMapa {
             crearFila(Integer.toString(i), listaFilas);
         }
         camino.armar();
-        mapa.setPasarelaInicial(camino.inicial());
+        mapa.setPasarelaInicialFinal(camino.inicial(), camino.pasarelaFinal());
     }
 
     private void crearFila(Object numeroFila, JSONObject listaFilas) {

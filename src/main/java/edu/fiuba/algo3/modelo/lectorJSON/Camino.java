@@ -57,4 +57,8 @@ public class Camino {
          pasarelaInicial = nuevaPasarela;
       }
    }
+
+   public Pasarela pasarelaFinal(){
+      return camino.get(0);
+   }
 }

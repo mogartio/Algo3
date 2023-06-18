@@ -2,7 +2,9 @@ package edu.fiuba.algo3.modelo.Enemigos;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.Observer.Observable;
+import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
@@ -10,20 +12,25 @@ public abstract class Enemigo extends Observable {
     protected Vida vida;
     protected int cantidadMovimientos;
     protected int poderAtaque;
-    protected Pasarela posicionActual;
 
-    protected Coordenada ubicacion;
+    protected Efecto efectoEnemigo;
+
+    protected Movimiento tipoMovimiento;
 
 
     public Enemigo( int puntosVida, int ataque, int cantidadMovimientos){
         super();
         this.vida = new Vida(puntosVida);
         this.poderAtaque = ataque;
+        this.efectoEnemigo = new Ninguno();
         this.cantidadMovimientos = cantidadMovimientos;
-        this.posicionActual = null;
     }
     public boolean estaVivo() {
         return vida.sigueVivo();
+    }
+
+    public void establecerInicioYMeta(Parcela inicial, Parcela pFinal){
+        this.tipoMovimiento.actualizarPosicion(inicial, pFinal);
     }
 
     public void recibirDanio(int danio){
@@ -34,18 +41,17 @@ public abstract class Enemigo extends Observable {
         }
     }
 
-    public void actualizarPosicionActual(Pasarela pasarelaActual) {
-        this.posicionActual = pasarelaActual;
-        this.posicionActual.actualizarUbicacionAlEnemigo(this);
-    }
-
-    public void actualizarUbicacion(Coordenada ubicacionNueva){
-        this.ubicacion = ubicacionNueva;
+    public void actualizarPosicionActual(Parcela parcelaSiguiente) {
+        this.tipoMovimiento.actualizarPosicion(parcelaSiguiente);
     }
 
     public void daniarJugador() {
         this.emisor.notificarSubscriptores("log",this.representacionString() + " causo daño al jugador");
-        Jugador.getInstance().recibirDanio(this.poderAtaque);
+
+        if (this.estaVivo()){
+            Jugador.getInstance().recibirDanio(this.poderAtaque);
+        }
+
         this.vida = new Vida(0);
     }
 
@@ -53,23 +59,20 @@ public abstract class Enemigo extends Observable {
 
     public abstract String representacionString();
 
-    public void avanzar() throws PasarelaInexistente{
-
-        if (vida.sigueVivo())
-            for(int pasos = 0; pasos < this.cantidadMovimientos; pasos++){
-                posicionActual.actualizarPosicion(this);
-            }
-        if(this.posicionActual == null){
-                throw new PasarelaInexistente("El enemigo se movio a un lugar invalido");
-        }
+    public void avanzar(Mapa mapa) throws PasarelaInexistente{
+        this.efectoEnemigo = this.efectoEnemigo.avanzar(this.cantidadMovimientos, this.tipoMovimiento, mapa);
     }
 
     public boolean estaEnRango(Coordenada posicion, int distancia){
-        return this.posicionActual.estaEnRango(posicion, distancia);
+        return this.tipoMovimiento.estaEnRango(posicion, distancia);
     }
 
     public String represtacionUbicacion(){
-        return this.ubicacion.representacionString();
+        return this.tipoMovimiento.representarUbicacion();
+    }
+
+    public void setEfectoEnemigo(Efecto nuevoEfecto){
+        this.efectoEnemigo = nuevoEfecto;
     }
     
 }
