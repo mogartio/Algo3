@@ -191,10 +191,19 @@ public class CasosDeUsoTest2 {
     }
 
     @Test
-    public void test17SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
+    public void test17JuegoSeTerminaConLaCantidadMinimaDeEnemigos() throws NoHayCamino, NoHayInicial {
         Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+        Turnero turnero = new Turnero(juego);
 
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
 
+        for ( int i = 0 ; i <= 23 ; i++ ){ // dado el recorrido provisto por las pasarelas los enemegos deberian matar al jugador en el turno 23
+            turnero.jugarTurnoMaquina();
+            assertFalse(juego.finalizado());
+        }
+
+        assertFalse(jugador.estaVivo());
     }
 
     @Test
