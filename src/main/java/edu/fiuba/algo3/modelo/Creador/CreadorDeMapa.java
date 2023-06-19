@@ -9,6 +9,8 @@ import edu.fiuba.algo3.modelo.lectorJSON.Camino;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Normal;
+import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.modelo.parcelas.Rocosa;
 import edu.fiuba.algo3.modelo.parcelas.Tierra;
 import org.json.simple.JSONArray;
@@ -64,9 +66,8 @@ public class CreadorDeMapa {
                 mapa.agregar(nuevaCoordenada, new Rocosa(nuevaCoordenada));
                 break;
             case "Pasarela":
-
                 camino.agregar(nuevaCoordenada);
-                mapa.agregar(nuevaCoordenada, new Pasarela(nuevaCoordenada));
+                mapa.agregar(nuevaCoordenada, new Pasarela(nuevaCoordenada, new Normal()));
                 break;
             case "Tierra":
                 mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));

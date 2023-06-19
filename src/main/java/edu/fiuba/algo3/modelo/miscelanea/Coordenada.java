@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.miscelanea;
 
+import java.util.Objects;
+
 import static java.lang.Math.abs;
 
 public class Coordenada {
@@ -11,8 +13,23 @@ public class Coordenada {
         this.coordY = y;
     }
 
+/*
     public boolean equals(Coordenada coordenada){
         return coordenada.verificarCoordenadas(this.coordX, this.coordY);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordenada that = (Coordenada) o;
+        return coordX == that.coordX &&
+                coordY == that.coordY;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(coordX, coordY);
     }
 
     public boolean esBorde(int maximo) {

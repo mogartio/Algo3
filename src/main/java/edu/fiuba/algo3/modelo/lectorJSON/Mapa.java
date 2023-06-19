@@ -8,17 +8,19 @@ import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
 public class Mapa extends Observable {
-    Hashtable<Coordenada, Parcela> mapa;
+    HashMap<Coordenada, Parcela> mapa;
     LinkedList< ArrayList<Enemigo> > oleadas;
     Pasarela pasarelaInicial;
+    Pasarela pasarelaFinal;
     Logger logger;
 
     public Mapa() {
-        this.mapa = new Hashtable<>();
+        this.mapa = new HashMap<>();
         this.oleadas = new LinkedList<>();
         this.pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
         //Para que el mapa quede en estado consistente, en un caso de uso real, la pasarelaInicial quedará determinada
@@ -62,7 +64,7 @@ public class Mapa extends Observable {
     }
 
 
-    public Hashtable<Coordenada, Parcela> getMapa(){
+    public HashMap<Coordenada, Parcela> getMapa(){
         return mapa;
     }
 }

@@ -16,6 +16,7 @@ import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
+import edu.fiuba.algo3.modelo.miscelanea.Tienda;
 import edu.fiuba.algo3.modelo.parcelas.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -149,41 +150,51 @@ public class CasosDeUsoTest2 {
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapaDePrueba",5);
         Mapa mapa = null;
 
-        Pasarela pasarela1 = new Pasarela(new Coordenada(1,1),new Normal());
-        Pasarela pasarela2 = new Pasarela(new Coordenada(1,1),new Normal());
-        Pasarela pasarela3 = new Pasarela(new Coordenada(1,2),new Meta());
-        pasarela1.agregarSiguiente(pasarela2);
-        pasarela2.agregarSiguiente(pasarela3);
-
         try {
             mapa = creadorDeMapa.crearMapa();
         } catch (NoHayCamino | NoHayInicial er){}
 
-        Hashtable<Coordenada, Parcela> mapita = mapa.getMapa();
-        for (Coordenada key : mapita.keySet() ){
-            System.out.println("coordenada : " + key.representacionString() + " tipo de piso : " +mapita.get(key));
-        }
-
         // primer fila
-        assertEquals(new Rocosa(new Coordenada(1,1)),mapa.ver(new Coordenada(0,0)));
-        assertEquals(pasarela1 ,mapa.ver(new Coordenada(1,0)));
-        assertEquals(new Tierra(new Coordenada(2,0)),mapa.ver(new Coordenada(2,0)));
-        assertEquals(new Tierra(new Coordenada(3,0)),mapa.ver(new Coordenada(3,0)));
-        assertEquals(new Tierra(new Coordenada(4,0)),mapa.ver(new Coordenada(4,0)));
+        assertTrue(mapa.ver(new Coordenada(1,1))instanceof Rocosa);
+        assertTrue(mapa.ver(new Coordenada(2,1))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(3,1))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(4,1))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(5,1))instanceof Tierra);
 
         //segunda
-        assertEquals(new Rocosa(new Coordenada(0,1)),mapa.ver(new Coordenada(0,1)));
-        assertEquals(pasarela2 ,mapa.ver(new Coordenada(1,1)));
-        assertEquals(new Tierra(new Coordenada(2,1)),mapa.ver(new Coordenada(2,1)));
-        assertEquals(new Tierra(new Coordenada(3,1)),mapa.ver(new Coordenada(3,1)));
-        assertEquals(new Tierra(new Coordenada(4,1)),mapa.ver(new Coordenada(4,1)));
+        assertTrue(mapa.ver(new Coordenada(1,2))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(2,2))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(3,2))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(4,2))instanceof Rocosa);
+        assertTrue(mapa.ver(new Coordenada(5,2))instanceof Rocosa);
 
         //tercera
-        assertEquals(new Rocosa(new Coordenada(0,2)),mapa.ver(new Coordenada(0,2)));
-        assertEquals(pasarela3 ,mapa.ver(new Coordenada(1,2)));
-        assertEquals(new Tierra(new Coordenada(2,2)),mapa.ver(new Coordenada(2,2)));
-        assertEquals(new Tierra(new Coordenada(3,2)),mapa.ver(new Coordenada(3,2)));
-        assertEquals(new Tierra(new Coordenada(4,2)),mapa.ver(new Coordenada(4,2)));
+        assertTrue(mapa.ver(new Coordenada(1,3))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(2,3))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(3,3))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(4,3))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(5,3))instanceof Rocosa);
+
+        //cuarta
+        assertTrue(mapa.ver(new Coordenada(1,4))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(2,4))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(3,4))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(4,4))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(5,4))instanceof Rocosa);
+
+        //quinta
+        assertTrue(mapa.ver(new Coordenada(1,5))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(2,5))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(3,5))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(4,5))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(5,5))instanceof Tierra);
+    }
+
+    @Test
+    public void test17SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+
+
     }
 
     @Test

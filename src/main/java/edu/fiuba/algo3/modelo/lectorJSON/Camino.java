@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Camino {
    private final ArrayList<Pasarela> camino;
    private Pasarela pasarelaInicial = null;
+   private Pasarela pasarelaFinal = null;
    private boolean inicialDeterminada;
    private final int maximoMapa;
 
@@ -45,6 +46,7 @@ public class Camino {
          cantidadConectadas++;
       }
 
+      pasarelaFinal = actualDeterminada;
       actualDeterminada.actualizarTipo(new Meta());
    }
 
@@ -59,6 +61,6 @@ public class Camino {
    }
 
    public Pasarela pasarelaFinal(){
-      return camino.get(0);
+      return pasarelaFinal;
    }
 }
