@@ -1,9 +1,8 @@
-package edu.fiuba.algo3.testUnitarios;
+package edu.fiuba.algo3.adicionales.testUnitarios;
 
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
-import edu.fiuba.algo3.modelo.parcelas.Rocosa;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

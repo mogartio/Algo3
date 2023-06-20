@@ -25,6 +25,7 @@ public class Jugando implements EstadoJuego {
         this.enemigos = new ArrayList<>();
         this.defensas = new ArrayList<>();
     }
+
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
         enemigos.add(enemigo);
         return this;
@@ -47,6 +48,7 @@ public class Jugando implements EstadoJuego {
         else
             return this;
     }
+
     public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno, Emisor emisor){
         emisor.notificarSubscriptores("log", "Se juega el turno N°: " + Integer.toString(numeroTurno));
 

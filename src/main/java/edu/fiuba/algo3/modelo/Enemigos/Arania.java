@@ -6,9 +6,6 @@ import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-// nextInt is normally exclusive of the top value,
-// so add 1 to make it inclusive
-
 
 public class Arania extends Enemigo {
     private RandomGenerator generadorRandom;

@@ -22,12 +22,13 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
 
+
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class CasosDeUsoTest2 {
+public class CasosDeUso2Test {
     @Test
     public void test13SeVerificaLaValidesDelJSONDeEnemigosDePrueba(){
         ArrayList< HashMap<String,String> > enemigosEnArchivo = new ArrayList<>();
@@ -75,10 +76,16 @@ public class CasosDeUsoTest2 {
                     "Rocoso","Pasarela","Tierra","Tierra","Tierra"
             )));
             filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                    "Tierra","Pasarela","Tierra","Tierra","Tierra"
+                    "Tierra","Pasarela","Tierra","Rocoso","Rocoso"
             )));
             filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                    "Tierra","Pasarela","Tierra","Tierra","Tierra"
+                    "Tierra","Pasarela","Pasarela","Tierra","Rocoso"
+            )));
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Tierra","Tierra","Pasarela","Tierra","Rocoso"
+            )));
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Tierra","Tierra","Pasarela","Tierra","Tierra"
             )));
 
             JSONArray parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
@@ -192,7 +199,7 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test17JuegoSeTerminaConLaCantidadMinimaDeEnemigos() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
         Turnero turnero = new Turnero(juego);
 
         Jugador jugador = Jugador.getInstance();
@@ -208,7 +215,7 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test18SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
 
         Turnero turnero = new Turnero(juego);
 
@@ -238,7 +245,7 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test18bSeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosPeroIgualGanaLaPartida() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
 
         Turnero turnero = new Turnero(juego);
 
@@ -256,7 +263,7 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test19SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosYPierdeLaPartida() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
 
         Turnero turnero = new Turnero(juego);
 

@@ -62,9 +62,4 @@ public class Mapa extends Observable {
     public Parcela ver(Coordenada coordenada) {
         return (mapa.get(coordenada));
     }
-
-
-    public HashMap<Coordenada, Parcela> getMapa(){
-        return mapa;
-    }
 }

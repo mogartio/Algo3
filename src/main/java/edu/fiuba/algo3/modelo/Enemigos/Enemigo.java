@@ -14,7 +14,6 @@ public abstract class Enemigo extends Observable {
     protected int poderAtaque;
 
     protected Efecto efectoEnemigo;
-
     protected Movimiento tipoMovimiento;
 
 

@@ -3,7 +3,7 @@
   "1":["Rocoso","Pasarela","Tierra","Tierra","Tierra"],
   "2":["Tierra","Pasarela","Tierra","Rocoso","Rocoso"],
   "3":["Tierra","Pasarela","Pasarela","Tierra","Rocoso"]
-  "4":["Tierra",,"Tierra","Pasarela","Tierra","Rocoso"]
+  "4":["Tierra","Tierra","Pasarela","Tierra","Rocoso"]
   "5":["Tierra","Tierra","Pasarela","Tierra","Tierra"]
 }
 ]

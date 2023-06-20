@@ -13,7 +13,8 @@ public class Vida {
 
     public void quitarVida(int puntos){ this.puntos -= puntos; }
 
-    public int obtenerPuntos(){
-        return puntos;
+    public int obtenerPorcentajeDadoInicial(int valorInicial){
+        return puntos*100/valorInicial;
     }
+
 }

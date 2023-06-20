@@ -27,10 +27,10 @@ public class CreadorDeJuego {
         this.lectorDeArchivos = new Lector();
     }
 
-    public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa) throws NoHayCamino, NoHayInicial {
+    public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa) throws NoHayCamino, NoHayInicial {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,15);
+        CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,tamanioMapa);
 
         Mapa mapa = creadorMapa.crearMapa();
         LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos);
