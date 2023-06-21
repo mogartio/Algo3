@@ -31,8 +31,8 @@ public class InicializadorVentana {
 
     public static GridPane addGridPane() {
         GridPane grid = new GridPane();
-        grid.setHgap(100);
-        grid.setVgap(50);
+        grid.setHgap(60);
+        grid.setVgap(60);
         grid.setPadding(new Insets(0, 10, 0, 10));
 
         return grid;

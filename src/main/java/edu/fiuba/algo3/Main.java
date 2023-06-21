@@ -26,6 +26,10 @@ public class Main extends Application {
         VentanaDeJuego.setVentanaDelJuego(stage);
         Stage ventanaDeJuego =VentanaDeJuego.getIntance();
 
+        ventanaDeJuego.setWidth(945);
+        ventanaDeJuego.setHeight(957);
+        ventanaDeJuego.setResizable(false);
+
         InicializadorVentana.start(ventanaDeJuego);
         return;
     }

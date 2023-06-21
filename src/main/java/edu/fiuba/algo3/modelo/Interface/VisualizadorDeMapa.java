@@ -40,7 +40,7 @@ public class VisualizadorDeMapa {
                 color = Color.ORANGE;
                 break;
         }
-        Rectangle rect = new Rectangle(50, 50, color);
+        Rectangle rect = new Rectangle(60, 60, color);
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
         grilla.getChildren().add(rect);
