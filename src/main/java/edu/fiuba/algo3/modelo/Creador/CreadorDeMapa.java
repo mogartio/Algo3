@@ -74,6 +74,6 @@ public class CreadorDeMapa {
                 break;
         }
 
-        visualizador.agregar(tipoDeTerreno);
+        visualizador.agregarParcela(tipoDeTerreno, coordX, coordY);
     }
 }
