@@ -106,7 +106,7 @@ public class CasosDeUso2Test {
     public void test15aCreadorDeEnemigosCreaDeJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
         CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
 
-        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15a.txt");
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15a.txt");
 
         ArrayList<Enemigo> enemigosEnTurno = colaDeEnemigos.pop();
 
@@ -119,7 +119,7 @@ public class CasosDeUso2Test {
     @Test
     public void test15bCreadorDeEnemigosCreaDeJSONConUnSoloTurnoYDosEnemigos(){
         CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15b.txt");
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15b.txt");
 
         ArrayList<Enemigo> enemigosEnTurno = colaDeEnemigos.pop();
 
@@ -133,7 +133,7 @@ public class CasosDeUso2Test {
     @Test
     public void test15cCreadorDeEnemigosCreaDeJSONCon3TurnosYVariosEnemigosCorrectamente(){
         CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/test15/enemigosTest15c.txt");
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15c.txt");
 
         ArrayList<Enemigo> primerTurnoDeCreador = colaDeEnemigos.pop();
         ArrayList<Enemigo> segundoTurnoDeCreador = colaDeEnemigos.pop();
