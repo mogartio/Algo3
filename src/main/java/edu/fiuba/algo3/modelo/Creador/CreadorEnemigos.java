@@ -2,9 +2,7 @@
 package edu.fiuba.algo3.modelo.Creador;
 
 
-import edu.fiuba.algo3.modelo.Enemigos.Arania;
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
+import edu.fiuba.algo3.modelo.Enemigos.*;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import org.json.simple.JSONArray;
@@ -40,6 +38,7 @@ public class CreadorEnemigos {
 
     private void agregarEnemigosEnTurno(LinkedList<ArrayList<Enemigo>> enemigosDelNivel,JSONObject informacionDelTurno){
 
+        String numeroDeTurno = informacionDelTurno.get("turno").toString();
         JSONObject enemigosEnTurno = (JSONObject) informacionDelTurno.get("enemigos");// obtiene el value asociado a al key "enemigos"
         ArrayList<Enemigo> enemigosAAgregarEnEsteTurno =  new ArrayList<Enemigo>();
 
@@ -49,7 +48,7 @@ public class CreadorEnemigos {
             int cantidadDelTipoEnInt = Integer.valueOf( cantidadDelTipo.toString() ); // casteo el numero de cantidadDelTipo a int
 
             for (int i = 0 ; i < cantidadDelTipoEnInt ; i++){
-                Enemigo enemigoAAgregar = crearInstanciaDeEnemigo( tipoDeEnemigo.toString());
+                Enemigo enemigoAAgregar = crearInstanciaDeEnemigo( tipoDeEnemigo.toString() , Integer.parseInt(numeroDeTurno) );
 
                 enemigosAAgregarEnEsteTurno.add( enemigoAAgregar );
             }
@@ -58,7 +57,7 @@ public class CreadorEnemigos {
         enemigosDelNivel.add(enemigosAAgregarEnEsteTurno);
     }
 
-    public Enemigo crearInstanciaDeEnemigo(String tipoDeEnemigoACrear){
+    public Enemigo crearInstanciaDeEnemigo(String tipoDeEnemigoACrear , int numeroDeTurno){
         Enemigo instanciaDeEnemigo = null;
 
         if (tipoDeEnemigoACrear.equals("hormiga") ){
@@ -67,6 +66,12 @@ public class CreadorEnemigos {
         } else if (tipoDeEnemigoACrear.equals("arana") ){
             RandomGenerator generadorRandom = new RandomGenerator(0,10);
             instanciaDeEnemigo = new Arania(generadorRandom);
+
+        } else if (tipoDeEnemigoACrear.equals("topo")){
+            instanciaDeEnemigo = new Topo(numeroDeTurno);
+
+        } else if (tipoDeEnemigoACrear.equals("lechuza")){
+            instanciaDeEnemigo = new Lechuza();
         }
         return instanciaDeEnemigo;
 

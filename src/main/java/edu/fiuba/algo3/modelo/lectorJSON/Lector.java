@@ -14,7 +14,7 @@ public class Lector{
         JSONArray lecturaDelJSON = null;
 
         try (FileReader reader = new FileReader(archivo)) {
-            //diccionario medio raro
+
             JSONArray parser = (JSONArray) jsonParser.parse(reader);
 
             lecturaDelJSON = parser;

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
+import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
@@ -15,17 +16,19 @@ import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
-import edu.fiuba.algo3.modelo.parcelas.Normal;
-import edu.fiuba.algo3.modelo.parcelas.Pasarela;
+import edu.fiuba.algo3.modelo.miscelanea.Tienda;
+import edu.fiuba.algo3.modelo.parcelas.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
+
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CasosDeUsoTest2 {
+
+public class CasosDeUso2Test {
     @Test
     public void test13SeVerificaLaValidesDelJSONDeEnemigosDePrueba(){
         ArrayList< HashMap<String,String> > enemigosEnArchivo = new ArrayList<>();
@@ -73,10 +76,16 @@ public class CasosDeUsoTest2 {
                     "Rocoso","Pasarela","Tierra","Tierra","Tierra"
             )));
             filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                    "Tierra","Pasarela","Tierra","Tierra","Tierra"
+                    "Tierra","Pasarela","Tierra","Rocoso","Rocoso"
             )));
             filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
-                    "Tierra","Pasarela","Tierra","Tierra","Tierra"
+                    "Tierra","Pasarela","Pasarela","Tierra","Rocoso"
+            )));
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Tierra","Tierra","Pasarela","Tierra","Rocoso"
+            )));
+            filasEnArchivo.add(new ArrayList<String>(Arrays.asList(
+                    "Tierra","Tierra","Pasarela","Tierra","Tierra"
             )));
 
             JSONArray parseoDeMapa = Lector.leer("ArchivosJson/mapaDePrueba");
@@ -143,11 +152,70 @@ public class CasosDeUsoTest2 {
         assertTrue(tercerTurnoDeCreador.get(1) instanceof Hormiga);
         assertTrue(tercerTurnoDeCreador.get(2) instanceof Arania);
     }
+    @Test
+    public void test16CreadorDeMapaCreaLasParcelasYLasDisponeCorrectamenteEnElMapa(){
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapaDePrueba",5);
+        Mapa mapa = null;
 
+        try {
+            mapa = creadorDeMapa.crearMapa();
+        } catch (NoHayCamino | NoHayInicial er){}
+
+        // primer fila
+        assertTrue(mapa.ver(new Coordenada(1,1))instanceof Rocosa);
+        assertTrue(mapa.ver(new Coordenada(2,1))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(3,1))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(4,1))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(5,1))instanceof Tierra);
+
+        //segunda
+        assertTrue(mapa.ver(new Coordenada(1,2))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(2,2))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(3,2))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(4,2))instanceof Rocosa);
+        assertTrue(mapa.ver(new Coordenada(5,2))instanceof Rocosa);
+
+        //tercera
+        assertTrue(mapa.ver(new Coordenada(1,3))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(2,3))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(3,3))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(4,3))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(5,3))instanceof Rocosa);
+
+        //cuarta
+        assertTrue(mapa.ver(new Coordenada(1,4))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(2,4))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(3,4))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(4,4))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(5,4))instanceof Rocosa);
+
+        //quinta
+        assertTrue(mapa.ver(new Coordenada(1,5))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(2,5))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(3,5))instanceof Pasarela);
+        assertTrue(mapa.ver(new Coordenada(4,5))instanceof Tierra);
+        assertTrue(mapa.ver(new Coordenada(5,5))instanceof Tierra);
+    }
+
+    @Test
+    public void test17JuegoSeTerminaConLaCantidadMinimaDeEnemigos() throws NoHayCamino, NoHayInicial {
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
+        Turnero turnero = new Turnero(juego);
+
+        Jugador jugador = Jugador.getInstance();
+        jugador.reestablecerEstadoInicial();
+
+        for ( int i = 0 ; i <= 23 ; i++ ){ // dado el recorrido provisto por las pasarelas los enemegos deberian matar al jugador en el turno 23
+            turnero.jugarTurnoMaquina();
+            assertFalse(juego.finalizado());
+        }
+
+        assertFalse(jugador.estaVivo());
+    }
 
     @Test
     public void test18SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
 
         Turnero turnero = new Turnero(juego);
 
@@ -177,7 +245,7 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test18bSeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosPeroIgualGanaLaPartida() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
 
         Turnero turnero = new Turnero(juego);
 
@@ -195,7 +263,7 @@ public class CasosDeUsoTest2 {
 
     @Test
     public void test19SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosYPierdeLaPartida() throws NoHayCamino, NoHayInicial {
-        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+        Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
 
         Turnero turnero = new Turnero(juego);
 

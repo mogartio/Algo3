@@ -9,27 +9,28 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 
 public abstract class Defensa extends Observable {
-    protected int danio;
     protected Coordenada posicion;
     protected EstadoConstruccion estadoDeConstruccion;
     protected int rangoAtaque;
+    protected TipoDeDefensa tipoDeDefensa;
+
     protected Emisor emisor;
 
-    public Defensa(int danio, int tiempoDeConstruccion, int rangoAtaque){
+    public Defensa(int tiempoDeConstruccion, int rangoAtaque, TipoDeDefensa tipoDeDefensa){
         this.posicion = null;
-        this.danio = danio;
         this.rangoAtaque = rangoAtaque;
         this.estadoDeConstruccion = new EnConstruccion(tiempoDeConstruccion);
+        this.tipoDeDefensa = tipoDeDefensa;
 
+        //CAMBIAR ESTO
         Logger logger = new Logger();
         this.emisor = new Emisor();
         this.emisor.subcribir(logger);
 
     }
 
-    public Defensa(Coordenada posicion, int danio, int tiempoDeConstruccion, int rangoAtaque){
+    public Defensa(Coordenada posicion, int tiempoDeConstruccion, int rangoAtaque){
         this.posicion = posicion;
-        this.danio = danio;
         this.rangoAtaque = rangoAtaque;
         this.estadoDeConstruccion = new EnConstruccion(tiempoDeConstruccion);
     }
@@ -48,15 +49,7 @@ public abstract class Defensa extends Observable {
     }
 
     public void atacar(ArrayList<Enemigo> enemigos ){
-
-
-        for(int i = 0; i < enemigos.size(); i++){
-            if (enemigos.get(i).estaEnRango(this.posicion, this.rangoAtaque)){
-                this.emisor.notificarSubscriptores("log", this.representationString() + " ataca a " + enemigos.get(i).representacionString() + " en " + enemigos.get(i).represtacionUbicacion());
-                enemigos.get(i).recibirDanio(this.danio);
-                break;
-            }
-        }
+        this.estadoDeConstruccion.atacar(tipoDeDefensa, enemigos, this.posicion, this.rangoAtaque, this.representationString(), this.emisor);
     }
 
     public abstract String representationString();

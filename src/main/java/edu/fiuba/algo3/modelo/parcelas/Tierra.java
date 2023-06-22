@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Defensas.Defensa;
 public class Tierra extends Parcela{
 
     public Tierra(Coordenada coordenada){
-        super(coordenada, new Disponible());
+        super(coordenada, new DisponibleDefensa());
     }
 
     public void construirDefensa(Defensa defensa){

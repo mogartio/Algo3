@@ -6,22 +6,24 @@ import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-// nextInt is normally exclusive of the top value,
-// so add 1 to make it inclusive
-
 
 public class Arania extends Enemigo {
     private RandomGenerator generadorRandom;
 
     public Arania(RandomGenerator generadorRandom) {
         super(2, 2, 2);
+        this.tipoMovimiento = new MovimientoPasarela(this);
+
         this.generadorRandom = generadorRandom;
     }
 
     public Arania(Pasarela posicionActual,RandomGenerator generadorRandom) { //Constructor para test
         super(2, 2, 2);
-        this.posicionActual = posicionActual;
+
+        this.tipoMovimiento = new MovimientoPasarela(this);
+        this.tipoMovimiento.actualizarPosicion(posicionActual);
         this.generadorRandom = generadorRandom;
+
     }
 
     public void morir(){

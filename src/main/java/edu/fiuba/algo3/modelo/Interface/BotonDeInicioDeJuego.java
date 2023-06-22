@@ -23,7 +23,7 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
         // Create and configure the new scene
         System.out.println("¡ Me han clickeado !");
         try {
-            Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json");
+            Juego juego = CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
         } catch (NoHayCamino | NoHayInicial ex) {
             System.out.println("sarasa MAPA");
         }

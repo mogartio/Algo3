@@ -20,7 +20,6 @@ public class InicializadorPantallaInicio {
     public static void start(GridPane layout, Stage stage) throws Exception {
         pedirNombreJugador(layout);
         crearBackground(layout);
-        inicializarBotonJugar(layout);
     }
 
     private static void crearBackground(GridPane layout) throws Exception {
@@ -30,8 +29,8 @@ public class InicializadorPantallaInicio {
 
         // Creación del fondo
         BackgroundImage myBI= new BackgroundImage(image,
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(100, 100, true, true, true, true));
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                new BackgroundSize(500, 1500, true, true, true, false));
         Background bg = new Background(myBI);
         layout.setBackground(bg);
     }
@@ -45,23 +44,28 @@ public class InicializadorPantallaInicio {
         button.setPrefSize(400, 80);
         button.setOnAction(funcion);
 
-        layout.add(button, 5, 10);
+        layout.add(button, 4, 12);
     }
 
     private static void pedirNombreJugador(GridPane layout){
 
         Text chartTitle = new Text("Ingresá tu nombre:");
         chartTitle.setFont(Font.font("Arial", FontWeight.BOLD, 40));
-        layout.add(chartTitle, 4, 4);
+        layout.add(chartTitle, 3, 12);
 
         TextField textField = new TextField();
 
-        layout.add(textField, 4, 5);
+        layout.add(textField, 3, 13);
+
+
+
 
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
                 Jugador.getInstance().setNombre(textField.getText());
+                Text tuNombre = new Text(String.format("Tu nombre es %s", textField.getText()));    //Borrar el nombre viejo al usar uno nuevo
+                layout.add(tuNombre, 4, 9);
                 inicializarBotonJugar(layout);
             }
         };

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.testUnitarios;
+package edu.fiuba.algo3.adicionales.testUnitarios;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Defensas.TorreBlanca;
@@ -12,11 +12,10 @@ public class ParcelasTest {
     @Test
     public void test01SeCreanDosRocosasConCoordenadasIgualesYSonIguales(){
 
-        Coordenada mockedCoordenada = mock(Coordenada.class);
-        when(mockedCoordenada.equals(mockedCoordenada)).thenReturn(true);
+        Coordenada unaCoordenada = new Coordenada(1,1);
 
-        Rocosa rocosa1 = new Rocosa(mockedCoordenada);
-        Rocosa rocosa2 = new Rocosa(mockedCoordenada);
+        Rocosa rocosa1 = new Rocosa(unaCoordenada);
+        Rocosa rocosa2 = new Rocosa(unaCoordenada);
 
         assertTrue(rocosa1.equals(rocosa2));
     }
@@ -35,11 +34,10 @@ public class ParcelasTest {
     @Test
     public void test03SeCreanDosTierrasConCoordenadasIgualesYSonIguales(){
 
-        Coordenada mockedCoordenada = mock(Coordenada.class);
-        when(mockedCoordenada.equals(mockedCoordenada)).thenReturn(true);
+        Coordenada unaCoordenada = new Coordenada(1,1);
 
-        Tierra tierra1 = new Tierra(mockedCoordenada);
-        Tierra tierra2 = new Tierra(mockedCoordenada);
+        Tierra tierra1 = new Tierra(unaCoordenada);
+        Tierra tierra2 = new Tierra(unaCoordenada);
 
         assertTrue(tierra1.equals(tierra2));
     }
@@ -47,12 +45,12 @@ public class ParcelasTest {
     @Test
     public void test04SeCreanDosPasarelasConCoordenadasIgualesYSonIguales(){
 
-        Coordenada mockedCoordenada = mock(Coordenada.class);
-        when(mockedCoordenada.equals(mockedCoordenada)).thenReturn(true);
+        Coordenada unaCoordenada = new Coordenada(1,1);
+
         Pasarela mockedPasarela = mock(Pasarela.class);
 
-        Pasarela pasarela1 = new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
-        Pasarela pasarela2= new Pasarela(mockedCoordenada, mockedPasarela, new Normal());
+        Pasarela pasarela1 = new Pasarela(unaCoordenada, mockedPasarela, new Normal());
+        Pasarela pasarela2= new Pasarela(unaCoordenada, mockedPasarela, new Normal());
 
         assertTrue(pasarela1.equals(pasarela2));
     }

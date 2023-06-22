@@ -1,0 +1,10 @@
+[
+  "Mapa", {
+  "1":["Rocoso","Pasarela","Tierra","Tierra","Tierra","Rocoso"],
+  "2":["Tierra","Pasarela","Tierra","Rocoso","Rocoso","Rocoso"],
+  "3":["Tierra","Pasarela","Pasarela","Tierra","Rocoso","Rocoso"],
+  "4":["Tierra","Pasarela","Pasarela","Pasarela","Tierra","Rocoso"],
+  "5":["Tierra","Tierra","Tierra","Pasarela","Tierra","Rocoso"],
+  "6":["Rocoso","Tierra","Tierra","Pasarela","Pasarela","Rocoso"]
+}
+]

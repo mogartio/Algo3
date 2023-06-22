@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CreadorDeJuego { // fachada
+public class CreadorDeJuego {
 
     private CreadorEnemigos creadorDeEnemigos;
     private CreadorDeMapa creadorDeMapa;
@@ -27,10 +27,10 @@ public class CreadorDeJuego { // fachada
         this.lectorDeArchivos = new Lector();
     }
 
-    public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa) throws NoHayCamino, NoHayInicial {
+    public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa) throws NoHayCamino, NoHayInicial {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa);
+        CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,tamanioMapa);
 
         Mapa mapa = creadorMapa.crearMapa();
         LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos);

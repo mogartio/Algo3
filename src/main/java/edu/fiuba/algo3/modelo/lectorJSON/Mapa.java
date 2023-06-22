@@ -8,18 +8,19 @@ import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
 public class Mapa extends Observable {
-    Hashtable<Coordenada, Parcela> mapa;
+    HashMap<Coordenada, Parcela> mapa;
     LinkedList< ArrayList<Enemigo> > oleadas;
     Pasarela pasarelaInicial;
-
+    Pasarela pasarelaFinal;
     Logger logger;
 
     public Mapa() {
-        this.mapa = new Hashtable<>();
+        this.mapa = new HashMap<>();
         this.oleadas = new LinkedList<>();
         this.pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
         //Para que el mapa quede en estado consistente, en un caso de uso real, la pasarelaInicial quedará determinada
@@ -27,8 +28,9 @@ public class Mapa extends Observable {
         this.logger = new Logger();
     }
 
-    public void setPasarelaInicial(Pasarela pasarelaInicial) {
+    public void setPasarelaInicialFinal(Pasarela pasarelaInicial, Pasarela pasarelaFinal) {
         this.pasarelaInicial = pasarelaInicial;
+        this.pasarelaFinal = pasarelaFinal;
     }
 
     public void cargarOleadas(LinkedList< ArrayList<Enemigo> > oleadas) {
@@ -46,7 +48,7 @@ public class Mapa extends Observable {
                 enemigo.agregarSubscriptor(logger);
                 this.emisor.notificarSubscriptores("log", "Se agrega al mapa " + enemigo.representacionString());
 
-                enemigo.actualizarPosicionActual(pasarelaInicial);
+                enemigo.establecerInicioYMeta(this.pasarelaInicial, this.pasarelaFinal);
                 enemigosDelJuego.add(enemigo);
             });
 
@@ -60,5 +62,4 @@ public class Mapa extends Observable {
     public Parcela ver(Coordenada coordenada) {
         return (mapa.get(coordenada));
     }
-
 }

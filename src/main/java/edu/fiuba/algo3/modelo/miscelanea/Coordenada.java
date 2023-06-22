@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.miscelanea;
 
+import java.util.Objects;
+
 import static java.lang.Math.abs;
 
 public class Coordenada {
@@ -11,12 +13,23 @@ public class Coordenada {
         this.coordY = y;
     }
 
+/*
     public boolean equals(Coordenada coordenada){
         return coordenada.verificarCoordenadas(this.coordX, this.coordY);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordenada that = (Coordenada) o;
+        return coordX == that.coordX &&
+                coordY == that.coordY;
     }
 
-    public boolean distancia(Coordenada coordenada, int rango){
-        return coordenada.verificarDistancia(this.coordX, this.coordY, rango);
+    @Override
+    public int hashCode() {
+        return Objects.hash(coordX, coordY);
     }
 
     public boolean esBorde(int maximo) {
@@ -24,14 +37,22 @@ public class Coordenada {
     }
 
     public boolean verificarDistancia(int coordX, int coordY, int rango){
-        //double distacia = Math.sqrt(Math.pow(coordX - this.coordX, 2) + Math.pow(coordY - this.coordY, 2));
-        int distanciaX = Math.abs(this.coordX - coordX);
-        int distanciaY = Math.abs(this.coordY - coordY);
-        return ((distanciaX + distanciaY) <= rango);
+        return (this.distancia(coordX, coordY) <= rango);
     }
 
     public boolean estaEnRango(Coordenada otraCoordenada, int rango) {
         return (otraCoordenada.verificarDistancia(this.coordX, this.coordY, rango));
+    }
+
+    public int calcularDistancia(Coordenada coordenada){
+        return coordenada.distancia(this.coordX, this.coordY);
+    }
+
+    public int distancia(int coordX, int coordY){
+        int distanciaX = Math.abs(this.coordX - coordX);
+        int distanciaY = Math.abs(this.coordY - coordY);
+
+        return distanciaX + distanciaY;
     }
 
     public boolean verificarCoordenadas(int coordX, int coordY){
@@ -40,5 +61,13 @@ public class Coordenada {
 
     public String representacionString(){
         return ("( " + Integer.toString(this.coordX) + ", " + Integer.toString(this.coordY) + " )");
+    }
+
+    public int getAbscisa(){
+        return this.coordX;
+    }
+
+    public int getOrdenada(){
+        return this.coordY;
     }
 }

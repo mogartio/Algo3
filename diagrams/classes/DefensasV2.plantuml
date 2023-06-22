@@ -1,0 +1,23 @@
+@startuml
+abstract class Defensa{}
+
+class TorreBlanca{}
+class TorrePlateada{}
+class TrampaArenosa{}
+
+interface TipoDefensa{
++ atacar(Enemigo: enemigo)
+}
+
+class Ataque{}
+class Trampa{}
+
+Defensa <|-- TorreBlanca
+Defensa <|-- TorrePlateada
+Defensa <|-- TrampaArenosa
+
+TipoDefensa <- Defensa
+Ataque ..|> TipoDefensa
+Trampa ..|> TipoDefensa
+
+@enduml

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.parcelas;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 
@@ -8,11 +9,10 @@ import java.util.ArrayList;
 
 public class Pasarela extends Parcela {
     private TipoPasarela tipo;
-
     private Pasarela siguientePasarela;
 
     public Pasarela(Coordenada coordenada,Pasarela siguientePasarela, TipoPasarela tipo) {
-        super(coordenada, new NoDisponible());
+        super(coordenada, new DisponibleTrampa());
         this.siguientePasarela = siguientePasarela;
         this.tipo = tipo;
     }
@@ -27,13 +27,9 @@ public class Pasarela extends Parcela {
     }
     public Pasarela verSiguiente(){return siguientePasarela;}
 
-    public void actualizarPosicion(Enemigo enemigo) {
+    public void actualizarPosicion(Movimiento tipoMovimiento) {
 
-        tipo.moverEnemigos(enemigo, this.verSiguiente());
-    }
-
-    public boolean estaEnRango(Coordenada otraCoordenada, int distancia) {
-        return coordenada.estaEnRango(otraCoordenada, distancia);
+        tipo.moverEnemigos(tipoMovimiento, this.verSiguiente());
     }
 
     public Pasarela obtenerSiguienteExcluyendo(ArrayList<Pasarela> posibles, Pasarela unaExcluida) {
@@ -53,25 +49,15 @@ public class Pasarela extends Parcela {
         return otraPasarela.estaEnRango(this.coordenada, 0);
     }
 
-    public void construirDefensa(Defensa defensa){}
-
     public boolean equals(Pasarela pasarela){
         return pasarela.verificarPosicion(this.coordenada);
-    }
-
-    public boolean ocupada(){
-        return false;
     }
 
     public void actualizarTipo(TipoPasarela tipoPasarela){
         this.tipo = tipoPasarela;
     }
 
-    public String imp(){
-        return this.coordenada.representacionString();
-    }
-
-    public void actualizarUbicacionAlEnemigo(Enemigo enemigo){
-        enemigo.actualizarUbicacion(this.coordenada);
+    public boolean ocupada(){
+        return false;
     }
 }

@@ -1,9 +1,8 @@
-package edu.fiuba.algo3.testUnitarios;
+package edu.fiuba.algo3.adicionales.testUnitarios;
 
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
-import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

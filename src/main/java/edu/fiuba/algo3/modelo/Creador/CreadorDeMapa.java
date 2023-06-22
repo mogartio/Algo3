@@ -9,6 +9,8 @@ import edu.fiuba.algo3.modelo.lectorJSON.Camino;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Normal;
+import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.modelo.parcelas.Rocosa;
 import edu.fiuba.algo3.modelo.parcelas.Tierra;
 import org.json.simple.JSONArray;
@@ -21,12 +23,11 @@ public class CreadorDeMapa {
     String path;
     private VisualizadorDeMapa visualizador;
 
-    public CreadorDeMapa(String path){
+    public CreadorDeMapa(String path,int tamanioMax){
         mapa = new Mapa();
-        int MAXIMO_MAPA = 15;
-        camino = new Camino(MAXIMO_MAPA);
+        camino = new Camino(tamanioMax); //cuidado se parte del supuesto de que el mapa es cuadrado (misma cantidad de celdas tanto en Y como en X)
         this.path = path;
-        this.visualizador = new VisualizadorDeMapa();
+        this.visualizador = new VisualizadorDeMapa(tamanioMax);
     }
 
     public Mapa crearMapa() throws NoHayCamino, NoHayInicial {
@@ -42,7 +43,7 @@ public class CreadorDeMapa {
             crearFila(Integer.toString(i), listaFilas);
         }
         camino.armar();
-        mapa.setPasarelaInicial(camino.inicial());
+        mapa.setPasarelaInicialFinal(camino.inicial(), camino.pasarelaFinal());
     }
 
     private void crearFila(Object numeroFila, JSONObject listaFilas) {
@@ -66,12 +67,13 @@ public class CreadorDeMapa {
                 break;
             case "Pasarela":
                 camino.agregar(nuevaCoordenada);
+                mapa.agregar(nuevaCoordenada, new Pasarela(nuevaCoordenada, new Normal()));
                 break;
             case "Tierra":
                 mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));
                 break;
         }
 
-        visualizador.agregar(tipoDeTerreno);
+        visualizador.agregarParcela(tipoDeTerreno, coordX, coordY);
     }
 }
