@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 public class VentanaDeJuego {
     private static Stage VentanaDelJuego;
 
-    public static Stage getIntance() {
+    public static Stage getInstance() {
         return VentanaDelJuego;
     }
 

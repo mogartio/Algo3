@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 public interface Jugable {
 
-    public void finTurnoJugador();
+    void finTurnoJugador();
 
-    public void jugarTurnoMaquina();
+    void jugarTurnoMaquina();
 }

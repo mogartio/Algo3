@@ -23,11 +23,11 @@ public class CreadorDeMapa {
     String path;
     private VisualizadorDeMapa visualizador;
 
-    public CreadorDeMapa(String path,int tamanioMax){
+    public CreadorDeMapa(String path, int tamanioMax, VisualizadorDeMapa visualizadorDeMapa){
         mapa = new Mapa();
         camino = new Camino(tamanioMax); //cuidado se parte del supuesto de que el mapa es cuadrado (misma cantidad de celdas tanto en Y como en X)
         this.path = path;
-        this.visualizador = new VisualizadorDeMapa(tamanioMax);
+        this.visualizador = visualizadorDeMapa;
     }
 
     public Mapa crearMapa() throws NoHayCamino, NoHayInicial {

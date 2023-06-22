@@ -1,12 +1,12 @@
 package edu.fiuba.algo3.modelo.juego;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
-import edu.fiuba.algo3.modelo.Observer.Observable;
+import edu.fiuba.algo3.modelo.ObserverPropio.ObservablePropio;
 import edu.fiuba.algo3.modelo.miscelanea.Tienda;
 import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
 import java.util.ArrayList;
 
-public class Jugador extends Observable {
+public class Jugador extends ObservablePropio {
 
     private static final Jugador INSTANCE = new Jugador();
     private Vida vida;

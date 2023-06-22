@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
-import edu.fiuba.algo3.modelo.juego.Jugador;
-
 public class Lechuza extends Enemigo{
 
     public Lechuza(){

@@ -1,26 +1,17 @@
 package edu.fiuba.algo3.modelo.Interface;
 
-import edu.fiuba.algo3.Main;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
-import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.parcelas.Rocosa;
-import edu.fiuba.algo3.modelo.parcelas.Tierra;
 import edu.fiuba.algo3.vista.ConstanteImagenes;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -56,7 +47,7 @@ public class VisualizadorDeMapa {
     }
 
     public void mostrar() {
-        Stage ventana = VentanaDeJuego.getIntance();
+        Stage ventana = VentanaDeJuego.getInstance();
 
         if (ventana == null){
             return;
@@ -68,13 +59,8 @@ public class VisualizadorDeMapa {
         ventana.show();
     }
 
-    public void agregarEnemigo(Enemigo enemigoNuevo, int coordX, int coordY){
-        try {
-            ImageView imagenAUsar = ConstanteImagenes.getImagen(enemigoNuevo.representacionString());
-            grilla.add(imagenAUsar, coordX, coordY);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+    public void agregarSpray(ImageView spray, int coordX, int coordY){
+        grilla.add(spray, coordX, coordY);
     }
 
     public void removeNodeByRowColumnIndex(final int row,final int column) {

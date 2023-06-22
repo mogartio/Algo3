@@ -1,20 +1,20 @@
 package edu.fiuba.algo3.modelo.Defensas;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import java.util.ArrayList;
+import java.util.Observable;
 
-import edu.fiuba.algo3.modelo.Observer.Emisor;
-import edu.fiuba.algo3.modelo.Observer.Logger;
-import edu.fiuba.algo3.modelo.Observer.Observable;
+import edu.fiuba.algo3.modelo.Enemigos.Sprayable;
+import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
+import edu.fiuba.algo3.modelo.ObserverPropio.Logger;
+import edu.fiuba.algo3.modelo.ObserverPropio.ObservablePropio;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 
-public abstract class Defensa extends Observable {
+public abstract class Defensa extends Sprayable {
     protected Coordenada posicion;
     protected EstadoConstruccion estadoDeConstruccion;
     protected int rangoAtaque;
     protected TipoDeDefensa tipoDeDefensa;
-
-    protected Emisor emisor;
 
     public Defensa(int tiempoDeConstruccion, int rangoAtaque, TipoDeDefensa tipoDeDefensa){
         this.posicion = null;
@@ -23,9 +23,9 @@ public abstract class Defensa extends Observable {
         this.tipoDeDefensa = tipoDeDefensa;
 
         //CAMBIAR ESTO
-        Logger logger = new Logger();
-        this.emisor = new Emisor();
-        this.emisor.subcribir(logger);
+        //Logger logger = new Logger();
+        //this.emisor = new Emisor();
+        //this.emisor.subcribir(logger);
 
     }
 
@@ -40,7 +40,8 @@ public abstract class Defensa extends Observable {
     }
 
     public void pasarTurno(){
-        this.estadoDeConstruccion = estadoDeConstruccion.pasoUnTurno(this.emisor, this);
+        //this.estadoDeConstruccion = estadoDeConstruccion.pasoUnTurno(this.emisor, this);
+        this.estadoDeConstruccion = estadoDeConstruccion.pasoUnTurno(this);
     }
 
     //borrar esta funcion mas adelante
@@ -49,8 +50,20 @@ public abstract class Defensa extends Observable {
     }
 
     public void atacar(ArrayList<Enemigo> enemigos ){
-        this.estadoDeConstruccion.atacar(tipoDeDefensa, enemigos, this.posicion, this.rangoAtaque, this.representationString(), this.emisor);
+        this.estadoDeConstruccion.atacar(tipoDeDefensa, enemigos, this.posicion, this.rangoAtaque, this.representationString());
     }
 
     public abstract String representationString();
+
+    public ArrayList<String> ObtenerSprayIDYPosicion(){
+        ArrayList<String> datos = new ArrayList<>();
+
+        if(this.estadoDeConstruccion.estoyConstruida()){
+            datos.add(this.representationString());
+            datos.add(this.posicion.representacionString());
+        }
+
+        return datos;
+    }
+
 }
