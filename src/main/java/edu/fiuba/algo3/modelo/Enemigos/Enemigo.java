@@ -1,21 +1,20 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
 import edu.fiuba.algo3.modelo.juego.Jugador;
-import edu.fiuba.algo3.modelo.Observer.Observable;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
-import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
-public abstract class Enemigo extends Observable {
+import java.util.ArrayList;
+
+public abstract class Enemigo extends Sprayable {
     protected Vida vida;
     protected int cantidadMovimientos;
     protected int poderAtaque;
 
     protected Efecto efectoEnemigo;
     protected Movimiento tipoMovimiento;
-
 
     public Enemigo( int puntosVida, int ataque, int cantidadMovimientos){
         super();
@@ -45,7 +44,7 @@ public abstract class Enemigo extends Observable {
     }
 
     public void daniarJugador() {
-        this.emisor.notificarSubscriptores("log",this.representacionString() + " causo daño al jugador");
+        //this.emisor.notificarSubscriptores("log",this.representacionString() + " causo daño al jugador");
 
         if (this.estaVivo()){
             Jugador.getInstance().recibirDanio(this.poderAtaque);
@@ -73,5 +72,16 @@ public abstract class Enemigo extends Observable {
     public void setEfectoEnemigo(Efecto nuevoEfecto){
         this.efectoEnemigo = nuevoEfecto;
     }
-    
+
+    @Override
+    public ArrayList<String> ObtenerSprayIDYPosicion() {
+        ArrayList<String> datos = new ArrayList<>();
+
+        if(this.estaVivo()) {
+            datos.add(this.representacionString());
+            datos.add(this.represtacionUbicacion());
+        }
+
+        return datos;
+    }
 }

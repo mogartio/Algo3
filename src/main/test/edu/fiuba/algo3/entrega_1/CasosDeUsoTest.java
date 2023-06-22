@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Enemigos.Arania;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
-import edu.fiuba.algo3.modelo.Observer.Logger;
+import edu.fiuba.algo3.modelo.ObserverPropio.Logger;
 import edu.fiuba.algo3.modelo.juego.Credito;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
@@ -14,6 +14,7 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.miscelanea.Tienda;
 import edu.fiuba.algo3.modelo.parcelas.*;
+import edu.fiuba.algo3.vista.VistaSprays;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -413,8 +414,9 @@ public class CasosDeUsoTest {
        LinkedList<ArrayList<Enemigo>> oleadas = new LinkedList<>();
        mapaJuego.cargarOleadas(oleadas);
 
-       Logger logger = new Logger();
-       Juego juego = new Juego(mapaJuego, logger);
+       //Logger logger = new Logger();
+       VistaSprays mockVistaSprays = mock(VistaSprays.class);
+       Juego juego = new Juego(mapaJuego, mockVistaSprays);
 
        juego.nuevoEnemigo(araniaUno);
        juego.nuevoEnemigo(araniaDos);
@@ -437,11 +439,13 @@ public class CasosDeUsoTest {
         jugador.reestablecerEstadoInicial();
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Logger logger = new Logger();
+        //Logger logger = new Logger();
         Mapa mapa = new Mapa();
 
-        Juego juego = new Juego(mapa, logger);
-        juego.agregarSubscriptor(logger);
+        //Juego juego = new Juego(mapa, logger);
+        //juego.agregarSubscriptor(logger);
+        VistaSprays mockVistaSprays = mock(VistaSprays.class);
+        Juego juego = new Juego(mapa, mockVistaSprays);
 
         Coordenada coordenadaTercera = new Coordenada(2, 0);
         Pasarela pasarelaTercera = new Pasarela(coordenadaTercera, new Normal());
@@ -476,7 +480,7 @@ public class CasosDeUsoTest {
         jugador.reestablecerEstadoInicial();
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        Logger logger = new Logger();
+        //Logger logger = new Logger();
         Mapa mapa = new Mapa();
 
         Coordenada coordenada = new Coordenada(2, 2);
@@ -507,8 +511,10 @@ public class CasosDeUsoTest {
         enemigos.add(HormigaTres);
         enemigos.add(HormigaCuatro);
 
-        Juego juego = new Juego(mapa, logger);
-        juego.agregarSubscriptor(logger);
+        //Juego juego = new Juego(mapa, logger);
+        //juego.agregarSubscriptor(logger);
+        VistaSprays mockVistaSprays = mock(VistaSprays.class);
+        Juego juego = new Juego(mapa, mockVistaSprays);
 
         enemigos.forEach(juego::nuevoEnemigo);
         enemigos.forEach(enemigo -> enemigo.recibirDanio(1)); //Las hormigas mueren pero las arañas siguen vivas
@@ -534,11 +540,13 @@ public class CasosDeUsoTest {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
 
-        Logger logger = new Logger();
+        //Logger logger = new Logger();
         Mapa mapa = new Mapa();
 
-        Juego juego = new Juego(mapa, logger);
-        juego.agregarSubscriptor(logger);
+        //Juego juego = new Juego(mapa, logger);
+        //juego.agregarSubscriptor(logger);
+        VistaSprays mockVistaSprays = mock(VistaSprays.class);
+        Juego juego = new Juego(mapa, mockVistaSprays);
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
@@ -561,11 +569,13 @@ public class CasosDeUsoTest {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
 
-        Logger logger = new Logger();
+        //Logger logger = new Logger();
         Mapa mapa = new Mapa();
 
-        Juego juego = new Juego(mapa, logger);
-        juego.agregarSubscriptor(logger);
+        //Juego juego = new Juego(mapa, logger);
+        //juego.agregarSubscriptor(logger);
+        VistaSprays mockVistaSprays = mock(VistaSprays.class);
+        Juego juego = new Juego(mapa, mockVistaSprays);
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());

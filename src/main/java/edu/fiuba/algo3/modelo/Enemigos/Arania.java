@@ -8,13 +8,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Arania extends Enemigo {
-    private RandomGenerator generadorRandom;
+    private final RandomGenerator generadorRandom;
 
     public Arania(RandomGenerator generadorRandom) {
         super(2, 2, 2);
         this.tipoMovimiento = new MovimientoPasarela(this);
 
         this.generadorRandom = generadorRandom;
+        this.sprayID = "Araña";
     }
 
     public Arania(Pasarela posicionActual,RandomGenerator generadorRandom) { //Constructor para test
@@ -23,13 +24,13 @@ public class Arania extends Enemigo {
         this.tipoMovimiento = new MovimientoPasarela(this);
         this.tipoMovimiento.actualizarPosicion(posicionActual);
         this.generadorRandom = generadorRandom;
-
     }
 
     public void morir(){
         int cantidadARecompensar = generadorRandom.obtenerUnNumero();
-        this.emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");
+        //this.emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");
         Jugador.getInstance().recompensar(cantidadARecompensar); // devuelve int entre 0 y 10
+        setChanged();
     }
 
     public String representacionString() {

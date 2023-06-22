@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.modelo.Observer;
+package edu.fiuba.algo3.modelo.ObserverPropio;
 
-public abstract class Observable {
+public abstract class ObservablePropio {
     protected Emisor emisor;
-    public Observable(){
+    public ObservablePropio(){
         this.emisor = new Emisor();
     };
     public void agregarSubscriptor(Subscriptor subscriptor){

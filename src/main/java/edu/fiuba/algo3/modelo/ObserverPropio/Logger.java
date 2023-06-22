@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Observer;
+package edu.fiuba.algo3.modelo.ObserverPropio;
 
 public class Logger implements Subscriptor{
 

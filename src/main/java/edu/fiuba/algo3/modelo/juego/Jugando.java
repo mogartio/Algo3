@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.juego;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
-import edu.fiuba.algo3.modelo.Observer.Emisor;
+import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class Jugando implements EstadoJuego {
         return this;
     }
 
-    public boolean finalizado(Emisor emisor) {
+    public boolean finalizado() {
         return false;
     }
 
@@ -49,8 +49,8 @@ public class Jugando implements EstadoJuego {
             return this;
     }
 
-    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno, Emisor emisor){
-        emisor.notificarSubscriptores("log", "Se juega el turno N°: " + Integer.toString(numeroTurno));
+    public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno){
+        //emisor.notificarSubscriptores("log", "Se juega el turno N°: " + Integer.toString(numeroTurno));
 
         if (!enemigos.isEmpty()){
 

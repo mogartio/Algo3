@@ -1,32 +1,18 @@
 package edu.fiuba.algo3.adicionales;
 
 import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
-import edu.fiuba.algo3.modelo.Defensas.*;
-import edu.fiuba.algo3.modelo.Enemigos.Arania;
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
-import edu.fiuba.algo3.modelo.Observer.Logger;
 import edu.fiuba.algo3.modelo.Turnero;
-import edu.fiuba.algo3.modelo.juego.Credito;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
-import edu.fiuba.algo3.modelo.miscelanea.Tienda;
-import edu.fiuba.algo3.modelo.parcelas.*;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class CasosDeUso3Test {
     @Test
