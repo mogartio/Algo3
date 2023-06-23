@@ -23,14 +23,14 @@ public class Tienda { // se encargara de administrar los precios de las defensas
         creador = new CreadorDeDefensas();
     }
 
-    public ArrayList<String> catalogoDisponible(Credito cantidadRecusos){
+    public ArrayList<String> catalogoDisponible(Credito cantidadRecursos){
         ArrayList<String> defensasDisponibles = new ArrayList<String>();
 
         //por cada torre en el catalogo
         for (String i : catalogo.keySet()){
 
             //si los creditos pasados por parametro cubren el costo de la torre, entonces se la agrega
-            if (cantidadRecusos.esMayorOIgualQue(catalogo.get(i))){
+            if (cantidadRecursos.esMayorOIgualQue(catalogo.get(i))){
                 defensasDisponibles.add(i);
             }
         }

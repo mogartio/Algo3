@@ -17,7 +17,7 @@ public class Main extends Application {
         VentanaDeJuego.setVentanaDelJuego(stage);
         Stage ventanaDeJuego = VentanaDeJuego.getInstance();
 
-        ventanaDeJuego.setWidth(945);
+        ventanaDeJuego.setWidth(1150);
         ventanaDeJuego.setHeight(957);
         ventanaDeJuego.setResizable(false);
 

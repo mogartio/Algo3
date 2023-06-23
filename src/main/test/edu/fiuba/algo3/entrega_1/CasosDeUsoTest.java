@@ -32,12 +32,11 @@ public class CasosDeUsoTest {
         //el jugador comienza con 20 puntos de vida y con 100 creditos
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
-        Tienda proveedor = new Tienda();
 
         for (int i=1 ; i <= 5 ; i++) { //se gastan los creditos
-            jugador.comprar(proveedor,"TorrePlateada");
+            jugador.comprar("TorrePlateada");
         }
-        ArrayList<String> torresDisponibles = jugador.verificarConstruccionesPosibles(proveedor); //se obtienen el listado de compras posibles
+        ArrayList<String> torresDisponibles = jugador.verificarConstruccionesPosibles(); //se obtienen el listado de compras posibles
 
         for (int i=0 ; i <= 19 ; i++){
             Jugador.getInstance().recibirDanio(1);
@@ -86,12 +85,9 @@ public class CasosDeUsoTest {
 
         jugador.reestablecerEstadoInicial();
 
-        //se crea la tienda que sera quien proveera y verificara las torres comprables
-        Tienda proveedor = new Tienda();
-
         //el jugador le envia sus creditos a instancia de tienda para que esta provea una
         //lista con las estructuras que este puede comprar
-        ArrayList<String> torresComprables = jugador.verificarConstruccionesPosibles(proveedor);
+        ArrayList<String> torresComprables = jugador.verificarConstruccionesPosibles();
 
         //assertions
         assertTrue(torresComprables.contains("TorrePlateada"));
@@ -262,7 +258,6 @@ public class CasosDeUsoTest {
 
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
-        Tienda tienda = new Tienda();
         Coordenada coordenadaInicializadora = new Coordenada(1, 1);
         Pasarela pasarelaInicializadora = new Pasarela(coordenadaInicializadora, new Normal());
         Credito creditoADescotnar = new Credito(100);
@@ -274,7 +269,7 @@ public class CasosDeUsoTest {
             hormiga.morir();
         }
 
-        ArrayList<String> comprasPosibles = jugador.verificarConstruccionesPosibles(tienda);
+        ArrayList<String> comprasPosibles = jugador.verificarConstruccionesPosibles();
 
         assertTrue(comprasPosibles.contains("TorreBlanca"));
     }
@@ -283,7 +278,6 @@ public class CasosDeUsoTest {
     public void test08bHormigaDaCreditosCorrespondientesAlMorirConMultiplicador() {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
-        Tienda tienda = new Tienda();
         Coordenada coordenadaInicializadora = new Coordenada(1, 1);
         Pasarela pasarelaInicializadora = new Pasarela(coordenadaInicializadora, new Normal());
         Credito creditoADescotnar = new Credito(100);
@@ -295,7 +289,7 @@ public class CasosDeUsoTest {
             hormiga.morir();
         }
 
-        ArrayList<String> comprasPosibles = jugador.verificarConstruccionesPosibles(tienda);
+        ArrayList<String> comprasPosibles = jugador.verificarConstruccionesPosibles();
 
         assertTrue(comprasPosibles.contains("TorrePlateada"));
         assertTrue(comprasPosibles.contains("TorreBlanca"));
@@ -306,7 +300,6 @@ public class CasosDeUsoTest {
     public void test08cAraniaDaCreditosCorrespondientesAlMorir() {
         Jugador jugador = Jugador.getInstance();
         jugador.reestablecerEstadoInicial();
-        Tienda tienda = new Tienda();
         Credito creditoADescotnar = new Credito(100);
 
         RandomGenerator generadorRandomMockeado1 = mock(RandomGenerator.class);
@@ -326,7 +319,7 @@ public class CasosDeUsoTest {
         arania2.morir();
         arania3.morir();
 
-        ArrayList<String> posiblesCompras = jugador.verificarConstruccionesPosibles(tienda);
+        ArrayList<String> posiblesCompras = jugador.verificarConstruccionesPosibles();
 
         assertTrue(posiblesCompras.contains("TorreBlanca"));
     }

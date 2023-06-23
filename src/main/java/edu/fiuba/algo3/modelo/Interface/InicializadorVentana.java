@@ -26,7 +26,7 @@ public class InicializadorVentana {
 
         stage.show();
 
-        InicializadorPantallaInicio.start(layout,stage);
+        InicializadorPantallaInicio.start(layout);
     }
 
     public static GridPane addGridPane() {

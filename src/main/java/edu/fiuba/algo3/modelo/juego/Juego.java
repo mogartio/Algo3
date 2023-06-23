@@ -19,7 +19,6 @@ public class Juego extends Observable {
 
     Jugador jugador;
     EstadoJuego estadoJuego;
-    Tienda tiendaDefensas = new Tienda();
     // Se me ocurre que reciba la lista de observers para las entidades (en un principio será solo para sprays)
     // ArrayList<Observer> observersParaEntidades;
     VistaSprays vistaSprays;
@@ -40,7 +39,7 @@ public class Juego extends Observable {
     }
 
     public void comprarDefensa(String unaDefensa, Coordenada coordenada) {
-       Defensa nuevaDefensa = tiendaDefensas.vendeme(unaDefensa);
+       Defensa nuevaDefensa = Jugador.getInstance().comprar(unaDefensa);
        nuevaDefensa.asignarPosicion(coordenada);
        nuevaDefensa.addObserver(vistaSprays);
        estadoJuego.introducirDefensa(nuevaDefensa);
