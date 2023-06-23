@@ -17,7 +17,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class InicializadorPantallaInicio {
-    public static void start(GridPane layout, Stage stage) throws Exception {
+    public static void start(GridPane layout) throws Exception {
         pedirNombreJugador(layout);
         crearBackground(layout);
     }

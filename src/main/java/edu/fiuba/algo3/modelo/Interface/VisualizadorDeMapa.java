@@ -4,11 +4,15 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.vista.ConstanteImagenes;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -20,11 +24,19 @@ public class VisualizadorDeMapa {
 
     private GridPane grilla;
 
+    private BorderPane layout;
+
     public VisualizadorDeMapa(int largo){
-        //recordando que se parte del supuesto de la misma cantidad de celdas en Y como en X
+
+        layout = new BorderPane();
+        HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
+        VBox panelTienda = VisualizadorTienda.crearPanelTienda();
+        layout.setTop(panelJugador);
+
         grilla = new GridPane();
         grilla.setGridLinesVisible(true);
-        grilla.setAlignment( Pos.CENTER );
+        layout.setLeft(grilla);
+        layout.setCenter(panelTienda);
     }
 
     public void agregarParcela(String tipoDeParcela, int coordX, int coordY){
@@ -40,7 +52,7 @@ public class VisualizadorDeMapa {
                 color = Color.ORANGE;
                 break;
         }
-        Rectangle rect = new Rectangle(60, 60, color);
+        Rectangle rect = new Rectangle(56, 56, color);
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
         grilla.add(rect, coordX, coordY );
@@ -52,10 +64,9 @@ public class VisualizadorDeMapa {
         if (ventana == null){
             return;
         }
-        ventana.setScene(new Scene(grilla));
+        ventana.setScene(new Scene(layout));
         ventana.setTitle("mapeanding");
 
-        Enemigo hormiga = new Hormiga();
         ventana.show();
     }
 
@@ -63,7 +74,7 @@ public class VisualizadorDeMapa {
         grilla.add(spray, coordX, coordY);
     }
 
-    public void removeNodeByRowColumnIndex(final int row,final int column) {
+    public void borrarNodoEnPosicion(final int row,final int column) {
 
         ObservableList<Node> childrens = grilla.getChildren();
 

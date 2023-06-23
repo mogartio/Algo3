@@ -13,6 +13,7 @@ public class Jugador extends ObservablePropio {
     private Credito creditos;
     private RachaDeHormigas rachaDeHormigas;
     private String nombre;
+    private Tienda tienda;
 
 
     private Jugador() {
@@ -20,12 +21,13 @@ public class Jugador extends ObservablePropio {
         vida = new Vida(20);
         creditos = new Credito(100);
         rachaDeHormigas = new RachaDeHormigas();
+        tienda = new Tienda();
     }
 
     public static Jugador getInstance() { return INSTANCE; }
 
-    public ArrayList<String> verificarConstruccionesPosibles(Tienda vendedor) {
-        return vendedor.catalogoDisponible(creditos);
+    public ArrayList<String> verificarConstruccionesPosibles() {
+        return tienda.catalogoDisponible(creditos);
     }
 
     public void reestablecerEstadoInicial() {
@@ -48,7 +50,7 @@ public class Jugador extends ObservablePropio {
         return vida.sigueVivo();
     }
 
-    public Defensa comprar(Tienda tienda, String tipoDefensa){
+    public Defensa comprar(String tipoDefensa){
         return tienda.vendeme(tipoDefensa);
     }
 
@@ -61,4 +63,8 @@ public class Jugador extends ObservablePropio {
     public void setNombre(String nuevoNombre) {
         nombre = nuevoNombre;
     }
+
+    public String getNombre() { return nombre; }
+
+    public int getVida() { return vida.getPuntos(); }
 }
