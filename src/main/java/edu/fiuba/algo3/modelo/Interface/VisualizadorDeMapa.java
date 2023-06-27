@@ -1,11 +1,6 @@
 package edu.fiuba.algo3.modelo.Interface;
 
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
-import edu.fiuba.algo3.vista.ConstanteImagenes;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -17,8 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.io.FileNotFoundException;
 
 public class VisualizadorDeMapa {
 
@@ -43,13 +36,13 @@ public class VisualizadorDeMapa {
         Color color = Color.GREY;
         switch (tipoDeParcela) {
             case "Rocoso":
-                color = Color.BLACK;
+                color = Color.GREY;
                 break;
             case "Pasarela":
-                color = Color.LIGHTBLUE;
+                color = Color.ORANGE;
                 break;
             case "Tierra":
-                color = Color.ORANGE;
+                color = Color.GREEN;
                 break;
         }
         Rectangle rect = new Rectangle(56, 56, color);

@@ -2,14 +2,9 @@ package edu.fiuba.algo3.modelo.Interface;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class InicializadorVentana {
@@ -19,8 +14,8 @@ public class InicializadorVentana {
         stage.setFullScreen(false);
 
         //se crea la escena inicial
-        GridPane layout = addGridPane();
-        Scene scene = new Scene(layout);
+        BorderPane layout = new BorderPane();
+        Scene scene = new Scene(layout, Color.GREENYELLOW);
 
         stage.setScene(scene);
 
@@ -32,7 +27,7 @@ public class InicializadorVentana {
     public static GridPane addGridPane() {
         GridPane grid = new GridPane();
         grid.setHgap(60);
-        grid.setVgap(60);
+        grid.setVgap(30);
         grid.setPadding(new Insets(0, 10, 0, 10));
 
         return grid;
