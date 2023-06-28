@@ -17,7 +17,8 @@ public class ConstanteImagenes {
                 "Hormiga", "ImagenesGUI/hormiga.png",
                 "Lechuza", "ImagenesGUI/lechuza.png",
                 "TorreBlanca", "ImagenesGUI/torreBlanca.png",
-                "TorrePlateada", "ImagenesGUI/torrePlateada.png" );
+                "TorrePlateada", "ImagenesGUI/torrePlateada.png",
+                "TrampaArenosa", "ImagenesGUI/trampaArena.png" );
     }
 
     public static ImageView getImagen(String imagenBuscada) throws FileNotFoundException {

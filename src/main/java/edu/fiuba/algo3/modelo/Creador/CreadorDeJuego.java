@@ -3,17 +3,14 @@ package edu.fiuba.algo3.modelo.Creador;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.Interface.VentanaDeJuego;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorPanelJugador;
-import edu.fiuba.algo3.modelo.ObserverPropio.Logger;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.vista.VistaEstadoJuego;
 import edu.fiuba.algo3.vista.VistaSprays;
-import javafx.beans.Observable;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
@@ -49,6 +46,8 @@ public class CreadorDeJuego {
         mapa.agregarSubscriptor(logger); //Sacar esto o hacer que el logger sea un observer, establecer la comunicacion*/
 
         Juego juego = new Juego(mapa, vistaSprays);
+
+        visualizadorDeMapa.setJuego(juego);
 
         Turnero turnero = new Turnero(juego);
 

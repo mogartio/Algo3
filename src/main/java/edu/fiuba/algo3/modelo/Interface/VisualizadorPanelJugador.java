@@ -24,7 +24,8 @@ public class VisualizadorPanelJugador {
 
                 botonFinalizarTurno.setText("Finalizar turno");
                 botonFinalizarTurno.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
-                botonFinalizarTurno.setPrefSize(400, 80);
+                botonFinalizarTurno.setPrefSize(400, 40);
+                botonFinalizarTurno.setAlignment(Pos.CENTER);
                 botonFinalizarTurno.setOnAction(funcion);
 
                 String mensajeNombreYVida = String.format("\nLa vida de %s es %s",Jugador.getInstance().getNombre(), Jugador.getInstance().getVida() );

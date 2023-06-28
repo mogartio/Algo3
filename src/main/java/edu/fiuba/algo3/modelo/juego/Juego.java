@@ -2,18 +2,11 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
-import edu.fiuba.algo3.modelo.ObserverPropio.Logger;
-import edu.fiuba.algo3.modelo.ObserverPropio.ObservablePropio;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.miscelanea.Tienda;
-import edu.fiuba.algo3.vista.VistaEstadoJuego;
 import edu.fiuba.algo3.vista.VistaSprays;
 
-import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 public class Juego extends Observable {
 
@@ -48,6 +41,7 @@ public class Juego extends Observable {
        nuevaDefensa.asignarPosicion(coordenada);
        nuevaDefensa.addObserver(vistaSprays);
        estadoJuego.introducirDefensa(nuevaDefensa);
+       System.out.println(String.format("Se ha agregado una Defensa %s en %s", unaDefensa, coordenada.representacionString()));
        setChanged();
 
        //nuevaDefensa.agregarSubscriptor(this.logger);

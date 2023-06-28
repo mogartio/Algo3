@@ -14,6 +14,7 @@ public class Jugador extends ObservablePropio {
     private RachaDeHormigas rachaDeHormigas;
     private String nombre;
     private Tienda tienda;
+    private String quiereComprar;
 
 
     private Jugador() {
@@ -69,4 +70,10 @@ public class Jugador extends ObservablePropio {
     public int getVida() { return vida.getPuntos(); }
 
     public int getCreditos() {return creditos.obtenerCreditos(); }
+
+    public void quiereComprar(String defensa) {
+        this.quiereComprar = defensa;
+    }
+
+    public String getQuiereComprar() { return quiereComprar; }
 }
