@@ -34,8 +34,6 @@ public class VisualizadorTienda {
                 nuevaDefensa = ConstanteImagenes.getImagen(defensa);
                 nuevaDefensa.setFitHeight(200);
                 nuevaDefensa.setFitWidth(150);
-                EventHandlerDefensas nuevoHandler = new EventHandlerDefensas(defensa);
-                nuevaDefensa.setOnMouseClicked(nuevoHandler);
                 flowPane.getChildren().add(nuevaDefensa);
 
             } catch (FileNotFoundException e) {
