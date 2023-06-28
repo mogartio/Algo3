@@ -67,4 +67,6 @@ public class Jugador extends ObservablePropio {
     public String getNombre() { return nombre; }
 
     public int getVida() { return vida.getPuntos(); }
+
+    public int getCreditos() {return creditos.obtenerCreditos(); }
 }

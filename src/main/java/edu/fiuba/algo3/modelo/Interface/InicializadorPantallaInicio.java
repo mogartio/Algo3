@@ -69,13 +69,13 @@ public class    InicializadorPantallaInicio {
         textField.setPrefHeight(40);
         hbox.getChildren().add(textField);
 
-
-
-
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                if (textField.getText().length() == 0){
+                if (textField.getText().length() == 0 || textField.getText().length() > 10){
+                    Text text = new Text("El nombre debe tener menos de 10 caracteres");
+                    text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+                    hbox.getChildren().add(text);
                     return;
                 }
                 Jugador.getInstance().setNombre(textField.getText());
