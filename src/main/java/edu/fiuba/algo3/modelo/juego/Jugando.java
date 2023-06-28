@@ -31,6 +31,12 @@ public class Jugando implements EstadoJuego {
         return this;
     }
 
+    @Override
+    public void notificar() {
+        enemigos.forEach(enemigo -> notify());
+        defensas.forEach(defensa -> notify());
+    }
+
     public boolean finalizado() {
         return false;
     }

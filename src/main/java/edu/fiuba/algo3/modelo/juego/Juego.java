@@ -38,6 +38,11 @@ public class Juego extends Observable {
         this.vistaSprays = vista;
     }
 
+    public void notificar() {
+        this.notify();
+        this.estadoJuego.notificar();
+    }
+
     public void comprarDefensa(String unaDefensa, Coordenada coordenada) {
        Defensa nuevaDefensa = Jugador.getInstance().comprar(unaDefensa);
        nuevaDefensa.asignarPosicion(coordenada);
@@ -52,6 +57,7 @@ public class Juego extends Observable {
     public void nuevoEnemigo(Enemigo nuevoEnemigo) {
         nuevoEnemigo.addObserver(vistaSprays);
         estadoJuego = this.estadoJuego.introducirEnemigo(nuevoEnemigo);
+        setChanged();
 
         //nuevoEnemigo.agregarSubscriptor(this.logger);
         //this.emisor.notificarSubscriptores("log", "Se agrega a la partida un nuevo enemigo " + nuevoEnemigo.representacionString());

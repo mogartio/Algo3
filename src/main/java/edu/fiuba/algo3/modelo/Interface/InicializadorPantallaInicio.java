@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-public class InicializadorPantallaInicio {
+public class    InicializadorPantallaInicio {
     public static void start(BorderPane layout) throws Exception {
 
         crearPanelInteractivo(layout);
@@ -47,7 +47,7 @@ public class InicializadorPantallaInicio {
 
     private static void inicializarBotonJugar(HBox hbox){
         Button button = new Button();
-        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego(button);
+        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego();
 
         button.setText("Jugar");
         button.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");

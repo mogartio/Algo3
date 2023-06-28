@@ -19,4 +19,7 @@ public class Perdido implements EstadoJuego {
     public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno) {
         return this;
     }
+
+    @Override
+    public void notificar() {}
 }
