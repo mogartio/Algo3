@@ -4,11 +4,9 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 
 public class Turnero implements Jugable {
 
-    private Juego juego;
     int contadorTurnos;
 
-    public Turnero(Juego juego) {
-        this.juego = juego;
+    public Turnero() {
         contadorTurnos = 0;
     }
 
@@ -16,14 +14,9 @@ public class Turnero implements Jugable {
         jugarTurnoMaquina();
     }
     public void jugarTurnoMaquina() {
-        if (!juego.finalizado()) {
-            juego.jugarTurno(contadorTurnos);
+        if (!Juego.getInstance().finalizado()) {
+            Juego.getInstance().jugarTurno(contadorTurnos);
             contadorTurnos++;
         }
     }
-
-   /* public void proximoTurno() {
-        ArrayList<Enemigo>
-    }*/
-
 }

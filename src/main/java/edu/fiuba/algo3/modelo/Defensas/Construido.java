@@ -19,7 +19,7 @@ public class Construido implements EstadoConstruccion {
     @Override
     public void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre){
         for (Enemigo enemigo : enemigos) {
-            if (!(enemigo instanceof Topo) && enemigo.estaEnRango(coordenada, rangoAtaque) ){
+            if ( enemigo.estaEnRango(coordenada, rangoAtaque) ){
 
                 //emisor.notificarSubscriptores("log", nombre + " ataca a " + enemigo.representacionString() + " en " + enemigo.represtacionUbicacion());
                 tipoDeDefensa.atacar(enemigo);

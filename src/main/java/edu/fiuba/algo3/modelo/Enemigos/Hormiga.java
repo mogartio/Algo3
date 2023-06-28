@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 
@@ -19,7 +20,7 @@ public class Hormiga extends Enemigo{
 
     public void morir(){
         //emisor.notificarSubscriptores("log", "Hormiga muere y otorga " + CREDITOS_HORMIGA + " créditos al jugador");
-        Jugador.getInstance().agregarARachaDeHormigas();
+        Juego.getInstance().agregarARachaDeHormigas();
     }
 
     public String representacionString() {

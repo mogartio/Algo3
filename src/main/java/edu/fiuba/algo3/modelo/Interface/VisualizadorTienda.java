@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Interface;
 
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.vista.ConstanteImagenes;
 import javafx.geometry.Insets;
@@ -30,7 +31,7 @@ public class VisualizadorTienda {
         flowPane.setHgap(1000); // para que se apilen verticalmente
         flowPane.setVgap(30);
         flowPane.setPadding(new Insets(70, 0, 0, 65));
-        Jugador.getInstance().verificarConstruccionesPosibles().forEach(defensa -> {
+        Juego.getInstance().verificarConstruccionesPosibles().forEach(defensa -> {
             ImageView nuevaDefensa = null;
             try {
                 nuevaDefensa = ConstanteImagenes.getImagen(defensa);

@@ -15,6 +15,12 @@ import edu.fiuba.algo3.vista.VistaSprays;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+
+//
+// ELIMINAR ESTA CLASE
+//
+
+
 public class CreadorDeJuego {
 
     private CreadorEnemigos creadorDeEnemigos;
@@ -28,7 +34,7 @@ public class CreadorDeJuego {
     }
 
     public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa) throws NoHayCamino, NoHayInicial {
-
+/*
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(tamanioMapa);
         CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,tamanioMapa, visualizadorDeMapa);
@@ -47,7 +53,7 @@ public class CreadorDeJuego {
         Juego juego = new Juego(mapa, vistaSprays);
 
         juego.addObserver(new VistaEstadoJuego());
-
-        return juego;
+        */
+        return Juego.getInstance() ;
     }
 }

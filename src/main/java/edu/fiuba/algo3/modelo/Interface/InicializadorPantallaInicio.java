@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Interface;
 
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -63,7 +64,7 @@ public class InicializadorPantallaInicio {
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                Jugador.getInstance().setNombre(textField.getText());
+                Juego.getInstance().setNombreDelJugador(textField.getText());
                 Text tuNombre = new Text(String.format("Tu nombre es %s", textField.getText()));    //Borrar el nombre viejo al usar uno nuevo
                 layout.add(tuNombre, 4, 9);
                 inicializarBotonJugar(layout);

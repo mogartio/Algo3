@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
 
 public class CreadorDeDefensas {
     public Defensa crear(String unaDefensa) {
-        // la defensa deberia proveerla un CreadorDeDefensa
+
         Defensa defensa = null;
 
         if (unaDefensa == "TorreBlanca"){
@@ -15,6 +15,7 @@ public class CreadorDeDefensas {
         if (unaDefensa == "TorrePlateada"){
             defensa = new TorrePlateada();
         }
+
         return defensa;
     }
 }

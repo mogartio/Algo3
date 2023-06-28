@@ -28,7 +28,6 @@ public class Pasarela extends Parcela {
     public Pasarela verSiguiente(){return siguientePasarela;}
 
     public void actualizarPosicion(Movimiento tipoMovimiento) {
-
         tipo.moverEnemigos(tipoMovimiento, this.verSiguiente());
     }
 

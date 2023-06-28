@@ -17,4 +17,6 @@ public class Ganado implements EstadoJuego {
     public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno) {
         return this;
     }
+
+    public void destruirDefensaMasAntigua(){};
 }

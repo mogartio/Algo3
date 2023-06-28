@@ -30,21 +30,22 @@ public class CasosDeUsoTest {
     @Test
     public void test01LaVidaYCreditosDelJugadorSonLosCorrectosAlEmpezar() {
         //el jugador comienza con 20 puntos de vida y con 100 creditos
-        Jugador jugador = Jugador.getInstance();
-        jugador.reestablecerEstadoInicial();
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
 
         for (int i=1 ; i <= 5 ; i++) { //se gastan los creditos
-            jugador.comprar("TorrePlateada");
+            juego.comprar("TorrePlateada");
         }
-        ArrayList<String> torresDisponibles = jugador.verificarConstruccionesPosibles(); //se obtienen el listado de compras posibles
 
-        for (int i=0 ; i <= 19 ; i++){
-            Jugador.getInstance().recibirDanio(1);
+        ArrayList<String> torresDisponibles = juego.verificarConstruccionesPosibles(); //se obtienen el listado de compras posibles
+
+        for (int i = 0 ; i <= 19 ; i++){
+            juego.daniarAlJugador(1);
         }
 
 
         assertTrue(torresDisponibles.isEmpty()); // se verifica que el listado de torres comprables este vacio
-        assertFalse(jugador.estaVivo());
+        assertFalse(juego.jugadorVivo());
     }
 
     @Test
@@ -81,7 +82,7 @@ public class CasosDeUsoTest {
     @Test
     public void test03SeVerficaQueElJugadorDispongaDeCreditoParaConstruirTorres() {
         // se crea un jugador con los recursos base (tambien podrian ser otros)
-        Jugador jugador = Jugador.getInstance();
+        Jugador jugador = new Jugador();
 
         jugador.reestablecerEstadoInicial();
 
@@ -255,51 +256,52 @@ public class CasosDeUsoTest {
 
     @Test
     public void test08aHormigaDaCreditosCorrespondientesAlMorirSinMultiplicador() {
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
 
-        Jugador jugador = Jugador.getInstance();
-        jugador.reestablecerEstadoInicial();
         Coordenada coordenadaInicializadora = new Coordenada(1, 1);
         Pasarela pasarelaInicializadora = new Pasarela(coordenadaInicializadora, new Normal());
         Credito creditoADescotnar = new Credito(100);
 
 
-        jugador.descontarCreditos(creditoADescotnar);
+        juego.descontarCreditos(creditoADescotnar);
         for (int i=1; i<=10; i++){
             Enemigo hormiga = new Hormiga(pasarelaInicializadora);
             hormiga.morir();
         }
 
-        ArrayList<String> comprasPosibles = jugador.verificarConstruccionesPosibles();
+        ArrayList<String> comprasPosibles = juego.verificarConstruccionesPosibles();
 
         assertTrue(comprasPosibles.contains("TorreBlanca"));
     }
 
     @Test
     public void test08bHormigaDaCreditosCorrespondientesAlMorirConMultiplicador() {
-        Jugador jugador = Jugador.getInstance();
-        jugador.reestablecerEstadoInicial();
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
+
         Coordenada coordenadaInicializadora = new Coordenada(1, 1);
         Pasarela pasarelaInicializadora = new Pasarela(coordenadaInicializadora, new Normal());
-        Credito creditoADescotnar = new Credito(100);
+        Credito creditoADescontar = new Credito(100);
 
-        jugador.descontarCreditos(creditoADescotnar);
+        juego.descontarCreditos(creditoADescontar);
 
         for (int i=1; i<=15; i++){
             Enemigo hormiga = new Hormiga(pasarelaInicializadora);
             hormiga.morir();
         }
 
-        ArrayList<String> comprasPosibles = jugador.verificarConstruccionesPosibles();
+        ArrayList<String> comprasPosibles = juego.verificarConstruccionesPosibles();
 
         assertTrue(comprasPosibles.contains("TorrePlateada"));
         assertTrue(comprasPosibles.contains("TorreBlanca"));
-
     }
 
     @Test
     public void test08cAraniaDaCreditosCorrespondientesAlMorir() {
-        Jugador jugador = Jugador.getInstance();
-        jugador.reestablecerEstadoInicial();
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
+
         Credito creditoADescotnar = new Credito(100);
 
         RandomGenerator generadorRandomMockeado1 = mock(RandomGenerator.class);
@@ -314,12 +316,12 @@ public class CasosDeUsoTest {
         when(generadorRandomMockeado2.obtenerUnNumero()).thenReturn(7);
         when(generadorRandomMockeado3.obtenerUnNumero()).thenReturn(1);
 
-        jugador.descontarCreditos(creditoADescotnar);
+        juego.descontarCreditos(creditoADescotnar);
         arania1.morir();
         arania2.morir();
         arania3.morir();
 
-        ArrayList<String> posiblesCompras = jugador.verificarConstruccionesPosibles();
+        ArrayList<String> posiblesCompras = juego.verificarConstruccionesPosibles();
 
         assertTrue(posiblesCompras.contains("TorreBlanca"));
     }
@@ -409,7 +411,8 @@ public class CasosDeUsoTest {
 
        //Logger logger = new Logger();
        VistaSprays mockVistaSprays = mock(VistaSprays.class);
-       Juego juego = new Juego(mapaJuego, mockVistaSprays);
+       Juego juego =  Juego.getInstance();
+       juego.reestablecerJuego();
 
        juego.nuevoEnemigo(araniaUno);
        juego.nuevoEnemigo(araniaDos);
@@ -428,7 +431,7 @@ public class CasosDeUsoTest {
 
     @Test
     public void test10aCrearUnJuegoConUnEnemigoSeGanaCuandoElEnemigoMuere() {
-        Jugador jugador = Jugador.getInstance();
+        Jugador jugador = new Jugador();
         jugador.reestablecerEstadoInicial();
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
@@ -438,7 +441,8 @@ public class CasosDeUsoTest {
         //Juego juego = new Juego(mapa, logger);
         //juego.agregarSubscriptor(logger);
         VistaSprays mockVistaSprays = mock(VistaSprays.class);
-        Juego juego = new Juego(mapa, mockVistaSprays);
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
 
         Coordenada coordenadaTercera = new Coordenada(2, 0);
         Pasarela pasarelaTercera = new Pasarela(coordenadaTercera, new Normal());
@@ -469,7 +473,7 @@ public class CasosDeUsoTest {
     @Test
     public void test10bCrearUnJuegoConMuchosEnemigosSeGanaSoloCuandoTodosMueren() {
 
-        Jugador jugador = Jugador.getInstance();
+        Jugador jugador = new Jugador();
         jugador.reestablecerEstadoInicial();
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
@@ -507,7 +511,8 @@ public class CasosDeUsoTest {
         //Juego juego = new Juego(mapa, logger);
         //juego.agregarSubscriptor(logger);
         VistaSprays mockVistaSprays = mock(VistaSprays.class);
-        Juego juego = new Juego(mapa, mockVistaSprays);
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
 
         enemigos.forEach(juego::nuevoEnemigo);
         enemigos.forEach(enemigo -> enemigo.recibirDanio(1)); //Las hormigas mueren pero las arañas siguen vivas
@@ -530,7 +535,7 @@ public class CasosDeUsoTest {
     }
     @Test
     public void test11ElJugadorSobreviveConUnEnemigoLlegandoALaMetaYGanaIgual() {
-        Jugador jugador = Jugador.getInstance();
+        Jugador jugador = new Jugador();
         jugador.reestablecerEstadoInicial();
 
         //Logger logger = new Logger();
@@ -539,7 +544,8 @@ public class CasosDeUsoTest {
         //Juego juego = new Juego(mapa, logger);
         //juego.agregarSubscriptor(logger);
         VistaSprays mockVistaSprays = mock(VistaSprays.class);
-        Juego juego = new Juego(mapa, mockVistaSprays);
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
@@ -559,16 +565,11 @@ public class CasosDeUsoTest {
 
     @Test
     public void test12ElJugadorMuereYPierdeElJuego() {
-        Jugador jugador = Jugador.getInstance();
-        jugador.reestablecerEstadoInicial();
-
-        //Logger logger = new Logger();
         Mapa mapa = new Mapa();
 
-        //Juego juego = new Juego(mapa, logger);
-        //juego.agregarSubscriptor(logger);
         VistaSprays mockVistaSprays = mock(VistaSprays.class);
-        Juego juego = new Juego(mapa, mockVistaSprays);
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
 
         Coordenada coordenadaFinal = new Coordenada(2,3);
         Pasarela pasarelaFinal = new Pasarela(coordenadaFinal, new Meta());
@@ -581,10 +582,12 @@ public class CasosDeUsoTest {
             juego.nuevoEnemigo(hormiga);
             juego.jugarTurno(i);
         }
+
         assertFalse(juego.finalizado()); //Queda una hormiga sola en el mapa, si avanza hará el último punto de daño al jugador
+
         juego.jugarTurno(20);
 
-        assertFalse(jugador.estaVivo()); //Estos dos assert son equivalentes a decir que el juego esta en estado "perdido"
+        assertFalse(juego.jugadorVivo()); //Estos dos assert son equivalentes a decir que el juego esta en estado "perdido"
         assertTrue(juego.finalizado());
     }
 }

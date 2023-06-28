@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
@@ -29,7 +30,7 @@ public class Arania extends Enemigo {
     public void morir(){
         int cantidadARecompensar = generadorRandom.obtenerUnNumero();
         //this.emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");
-        Jugador.getInstance().recompensar(cantidadARecompensar); // devuelve int entre 0 y 10
+        Juego.getInstance().recompensarJugador(cantidadARecompensar); // devuelve int entre 0 y 10
         setChanged();
     }
 

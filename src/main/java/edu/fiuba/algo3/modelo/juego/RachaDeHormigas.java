@@ -15,6 +15,6 @@ public class RachaDeHormigas {
             multiplicador = 2;
         }
 
-        Jugador.getInstance().recompensar(1*multiplicador);
+        Juego.getInstance().recompensarJugador(1*multiplicador);
     }
 }

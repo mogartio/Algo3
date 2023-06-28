@@ -13,6 +13,7 @@ import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.modelo.parcelas.Rocosa;
 import edu.fiuba.algo3.modelo.parcelas.Tierra;
+import edu.fiuba.algo3.vista.VistaSprays;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -28,6 +29,7 @@ public class CreadorDeMapa {
         camino = new Camino(tamanioMax); //cuidado se parte del supuesto de que el mapa es cuadrado (misma cantidad de celdas tanto en Y como en X)
         this.path = path;
         this.visualizador = visualizadorDeMapa;
+
     }
 
     public Mapa crearMapa() throws NoHayCamino, NoHayInicial {
