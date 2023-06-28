@@ -18,11 +18,17 @@ public class Turnero implements Jugable {
     public void jugarTurnoMaquina() {
         if (!juego.finalizado()) {
             juego.jugarTurno(contadorTurnos);
+            juego.notificar();
             contadorTurnos++;
         }
     }
 
-   /* public void proximoTurno() {
+    @Override
+    public void notificar() {
+        juego.notificar();
+    }
+
+    /* public void proximoTurno() {
         ArrayList<Enemigo>
     }*/
 

@@ -25,7 +25,7 @@ public class AudioPlayer {
         String musicFile = "ArchivosAudio/BGMusic.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
+        //mediaPlayer.play();
         mediaPlayer.setCycleCount(10000);
     }
 
