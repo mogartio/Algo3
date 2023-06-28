@@ -23,8 +23,8 @@ public class ConstanteImagenes {
     public static ImageView getImagen(String imagenBuscada) throws FileNotFoundException {
         InputStream stream = new FileInputStream((String) diccionarioImagenes.get(imagenBuscada));
         ImageView image = new ImageView((new Image(stream)));
-        image.setFitHeight(60);
-        image.setFitWidth(60);
+        image.setFitHeight(56);
+        image.setFitWidth(56);
         return image;
     }
 }

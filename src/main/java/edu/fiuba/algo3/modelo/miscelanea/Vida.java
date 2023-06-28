@@ -17,4 +17,6 @@ public class Vida {
         return puntos*100/valorInicial;
     }
 
+    public int getPuntos() { return puntos; }
+
 }
