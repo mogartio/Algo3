@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.vista.VistaSprays;
 
 import java.util.Observable;
@@ -16,6 +17,8 @@ public class Juego extends Observable {
     // ArrayList<Observer> observersParaEntidades;
     VistaSprays vistaSprays;
 
+    Mapa mapa;
+
     public Juego() {
         this.jugador = Jugador.getInstance();
         estadoJuego = new Jugando();
@@ -25,6 +28,7 @@ public class Juego extends Observable {
         this.jugador = Jugador.getInstance();
 
         estadoJuego = new Jugando(mapa);
+        this.mapa = mapa;
 
         // De este modo sería correcto aunque falte que sea una lista de observers y no un tipo concreto,
         // con esta forma se puede lograr que la vista se comunique con la ventana
@@ -36,10 +40,12 @@ public class Juego extends Observable {
         this.estadoJuego.notificar();
     }
 
+
     public void comprarDefensa(String unaDefensa, Coordenada coordenada) {
        Defensa nuevaDefensa = Jugador.getInstance().comprar(unaDefensa);
        nuevaDefensa.asignarPosicion(coordenada);
        nuevaDefensa.addObserver(vistaSprays);
+       mapa.ver(coordenada).construirDefensa();
        estadoJuego.introducirDefensa(nuevaDefensa);
        System.out.println(String.format("Se ha agregado una Defensa %s en %s", unaDefensa, coordenada.representacionString()));
        setChanged();
@@ -65,6 +71,8 @@ public class Juego extends Observable {
         this.estadoJuego = estadoJuego.jugarTurno(jugador.estaVivo(), numeroTurno);
         setChanged();
     }
+
+    public Parcela verParcelaEn(Coordenada coordenada) { return mapa.ver(coordenada);}
 
     //Esto claramente esta mal, lo pongo para el observer, deberia devolver informacion relevante sobre el estado del juego pero sin
     //dar a conocer el estado total

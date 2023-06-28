@@ -9,4 +9,5 @@ public class Meta implements TipoPasarela{
     public void moverEnemigos(Movimiento tipoMovimiento, Pasarela pasarelaActual) {
         tipoMovimiento.daniarJugador();
     }
+
 }

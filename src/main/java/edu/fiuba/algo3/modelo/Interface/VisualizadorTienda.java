@@ -39,7 +39,7 @@ public class VisualizadorTienda {
                 nuevaDefensa.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        Jugador.getInstance().quiereComprar(defensa);
+                        ControladorCompra.getInstance().seleccionarDefensa(defensa);
                     }
                 });
                 flowPane.getChildren().add(nuevaDefensa);

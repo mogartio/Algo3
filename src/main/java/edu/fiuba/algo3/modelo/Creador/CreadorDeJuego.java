@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Creador;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
+import edu.fiuba.algo3.modelo.Interface.ControladorCompra;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorPanelJugador;
 import edu.fiuba.algo3.modelo.Turnero;
@@ -47,6 +48,7 @@ public class CreadorDeJuego {
 
         Juego juego = new Juego(mapa, vistaSprays);
 
+        ControladorCompra.getInstance().setJuego(juego);
         visualizadorDeMapa.setJuego(juego);
 
         Turnero turnero = new Turnero(juego);

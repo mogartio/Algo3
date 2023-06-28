@@ -60,11 +60,7 @@ public class VisualizadorDeMapa {
         rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (Jugador.getInstance().getQuiereComprar() != null) {
-                    Coordenada coord = new Coordenada(coordX, coordY);
-                    juego.comprarDefensa(Jugador.getInstance().getQuiereComprar(), coord);
-                    Jugador.getInstance().quiereComprar(null);
-                }
+                ControladorCompra.getInstance().ponerDefensaEn(coordX, coordY);
             }
         });
         grilla.add(rect, coordX, coordY );

@@ -6,18 +6,19 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Pasarela extends Parcela {
     private TipoPasarela tipo;
     private Pasarela siguientePasarela;
 
-    public Pasarela(Coordenada coordenada,Pasarela siguientePasarela, TipoPasarela tipo) {
+    public Pasarela(Coordenada coordenada,Pasarela siguientePasarela, TipoPasarela tipo)  {
         super(coordenada, new DisponibleTrampa());
         this.siguientePasarela = siguientePasarela;
         this.tipo = tipo;
     }
     public Pasarela(Coordenada coordenada, TipoPasarela tipo) {
-        super(coordenada, new NoDisponible());
+        super(coordenada, new DisponibleTrampa());
         this.siguientePasarela = null;
         this.tipo = tipo;
     }
