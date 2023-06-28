@@ -79,7 +79,7 @@ public class InicializadorPantallaInicio {
                 if (textField.getText().length() == 0){
                     return;
                 }
-                Jugador.getInstance().setNombre(textField.getText());
+                Juego.getInstance().setNombreDelJugador(textField.getText());
                 inicializarBotonJugar(hbox);
             }
         };
