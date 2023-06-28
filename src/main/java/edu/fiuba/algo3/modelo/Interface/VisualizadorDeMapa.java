@@ -22,14 +22,15 @@ public class VisualizadorDeMapa {
     public VisualizadorDeMapa(int largo){
 
         layout = new BorderPane();
-        HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
         VBox panelTienda = VisualizadorTienda.crearPanelTienda();
-        layout.setTop(panelJugador);
-
         grilla = new GridPane();
         grilla.setGridLinesVisible(true);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
+    }
+
+    public void agregarPanelJugador(HBox panelJugador) {
+        layout.setTop(panelJugador);
     }
 
     public void agregarParcela(String tipoDeParcela, int coordX, int coordY){
