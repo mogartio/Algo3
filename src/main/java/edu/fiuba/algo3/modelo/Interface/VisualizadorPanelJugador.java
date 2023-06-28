@@ -4,9 +4,11 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class VisualizadorPanelJugador {
     public static HBox crearPanelJugador() {
@@ -21,7 +23,6 @@ public class VisualizadorPanelJugador {
         nombreJugador.setFill(Color.RED);
         nombreJugador.setWrappingWidth(1150);
         nombreJugador.setTextAlignment(TextAlignment.CENTER);
-
         hboxJugador.getChildren().add(nombreJugador);
 
         return hboxJugador;

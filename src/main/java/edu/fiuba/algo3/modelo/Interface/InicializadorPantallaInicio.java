@@ -4,26 +4,36 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class InicializadorPantallaInicio {
-    public static void start(GridPane layout) throws Exception {
-        pedirNombreJugador(layout);
+    public static void start(BorderPane layout) throws Exception {
+
+        crearPanelInteractivo(layout);
         crearBackground(layout);
+        AudioPlayer.playBGMusic();
     }
 
-    private static void crearBackground(GridPane layout) throws Exception {
+    private static void crearPanelInteractivo(BorderPane layout) {
+        HBox hbox = new HBox();
+        hbox.setPadding(new Insets(0,0, 50, 0));
+        hbox.setAlignment(Pos.CENTER);
+        pedirNombreJugador(hbox);
+        layout.setBottom(hbox);
+    }
+
+    private static void crearBackground(BorderPane layout) throws Exception {
         // Creación del Objeto imagen
         InputStream stream = new FileInputStream("ImagenesGUI/TitleScreen.png");
         Image image = new Image(stream);
@@ -36,7 +46,7 @@ public class InicializadorPantallaInicio {
         layout.setBackground(bg);
     }
 
-    private static void inicializarBotonJugar(GridPane layout){
+    private static void inicializarBotonJugar(HBox hbox){
         Button button = new Button();
         BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego(button);
 
@@ -44,19 +54,21 @@ public class InicializadorPantallaInicio {
         button.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
         button.setPrefSize(400, 80);
         button.setOnAction(funcion);
-
-        layout.add(button, 4, 12);
+        hbox.getChildren().clear();
+        hbox.setPadding(new Insets(0,0, 20, 0));
+        hbox.getChildren().add(button);
     }
 
-    private static void pedirNombreJugador(GridPane layout){
+    private static void pedirNombreJugador(HBox hbox){
 
-        Text chartTitle = new Text("Ingresá tu nombre:");
-        chartTitle.setFont(Font.font("Arial", FontWeight.BOLD, 40));
-        layout.add(chartTitle, 3, 12);
+        Text text = new Text("Ingresá tu nombre:");
+        text.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        hbox.getChildren().add(text);
 
         TextField textField = new TextField();
-
-        layout.add(textField, 3, 13);
+        textField.setPrefWidth(250);
+        textField.setPrefHeight(40);
+        hbox.getChildren().add(textField);
 
 
 
@@ -64,10 +76,11 @@ public class InicializadorPantallaInicio {
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                Juego.getInstance().setNombreDelJugador(textField.getText());
-                Text tuNombre = new Text(String.format("Tu nombre es %s", textField.getText()));    //Borrar el nombre viejo al usar uno nuevo
-                layout.add(tuNombre, 4, 9);
-                inicializarBotonJugar(layout);
+                if (textField.getText().length() == 0){
+                    return;
+                }
+                Jugador.getInstance().setNombre(textField.getText());
+                inicializarBotonJugar(hbox);
             }
         };
         textField.setOnAction(event);
