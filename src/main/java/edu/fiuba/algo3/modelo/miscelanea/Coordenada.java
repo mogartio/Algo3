@@ -60,7 +60,7 @@ public class Coordenada {
     }
 
     public String representacionString(){
-        return ("( " + Integer.toString(this.coordX) + ", " + Integer.toString(this.coordY) + " )");
+        return ("(" + Integer.toString(this.coordX) + "," + Integer.toString(this.coordY) + ")");
     }
 
     public int getAbscisa(){

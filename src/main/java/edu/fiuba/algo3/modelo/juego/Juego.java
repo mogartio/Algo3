@@ -39,7 +39,7 @@ public class Juego extends Observable {
     }
 
     public void notificar() {
-        this.notify();
+        this.notifyObservers();
         this.estadoJuego.notificar();
     }
 
@@ -55,7 +55,6 @@ public class Juego extends Observable {
     }
 
     public void nuevoEnemigo(Enemigo nuevoEnemigo) {
-        nuevoEnemigo.addObserver(vistaSprays);
         estadoJuego = this.estadoJuego.introducirEnemigo(nuevoEnemigo);
         setChanged();
 

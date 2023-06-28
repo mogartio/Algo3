@@ -40,7 +40,7 @@ public class CreadorDeJuego {
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         Mapa mapa = creadorMapa.crearMapa();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos, vistaSprays);
 
         mapa.cargarOleadas(enemigos);
 

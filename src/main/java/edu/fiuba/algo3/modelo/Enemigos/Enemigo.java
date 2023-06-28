@@ -29,6 +29,7 @@ public abstract class Enemigo extends Sprayable {
 
     public void establecerInicioYMeta(Parcela inicial, Parcela pFinal){
         this.tipoMovimiento.actualizarPosicion(inicial, pFinal);
+        this.setChanged();
     }
 
     public void recibirDanio(int danio){
@@ -36,6 +37,7 @@ public abstract class Enemigo extends Sprayable {
 
         if (!vida.sigueVivo()) {
             this.morir();
+            setChanged();
         }
     }
 
@@ -59,6 +61,7 @@ public abstract class Enemigo extends Sprayable {
 
     public void avanzar(Mapa mapa) throws PasarelaInexistente{
         this.efectoEnemigo = this.efectoEnemigo.avanzar(this.cantidadMovimientos, this.tipoMovimiento, mapa);
+        setChanged();
     }
 
     public boolean estaEnRango(Coordenada posicion, int distancia){

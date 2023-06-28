@@ -13,6 +13,7 @@ public class Turnero implements Jugable {
     }
 
     public void finTurnoJugador(){
+        System.out.println("Turnero: Fin turno jugador n " + contadorTurnos );
         jugarTurnoMaquina();
     }
     public void jugarTurnoMaquina() {
@@ -21,11 +22,6 @@ public class Turnero implements Jugable {
             juego.notificar();
             contadorTurnos++;
         }
-    }
-
-    @Override
-    public void notificar() {
-        juego.notificar();
     }
 
     /* public void proximoTurno() {

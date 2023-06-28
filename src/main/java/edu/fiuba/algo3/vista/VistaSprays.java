@@ -19,12 +19,17 @@ public class VistaSprays implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        Sprayable sprayable = (Sprayable) arg;
+        System.out.println("Me llega un update a vistaSprays");
+
+        Sprayable sprayable = (Sprayable) o;
 
         ArrayList<String> datos = sprayable.ObtenerSprayIDYPosicion();
 
+        System.out.println("Paso ObtenerSprayIDYPosicion");
+
         if(datos.size() == 2){ //Cuando no es 2 es porque no debe mostrar el spray
             try {
+                System.out.println(datos);
                 ImageView imagen = ConstanteImagenes.getImagen(datos.get(0));
 
                 String coordenadasComoString = datos.get(1);

@@ -5,6 +5,4 @@ public interface Jugable {
     void finTurnoJugador();
 
     void jugarTurnoMaquina();
-
-    void notificar();
 }
