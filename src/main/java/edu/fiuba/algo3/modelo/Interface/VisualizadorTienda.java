@@ -3,10 +3,8 @@ package edu.fiuba.algo3.modelo.Interface;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.vista.ConstanteImagenes;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -36,6 +34,8 @@ public class VisualizadorTienda {
                 nuevaDefensa = ConstanteImagenes.getImagen(defensa);
                 nuevaDefensa.setFitHeight(200);
                 nuevaDefensa.setFitWidth(150);
+                EventHandlerDefensas nuevoHandler = new EventHandlerDefensas(defensa);
+                nuevaDefensa.setOnMouseClicked(nuevoHandler);
                 flowPane.getChildren().add(nuevaDefensa);
 
             } catch (FileNotFoundException e) {

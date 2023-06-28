@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.modelo.Interface;
 
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -22,14 +20,5 @@ public class InicializadorVentana {
         stage.show();
 
         InicializadorPantallaInicio.start(layout);
-    }
-
-    public static GridPane addGridPane() {
-        GridPane grid = new GridPane();
-        grid.setHgap(60);
-        grid.setVgap(30);
-        grid.setPadding(new Insets(0, 10, 0, 10));
-
-        return grid;
     }
 }

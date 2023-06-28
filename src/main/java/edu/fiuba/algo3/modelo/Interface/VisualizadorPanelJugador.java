@@ -12,17 +12,21 @@ import javafx.scene.text.TextAlignment;
 public class VisualizadorPanelJugador {
     public static HBox crearPanelJugador() {
         HBox hboxJugador = new HBox();
+        hboxJugador.setSpacing(200);
         hboxJugador.setStyle("-fx-background-color: #000000;");
-        hboxJugador.setPadding(new Insets(0, 1000, 20, 0));
+        hboxJugador.setPadding(new Insets(0, 0, 20, 400));
 
         String mensajeNombreYVida = String.format("\nLa vida de %s es %s",Jugador.getInstance().getNombre(), Jugador.getInstance().getVida() );
 
         Text nombreJugador = new Text(mensajeNombreYVida);
         nombreJugador.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         nombreJugador.setFill(Color.RED);
-        nombreJugador.setWrappingWidth(1150);
-        nombreJugador.setTextAlignment(TextAlignment.CENTER);
-        hboxJugador.getChildren().add(nombreJugador);
+
+        Text creditosJugador = new Text(String.format("Créditos disponibles:\n%d", Jugador.getInstance().getCreditos()));
+        creditosJugador.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        creditosJugador.setFill(Color.RED);
+        creditosJugador.setTextAlignment(TextAlignment.CENTER);
+        hboxJugador.getChildren().addAll(nombreJugador, creditosJugador);
 
         return hboxJugador;
     }
