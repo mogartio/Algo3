@@ -42,7 +42,7 @@ public class CreadorDeJuego {
         Juego.getInstance().reestablecerJuego();
         Juego.getInstance().setMapa(mapa);
         Juego.getInstance().cargarObserverParaDefensas(vistaSprays);
-        Juego.getInstance().addObserver(new VistaEstadoJuego());
+        Juego.getInstance().addObserver(new VistaEstadoJuego(visualizadorDeMapa));
         Juego.getInstance().setNombreDelJugador(nombreDelJugador);
 
         Turnero turnero = new Turnero();
