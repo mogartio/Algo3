@@ -1,9 +1,14 @@
 package edu.fiuba.algo3.modelo.Interface;
 
+import edu.fiuba.algo3.modelo.juego.Juego;
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -19,17 +24,25 @@ public class VisualizadorDeMapa {
 
     private BorderPane layout;
 
+    private Juego juego;
+
+    public void setJuego(Juego unJuego) { this.juego = unJuego; }
     public VisualizadorDeMapa(int largo){
 
         layout = new BorderPane();
-        HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
         VBox panelTienda = VisualizadorTienda.crearPanelTienda();
-        layout.setTop(panelJugador);
-
+        //HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
         grilla = new GridPane();
         grilla.setGridLinesVisible(true);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
+        //layout.setTop(panelJugador);
+        //mostrar();
+    }
+
+    public void actualizarPanelJugador(HBox panelJugador) {
+        //System.out.println();
+        layout.setTop(panelJugador);
     }
 
     public void agregarParcela(String tipoDeParcela, int coordX, int coordY){
@@ -48,6 +61,12 @@ public class VisualizadorDeMapa {
         Rectangle rect = new Rectangle(56, 56, color);
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
+
+         rect.setOnMouseClicked(mouseEvent -> {
+                     juego = Juego.getInstance();
+                     ControladorCompra controladorCompra = ControladorCompra.getInstance();
+                     controladorCompra.ponerDefensaEn(coordX, coordY);
+                 });
         grilla.add(rect, coordX, coordY );
     }
 

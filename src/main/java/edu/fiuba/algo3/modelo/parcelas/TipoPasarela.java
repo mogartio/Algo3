@@ -6,4 +6,5 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 public interface TipoPasarela {
     void moverEnemigos(Movimiento tipoMovimiento, Pasarela pasarelaActual);
+
 }
