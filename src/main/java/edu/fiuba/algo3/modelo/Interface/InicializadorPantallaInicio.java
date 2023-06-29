@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Interface;
 
-import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -46,9 +44,9 @@ public class    InicializadorPantallaInicio {
         layout.setBackground(bg);
     }
 
-    private static void inicializarBotonJugar(HBox hbox){
+    private static void inicializarBotonJugar(HBox hbox, String nombreJugador){
         Button button = new Button();
-        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego(button);
+        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego(button, nombreJugador );
 
         button.setText("Jugar");
         button.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
@@ -79,8 +77,7 @@ public class    InicializadorPantallaInicio {
                     hbox.getChildren().add(text);
                     return;
                 }
-                Juego.getInstance().setNombreDelJugador(textField.getText());
-                inicializarBotonJugar(hbox);
+                inicializarBotonJugar(hbox, textField.getText());
             }
         };
         textField.setOnAction(event);

@@ -27,7 +27,7 @@ public class VistaSprays implements Observer {
 
         System.out.println("Paso ObtenerSprayIDYPosicion");
 
-        if(datos.size() == 2){ //Cuando no es 2 es porque no debe mostrar el spray
+        if(datos.size() == 2){ //Cuando no es 2 es porque no debe mostrar el spray}
             try {
                 System.out.println(datos);
                 ImageView imagen = ConstanteImagenes.getImagen(datos.get(0));

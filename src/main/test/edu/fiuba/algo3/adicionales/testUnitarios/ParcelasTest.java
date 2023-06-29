@@ -93,7 +93,7 @@ public class ParcelasTest {
         Tierra tierra = new Tierra(mockedCoordenada);
         tierra.construirDefensa(mockedTorre);
 
-        assertTrue(tierra.ocupada());
+        assertFalse(tierra.puedeConstruir(mockedTorre.representationString()));
     }
 
     @Test

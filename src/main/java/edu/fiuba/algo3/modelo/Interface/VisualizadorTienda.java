@@ -40,7 +40,7 @@ public class VisualizadorTienda {
                 nuevaDefensa.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        //Juego.getInstance().setCompraJugador(defensa);
+                        System.out.println("Defensa seleccionada");
                         ControladorCompra.getInstance().seleccionarDefensa(defensa);
                     }
                 });
@@ -51,5 +51,9 @@ public class VisualizadorTienda {
             }
         });
         return flowPane;
+    }
+
+    public void updateInfo() {
+
     }
 }

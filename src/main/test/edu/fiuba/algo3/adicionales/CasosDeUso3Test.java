@@ -11,6 +11,7 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.vista.VistaSprays;
 import javafx.beans.Observable;
 import org.junit.jupiter.api.Test;
 
@@ -104,6 +105,7 @@ public class CasosDeUso3Test {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(4);
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/tests/Test21/mapaTest21",4, visualizadorDeMapa);
         Mapa mapa = creadorDeMapa.crearMapa();
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -113,6 +115,7 @@ public class CasosDeUso3Test {
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
+        juego.cargarObserverParaDefensas(vistaSprays);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -138,6 +141,7 @@ public class CasosDeUso3Test {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(6);
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/tests/Test23/mapaTest23",6, visualizadorDeMapa);
         Mapa mapa = creadorDeMapa.crearMapa();
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -147,6 +151,7 @@ public class CasosDeUso3Test {
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
+        juego.cargarObserverParaDefensas(vistaSprays);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();

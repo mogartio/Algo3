@@ -23,13 +23,12 @@ import java.util.LinkedList;
 
 public class CreadorDeJuego {
 
-    public static void crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa) throws NoHayCamino, NoHayInicial {
+    public static void crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa, String nombreDelJugador) throws NoHayCamino, NoHayInicial {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(tamanioMapa);
-        CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,tamanioMapa, visualizadorDeMapa);
-
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
+        CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,tamanioMapa, visualizadorDeMapa);
 
         Mapa mapa = creadorMapa.crearMapa();
         LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos, vistaSprays);
@@ -42,9 +41,9 @@ public class CreadorDeJuego {
 
         Juego.getInstance().reestablecerJuego();
         Juego.getInstance().setMapa(mapa);
-        Juego.getInstance().addObserver(new VistaEstadoJuego());
         Juego.getInstance().cargarObserverParaDefensas(vistaSprays);
-        Juego.getInstance().setNombreDelJugador("test"); // Aca tendria que agregarse el nombre recibido por param
+        Juego.getInstance().addObserver(new VistaEstadoJuego(visualizadorDeMapa));
+        Juego.getInstance().setNombreDelJugador(nombreDelJugador);
 
         Turnero turnero = new Turnero();
 

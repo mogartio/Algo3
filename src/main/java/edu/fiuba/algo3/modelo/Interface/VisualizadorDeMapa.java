@@ -62,19 +62,11 @@ public class VisualizadorDeMapa {
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
 
-        // rect.setOnMouseClicked(mouseEvent -> {
-        //     System.out.println("Entro al handler de grilla, compra: " + juego.getCompraJugador()); //no entra aca
-        //     if (juego.getCompraJugador() != null) {
-        //         System.out.println("Compra de jugador no es null, es " + juego.getCompraJugador());
-        //         Coordenada coord = new Coordenada(coordX, coordY);
-        //         juego.comprarDefensa(juego.getCompraJugador(), coord);
-        //         juego.setCompraJugador(null);
-        rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                ControladorCompra.getInstance().ponerDefensaEn(coordX, coordY);
-            }
-        });
+         rect.setOnMouseClicked(mouseEvent -> {
+                     juego = Juego.getInstance();
+                     ControladorCompra controladorCompra = ControladorCompra.getInstance();
+                     controladorCompra.ponerDefensaEn(coordX, coordY);
+                 });
         grilla.add(rect, coordX, coordY );
     }
 
@@ -105,5 +97,9 @@ public class VisualizadorDeMapa {
                 break;
             }
         }
+    }
+
+    public void mostrarMensajeFinal(ImageView mensajeFinal) {
+        layout.setLeft(mensajeFinal);
     }
 }

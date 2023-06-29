@@ -18,6 +18,7 @@ import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.*;
+import edu.fiuba.algo3.vista.VistaSprays;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
@@ -277,14 +278,16 @@ public class CasosDeUso2Test {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
         Mapa mapa = creadorDeMapa.crearMapa();
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
         Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json", mockObserver);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigosDePrueba", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
+        juego.cargarObserverParaDefensas(vistaSprays);
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
         Turnero turnero = new Turnero();
@@ -294,7 +297,6 @@ public class CasosDeUso2Test {
         while (!juego.finalizado()){
             turnero.jugarTurnoMaquina();
         }
-
         assertTrue(juego.jugadorVivo());
     }
 
@@ -303,6 +305,7 @@ public class CasosDeUso2Test {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
         Mapa mapa = creadorDeMapa.crearMapa();
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -312,6 +315,7 @@ public class CasosDeUso2Test {
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
+        juego.cargarObserverParaDefensas(vistaSprays);
         juego.setOleadasDelNivel(enemigos);
         Turnero turnero = new Turnero();
 

@@ -45,15 +45,6 @@ public class Juego extends Observable {
         this.estadoJuego.notificar();
     }
 
-    public String getCompraJugador() {
-        return jugador.getQuiereComprar();
-    }
-
-    public void setCompraJugador(String defensa) {
-        System.out.println("Setteo la compra de jugador a " + defensa);
-        jugador.quiereComprar(defensa);
-    }
-
     public void cargarObserverParaDefensas(Observer observer){
         this.observerParaDefensas = observer;
     }
@@ -74,7 +65,7 @@ public class Juego extends Observable {
     //    setChanged();
         Defensa nuevaDefensa = jugador.comprar(unaDefensa);
         nuevaDefensa.asignarPosicion(coordenada);
-        nuevaDefensa.addObserver(vistaSprays);
+        nuevaDefensa.addObserver( observerParaDefensas);
         estadoJuego.introducirDefensa(nuevaDefensa);
         setChanged();
         mapa.ver(coordenada).construirDefensa();
