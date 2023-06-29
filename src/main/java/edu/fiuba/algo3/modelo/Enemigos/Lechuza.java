@@ -21,6 +21,7 @@ public class Lechuza extends Enemigo{
     public void daniarJugador() {
         super.daniarJugador();
         //se debe  agregar la destruccion de la torre
+        System.out.println("Llego a daniar jugador");
         Juego.getInstance().destruirDefensaMasAntigua();
     }
 

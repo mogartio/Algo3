@@ -39,8 +39,8 @@ public class Juego extends Observable {
         return INSTANCE;
     }
 
-    public void notificar() {
-        this.notifyObservers();
+    public void notificar(String tipo) {
+        this.notifyObservers(tipo);
         jugador.notifyObservers();
         this.estadoJuego.notificar();
     }

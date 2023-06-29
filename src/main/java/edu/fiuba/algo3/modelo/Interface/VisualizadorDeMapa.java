@@ -18,26 +18,24 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class VisualizadorDeMapa {
 
     private GridPane grilla;
 
     private BorderPane layout;
 
-    private Juego juego;
-
-    public void setJuego(Juego unJuego) { this.juego = unJuego; }
+    private ArrayList<Coordenada> coordenadasSpraysDelTurno;
     public VisualizadorDeMapa(int largo){
 
         layout = new BorderPane();
         VBox panelTienda = VisualizadorTienda.crearPanelTienda();
-        //HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
         grilla = new GridPane();
         grilla.setGridLinesVisible(true);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
-        //layout.setTop(panelJugador);
-        //mostrar();
+        coordenadasSpraysDelTurno = new ArrayList<>();
     }
 
     public void actualizarPanelJugador(HBox panelJugador) {
@@ -63,7 +61,6 @@ public class VisualizadorDeMapa {
         rect.setStyle("-fx-stroke-width: 1;");
 
          rect.setOnMouseClicked(mouseEvent -> {
-                     juego = Juego.getInstance();
                      ControladorCompra controladorCompra = ControladorCompra.getInstance();
                      controladorCompra.ponerDefensaEn(coordX, coordY);
                  });
@@ -83,20 +80,28 @@ public class VisualizadorDeMapa {
     }
 
     public void agregarSpray(ImageView spray, int coordX, int coordY){
+        Coordenada coordenada = new Coordenada(coordX, coordY);
+        coordenadasSpraysDelTurno.add(coordenada);
         grilla.add(spray, coordX, coordY);
     }
 
-    public void borrarNodoEnPosicion(final int row,final int column) {
+    public void borrarNodoEnPosicion(final int fila,final int columna) {
 
         ObservableList<Node> childrens = grilla.getChildren();
 
         for(Node node : childrens) {
-            if(node instanceof ImageView && grilla.getRowIndex(node) == row && grilla.getColumnIndex(node) == column) {
-                 // use what you want to remove
-                grilla.getChildren().remove(node);
-                break;
+            if(node instanceof ImageView) {
+                if(grilla.getRowIndex(node) == fila && grilla.getColumnIndex(node) == columna) {
+                    grilla.getChildren().remove(node);
+                    break;
+                }
             }
+
         }
+    }
+
+    public void borrarEnemigosDelTurnoAnterior(){
+        coordenadasSpraysDelTurno.forEach(coordenada -> borrarNodoEnPosicion(coordenada.getOrdenada(), coordenada.getAbscisa()));
     }
 
     public void mostrarMensajeFinal(ImageView mensajeFinal) {
