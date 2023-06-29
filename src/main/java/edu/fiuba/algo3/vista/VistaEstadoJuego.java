@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Enemigos.Sprayable;
+import edu.fiuba.algo3.modelo.Interface.AudioPlayer;
 import edu.fiuba.algo3.modelo.Interface.VentanaDeJuego;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.juego.EstadoJuego;
@@ -28,6 +29,7 @@ public class VistaEstadoJuego implements Observer {
             mensajeFinal.setFitWidth(1000);
             mensajeFinal.setFitHeight(200);
             visualizadorDeMapa.mostrarMensajeFinal(mensajeFinal);
+            AudioPlayer.playEfectoSonido(estadoJuego.versionString());
 
         } catch (FileNotFoundException e) {
 

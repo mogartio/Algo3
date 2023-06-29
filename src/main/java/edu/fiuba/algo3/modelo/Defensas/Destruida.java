@@ -19,6 +19,16 @@ public class Destruida implements EstadoConstruccion{
     }
 
     @Override
+    public void setSonido() {
+
+    }
+
+    @Override
+    public String versonido() {
+        return null;
+    }
+
+    @Override
     public void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre) {}
 
 }

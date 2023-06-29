@@ -13,7 +13,6 @@ public abstract class Enemigo extends Sprayable {
     protected Vida vida;
     protected int cantidadMovimientos;
     protected int poderAtaque;
-
     protected Efecto efectoEnemigo;
     protected Movimiento tipoMovimiento;
 
@@ -41,6 +40,8 @@ public abstract class Enemigo extends Sprayable {
             setChanged();
         }
     }
+
+    public abstract String verSonido();
 
     public void actualizarPosicionActual(Parcela parcelaSiguiente) {
         this.tipoMovimiento.actualizarPosicion(parcelaSiguiente);
@@ -80,12 +81,11 @@ public abstract class Enemigo extends Sprayable {
     @Override
     public ArrayList<String> ObtenerSprayIDYPosicion() {
         ArrayList<String> datos = new ArrayList<>();
-
         if(this.estaVivo()) {
             datos.add(this.representacionString());
             datos.add(this.represtacionUbicacion());
+            datos.add(verSonido());
         }
-
         return datos;
     }
 }
