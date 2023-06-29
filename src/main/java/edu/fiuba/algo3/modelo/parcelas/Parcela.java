@@ -5,6 +5,9 @@ import edu.fiuba.algo3.modelo.Enemigos.Movimiento;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 
+import java.util.Hashtable;
+import java.util.Map;
+
 public abstract class Parcela {
     protected Coordenada coordenada;
     protected Construible construible;
@@ -14,8 +17,10 @@ public abstract class Parcela {
         this.construible = construible;
     }
 
-    public void construirDefensa(Defensa defensa){
-        this.construible.construir(this.coordenada, defensa, this);
+    public void construirDefensa(){
+
+        this.construible.construir(this.coordenada,this);
+        this.construible = new NoDisponible();
     }
 
     public boolean equals(Object pasarela){
@@ -43,7 +48,14 @@ public abstract class Parcela {
     }
 
     public boolean ocupada(){
-        return !(construible.puedeConstruir());
+        return construible.ocupada();
+    }
+
+    public boolean puedeConstruir(String unaDefensa) {
+        if (ocupada()) {
+            return false;
+        }
+        return construible.puedeConstruir(unaDefensa);
     }
 
     public void actualizarPosicion(Movimiento tipoMovimiento){}

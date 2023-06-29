@@ -48,7 +48,7 @@ public class    InicializadorPantallaInicio {
 
     private static void inicializarBotonJugar(HBox hbox){
         Button button = new Button();
-        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego();
+        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego(button);
 
         button.setText("Jugar");
         button.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");

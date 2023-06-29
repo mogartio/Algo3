@@ -1,12 +1,10 @@
 package edu.fiuba.algo3.modelo.Interface;
 
-import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import javafx.event.ActionEvent;
@@ -20,9 +18,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
+    private Button miBoton;
     private Stage stage;
 
-    public BotonDeInicioDeJuego() {}
+    public BotonDeInicioDeJuego(Button unBoton) {
+        this.miBoton = unBoton;
+    }
 
     public void handle(ActionEvent actionEvent) {
         // Create and configure the new scene
@@ -37,6 +38,7 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
             //CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15, nombreJugador);
             /*Mapa mapa = creadorDeMapa.crearMapa();
 
+            Mapa mapa = creadorDeMapa.crearMapa();
 
             CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
             LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json");
@@ -50,4 +52,6 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
             System.out.println("sarasa MAPA"); // catchear correctemente
         }
     }
+
+
 }

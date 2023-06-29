@@ -2,8 +2,14 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
+import edu.fiuba.algo3.modelo.ObserverPropio.Logger;
+import edu.fiuba.algo3.modelo.ObserverPropio.ObservablePropio;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.miscelanea.Tienda;
+import edu.fiuba.algo3.modelo.parcelas.Parcela;
+import edu.fiuba.algo3.vista.VistaEstadoJuego;
 import edu.fiuba.algo3.vista.VistaSprays;
 import javafx.stage.Stage;
 
@@ -60,15 +66,22 @@ public class Juego extends Observable {
     }
 
     public void comprarDefensa(String unaDefensa, Coordenada coordenada) {
-       Defensa nuevaDefensa = jugador.comprar(unaDefensa);
-       nuevaDefensa.asignarPosicion(coordenada);
-       nuevaDefensa.addObserver(observerParaDefensas);
-       estadoJuego.introducirDefensa(nuevaDefensa);
-       //System.out.println(String.format("Se ha agregado una Defensa %s en %s", unaDefensa, coordenada.representacionString()));
-       setChanged();
+    //    Defensa nuevaDefensa = jugador.comprar(unaDefensa);
+    //    nuevaDefensa.asignarPosicion(coordenada);
+    //    nuevaDefensa.addObserver(observerParaDefensas);
+    //    estadoJuego.introducirDefensa(nuevaDefensa);
+    //    //System.out.println(String.format("Se ha agregado una Defensa %s en %s", unaDefensa, coordenada.representacionString()));
+    //    setChanged();
+        Defensa nuevaDefensa = jugador.comprar(unaDefensa);
+        nuevaDefensa.asignarPosicion(coordenada);
+        nuevaDefensa.addObserver(vistaSprays);
+        estadoJuego.introducirDefensa(nuevaDefensa);
+        setChanged();
+        mapa.ver(coordenada).construirDefensa();
+        System.out.println(String.format("se agrego %s", unaDefensa));
 
-       //nuevaDefensa.agregarSubscriptor(this.logger);
-       //this.emisor.notificarSubscriptores("log", "Se agrega al juego una nueva defensa: " + unaDefensa + " en " + coordenada.representacionString());
+        //nuevaDefensa.agregarSubscriptor(this.logger);
+        //this.emisor.notificarSubscriptores("log", "Se agrega al juego una nueva defensa: " + unaDefensa + " en " + coordenada.representacionString());
     }
 
     public void nuevoEnemigo(Enemigo nuevoEnemigo) {
@@ -151,4 +164,13 @@ public class Juego extends Observable {
     public void destruirDefensaMasAntigua() {
         estadoJuego.destruirDefensaMasAntigua();
     }
+
+    // public void notificar() {
+    //     this.notify();
+    //     this.estadoJuego.notificar();
+    // }
+
+    public int getCreditosDelJugador() { return jugador.getCreditos(); }
+
+    public Parcela verParcelaEn(Coordenada coordenada) { return mapa.ver(coordenada); }
 }

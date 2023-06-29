@@ -3,8 +3,8 @@ package edu.fiuba.algo3.modelo.Creador;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
+import edu.fiuba.algo3.modelo.Interface.ControladorCompra;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorPanelJugador;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
@@ -21,7 +21,7 @@ import java.util.LinkedList;
 //
 // ELIMINAR ESTA CLASE
 //
-
+/*
 
 public class CreadorDeJuego {
 
@@ -50,7 +50,7 @@ public class CreadorDeJuego {
 
        /* Logger logger = new Logger();
 
-        mapa.agregarSubscriptor(logger); //Sacar esto o hacer que el logger sea un observer, establecer la comunicacion*/
+        mapa.agregarSubscriptor(logger); //Sacar esto o hacer que el logger sea un observer, establecer la comunicacion
 
         Juego.getInstance().reestablecerJuego();
         Juego.getInstance().setMapa(mapa);
@@ -59,6 +59,8 @@ public class CreadorDeJuego {
         Juego.getInstance().setNombreDelJugador("test"); // Aca tendria que agregarse el nombre recibido por param
 
         Turnero turnero = new Turnero();
+        ControladorCompra.getInstance().setJuego(juego);
+        visualizadorDeMapa.setJuego(juego);
 
         VisualizadorPanelJugador visualizadorPanelJugador = new VisualizadorPanelJugador(visualizadorDeMapa);
 
@@ -73,5 +75,8 @@ public class CreadorDeJuego {
         visualizadorDeMapa.mostrar();
 
         //return Juego.getInstance() ;
+        juego.addObserver(new VistaEstadoJuego());
+
+        return Juego.getInstance() ;
     }
-}
+} */

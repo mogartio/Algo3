@@ -31,10 +31,13 @@ public class VisualizadorDeMapa {
 
         layout = new BorderPane();
         VBox panelTienda = VisualizadorTienda.crearPanelTienda();
+        HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
         grilla = new GridPane();
         grilla.setGridLinesVisible(true);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
+        layout.setTop(panelJugador);
+        mostrar();
     }
 
     public void actualizarPanelJugador(HBox panelJugador) {
@@ -59,13 +62,17 @@ public class VisualizadorDeMapa {
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
 
-        rect.setOnMouseClicked(mouseEvent -> {
-            System.out.println("Entro al handler de grilla, compra: " + juego.getCompraJugador()); //no entra aca
-            if (juego.getCompraJugador() != null) {
-                System.out.println("Compra de jugador no es null, es " + juego.getCompraJugador());
-                Coordenada coord = new Coordenada(coordX, coordY);
-                juego.comprarDefensa(juego.getCompraJugador(), coord);
-                juego.setCompraJugador(null);
+        // rect.setOnMouseClicked(mouseEvent -> {
+        //     System.out.println("Entro al handler de grilla, compra: " + juego.getCompraJugador()); //no entra aca
+        //     if (juego.getCompraJugador() != null) {
+        //         System.out.println("Compra de jugador no es null, es " + juego.getCompraJugador());
+        //         Coordenada coord = new Coordenada(coordX, coordY);
+        //         juego.comprarDefensa(juego.getCompraJugador(), coord);
+        //         juego.setCompraJugador(null);
+        rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ControladorCompra.getInstance().ponerDefensaEn(coordX, coordY);
             }
         });
         grilla.add(rect, coordX, coordY );
