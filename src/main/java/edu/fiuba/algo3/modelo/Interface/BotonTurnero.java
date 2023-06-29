@@ -9,11 +9,9 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class BotonTurnero implements EventHandler<ActionEvent> {
-    private Button miBoton;
-    private Jugable jugable; // Tal vez deberia ser un "Jugable"
+    private final Jugable jugable;
 
-    public BotonTurnero(Button unBoton, Jugable jugable) {
-        this.miBoton = unBoton;
+    public BotonTurnero(Jugable jugable) {
         this.jugable = jugable;
     }
 

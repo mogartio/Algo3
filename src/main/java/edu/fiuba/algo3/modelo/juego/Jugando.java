@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
@@ -34,8 +35,8 @@ public class Jugando implements EstadoJuego {
 
     @Override
     public void notificar() {
-        enemigos.forEach(enemigo -> notify());
-        defensas.forEach(defensa -> notify());
+        enemigos.forEach(Observable::notifyObservers);
+        defensas.forEach(Observable::notifyObservers);
     }
 
     public boolean finalizado() {
@@ -57,7 +58,6 @@ public class Jugando implements EstadoJuego {
     }
 
     public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno){
-        //emisor.notificarSubscriptores("log", "Se juega el turno N°: " + Integer.toString(numeroTurno));
 
         if (!enemigos.isEmpty()){
 

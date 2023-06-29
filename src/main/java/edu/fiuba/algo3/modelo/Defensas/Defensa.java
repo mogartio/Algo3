@@ -51,6 +51,7 @@ public abstract class Defensa extends Sprayable {
 
     public void atacar(ArrayList<Enemigo> enemigos ){
         this.estadoDeConstruccion.atacar(tipoDeDefensa, enemigos, this.posicion, this.rangoAtaque, this.representationString());
+        setChanged();
     }
 
     public abstract String representationString();

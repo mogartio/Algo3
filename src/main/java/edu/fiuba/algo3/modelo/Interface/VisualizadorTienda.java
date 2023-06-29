@@ -40,6 +40,7 @@ public class VisualizadorTienda {
                 nuevaDefensa.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
+                        //Juego.getInstance().setCompraJugador(defensa);
                         ControladorCompra.getInstance().seleccionarDefensa(defensa);
                     }
                 });

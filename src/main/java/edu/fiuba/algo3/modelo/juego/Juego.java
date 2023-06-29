@@ -26,6 +26,7 @@ public class Juego extends Observable {
     // ArrayList<Observer> observersParaEntidades;
     VistaSprays vistaSprays;
     Mapa mapa;
+    Observer observerParaDefensas;
 
     private Juego() {
         super();
@@ -38,14 +39,42 @@ public class Juego extends Observable {
         return INSTANCE;
     }
 
+    public void notificar() {
+        this.notifyObservers();
+        jugador.notifyObservers();
+        this.estadoJuego.notificar();
+    }
+
+    public String getCompraJugador() {
+        return jugador.getQuiereComprar();
+    }
+
+    public void setCompraJugador(String defensa) {
+        System.out.println("Setteo la compra de jugador a " + defensa);
+        jugador.quiereComprar(defensa);
+    }
+
+    public void cargarObserverParaDefensas(Observer observer){
+        this.observerParaDefensas = observer;
+    }
+
+    public void cargarObserverParaJugador(Observer observer){
+        jugador.addObserver(observer);
+    }
     public void daniarAlJugador(int unNumero){
         jugador.recibirDanio(unNumero);
     }
 
     public void comprarDefensa(String unaDefensa, Coordenada coordenada) {
+    //    Defensa nuevaDefensa = jugador.comprar(unaDefensa);
+    //    nuevaDefensa.asignarPosicion(coordenada);
+    //    nuevaDefensa.addObserver(observerParaDefensas);
+    //    estadoJuego.introducirDefensa(nuevaDefensa);
+    //    //System.out.println(String.format("Se ha agregado una Defensa %s en %s", unaDefensa, coordenada.representacionString()));
+    //    setChanged();
         Defensa nuevaDefensa = jugador.comprar(unaDefensa);
         nuevaDefensa.asignarPosicion(coordenada);
-        //nuevaDefensa.addObserver(vistaSprays);
+        nuevaDefensa.addObserver(vistaSprays);
         estadoJuego.introducirDefensa(nuevaDefensa);
         setChanged();
         mapa.ver(coordenada).construirDefensa();
@@ -56,8 +85,11 @@ public class Juego extends Observable {
     }
 
     public void nuevoEnemigo(Enemigo nuevoEnemigo) {
-        //nuevoEnemigo.addObserver(vistaSprays);
         estadoJuego = this.estadoJuego.introducirEnemigo(nuevoEnemigo);
+        setChanged();
+
+        //nuevoEnemigo.agregarSubscriptor(this.logger);
+        //this.emisor.notificarSubscriptores("log", "Se agrega a la partida un nuevo enemigo " + nuevoEnemigo.representacionString());
     }
 
     public boolean finalizado() {
@@ -133,10 +165,10 @@ public class Juego extends Observable {
         estadoJuego.destruirDefensaMasAntigua();
     }
 
-    public void notificar() {
-        this.notify();
-        this.estadoJuego.notificar();
-    }
+    // public void notificar() {
+    //     this.notify();
+    //     this.estadoJuego.notificar();
+    // }
 
     public int getCreditosDelJugador() { return jugador.getCreditos(); }
 

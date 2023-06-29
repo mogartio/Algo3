@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Interface;
 
+import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
@@ -29,10 +30,15 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
         // Create and configure the new scene
         System.out.println("¡ Me han clickeado !");
 
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
+        //VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
+        //CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
 
         try {
+
+            CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15); //falta agregarle el nombre del jugador
+            //CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15, nombreJugador);
+            /*Mapa mapa = creadorDeMapa.crearMapa();
+
             Mapa mapa = creadorDeMapa.crearMapa();
 
             CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -41,7 +47,7 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
             Juego juego = Juego.getInstance();
             juego.reestablecerJuego();
             juego.setMapa(mapa);
-            juego.setOleadasDelNivel(enemigos);
+            juego.setOleadasDelNivel(enemigos);*/
 
         } catch (NoHayCamino | NoHayInicial ex) {
             System.out.println("sarasa MAPA"); // catchear correctemente

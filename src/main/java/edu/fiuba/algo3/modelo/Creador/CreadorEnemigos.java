@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Observer;
 
 public class CreadorEnemigos {
     Lector lector;
@@ -19,7 +20,7 @@ public class CreadorEnemigos {
     }
 
 
-    public LinkedList<ArrayList<Enemigo>> crearEnemigosDeNivel(String direccionDeArchivo) {
+    public LinkedList<ArrayList<Enemigo>> crearEnemigosDeNivel(String direccionDeArchivo, Observer observerParaEnemigos) {
 
         LinkedList< ArrayList<Enemigo> > enemigosDelNivel = new LinkedList<ArrayList<Enemigo>>();
         JSONArray lectura = (JSONArray) Lector.leer(direccionDeArchivo);
@@ -31,12 +32,12 @@ public class CreadorEnemigos {
             //pensar el JSONObject como un diccionario
             JSONObject informacionDelTurno = (JSONObject) lectura.get(fila - 1); // obtiene la informacion de la fila correspondiente
 
-            agregarEnemigosEnTurno(enemigosDelNivel, informacionDelTurno);
+            agregarEnemigosEnTurno(enemigosDelNivel, informacionDelTurno, observerParaEnemigos);
         }
         return enemigosDelNivel;
     }
 
-    private void agregarEnemigosEnTurno(LinkedList<ArrayList<Enemigo>> enemigosDelNivel,JSONObject informacionDelTurno){
+    private void agregarEnemigosEnTurno(LinkedList<ArrayList<Enemigo>> enemigosDelNivel,JSONObject informacionDelTurno, Observer observerParaEnemigos){
 
         String numeroDeTurno = informacionDelTurno.get("turno").toString();
         JSONObject enemigosEnTurno = (JSONObject) informacionDelTurno.get("enemigos");// obtiene el value asociado a al key "enemigos"
@@ -49,6 +50,8 @@ public class CreadorEnemigos {
 
             for (int i = 0 ; i < cantidadDelTipoEnInt ; i++){
                 Enemigo enemigoAAgregar = crearInstanciaDeEnemigo( tipoDeEnemigo.toString() , Integer.parseInt(numeroDeTurno) );
+
+                enemigoAAgregar.addObserver(observerParaEnemigos);
 
                 enemigosAAgregarEnEsteTurno.add( enemigoAAgregar );
             }
