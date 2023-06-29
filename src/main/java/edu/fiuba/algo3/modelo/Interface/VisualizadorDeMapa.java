@@ -29,11 +29,7 @@ public class VisualizadorDeMapa {
     private VBox panelTienda;
     private GridPane grilla;
     private BorderPane layout;
-
-    private ArrayList<ImageView> listaEnemigos;
-
-    private Map<ImageView, Integer> diccionarioX;
-    private Map<ImageView, Integer> diccionarioY;
+    private ArrayList<Coordenada> coordenadasSpraysDelTurno;
     public VisualizadorDeMapa(int largo){
 
         layout = new BorderPane();
@@ -42,9 +38,7 @@ public class VisualizadorDeMapa {
         grilla.setGridLinesVisible(false);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
-        listaEnemigos = new ArrayList<>();
-        diccionarioX = new HashMap<>();
-        diccionarioY = new HashMap<>();
+        coordenadasSpraysDelTurno = new ArrayList<>();
     }
 
     public void actualizarPanelJugador(HBox panelJugador) {
@@ -92,21 +86,30 @@ public class VisualizadorDeMapa {
     }
 
     public void agregarSpray(ImageView spray, int coordX, int coordY){
-        listaEnemigos.add(spray);
-        diccionarioX.put(spray, coordX);
-        diccionarioY.put(spray, coordY);
+        Coordenada coordenada = new Coordenada(coordX, coordY);
+        coordenadasSpraysDelTurno.add(coordenada);
+        grilla.add(spray, coordX, coordY);
     }
-    public void borrarNodoEnPosicion(final int row,final int column) {
+
+    public void borrarNodoEnPosicion(final int fila,final int columna) {
 
         ObservableList<Node> childrens = grilla.getChildren();
 
         for(Node node : childrens) {
-            if(node instanceof ImageView && grilla.getRowIndex(node) == row && grilla.getColumnIndex(node) == column) {
-                grilla.getChildren().remove(node);
-                break;
+            if(node instanceof ImageView) {
+                if(grilla.getRowIndex(node) == fila && grilla.getColumnIndex(node) == columna) {
+                    grilla.getChildren().remove(node);
+                    break;
+                }
             }
+
         }
     }
+
+    public void borrarEnemigosDelTurnoAnterior(){
+        coordenadasSpraysDelTurno.forEach(coordenada -> borrarNodoEnPosicion(coordenada.getOrdenada(), coordenada.getAbscisa()));
+    }
+
     public void mostrarMensajeFinal(ImageView mensajeFinal) {
         layout.setLeft(mensajeFinal);
     }

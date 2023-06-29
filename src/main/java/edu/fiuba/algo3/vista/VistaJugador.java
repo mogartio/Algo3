@@ -16,8 +16,6 @@ public class VistaJugador implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Me llega un update a vista jugador");
-
         Jugador jugador = (Jugador) o;
 
         visualizadorPanelJugador.updateInfo(jugador.getNombre() , jugador.getVida(), jugador.getCreditos());
