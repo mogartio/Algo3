@@ -26,7 +26,7 @@ public class Juego extends Observable {
     // ArrayList<Observer> observersParaEntidades;
     VistaSprays vistaSprays;
     Mapa mapa;
-    VistaSprays observerParaDefensas;
+    Observer observerParaDefensas;
 
     private Juego() {
         super();
@@ -54,7 +54,7 @@ public class Juego extends Observable {
         jugador.quiereComprar(defensa);
     }
 
-    public void cargarObserverParaDefensas(VistaSprays observer){
+    public void cargarObserverParaDefensas(Observer observer){
         this.observerParaDefensas = observer;
     }
 
@@ -78,7 +78,6 @@ public class Juego extends Observable {
         estadoJuego.introducirDefensa(nuevaDefensa);
         setChanged();
         mapa.ver(coordenada).construirDefensa();
-        observerParaDefensas.update(nuevaDefensa, nuevaDefensa);    // Habria que implementarlo con el observer
         System.out.println(String.format("se agrego %s", unaDefensa));
 
         //nuevaDefensa.agregarSubscriptor(this.logger);
