@@ -27,7 +27,7 @@ public class Lechuza extends Enemigo{
     @Override
     public void daniarJugador() {
         super.daniarJugador();
-        //se debe  agregar la destruccion de la torre
+        System.out.print("\n estoy destruyendo \n\n");
         Juego.getInstance().destruirDefensaMasAntigua();
     }
 

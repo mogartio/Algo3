@@ -36,6 +36,10 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
         this.oleadas = oleadas;
     }
 
+    public boolean noHayMasEnemigos(){
+        return oleadas.isEmpty();
+    }
+
     public void agregarEnemigosDelTurno(ArrayList<Enemigo> enemigosDelJuego) {
 
         if (!oleadas.isEmpty()){

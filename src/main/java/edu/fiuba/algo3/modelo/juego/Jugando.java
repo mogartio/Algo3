@@ -51,7 +51,7 @@ public class Jugando implements EstadoJuego {
     private EstadoJuego actualizarSegunEstadoDeJugador(boolean jugadorVivo) {
         if (!jugadorVivo)
             return new Perdido();
-        else if (enemigos.isEmpty())
+        else if (enemigos.isEmpty() && mapa.noHayMasEnemigos())
             return new Ganado();
         else
             return this;

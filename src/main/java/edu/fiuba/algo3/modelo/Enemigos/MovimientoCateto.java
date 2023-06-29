@@ -57,12 +57,13 @@ public class MovimientoCateto implements Movimiento{
                 this.parcelaActual = mapa.ver(this.posicionActual);
             } else {
                 enemigo.daniarJugador();
+                break;
             }
-            //this.parcelaActual.actualizarPosicion(this);
+
 
         }
 
-        //this.camino.subList(0, cantidadPasos).clear();
+
     }
 
     @Override
