@@ -1,13 +1,8 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.modelo.Enemigos.Sprayable;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorPanelJugador;
 import edu.fiuba.algo3.modelo.juego.Jugador;
-import javafx.scene.image.ImageView;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 

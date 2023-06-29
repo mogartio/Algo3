@@ -11,10 +11,12 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import javafx.beans.Observable;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Observer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,14 +32,15 @@ public class CasosDeUso3Test {
         Mapa mapa = creadorDeMapa.crearMapa();
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21");
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero(Juego.getInstance());
+        Turnero turnero = new Turnero();
 
         for ( int i = 0 ; i <= 7 ; i++ ){
             turnero.jugarTurnoMaquina();
@@ -52,14 +55,15 @@ public class CasosDeUso3Test {
         Mapa mapa = creadorDeMapa.crearMapa();
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21b");
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21b", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero(Juego.getInstance());
+        Turnero turnero = new Turnero();
 
 
         for ( int i = 0 ; i <= 8 ; i++ ){
@@ -75,14 +79,16 @@ public class CasosDeUso3Test {
         Mapa mapa = creadorDeMapa.crearMapa();
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21c");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21c", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero(Juego.getInstance());
+        Turnero turnero = new Turnero();
 
         for ( int i = 0 ; i <= 8 ; i++ ){
             turnero.jugarTurnoMaquina();
@@ -100,14 +106,16 @@ public class CasosDeUso3Test {
         Mapa mapa = creadorDeMapa.crearMapa();
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test22/enemigosTest22");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test22/enemigosTest22", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero(Juego.getInstance());
+        Turnero turnero = new Turnero();
 
         juego.comprarDefensa("TorrePlateada", new Coordenada(1,2));
         juego.comprarDefensa("TorrePlateada", new Coordenada(3,3));
@@ -132,14 +140,16 @@ public class CasosDeUso3Test {
         Mapa mapa = creadorDeMapa.crearMapa();
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test23/enemigosTest23a");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test23/enemigosTest23a", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero(Juego.getInstance());
+        Turnero turnero = new Turnero();
 
         juego.comprarDefensa("TorreBlanca", new Coordenada(1, 2));
 

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Interface;
 
+import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
@@ -29,8 +30,8 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
         // Create and configure the new scene
         System.out.println("¡ Me han clickeado !");
 
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
+        //VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
+        //CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
 
         try {
 

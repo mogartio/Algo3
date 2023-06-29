@@ -46,14 +46,14 @@ public class VisualizadorPanelJugador {
                 hboxJugador.setPadding(new Insets(0, 0, 20, 0));
 
                 Button botonFinalizarTurno = new Button();
-                //BotonTurnero funcion = new BotonTurnero(botonFinalizarTurno, turnero);
+                BotonTurnero funcion = new BotonTurnero(turnero);
                 botonFinalizarTurno.setAlignment(Pos.CENTER);
 
                 botonFinalizarTurno.setText("Finalizar turno");
                 botonFinalizarTurno.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
                 botonFinalizarTurno.setPrefSize(400, 40);
                 botonFinalizarTurno.setAlignment(Pos.CENTER);
-                //botonFinalizarTurno.setOnAction(funcion);
+                botonFinalizarTurno.setOnAction(funcion);
 
                 this.botonTerminarTurno = botonFinalizarTurno;
 
