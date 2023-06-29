@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.Interface;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -30,6 +31,14 @@ public class VisualizadorDeMapa {
         grilla.setGridLinesVisible(true);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
+
+
+        Button botonCargarEnemigos = new Button();
+        // este debe invocar a la oleada del turno
+        /*button.setOnAction(event -> {
+            // button was pressed
+        });*/
+
     }
 
     public void agregarParcela(String tipoDeParcela, int coordX, int coordY){
