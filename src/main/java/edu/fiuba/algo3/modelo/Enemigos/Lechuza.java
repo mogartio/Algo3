@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 
 public class Lechuza extends Enemigo{
 
+    private String sonido = null;
+
     public Lechuza(){
         super(5, 0, 5);
         this.tipoMovimiento = new MovimientoCateto(this);
@@ -18,6 +20,11 @@ public class Lechuza extends Enemigo{
     }
 
     @Override
+    public String verSonido() {
+        return sonido;
+    }
+
+    @Override
     public void daniarJugador() {
         super.daniarJugador();
         //se debe  agregar la destruccion de la torre
@@ -25,6 +32,7 @@ public class Lechuza extends Enemigo{
     }
 
     public void morir(){
+        sonido = "Morir";
     }
 
     public String representacionString() {
