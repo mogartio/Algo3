@@ -166,4 +166,42 @@ public class CasosDeUso3Test {
 
         assertFalse(juego.jugadorVivo());
     }
+
+
+    @Test
+    public void test24LechuzaDestruyeLaPrimerTorreConstruidaAlLlegarALaMetaY20HormigasMatanAlJugador() throws NoHayCamino, NoHayInicial {
+        // al 5to turno la lechuza destruira la primer torre
+        // despues apareceran las 20 hormigas qur le quitaran la vida al jugador
+        //(si la primer torre fue destruida correctamente en el turno que se estima la llegada de la lechuza
+        // a la meta dado el movimiento hipotenuza entonces deberian llegar todas las hormigas)
+
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
+        Mapa mapa = creadorDeMapa.crearMapa();
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
+
+        CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test24/enemigosTest24", mockObserver);
+
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
+        juego.setMapa(mapa);
+        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.setOleadasDelNivel(enemigos);
+
+        Turnero turnero = new Turnero();
+
+        juego.comprarDefensa("TorrePlateada", new Coordenada(10, 12));
+        juego.comprarDefensa("TorreBlanca", new Coordenada(6, 12));
+
+        for (int i = 0; i <= 29; i++) {
+            //es la cantidad de turnos necesarios para q las hormigas lleguen a la meta
+
+            turnero.jugarTurnoMaquina();
+        }
+
+        assertFalse(juego.jugadorVivo());
+    }
 }

@@ -153,11 +153,6 @@ public class Juego extends Observable {
         estadoJuego.destruirDefensaMasAntigua();
     }
 
-    // public void notificar() {
-    //     this.notify();
-    //     this.estadoJuego.notificar();
-    // }
-
     public int getCreditosDelJugador() { return jugador.getCreditos(); }
 
     public Parcela verParcelaEn(Coordenada coordenada) { return mapa.ver(coordenada); }

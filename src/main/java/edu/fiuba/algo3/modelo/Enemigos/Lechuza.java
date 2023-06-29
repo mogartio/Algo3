@@ -15,7 +15,8 @@ public class Lechuza extends Enemigo{
     public void recibirDanio(int danio) {
         super.recibirDanio(danio);
         if (vida.obtenerPorcentajeDadoInicial(5) <= 50 ){
-            //this.tipoMovimiento = new MovimientoHipotenusa(this);
+            this.tipoMovimiento = this.tipoMovimiento.setMovimiento(new MovimientoHipotenusa(this));
+
         }
     }
 
@@ -27,7 +28,7 @@ public class Lechuza extends Enemigo{
     @Override
     public void daniarJugador() {
         super.daniarJugador();
-        //se debe  agregar la destruccion de la torre
+        System.out.print("\n estoy destruyendo \n\n");
         Juego.getInstance().destruirDefensaMasAntigua();
     }
 
