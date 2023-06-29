@@ -37,7 +37,8 @@ public class VisualizadorDeMapa {
         layout.setCenter(panelTienda);
     }
 
-    public void agregarPanelJugador(HBox panelJugador) {
+    public void actualizarPanelJugador(HBox panelJugador) {
+        System.out.println();
         layout.setTop(panelJugador);
     }
 
@@ -57,14 +58,14 @@ public class VisualizadorDeMapa {
         Rectangle rect = new Rectangle(56, 56, color);
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
-        rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (Jugador.getInstance().getQuiereComprar() != null) {
-                    Coordenada coord = new Coordenada(coordX, coordY);
-                    juego.comprarDefensa(Jugador.getInstance().getQuiereComprar(), coord);
-                    Jugador.getInstance().quiereComprar(null);
-                }
+
+        rect.setOnMouseClicked(mouseEvent -> {
+            System.out.println("Entro al handler de grilla, compra: " + juego.getCompraJugador()); //no entra aca
+            if (juego.getCompraJugador() != null) {
+                System.out.println("Compra de jugador no es null, es " + juego.getCompraJugador());
+                Coordenada coord = new Coordenada(coordX, coordY);
+                juego.comprarDefensa(juego.getCompraJugador(), coord);
+                juego.setCompraJugador(null);
             }
         });
         grilla.add(rect, coordX, coordY );

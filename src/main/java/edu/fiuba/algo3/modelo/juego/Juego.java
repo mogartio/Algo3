@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Observable;
+import java.util.Observer;
 
 public class Juego extends Observable {
     private static final Juego INSTANCE = new Juego();
@@ -19,6 +20,7 @@ public class Juego extends Observable {
     // ArrayList<Observer> observersParaEntidades;
     VistaSprays vistaSprays;
     Mapa mapa;
+    Observer observerParaDefensas;
 
     private Juego() {
         super();
@@ -33,9 +35,26 @@ public class Juego extends Observable {
 
     public void notificar() {
         this.notifyObservers();
+        jugador.notifyObservers();
         this.estadoJuego.notificar();
     }
 
+    public String getCompraJugador() {
+        return jugador.getQuiereComprar();
+    }
+
+    public void setCompraJugador(String defensa) {
+        System.out.println("Setteo la compra de jugador a " + defensa);
+        jugador.quiereComprar(defensa);
+    }
+
+    public void cargarObserverParaDefensas(Observer observer){
+        this.observerParaDefensas = observer;
+    }
+
+    public void cargarObserverParaJugador(Observer observer){
+        jugador.addObserver(observer);
+    }
     public void daniarAlJugador(int unNumero){
         jugador.recibirDanio(unNumero);
     }
@@ -43,7 +62,7 @@ public class Juego extends Observable {
     public void comprarDefensa(String unaDefensa, Coordenada coordenada) {
        Defensa nuevaDefensa = jugador.comprar(unaDefensa);
        nuevaDefensa.asignarPosicion(coordenada);
-       //nuevaDefensa.addObserver(vistaSprays);
+       nuevaDefensa.addObserver(observerParaDefensas);
        estadoJuego.introducirDefensa(nuevaDefensa);
        //System.out.println(String.format("Se ha agregado una Defensa %s en %s", unaDefensa, coordenada.representacionString()));
        setChanged();

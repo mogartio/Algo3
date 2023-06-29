@@ -16,6 +16,7 @@ public class ConstanteImagenes {
                 "Araña", "ImagenesGUI/arania.png",
                 "Hormiga", "ImagenesGUI/hormiga.png",
                 "Lechuza", "ImagenesGUI/lechuza.png",
+                "Topo", "ImagenesGUI/topo.png",
                 "TorreBlanca", "ImagenesGUI/torreBlanca.png",
                 "TorrePlateada", "ImagenesGUI/torrePlateada.png",
                 "TrampaArenosa", "ImagenesGUI/trampaArena.png" );

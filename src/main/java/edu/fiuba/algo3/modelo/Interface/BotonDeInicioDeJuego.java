@@ -32,8 +32,11 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
 
         try {
-            //CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15);
-            Mapa mapa = creadorDeMapa.crearMapa();
+
+            CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15); //falta agregarle el nombre del jugador
+            //CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15, nombreJugador);
+            /*Mapa mapa = creadorDeMapa.crearMapa();
+
 
             CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
             LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json");
@@ -41,7 +44,7 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
             Juego juego = Juego.getInstance();
             juego.reestablecerJuego();
             juego.setMapa(mapa);
-            juego.setOleadasDelNivel(enemigos);
+            juego.setOleadasDelNivel(enemigos);*/
 
         } catch (NoHayCamino | NoHayInicial ex) {
             System.out.println("sarasa MAPA"); // catchear correctemente

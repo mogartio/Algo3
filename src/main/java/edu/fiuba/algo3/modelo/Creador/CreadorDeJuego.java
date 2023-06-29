@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.vista.VistaEstadoJuego;
+import edu.fiuba.algo3.vista.VistaJugador;
 import edu.fiuba.algo3.vista.VistaSprays;
 import javafx.scene.layout.HBox;
 
@@ -34,8 +35,8 @@ public class CreadorDeJuego {
         this.lectorDeArchivos = new Lector();
     }
 
-    public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa) throws NoHayCamino, NoHayInicial {
-/*
+    public static void crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa) throws NoHayCamino, NoHayInicial {
+
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(tamanioMapa);
         CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,tamanioMapa, visualizadorDeMapa);
@@ -51,20 +52,26 @@ public class CreadorDeJuego {
 
         mapa.agregarSubscriptor(logger); //Sacar esto o hacer que el logger sea un observer, establecer la comunicacion*/
 
-        Juego juego = new Juego(mapa, vistaSprays);
+        Juego.getInstance().reestablecerJuego();
+        Juego.getInstance().setMapa(mapa);
+        Juego.getInstance().addObserver(new VistaEstadoJuego());
+        Juego.getInstance().cargarObserverParaDefensas(vistaSprays);
+        Juego.getInstance().setNombreDelJugador("test"); // Aca tendria que agregarse el nombre recibido por param
 
-        visualizadorDeMapa.setJuego(juego);
+        Turnero turnero = new Turnero();
 
-        Turnero turnero = new Turnero(juego);
+        VisualizadorPanelJugador visualizadorPanelJugador = new VisualizadorPanelJugador(visualizadorDeMapa);
 
-        HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador(turnero);
+        visualizadorPanelJugador.inicializarPanelJugador(turnero);
 
-        visualizadorDeMapa.agregarPanelJugador(panelJugador);
+        VistaJugador vistaJugador = new VistaJugador(visualizadorPanelJugador);
+
+        Juego.getInstance().cargarObserverParaJugador(vistaJugador);
+
+        Juego.getInstance().notifyObservers();
 
         visualizadorDeMapa.mostrar();
 
-        juego.addObserver(new VistaEstadoJuego());
-        */
-        return Juego.getInstance() ;
+        //return Juego.getInstance() ;
     }
 }
