@@ -104,12 +104,8 @@ public class CasosDeUsoTest {
 
         Tierra tierra = new Tierra(coordTierra);
         Rocosa rocosa = new Rocosa(coordRocosa);
-
-        rocosa.construirDefensa(torre);
-        tierra.construirDefensa(torre);
-
-        assertTrue(tierra.ocupada());
-        assertFalse(rocosa.ocupada());
+        assertTrue(tierra.puedeConstruir(torre.representationString()));
+        assertFalse(rocosa.puedeConstruir(torre.representationString()));
     }
 
     @Test

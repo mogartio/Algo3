@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.adicionales;
 
-import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
@@ -38,7 +37,7 @@ public class CasosDeUso3Test {
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero();
+        Turnero turnero = new Turnero(Juego.getInstance());
 
         for ( int i = 0 ; i <= 7 ; i++ ){
             turnero.jugarTurnoMaquina();
@@ -60,7 +59,7 @@ public class CasosDeUso3Test {
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero();
+        Turnero turnero = new Turnero(Juego.getInstance());
 
 
         for ( int i = 0 ; i <= 8 ; i++ ){
@@ -83,7 +82,7 @@ public class CasosDeUso3Test {
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero();
+        Turnero turnero = new Turnero(Juego.getInstance());
 
         for ( int i = 0 ; i <= 8 ; i++ ){
             turnero.jugarTurnoMaquina();
@@ -108,7 +107,7 @@ public class CasosDeUso3Test {
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero();
+        Turnero turnero = new Turnero(Juego.getInstance());
 
         juego.comprarDefensa("TorrePlateada", new Coordenada(1,2));
         juego.comprarDefensa("TorrePlateada", new Coordenada(3,3));
@@ -140,7 +139,7 @@ public class CasosDeUso3Test {
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
 
-        Turnero turnero = new Turnero();
+        Turnero turnero = new Turnero(Juego.getInstance());
 
         juego.comprarDefensa("TorreBlanca", new Coordenada(1, 2));
 
