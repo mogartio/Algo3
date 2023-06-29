@@ -8,12 +8,24 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import java.util.ArrayList;
 
 public class Construido implements EstadoConstruccion {
+    private String sonido = "Construir";
+
     public EstadoConstruccion pasoUnTurno(Defensa defensa){
-        return new Construido();
+        return this;
     }
 
     public boolean estoyConstruida(){
         return true;
+    }
+
+    @Override
+    public void setSonido() {
+        this.sonido = "Atacar";
+    }
+
+    @Override
+    public String versonido() {
+        return sonido;
     }
 
     @Override
@@ -23,6 +35,7 @@ public class Construido implements EstadoConstruccion {
 
                 //emisor.notificarSubscriptores("log", nombre + " ataca a " + enemigo.representacionString() + " en " + enemigo.represtacionUbicacion());
                 tipoDeDefensa.atacar(enemigo);
+                setSonido();
                 break;
             }
         }

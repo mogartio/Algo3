@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Interface;
 
 import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.vista.ConstanteImagenes;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,11 +15,15 @@ import javafx.scene.text.Text;
 import java.io.FileNotFoundException;
 
 public class VisualizadorTienda {
+
+    private static VBox vbox;
+    private static Text text;
+
     public static VBox crearPanelTienda() {
-        VBox vbox = new VBox();
+        vbox = new VBox();
         vbox.setStyle("-fx-background-color: #336699;");
 
-        Text text = new Text("Defensas disponibles:");
+        text = new Text("Defensas disponibles:");
         text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         vbox.getChildren().addAll(text, crearIconosDefensas());
         return vbox;
@@ -53,7 +56,9 @@ public class VisualizadorTienda {
         return flowPane;
     }
 
-    public void updateInfo() {
-
+    public static VBox updateInfo() {
+        vbox.getChildren().clear();
+        vbox.getChildren().addAll(text, crearIconosDefensas());
+        return vbox;
     }
 }
