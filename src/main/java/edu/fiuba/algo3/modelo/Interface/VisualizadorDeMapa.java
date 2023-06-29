@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Interface;
 
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
@@ -7,42 +8,52 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
 public class VisualizadorDeMapa {
 
+    private VBox panelTienda;
     private GridPane grilla;
-
     private BorderPane layout;
 
-    private Juego juego;
+    private ArrayList<ImageView> listaEnemigos;
 
-    public void setJuego(Juego unJuego) { this.juego = unJuego; }
+    private Map<ImageView, Integer> diccionarioX;
+    private Map<ImageView, Integer> diccionarioY;
     public VisualizadorDeMapa(int largo){
 
         layout = new BorderPane();
-        VBox panelTienda = VisualizadorTienda.crearPanelTienda();
-        //HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
+        panelTienda = VisualizadorTienda.crearPanelTienda();
         grilla = new GridPane();
-        grilla.setGridLinesVisible(true);
+        grilla.setGridLinesVisible(false);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
-        //layout.setTop(panelJugador);
-        //mostrar();
+        listaEnemigos = new ArrayList<>();
+        diccionarioX = new HashMap<>();
+        diccionarioY = new HashMap<>();
     }
 
     public void actualizarPanelJugador(HBox panelJugador) {
         //System.out.println();
         layout.setTop(panelJugador);
+    }
+
+    public void actualizarPanelTienda() {
+        panelTienda = VisualizadorTienda.updateInfo();
     }
 
     public void agregarParcela(String tipoDeParcela, int coordX, int coordY){
@@ -63,7 +74,6 @@ public class VisualizadorDeMapa {
         rect.setStyle("-fx-stroke-width: 1;");
 
          rect.setOnMouseClicked(mouseEvent -> {
-                     juego = Juego.getInstance();
                      ControladorCompra controladorCompra = ControladorCompra.getInstance();
                      controladorCompra.ponerDefensaEn(coordX, coordY);
                  });
@@ -78,14 +88,14 @@ public class VisualizadorDeMapa {
         }
         ventana.setScene(new Scene(layout));
         ventana.setTitle("mapeanding");
-
         ventana.show();
     }
 
     public void agregarSpray(ImageView spray, int coordX, int coordY){
-        grilla.add(spray, coordX, coordY);
+        listaEnemigos.add(spray);
+        diccionarioX.put(spray, coordX);
+        diccionarioY.put(spray, coordY);
     }
-
     public void borrarNodoEnPosicion(final int row,final int column) {
 
         ObservableList<Node> childrens = grilla.getChildren();
@@ -98,7 +108,6 @@ public class VisualizadorDeMapa {
             }
         }
     }
-
     public void mostrarMensajeFinal(ImageView mensajeFinal) {
         layout.setLeft(mensajeFinal);
     }

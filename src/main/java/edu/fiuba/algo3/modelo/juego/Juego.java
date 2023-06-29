@@ -2,16 +2,10 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
-import edu.fiuba.algo3.modelo.ObserverPropio.Logger;
-import edu.fiuba.algo3.modelo.ObserverPropio.ObservablePropio;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.miscelanea.Tienda;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
-import edu.fiuba.algo3.vista.VistaEstadoJuego;
 import edu.fiuba.algo3.vista.VistaSprays;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -69,11 +63,14 @@ public class Juego extends Observable {
         estadoJuego.introducirDefensa(nuevaDefensa);
         setChanged();
         mapa.ver(coordenada).construirDefensa();
+
         System.out.println(String.format("se agrego %s", unaDefensa));
 
         //nuevaDefensa.agregarSubscriptor(this.logger);
         //this.emisor.notificarSubscriptores("log", "Se agrega al juego una nueva defensa: " + unaDefensa + " en " + coordenada.representacionString());
     }
+
+    public boolean esInicioOFinal(Parcela pasarela) {return mapa.esInicioOFinal(pasarela); }
 
     public void nuevoEnemigo(Enemigo nuevoEnemigo) {
         estadoJuego = this.estadoJuego.introducirEnemigo(nuevoEnemigo);
