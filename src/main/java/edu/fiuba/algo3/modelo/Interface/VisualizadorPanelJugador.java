@@ -14,37 +14,63 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class VisualizadorPanelJugador {
-        public static HBox crearPanelJugador() {
+
+        VisualizadorDeMapa visualizadorGeneral;
+
+        Button botonTerminarTurno;
+        Text textoCreditos;
+        Text textoNombreYVida;
+        public VisualizadorPanelJugador(VisualizadorDeMapa visualizadorGeneral) {
+                this.visualizadorGeneral =  visualizadorGeneral;
+
+                Text creditosDisponibles = new Text();
+                creditosDisponibles.setTextAlignment(TextAlignment.CENTER);
+                creditosDisponibles.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+                creditosDisponibles.setFill(Color.RED);
+                creditosDisponibles.setWrappingWidth(400);
+
+                this.textoCreditos = creditosDisponibles;
+
+                Text nombreYVidaJugador = new Text();
+                nombreYVidaJugador.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+                nombreYVidaJugador.setFill(Color.RED);
+                nombreYVidaJugador.setWrappingWidth(400);
+                nombreYVidaJugador.setTextAlignment(TextAlignment.CENTER);
+
+                this.textoNombreYVida = nombreYVidaJugador;
+        }
+
+        public void inicializarPanelJugador(Jugable turnero) {
                 HBox hboxJugador = new HBox();
                 hboxJugador.setStyle("-fx-background-color: #000000;");
                 hboxJugador.setPadding(new Insets(0, 0, 20, 0));
 
                 Button botonFinalizarTurno = new Button();
-                //BotonTurnero funcion = new BotonTurnero(botonFinalizarTurno, turnero);
+                BotonTurnero funcion = new BotonTurnero(turnero);
                 botonFinalizarTurno.setAlignment(Pos.CENTER);
 
                 botonFinalizarTurno.setText("Finalizar turno");
                 botonFinalizarTurno.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
                 botonFinalizarTurno.setPrefSize(400, 40);
                 botonFinalizarTurno.setAlignment(Pos.CENTER);
-                //botonFinalizarTurno.setOnAction(funcion);
+                botonFinalizarTurno.setOnAction(funcion);
 
-                String mensajeNombreYVida = String.format("\nLa vida de %s es %s", Juego.getInstance().getNombreDelJugador(), Juego.getInstance().getVidaDelJugador() );
+                this.botonTerminarTurno = botonFinalizarTurno;
 
-                Text nombreJugador = new Text(mensajeNombreYVida);
-                nombreJugador.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-                nombreJugador.setFill(Color.RED);
-                nombreJugador.setWrappingWidth(400);
-                nombreJugador.setTextAlignment(TextAlignment.CENTER);
+                hboxJugador.getChildren().addAll(textoNombreYVida, botonTerminarTurno, textoCreditos);
 
-                Text creditosDisponibles = new Text(String.format("Créditos disponibles:\n%d", Juego.getInstance().getCreditosDelJugador()));
-                creditosDisponibles.setTextAlignment(TextAlignment.CENTER);
-                creditosDisponibles.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-                creditosDisponibles.setFill(Color.RED);
-                creditosDisponibles.setWrappingWidth(400);
+                visualizadorGeneral.actualizarPanelJugador(hboxJugador);
+        }
 
-                hboxJugador.getChildren().addAll(nombreJugador, botonFinalizarTurno, creditosDisponibles);
+        public void updateInfo(String nombre, int puntosVida, int creditos) {
+                HBox hboxJugador = new HBox();
+                hboxJugador.setStyle("-fx-background-color: #000000;");
+                hboxJugador.setPadding(new Insets(0, 0, 20, 100));
 
-                return hboxJugador;
+                textoCreditos.setText(String.format("Créditos disponibles:\n%d", creditos));
+                textoNombreYVida.setText(String.format("\nLa vida de %s es %s",nombre , puntosVida));
+
+                hboxJugador.getChildren().addAll(textoNombreYVida, botonTerminarTurno, textoCreditos);
+                visualizadorGeneral.actualizarPanelJugador(hboxJugador);
         }
 }

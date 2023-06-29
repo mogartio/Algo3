@@ -15,11 +15,10 @@ public class VistaEstadoJuego implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        Juego juego = (Juego) arg;
+        Juego juego = (Juego) o;
 
         EstadoJuego estadoJuego = juego.obtenerNuevoEstado();
-
         //Ver que hacer con la info del estado del juego
-        VentanaDeJuego.getInstance(); //hacer algo con esto
+        //VentanaDeJuego.getInstance(); //hacer algo con esto
     }
 }

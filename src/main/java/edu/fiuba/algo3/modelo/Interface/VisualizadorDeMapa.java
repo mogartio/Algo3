@@ -31,14 +31,17 @@ public class VisualizadorDeMapa {
 
         layout = new BorderPane();
         VBox panelTienda = VisualizadorTienda.crearPanelTienda();
+        //HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
         grilla = new GridPane();
         grilla.setGridLinesVisible(true);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
-        mostrar();
+        //layout.setTop(panelJugador);
+        //mostrar();
     }
 
-    public void agregarPanelJugador(HBox panelJugador) {
+    public void actualizarPanelJugador(HBox panelJugador) {
+        //System.out.println();
         layout.setTop(panelJugador);
     }
 
@@ -58,12 +61,12 @@ public class VisualizadorDeMapa {
         Rectangle rect = new Rectangle(56, 56, color);
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
-        rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                ControladorCompra.getInstance().ponerDefensaEn(coordX, coordY);
-            }
-        });
+
+         rect.setOnMouseClicked(mouseEvent -> {
+                     juego = Juego.getInstance();
+                     ControladorCompra controladorCompra = ControladorCompra.getInstance();
+                     controladorCompra.ponerDefensaEn(coordX, coordY);
+                 });
         grilla.add(rect, coordX, coordY );
     }
 
