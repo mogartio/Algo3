@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.Interface;
 
-import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -17,7 +15,7 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-public class InicializadorPantallaInicio {
+public class    InicializadorPantallaInicio {
     public static void start(BorderPane layout) throws Exception {
 
         crearPanelInteractivo(layout);
@@ -46,9 +44,9 @@ public class InicializadorPantallaInicio {
         layout.setBackground(bg);
     }
 
-    private static void inicializarBotonJugar(HBox hbox){
+    private static void inicializarBotonJugar(HBox hbox, String nombreJugador){
         Button button = new Button();
-        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego(button);
+        BotonDeInicioDeJuego funcion = new BotonDeInicioDeJuego(button, nombreJugador );
 
         button.setText("Jugar");
         button.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
@@ -70,17 +68,16 @@ public class InicializadorPantallaInicio {
         textField.setPrefHeight(40);
         hbox.getChildren().add(textField);
 
-
-
-
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
-                if (textField.getText().length() == 0){
+                if (textField.getText().length() == 0 || textField.getText().length() > 10){
+                    Text text = new Text("El nombre debe tener menos de 10 caracteres");
+                    text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+                    hbox.getChildren().add(text);
                     return;
                 }
-                Juego.getInstance().setNombreDelJugador(textField.getText());
-                inicializarBotonJugar(hbox);
+                inicializarBotonJugar(hbox, textField.getText());
             }
         };
         textField.setOnAction(event);

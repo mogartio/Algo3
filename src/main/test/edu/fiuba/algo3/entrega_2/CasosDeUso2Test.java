@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.entrega_2;
 
-import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
+
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Arania;
@@ -18,9 +18,11 @@ import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.*;
+import edu.fiuba.algo3.vista.VistaSprays;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.mock;
 
 
 import java.util.*;
@@ -107,7 +109,8 @@ public class CasosDeUso2Test {
     public void test15aCreadorDeEnemigosCreaDeJSONConUnSoloTurnoYUnaHormigaCreaAlEnemigoCorrectamente(){
         CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
 
-        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15a.txt");
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15a.txt", mockObserver);
 
         ArrayList<Enemigo> enemigosEnTurno = colaDeEnemigos.pop();
 
@@ -120,7 +123,9 @@ public class CasosDeUso2Test {
     @Test
     public void test15bCreadorDeEnemigosCreaDeJSONConUnSoloTurnoYDosEnemigos(){
         CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15b.txt");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15b.txt", mockObserver);
 
         ArrayList<Enemigo> enemigosEnTurno = colaDeEnemigos.pop();
 
@@ -134,7 +139,9 @@ public class CasosDeUso2Test {
     @Test
     public void test15cCreadorDeEnemigosCreaDeJSONCon3TurnosYVariosEnemigosCorrectamente(){
         CreadorEnemigos creadorEnemigo = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15c.txt");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo> > colaDeEnemigos = creadorEnemigo.crearEnemigosDeNivel("ArchivosJson/tests/Test15/enemigosTest15c.txt", mockObserver);
 
         ArrayList<Enemigo> primerTurnoDeCreador = colaDeEnemigos.pop();
         ArrayList<Enemigo> segundoTurnoDeCreador = colaDeEnemigos.pop();
@@ -206,7 +213,9 @@ public class CasosDeUso2Test {
         Mapa mapa = creadorDeMapa.crearMapa();
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
@@ -236,7 +245,9 @@ public class CasosDeUso2Test {
         Mapa mapa = creadorDeMapa.crearMapa();
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
@@ -267,12 +278,16 @@ public class CasosDeUso2Test {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
         Mapa mapa = creadorDeMapa.crearMapa();
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
+        juego.cargarObserverParaDefensas(vistaSprays);
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
         Turnero turnero = new Turnero();
@@ -282,7 +297,6 @@ public class CasosDeUso2Test {
         while (!juego.finalizado()){
             turnero.jugarTurnoMaquina();
         }
-
         assertTrue(juego.jugadorVivo());
     }
 
@@ -291,13 +305,17 @@ public class CasosDeUso2Test {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
         Mapa mapa = creadorDeMapa.crearMapa();
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json");
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
+        juego.cargarObserverParaDefensas(vistaSprays);
         juego.setOleadasDelNivel(enemigos);
         Turnero turnero = new Turnero();
 

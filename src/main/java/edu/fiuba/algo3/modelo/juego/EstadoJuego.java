@@ -12,6 +12,7 @@ public interface EstadoJuego {
     boolean finalizado();
     EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno);
 
+    void notificar();
     void destruirDefensaMasAntigua();
 }
 

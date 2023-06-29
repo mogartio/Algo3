@@ -18,5 +18,10 @@ public class Ganado implements EstadoJuego {
         return this;
     }
 
-    public void destruirDefensaMasAntigua(){};
+    @Override
+    public void notificar() {}
+    //public void destruirDefensaMasAntigua(){};
+
+    @Override
+    public void destruirDefensaMasAntigua() {}
 }

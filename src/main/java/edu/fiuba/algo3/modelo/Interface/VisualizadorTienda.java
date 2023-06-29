@@ -3,11 +3,11 @@ package edu.fiuba.algo3.modelo.Interface;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.vista.ConstanteImagenes;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -37,6 +37,13 @@ public class VisualizadorTienda {
                 nuevaDefensa = ConstanteImagenes.getImagen(defensa);
                 nuevaDefensa.setFitHeight(200);
                 nuevaDefensa.setFitWidth(150);
+                nuevaDefensa.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        System.out.println("Defensa seleccionada");
+                        ControladorCompra.getInstance().seleccionarDefensa(defensa);
+                    }
+                });
                 flowPane.getChildren().add(nuevaDefensa);
 
             } catch (FileNotFoundException e) {

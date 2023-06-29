@@ -20,5 +20,9 @@ public class Perdido implements EstadoJuego {
         return this;
     }
 
+    @Override
+    public void notificar() {}
+
+    @Override
     public void destruirDefensaMasAntigua() {}
 }
