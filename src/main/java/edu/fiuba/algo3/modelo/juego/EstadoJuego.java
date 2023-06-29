@@ -14,5 +14,7 @@ public interface EstadoJuego {
 
     void notificar();
     void destruirDefensaMasAntigua();
+
+    String versionString();
 }
 

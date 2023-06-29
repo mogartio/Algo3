@@ -24,4 +24,7 @@ public class Ganado implements EstadoJuego {
 
     @Override
     public void destruirDefensaMasAntigua() {}
+
+    @Override
+    public String versionString() { return "Ganado"; }
 }
