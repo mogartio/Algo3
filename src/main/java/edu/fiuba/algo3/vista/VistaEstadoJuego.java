@@ -24,6 +24,9 @@ public class VistaEstadoJuego implements Observer {
     public void update(Observable o, Object arg) {
         Juego juego = (Juego) o;
         EstadoJuego estadoJuego = juego.obtenerNuevoEstado();
+        if(arg == "Turno") {
+            visualizadorDeMapa.borrarEnemigosDelTurnoAnterior();
+        }
         try {
             ImageView mensajeFinal = ConstanteImagenes.getImagen(estadoJuego.versionString());
             mensajeFinal.setFitWidth(1000);

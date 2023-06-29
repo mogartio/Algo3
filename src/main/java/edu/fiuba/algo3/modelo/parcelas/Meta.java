@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.parcelas;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import javafx.scene.paint.Color;
 
 public class Meta implements TipoPasarela{
     @Override
@@ -10,4 +11,13 @@ public class Meta implements TipoPasarela{
         tipoMovimiento.daniarJugador();
     }
 
+    @Override
+    public Construible getConstruible() {
+        return new NoDisponible();
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.PINK;
+    }
 }
