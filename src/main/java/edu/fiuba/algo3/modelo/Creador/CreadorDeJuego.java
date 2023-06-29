@@ -16,6 +16,12 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+
+//
+// ELIMINAR ESTA CLASE
+//
+
+
 public class CreadorDeJuego {
 
     private CreadorEnemigos creadorDeEnemigos;
@@ -29,7 +35,7 @@ public class CreadorDeJuego {
     }
 
     public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa) throws NoHayCamino, NoHayInicial {
-
+/*
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(tamanioMapa);
         CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,tamanioMapa, visualizadorDeMapa);
@@ -58,7 +64,7 @@ public class CreadorDeJuego {
         visualizadorDeMapa.mostrar();
 
         juego.addObserver(new VistaEstadoJuego());
-
-        return juego;
+        */
+        return Juego.getInstance() ;
     }
 }

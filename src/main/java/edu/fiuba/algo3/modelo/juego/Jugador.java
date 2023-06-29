@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Jugador extends ObservablePropio {
 
-    private static final Jugador INSTANCE = new Jugador();
     private Vida vida;
     private Credito creditos;
     private RachaDeHormigas rachaDeHormigas;
@@ -17,15 +16,13 @@ public class Jugador extends ObservablePropio {
     private String quiereComprar;
 
 
-    private Jugador() {
+    public Jugador() {
         super();
         vida = new Vida(20);
         creditos = new Credito(100);
         rachaDeHormigas = new RachaDeHormigas();
         tienda = new Tienda();
     }
-
-    public static Jugador getInstance() { return INSTANCE; }
 
     public ArrayList<String> verificarConstruccionesPosibles() {
         return tienda.catalogoDisponible(creditos);

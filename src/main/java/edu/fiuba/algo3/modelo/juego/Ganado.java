@@ -20,4 +20,5 @@ public class Ganado implements EstadoJuego {
 
     @Override
     public void notificar() {}
+    public void destruirDefensaMasAntigua(){};
 }

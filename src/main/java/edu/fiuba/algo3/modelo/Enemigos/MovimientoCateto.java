@@ -6,27 +6,27 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MovimientoCateto implements Movimiento{
 
-    private ArrayList<Coordenada> camino;
+    private LinkedList<Coordenada> camino;
     private Coordenada meta;
     private Coordenada posicionActual;
-
     private Coordenada vertice;
     private Parcela parcelaActual;
-
     private Enemigo enemigo;
 
     public MovimientoCateto(Enemigo enemigo){
         this.enemigo = enemigo;
     }
 
-    @Override
+    @Override //es para asignar las posiciones en caso de crear un nuevo tipo de movimiento
     public void reasignarPosiciones(Coordenada coordInicial, Coordenada coordFinal){
         this.posicionActual = coordInicial;
         this.meta = coordFinal;
     }
+
     @Override
     public void actualizarPosicion(Parcela parcelaNueva){
         this.parcelaActual = parcelaNueva;
@@ -45,19 +45,24 @@ public class MovimientoCateto implements Movimiento{
 
     @Override
     public void avanzar(int cantidadPasos, Mapa mapa){
+
         for(int posicion = 0; posicion < cantidadPasos; posicion++){
 
-            if (this.posicionActual == this.vertice){
+            if (this.posicionActual.equals(this.vertice)){
                 this.camino = AlgoritmoDeBresenham.getCamino(this.vertice, this.meta);
             }
 
-            this.posicionActual = this.camino.get(posicion);
-            this.parcelaActual = mapa.ver(this.posicionActual);
-            this.parcelaActual.actualizarPosicion(this);
+            if ( !( camino.peek() == null ) ) {
+                this.posicionActual = this.camino.poll();
+                this.parcelaActual = mapa.ver(this.posicionActual);
+            } else {
+                enemigo.daniarJugador();
+            }
+            //this.parcelaActual.actualizarPosicion(this);
+
         }
 
-        this.camino.subList(0, cantidadPasos).clear();
-
+        //this.camino.subList(0, cantidadPasos).clear();
     }
 
     @Override

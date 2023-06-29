@@ -12,15 +12,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
-    HashMap<Coordenada, Parcela> mapa;
-    LinkedList< ArrayList<Enemigo> > oleadas;
-    Pasarela pasarelaInicial;
-    Pasarela pasarelaFinal;
-    Logger logger;
+    private HashMap<Coordenada, Parcela> mapa;
+    private LinkedList< ArrayList<Enemigo> > oleadas;
+    private Pasarela pasarelaInicial;
+    private Pasarela pasarelaFinal;
+    private Logger logger;
 
     public Mapa() {
         this.mapa = new HashMap<>();
-        this.oleadas = new LinkedList<>();
+        this.oleadas = new LinkedList<ArrayList<Enemigo>>();
         this.pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
         //Para que el mapa quede en estado consistente, en un caso de uso real, la pasarelaInicial quedará determinada
 
@@ -37,6 +37,7 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
     }
 
     public void agregarEnemigosDelTurno(ArrayList<Enemigo> enemigosDelJuego) {
+
         if (!oleadas.isEmpty()){
 
             ArrayList<Enemigo> enemigosDelTurno = oleadas.pop();

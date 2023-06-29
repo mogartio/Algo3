@@ -8,23 +8,24 @@ import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.LinkedList;
 import java.util.stream.Collectors;
 
 public class Jugando implements EstadoJuego {
 
     ArrayList<Enemigo> enemigos;
-    ArrayList<Defensa> defensas;
+    LinkedList<Defensa> defensas;
     Mapa mapa;
-    public Jugando(){
+    public Jugando(){ //hay q sacarlo
         this.mapa = new Mapa();
         this.enemigos = new ArrayList<>();
-        this.defensas = new ArrayList<>();
+        this.defensas = new LinkedList<>();
     }
 
     public Jugando(Mapa mapa) {
         this.mapa = mapa;
         this.enemigos = new ArrayList<>();
-        this.defensas = new ArrayList<>();
+        this.defensas = new LinkedList<>();
     }
 
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
@@ -85,5 +86,12 @@ public class Jugando implements EstadoJuego {
 
     private void limpiezaEnemigosMuertos(){
         this.enemigos = this.enemigos.stream().filter(Enemigo::estaVivo).collect(Collectors.toCollection(ArrayList::new));;
+    }
+
+    public void destruirDefensaMasAntigua(){
+        if ( !defensas.isEmpty() ) {
+            defensas.removeFirst();
+        }
+
     }
 }

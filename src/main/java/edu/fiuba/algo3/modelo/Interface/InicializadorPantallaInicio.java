@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Interface;
 
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -78,7 +79,7 @@ public class    InicializadorPantallaInicio {
                     hbox.getChildren().add(text);
                     return;
                 }
-                Jugador.getInstance().setNombre(textField.getText());
+                Juego.getInstance().setNombreDelJugador(textField.getText());
                 inicializarBotonJugar(hbox);
             }
         };

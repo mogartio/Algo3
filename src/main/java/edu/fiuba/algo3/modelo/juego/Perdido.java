@@ -22,4 +22,5 @@ public class Perdido implements EstadoJuego {
 
     @Override
     public void notificar() {}
+    public void destruirDefensaMasAntigua() {}
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
@@ -49,7 +50,7 @@ public abstract class Enemigo extends Sprayable {
         //this.emisor.notificarSubscriptores("log",this.representacionString() + " causo daño al jugador");
 
         if (this.estaVivo()){
-            Jugador.getInstance().recibirDanio(this.poderAtaque);
+            Juego.getInstance().daniarAlJugador(this.poderAtaque);
         }
 
         this.vida = new Vida(0);

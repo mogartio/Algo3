@@ -7,7 +7,7 @@ import edu.fiuba.algo3.modelo.Defensas.TrampaArenosa;
 
 public class CreadorDeDefensas {
     public Defensa crear(String unaDefensa) {
-        // la defensa deberia proveerla un CreadorDeDefensa
+
         Defensa defensa = null;
 
         if (unaDefensa == "TorreBlanca"){

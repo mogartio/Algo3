@@ -6,10 +6,11 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MovimientoHipotenusa implements Movimiento{
 
-    private ArrayList<Coordenada> camino;
+    private LinkedList<Coordenada> camino;
 
     private Coordenada meta;
 
