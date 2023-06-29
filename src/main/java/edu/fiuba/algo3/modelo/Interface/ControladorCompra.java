@@ -31,9 +31,17 @@ public class ControladorCompra {
         }
         Juego.getInstance().comprarDefensa(defensaSeleccionada, coord);
         Juego.getInstance().notificar();
-        visualizadorMapa.actualizarPanelTienda();
+        actualizarPanelTienda();
         cancelarSeleccionDefensa();
         }
+
+    public void actualizarPanelTienda() {
+        try {
+            visualizadorMapa.actualizarPanelTienda();
+        } catch (NullPointerException e) {
+
+        }
+    }
     private boolean esCompraValida(Coordenada coordenada){
         if (defensaSeleccionada == null) {
             return false;

@@ -47,7 +47,7 @@ public class CreadorDeJuego {
         Juego.getInstance().addObserver(new VistaEstadoJuego(visualizadorDeMapa));
         Juego.getInstance().setNombreDelJugador(nombreDelJugador);
 
-        Turnero turnero = new Turnero(visualizadorDeMapa);
+        Turnero turnero = new Turnero();
 
         VisualizadorPanelJugador visualizadorPanelJugador = new VisualizadorPanelJugador(visualizadorDeMapa);
 

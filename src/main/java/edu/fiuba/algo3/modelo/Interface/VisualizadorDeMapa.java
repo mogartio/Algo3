@@ -102,7 +102,6 @@ public class VisualizadorDeMapa {
 
         for(Node node : childrens) {
             if(node instanceof ImageView && grilla.getRowIndex(node) == row && grilla.getColumnIndex(node) == column) {
-                 // use what you want to remove
                 grilla.getChildren().remove(node);
                 break;
             }
