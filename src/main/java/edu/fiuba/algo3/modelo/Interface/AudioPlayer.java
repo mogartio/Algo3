@@ -38,7 +38,7 @@ public class AudioPlayer {
             Media sound = new Media(new File(soundFile).toURI().toString());
             mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.play();
-        } catch (NullPointerException e){
+        } catch (Exception e){
 
         }
     }
