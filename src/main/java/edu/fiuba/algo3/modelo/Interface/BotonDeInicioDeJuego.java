@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -30,6 +31,7 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
         System.out.println("¡ Me han clickeado !");
 
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
+        visualizadorDeMapa.agregarPanelJugador(VisualizadorPanelJugador.crearPanelJugador());
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
 
         try {

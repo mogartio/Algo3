@@ -31,12 +31,10 @@ public class VisualizadorDeMapa {
 
         layout = new BorderPane();
         VBox panelTienda = VisualizadorTienda.crearPanelTienda();
-        HBox panelJugador = VisualizadorPanelJugador.crearPanelJugador();
         grilla = new GridPane();
         grilla.setGridLinesVisible(true);
         layout.setLeft(grilla);
         layout.setCenter(panelTienda);
-        layout.setTop(panelJugador);
         mostrar();
     }
 
