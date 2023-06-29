@@ -283,7 +283,7 @@ public class CasosDeUso2Test {
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
         Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigos.json", mockObserver);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/enemigosDePrueba", mockObserver);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
