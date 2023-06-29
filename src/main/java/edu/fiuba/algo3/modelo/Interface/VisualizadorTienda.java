@@ -52,4 +52,8 @@ public class VisualizadorTienda {
         });
         return flowPane;
     }
+
+    public void updateInfo() {
+
+    }
 }

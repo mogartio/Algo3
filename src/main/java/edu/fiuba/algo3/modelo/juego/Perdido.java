@@ -25,4 +25,7 @@ public class Perdido implements EstadoJuego {
 
     @Override
     public void destruirDefensaMasAntigua() {}
+
+    @Override
+    public String versionString() { return "Perdido"; }
 }

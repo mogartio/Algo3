@@ -92,6 +92,7 @@ public class Jugando implements EstadoJuego {
         if ( !defensas.isEmpty() ) {
             defensas.removeFirst();
         }
-
     }
+    @Override
+    public String versionString() { return "Jugando"; }
 }

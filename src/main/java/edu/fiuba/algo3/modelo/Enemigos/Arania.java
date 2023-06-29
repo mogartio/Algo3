@@ -10,6 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Arania extends Enemigo {
     private final RandomGenerator generadorRandom;
+    private String sonido = "Avanzar";
 
     public Arania(RandomGenerator generadorRandom) {
         super(2, 2, 2);
@@ -27,10 +28,16 @@ public class Arania extends Enemigo {
         this.generadorRandom = generadorRandom;
     }
 
+    @Override
+    public String verSonido() {
+        return sonido;
+    }
+
     public void morir(){
         int cantidadARecompensar = generadorRandom.obtenerUnNumero();
         //this.emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");
         Juego.getInstance().recompensarJugador(cantidadARecompensar); // devuelve int entre 0 y 10
+        sonido = "Morir";
         setChanged();
     }
 

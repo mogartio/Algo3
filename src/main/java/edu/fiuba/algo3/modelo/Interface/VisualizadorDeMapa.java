@@ -99,4 +99,8 @@ public class VisualizadorDeMapa {
             }
         }
     }
+
+    public void mostrarMensajeFinal(ImageView mensajeFinal) {
+        layout.setLeft(mensajeFinal);
+    }
 }

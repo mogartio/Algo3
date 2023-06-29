@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Enemigos.Sprayable;
+import edu.fiuba.algo3.modelo.Interface.AudioPlayer;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import javafx.scene.image.ImageView;
 
@@ -27,18 +28,22 @@ public class VistaSprays implements Observer {
 
         System.out.println("Paso ObtenerSprayIDYPosicion");
 
-        if(datos.size() == 2){ //Cuando no es 2 es porque no debe mostrar el spray}
+        if(datos.size() == 3){ //Cuando no es 3 es porque no debe mostrar el spray}
             try {
                 System.out.println(datos);
                 ImageView imagen = ConstanteImagenes.getImagen(datos.get(0));
 
                 String coordenadasComoString = datos.get(1);
+                String pathAudio = datos.get(2);
 
                 String[] coordenadas = coordenadasComoString.substring(1, coordenadasComoString.length() - 1).split(",");
                 int x = Integer.parseInt(coordenadas[0]); // x
                 int y = Integer.parseInt(coordenadas[1]); // y
+                System.out.println(pathAudio);
+                AudioPlayer.playEfectoSonido(pathAudio);
 
                 visualizadorDeMapa.agregarSpray(imagen, x, y);
+
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }

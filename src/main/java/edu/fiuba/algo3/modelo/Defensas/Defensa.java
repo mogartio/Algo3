@@ -1,12 +1,8 @@
 package edu.fiuba.algo3.modelo.Defensas;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import java.util.ArrayList;
-import java.util.Observable;
 
 import edu.fiuba.algo3.modelo.Enemigos.Sprayable;
-import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
-import edu.fiuba.algo3.modelo.ObserverPropio.Logger;
-import edu.fiuba.algo3.modelo.ObserverPropio.ObservablePropio;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 
@@ -15,6 +11,7 @@ public abstract class Defensa extends Sprayable {
     protected EstadoConstruccion estadoDeConstruccion;
     protected int rangoAtaque;
     protected TipoDeDefensa tipoDeDefensa;
+    private String sonidoCorrespondiente;
 
     public Defensa(int tiempoDeConstruccion, int rangoAtaque, TipoDeDefensa tipoDeDefensa){
         this.posicion = null;
@@ -62,6 +59,7 @@ public abstract class Defensa extends Sprayable {
         if(this.estadoDeConstruccion.estoyConstruida()){
             datos.add(this.representationString());
             datos.add(this.posicion.representacionString());
+            datos.add(this.estadoDeConstruccion.versonido());
         }
 
         return datos;
