@@ -25,7 +25,7 @@ public class ControladorCompra {
         if (!esCompraValida(coord)) {
             return;
         }
-        juego.getInstance().comprarDefensa(defensaSeleccionada, coord);
+        Juego.getInstance().comprarDefensa(defensaSeleccionada, coord);
         cancelarSeleccionDefensa();
         }
     private boolean esCompraValida(Coordenada coordenada){
