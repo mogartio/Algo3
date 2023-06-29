@@ -62,4 +62,5 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
     public Parcela ver(Coordenada coordenada) {
         return (mapa.get(coordenada));
     }
+
 }

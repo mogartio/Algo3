@@ -16,7 +16,7 @@ public class Jugando implements EstadoJuego {
     ArrayList<Enemigo> enemigos;
     LinkedList<Defensa> defensas;
     Mapa mapa;
-    public Jugando(){ //hay q sacarlo
+    public Jugando(){
         this.mapa = new Mapa();
         this.enemigos = new ArrayList<>();
         this.defensas = new LinkedList<>();

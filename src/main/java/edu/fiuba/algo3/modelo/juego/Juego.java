@@ -64,7 +64,9 @@ public class Juego extends Observable {
     //    //System.out.println(String.format("Se ha agregado una Defensa %s en %s", unaDefensa, coordenada.representacionString()));
     //    setChanged();
         Defensa nuevaDefensa = jugador.comprar(unaDefensa);
+        System.out.print(nuevaDefensa);
         nuevaDefensa.asignarPosicion(coordenada);
+        System.out.print(nuevaDefensa);
         nuevaDefensa.addObserver( observerParaDefensas);
         estadoJuego.introducirDefensa(nuevaDefensa);
         setChanged();
@@ -155,11 +157,6 @@ public class Juego extends Observable {
     public void destruirDefensaMasAntigua() {
         estadoJuego.destruirDefensaMasAntigua();
     }
-
-    // public void notificar() {
-    //     this.notify();
-    //     this.estadoJuego.notificar();
-    // }
 
     public int getCreditosDelJugador() { return jugador.getCreditos(); }
 
