@@ -67,4 +67,14 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
         return (mapa.get(coordenada));
     }
 
+<<<<<<< HEAD
+=======
+    public boolean esInicioOFinal(Parcela pasarela) {
+        try {
+            return (pasarelaFinal.esIgual((Pasarela) pasarela) || pasarelaInicial.esIgual((Pasarela) pasarela));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+>>>>>>> dd60f0444f8824fe81194951b1cce69190f79aca
 }

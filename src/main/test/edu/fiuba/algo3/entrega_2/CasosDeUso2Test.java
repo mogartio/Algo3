@@ -253,6 +253,7 @@ public class CasosDeUso2Test {
         juego.reestablecerJuego();
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
+        juego.cargarObserverParaDefensas(mockObserver);
         Turnero turnero = new Turnero();
 
         //Empieza el jugador a hacer cambios en el juego
