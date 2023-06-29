@@ -6,10 +6,8 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 public class Turnero implements Jugable {
 
     int contadorTurnos;
-    VisualizadorDeMapa visualizadorDeMapa;
 
-    public Turnero(VisualizadorDeMapa visualizadorDeMapa) {
-        this.visualizadorDeMapa = visualizadorDeMapa;
+    public Turnero() {
         contadorTurnos = 0;
     }
 

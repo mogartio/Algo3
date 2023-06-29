@@ -30,7 +30,7 @@ public class ControladorCompra {
             return;
         }
         Juego.getInstance().comprarDefensa(defensaSeleccionada, coord);
-        Juego.getInstance().notificar();
+        Juego.getInstance().notificar("Defensa");
         visualizadorMapa.actualizarPanelTienda();
         cancelarSeleccionDefensa();
     }
