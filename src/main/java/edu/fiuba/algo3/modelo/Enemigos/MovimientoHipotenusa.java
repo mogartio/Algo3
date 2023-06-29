@@ -27,7 +27,6 @@ public class MovimientoHipotenusa implements Movimiento{
     public void reasignarPosiciones(Coordenada coordInicial, Coordenada coordFinal){
         this.posicionActual = coordInicial;
         this.meta = coordFinal;
-
         this.camino = AlgoritmoDeBresenham.getCamino(this.posicionActual, this.meta);
     }
     @Override
