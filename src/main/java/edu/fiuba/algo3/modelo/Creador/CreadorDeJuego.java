@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.Interface.ControladorCompra;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorPanelJugador;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.lectorJSON.Lector;
@@ -16,6 +15,12 @@ import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+
+//
+// ELIMINAR ESTA CLASE
+//
+/*
 
 public class CreadorDeJuego {
 
@@ -30,7 +35,7 @@ public class CreadorDeJuego {
     }
 
     public static Juego crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa) throws NoHayCamino, NoHayInicial {
-
+/*
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(tamanioMapa);
         CreadorDeMapa creadorMapa = new CreadorDeMapa(pathArchivoMapa,tamanioMapa, visualizadorDeMapa);
@@ -44,7 +49,7 @@ public class CreadorDeJuego {
 
        /* Logger logger = new Logger();
 
-        mapa.agregarSubscriptor(logger); //Sacar esto o hacer que el logger sea un observer, establecer la comunicacion*/
+        mapa.agregarSubscriptor(logger); //Sacar esto o hacer que el logger sea un observer, establecer la comunicacion
 
         Juego juego = new Juego(mapa, vistaSprays);
 
@@ -61,6 +66,6 @@ public class CreadorDeJuego {
 
         juego.addObserver(new VistaEstadoJuego());
 
-        return juego;
+        return Juego.getInstance() ;
     }
-}
+} */

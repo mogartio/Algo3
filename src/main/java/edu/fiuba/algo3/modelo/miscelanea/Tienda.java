@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.miscelanea;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeDefensas;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.juego.Credito;
+import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class Tienda { // se encargara de administrar los precios de las defensas
 
     public Defensa vendeme(String unaDefensa){
         Credito cantidadACobrar = catalogo.get(unaDefensa);
-        Jugador.getInstance().descontarCreditos(cantidadACobrar);
+        Juego.getInstance().descontarCreditosAlJugador(cantidadACobrar);
 
         return creador.crear(unaDefensa);
     }

@@ -25,14 +25,14 @@ public class ControladorCompra {
         if (!esCompraValida(coord)) {
             return;
         }
-        juego.comprarDefensa(defensaSeleccionada, coord);
+        juego.getInstance().comprarDefensa(defensaSeleccionada, coord);
         cancelarSeleccionDefensa();
         }
     private boolean esCompraValida(Coordenada coordenada){
         if (defensaSeleccionada == null) {
             return false;
         }
-        Parcela parcela = juego.verParcelaEn(coordenada);
+        Parcela parcela = Juego.getInstance().verParcelaEn(coordenada);
         if (!parcela.puedeConstruir(defensaSeleccionada)) {
             return false;
         }

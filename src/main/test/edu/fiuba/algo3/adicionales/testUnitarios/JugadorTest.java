@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class JugadorTest {
     @Test
     public void test01SeInicalizaAlJugadorYDespuesDeRecibirDanioSigueVivo(){
-        Jugador jugador = Jugador.getInstance();
+        Jugador jugador = new Jugador();
         jugador.reestablecerEstadoInicial();
         jugador.recibirDanio(3);
 
-        assertTrue(Jugador.getInstance().estaVivo());
+        assertTrue(jugador.estaVivo());
     }
 }
