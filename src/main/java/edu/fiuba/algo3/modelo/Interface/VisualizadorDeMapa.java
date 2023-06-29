@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -15,12 +17,12 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -112,5 +114,12 @@ public class VisualizadorDeMapa {
 
     public void mostrarMensajeFinal(ImageView mensajeFinal) {
         layout.setLeft(mensajeFinal);
+    }
+
+    public void mostrarMensajeError(Text mensajeError) {
+        FadeTransition ft = new FadeTransition(Duration.millis(3000), mensajeError);
+        ft.setToValue(0);
+        panelTienda.getChildren().add(mensajeError);
+        ft.play();
     }
 }

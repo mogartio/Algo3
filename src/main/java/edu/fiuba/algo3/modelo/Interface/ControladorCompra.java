@@ -6,6 +6,9 @@ import edu.fiuba.algo3.modelo.parcelas.DisponibleDefensa;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.vista.VistaSprays;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 public class ControladorCompra {
     private String defensaSeleccionada;
@@ -27,6 +30,9 @@ public class ControladorCompra {
     public void ponerDefensaEn(int coordX, int coordY) {
         Coordenada coord = new Coordenada(coordX, coordY);
         if (!esCompraValida(coord)) {
+            Text mensajeError = new Text("Parcela invalida para construir");
+            mensajeError.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+            visualizadorMapa.mostrarMensajeError(mensajeError);
             return;
         }
         Juego.getInstance().comprarDefensa(defensaSeleccionada, coord);
