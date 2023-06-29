@@ -1,17 +1,30 @@
 @startuml
 
-abstract class Parcela{}
+abstract class Parcela{
+# posicion:Coordenada
++ construirDefensa(Defensa defensa)
++ actualizarUbicacion(Movimiento movimientoEnemigo)
++ estaEnRango(Coordenada otraCoordenada, int distancia):Boolean
++ ocupada():Boolean
++ setConstruible(Construible nuevoConstruible)
+}
 
 class Rocosa{}
 class Tierra{}
-class Pasarela{}
+class Pasarela{
++ verSiguiente():Pasarela
+}
 
-interface TipoPasarela{}
+interface TipoPasarela{
++ moverEnemigos(Movimiento tipoMovimiento, Pasarela pasarelaActual);
+}
 
 class Normal{}
 class Meta{}
 
-interface Construible{}
+interface Construible{
++ construir(Coordenada posicionParcela, Defensa defensaContruir, Parcela parcela)
+}
 
 class DisponibleAtaque{}
 class NoDisponible{}
@@ -19,13 +32,16 @@ class DisponibleTrampa{}
 
 TipoPasarela <|.. Normal
 TipoPasarela <|.. Meta
-TipoPasarela -> Pasarela
+TipoPasarela <- Pasarela
 
-Parcela <- Construible
+Parcela -> Construible
 
 Parcela <|-- Rocosa
 Parcela <|-- Tierra
 Parcela <|-- Pasarela
 
+DisponibleAtaque ..|> Construible
+DisponibleTrampa ..|> Construible
+NoDisponible ..|> Construible
 
 @enduml

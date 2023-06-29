@@ -1,22 +1,57 @@
 @startuml
 
-class Lector{}
-class CreadorNivel{}
-class Mapa{}
-class Camino{}
+class Turnero{}
 
 abstract class Parcela{}
-interface Construible{}
-class Disponible{}
-class NoDisponible{}
 
-class Jugador{}
-class Juego{
-- mapaJuego:Mapa
-- caminoEnemigos:Camino
-- oleadasEnemigos:Oleadas
+class Mapa{
+- mapa:Parcela
+- oleadas:Enemigo
+- pasarelaInicial:Pasarela
+- pasarelaFinal:Pasarela
+
++ cargarOleadas(Enemigo oleadas)
++ agregarEnemigosDelTurno(Enemigo enemigosDelJuego)
++ ver(Coordenada coordenada):Parcela
 }
-interface EstadoJuego{}
+
+class Jugador{
+- vida:Vida
+- creditos:Credito
+- rachaDeHormigas:RachaDeHomigas
+- nombre:String
+- tienda:Tienda
+
++ reestablecerEstadoInicial()
++ recompensar(int creditosRecibidos)
++ recibirDanio(int unDanio)
++ estaVivo():Boolean
++ comprar(String tipoDefensa):Defensa
++ descontarCreditos(Credito creditos)
+}
+
+class Juego{
++ comprarDefensa(String unaDefensa, Coordenada coordenada)
++ daniarAlJugador(int unNumero)
++ nuevoEnemigo(Enemigo nuevoEnemigo)
++ finalizado():Boolean
++ jugarTurno(int numeroTurno)
++ recompensarJugador(int unNumero)
++ descontarCreditosAlJugador(Credito cantidadACobrar)
++ verificarConstruccionesPosibles():String
++ comprar(String nombreDeLaDefensa)
++ reestablecerJuego()
++ obtenerNuevoEstado():EstadoJuego
+}
+
+interface EstadoJuego{
++introducirEnemigo(Enemigo enemigo):EstadoJuego
++introducirDefensa(Defensa defensa):EstadoJuego
++finalizado():Boolean
++jugarTurno(boolean jugadorVivo, int numeroTurno):EstadoJuego
++destruirDefensaMasAntigua()
+}
+
 class Ganado{}
 class Perdido{}
 class Jugando{}
@@ -24,25 +59,17 @@ class Jugando{}
 abstract class Enemigo{}
 abstract class Defensa{}
 
-Mapa <.. Lector
-Camino <.. Lector
-Oleadas <.. Lector
-
-Construible -> Parcela
+Mapa --o Juego
 Parcela "*" -o Mapa
-Construible <|.. Disponible
-Construible <|.. NoDisponible
 
-CreadorNivel o- Lector
-CreadorNivel ..> Juego
 
 Juego o- Jugador
-EstadoJuego -o Juego
+EstadoJuego -* Juego
 EstadoJuego <|.. Ganado
 EstadoJuego <|.. Perdido
 EstadoJuego <|.. Jugando
 
-Jugando o-- Enemigo
-Jugando o-- Defensa
+Jugando --> "*" Enemigo
+Jugando --> "*" Defensa
 
 @enduml
