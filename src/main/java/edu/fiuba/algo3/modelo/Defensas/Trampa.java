@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigos.Relentizado;
+import edu.fiuba.algo3.modelo.Enemigos.Efecto.Relentizado;
 
 public class Trampa implements TipoDeDefensa{
     private double porcentajeRelentizacion;

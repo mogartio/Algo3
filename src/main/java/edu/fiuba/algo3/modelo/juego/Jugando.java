@@ -3,8 +3,6 @@ package edu.fiuba.algo3.modelo.juego;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
-import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
 import java.util.Observable;

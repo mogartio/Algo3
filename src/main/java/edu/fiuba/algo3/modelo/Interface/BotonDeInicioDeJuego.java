@@ -1,22 +1,12 @@
 package edu.fiuba.algo3.modelo.Interface;
 
 import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
-import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
-import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
     private final String nombreJugador;

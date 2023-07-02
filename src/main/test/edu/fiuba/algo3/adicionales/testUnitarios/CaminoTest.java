@@ -2,7 +2,7 @@ package edu.fiuba.algo3.adicionales.testUnitarios;
 
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.lectorJSON.Camino;
+import edu.fiuba.algo3.modelo.juego.Camino;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;

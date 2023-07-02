@@ -1,10 +1,9 @@
 package edu.fiuba.algo3.adicionales.testUnitarios;
 
-import edu.fiuba.algo3.modelo.Defensas.Construido;
+import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.Construido;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
-import edu.fiuba.algo3.modelo.Defensas.EnConstruccion;
-import edu.fiuba.algo3.modelo.Defensas.EstadoConstruccion;
-import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
+import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EnConstruccion;
+import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EstadoConstruccion;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
