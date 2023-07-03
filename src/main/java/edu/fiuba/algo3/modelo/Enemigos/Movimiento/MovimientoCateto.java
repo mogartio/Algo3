@@ -12,7 +12,7 @@ public class MovimientoCateto implements Movimiento {
 
     private LinkedList<Coordenada> camino;
     private Coordenada meta;
-    private Coordenada posicionActual;
+    public Coordenada posicionActual;
     private Coordenada vertice;
     private Parcela parcelaActual;
     private Enemigo enemigo;

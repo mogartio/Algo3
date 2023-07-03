@@ -17,6 +17,8 @@ public abstract class Enemigo extends Sprayable {
     protected int poderAtaque;
     protected Efecto efectoEnemigo;
     protected Movimiento tipoMovimiento;
+    protected String representacionString;
+    protected String sonido;
 
     public Enemigo( int puntosVida, int ataque, int cantidadMovimientos){
         super();
@@ -61,7 +63,7 @@ public abstract class Enemigo extends Sprayable {
 
     public abstract void morir();
 
-    public abstract String representacionString();
+    public String representacionString() { return representacionString; }
 
     public void avanzar(Mapa mapa) throws PasarelaInexistente{
         this.efectoEnemigo = this.efectoEnemigo.avanzar(this.cantidadMovimientos, this.tipoMovimiento, mapa);

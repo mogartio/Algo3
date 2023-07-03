@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
 
     public void start(Stage stage) throws Exception {
-        VentanaDeJuego.setVentanaDelJuego(stage);// mmmm
+        VentanaDeJuego.setVentanaDelJuego(stage);
 
         stage.setWidth(1150);
         stage.setHeight(957);

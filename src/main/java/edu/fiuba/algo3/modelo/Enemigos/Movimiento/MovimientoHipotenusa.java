@@ -14,7 +14,7 @@ public class MovimientoHipotenusa implements Movimiento {
 
     private Coordenada meta;
 
-    private Coordenada posicionActual;
+    public Coordenada posicionActual;
 
     private Parcela parcelaActual;
 

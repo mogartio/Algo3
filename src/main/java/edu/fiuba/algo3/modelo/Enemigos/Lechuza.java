@@ -11,6 +11,7 @@ public class Lechuza extends Enemigo{
     public Lechuza(){
         super(5, 0, 5);
         this.tipoMovimiento = new MovimientoCateto(this);
+        this.representacionString = "Lechuza";
     }
 
     @Override
@@ -35,10 +36,6 @@ public class Lechuza extends Enemigo{
 
     public void morir(){
         sonido = "Morir";
-    }
-
-    public String representacionString() {
-        return "Lechuza";
     }
 
 }
