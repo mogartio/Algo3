@@ -13,7 +13,8 @@ public abstract class Defensa extends Sprayable {
     protected EstadoConstruccion estadoDeConstruccion;
     protected int rangoAtaque;
     protected TipoDeDefensa tipoDeDefensa;
-    private String sonidoCorrespondiente;
+
+    protected String representacionString;
 
     public Defensa(int tiempoDeConstruccion, int rangoAtaque, TipoDeDefensa tipoDeDefensa){
         this.posicion = null;
@@ -53,7 +54,7 @@ public abstract class Defensa extends Sprayable {
         setChanged();
     }
 
-    public abstract String representationString();
+    public String representationString() { return this.representacionString; };
 
     public ArrayList<String> ObtenerSprayIDYPosicion(){
         ArrayList<String> datos = new ArrayList<>();

@@ -8,7 +8,7 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import java.util.ArrayList;
 
 public class Construido implements EstadoConstruccion {
-    private String sonido = "Construir";
+    public String sonido = "Construir";
 
     public EstadoConstruccion pasoUnTurno(Defensa defensa){
         return this;

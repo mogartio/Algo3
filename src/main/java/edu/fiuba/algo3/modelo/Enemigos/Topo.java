@@ -16,6 +16,8 @@ public class Topo extends Enemigo{
             this.poderAtaque= 5;
         }
 
+        this.representacionString = "Topo";
+
         this.tipoMovimiento = new MovimientoPasarela(this);
     }
 
@@ -50,9 +52,5 @@ public class Topo extends Enemigo{
     }
 
     public void morir(){
-    }
-
-    public String representacionString() {
-        return "Topo";
     }
 }

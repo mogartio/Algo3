@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.parcelas.Parcela;
 public class MovimientoPasarela implements Movimiento {
 
     private Coordenada meta;
-    private Coordenada posicionActual;
+    public Coordenada posicionActual;
 
     private Parcela parcelaActual;
 

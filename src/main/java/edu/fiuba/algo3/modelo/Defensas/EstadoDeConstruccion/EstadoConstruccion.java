@@ -11,7 +11,6 @@ public interface EstadoConstruccion {
     EstadoConstruccion pasoUnTurno(Defensa defensa);
     boolean estoyConstruida();
     void setSonido();
-
     String versonido();
     void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre);
 }

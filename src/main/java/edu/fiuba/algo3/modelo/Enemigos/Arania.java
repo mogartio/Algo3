@@ -15,7 +15,7 @@ public class Arania extends Enemigo {
         this.tipoMovimiento = new MovimientoPasarela(this);
 
         this.generadorRandom = generadorRandom;
-        this.sprayID = "Araña";
+        this.representacionString = "Araña";
     }
 
     public Arania(Pasarela posicionActual,RandomGenerator generadorRandom) { //Constructor para test
@@ -37,9 +37,5 @@ public class Arania extends Enemigo {
         Juego.getInstance().recompensarJugador(cantidadARecompensar); // devuelve int entre 0 y 10
         sonido = "Morir";
         setChanged();
-    }
-
-    public String representacionString() {
-        return "Araña";
     }
 }
