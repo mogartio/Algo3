@@ -1,5 +1,11 @@
 @startuml
-abstract class Defensa{}
+abstract class Defensa{
+# posicion: Coordenadas
++ asignarPosicion(Coordenada nuevaPosicion)
++ pasarTurno()
++ estaConstruida():Boolean
++ atacar(Enemigo:enemigos)
+}
 
 class TorreBlanca{}
 class TorrePlateada{}
@@ -9,8 +15,21 @@ interface TipoDefensa{
 + atacar(Enemigo: enemigo)
 }
 
-class Ataque{}
-class Trampa{}
+class Ataque{
++ Ataque(Int:danio)
+}
+class Trampa{
++ Trampa(Int:porcentajeRelentizacion)
+}
+
+interface EstadoConstruccion{
++ estoyConstruida():Boolean
++ atacar(Enemigo:enemigo, TipoDefensa:tipoDeDefensa)
++ pasoUnTurno():EstadoConstruccion
+}
+class EnConstruccion{}
+class Construido{}
+class Destruido{}
 
 Defensa <|-- TorreBlanca
 Defensa <|-- TorrePlateada
@@ -20,4 +39,8 @@ TipoDefensa <- Defensa
 Ataque ..|> TipoDefensa
 Trampa ..|> TipoDefensa
 
+Defensa -> EstadoConstruccion
+EnConstruccion ..|> EstadoConstruccion
+Construido ..|> EstadoConstruccion
+Destruido ..|> EstadoConstruccion
 @enduml
