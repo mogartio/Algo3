@@ -1,14 +1,14 @@
-package edu.fiuba.algo3.modelo.Enemigos;
+package edu.fiuba.algo3.modelo.Enemigos.Movimiento;
 
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.AlgoritmoDeBresenham;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class MovimientoHipotenusa implements Movimiento{
+public class MovimientoHipotenusa implements Movimiento {
 
     private LinkedList<Coordenada> camino;
 
@@ -27,7 +27,6 @@ public class MovimientoHipotenusa implements Movimiento{
     public void reasignarPosiciones(Coordenada coordInicial, Coordenada coordFinal){
         this.posicionActual = coordInicial;
         this.meta = coordFinal;
-
         this.camino = AlgoritmoDeBresenham.getCamino(this.posicionActual, this.meta);
     }
     @Override
@@ -50,12 +49,17 @@ public class MovimientoHipotenusa implements Movimiento{
 
         for(int posicion = 0; posicion < cantidadPasos; posicion++){
 
-            this.posicionActual = this.camino.get(posicion);
-            this.parcelaActual = mapa.ver(this.posicionActual);
-            this.parcelaActual.actualizarPosicion(this);
+            if ( !( camino.peek() == null ) ) {
+                this.posicionActual = this.camino.poll();
+                this.parcelaActual = mapa.ver(this.posicionActual);
+            } else {
+                enemigo.daniarJugador();
+                break;
+            }
+
         }
 
-        this.camino.subList(0, cantidadPasos).clear();
+
     }
 
     @Override

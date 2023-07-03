@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.vista.VistaSprays;
@@ -152,11 +151,6 @@ public class Juego extends Observable {
     public void destruirDefensaMasAntigua() {
         estadoJuego.destruirDefensaMasAntigua();
     }
-
-    // public void notificar() {
-    //     this.notify();
-    //     this.estadoJuego.notificar();
-    // }
 
     public int getCreditosDelJugador() { return jugador.getCreditos(); }
 

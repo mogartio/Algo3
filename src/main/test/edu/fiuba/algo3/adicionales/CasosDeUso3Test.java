@@ -8,11 +8,9 @@ import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
+import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.vista.VistaSprays;
-import javafx.beans.Observable;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -28,9 +26,9 @@ public class CasosDeUso3Test {
      //agregar verificacion de turno impar
     @Test
     public void test21aCuatroToposLlegandoAMetaEnTurnoImparMatanAJugador() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(4);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/tests/Test21/mapaTest21",4, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         Observer mockObserver = mock(Observer.class);
@@ -51,9 +49,9 @@ public class CasosDeUso3Test {
     }
     @Test
     public void test21bNueveToposLlegandoAMetaEnTurnoParNoMatanAJugador() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/tests/Test21/mapaTest21",4, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
         Observer mockObserver = mock(Observer.class);
@@ -75,9 +73,9 @@ public class CasosDeUso3Test {
     }
     @Test
     public void test21cDiezToposLlegandoAMetaEnTurnoParMatanAJugador() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(4);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/tests/Test21/mapaTest21",4, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -102,9 +100,9 @@ public class CasosDeUso3Test {
     public void test22LosToposNoSonAtacados() throws NoHayCamino, NoHayInicial {
         //json de enemigos con 2 hormigas y 10 topos
 
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(4);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/tests/Test21/mapaTest21",4, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa(visualizadorDeMapa);
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -138,9 +136,9 @@ public class CasosDeUso3Test {
         // despues apareceran las 20 hormigas qur le quitaran la vida al jugador
         //(si la torre fue destruida correctamente entonces deberian llegar todas las hormigas)
 
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(6);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/tests/Test23/mapaTest23",6, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test23/mapaTest23",6);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -159,6 +157,44 @@ public class CasosDeUso3Test {
         juego.comprarDefensa("TorreBlanca", new Coordenada(1, 2));
 
         for (int i = 0; i <= 10; i++) {
+            //es la cantidad de turnos necesarios para q las hormigas lleguen a la meta
+
+            turnero.jugarTurnoMaquina();
+        }
+
+        assertFalse(juego.jugadorVivo());
+    }
+
+
+    @Test
+    public void test24LechuzaDestruyeLaPrimerTorreConstruidaAlLlegarALaMetaY20HormigasMatanAlJugador() throws NoHayCamino, NoHayInicial {
+        // al 5to turno la lechuza destruira la primer torre
+        // despues apareceran las 20 hormigas qur le quitaran la vida al jugador
+        //(si la primer torre fue destruida correctamente en el turno que se estima la llegada de la lechuza
+        // a la meta dado el movimiento hipotenuza entonces deberian llegar todas las hormigas)
+
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
+
+        CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test24/enemigosTest24", mockObserver);
+
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
+        juego.setMapa(mapa);
+        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.setOleadasDelNivel(enemigos);
+
+        Turnero turnero = new Turnero();
+
+        juego.comprarDefensa("TorrePlateada", new Coordenada(10, 12));
+        juego.comprarDefensa("TorreBlanca", new Coordenada(6, 12));
+
+        for (int i = 0; i <= 29; i++) {
             //es la cantidad de turnos necesarios para q las hormigas lleguen a la meta
 
             turnero.jugarTurnoMaquina();

@@ -5,7 +5,7 @@ package edu.fiuba.algo3.adicionales.testUnitarios;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
+import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;

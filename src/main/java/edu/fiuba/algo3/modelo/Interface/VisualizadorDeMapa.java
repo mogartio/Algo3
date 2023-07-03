@@ -32,8 +32,7 @@ public class VisualizadorDeMapa {
     private GridPane grilla;
     private BorderPane layout;
     private ArrayList<Coordenada> coordenadasSpraysDelTurno;
-    public VisualizadorDeMapa(int largo){
-
+    public VisualizadorDeMapa(){
         layout = new BorderPane();
         panelTienda = VisualizadorTienda.crearPanelTienda();
         grilla = new GridPane();
@@ -44,7 +43,6 @@ public class VisualizadorDeMapa {
     }
 
     public void actualizarPanelJugador(HBox panelJugador) {
-        //System.out.println();
         layout.setTop(panelJugador);
     }
 

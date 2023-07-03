@@ -39,6 +39,7 @@ public class Tienda { // se encargara de administrar los precios de las defensas
 
     public Defensa vendeme(String unaDefensa){
         Credito cantidadACobrar = catalogo.get(unaDefensa);
+
         Juego.getInstance().descontarCreditosAlJugador(cantidadACobrar);
 
         return creador.crear(unaDefensa);
