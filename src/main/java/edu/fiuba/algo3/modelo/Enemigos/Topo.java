@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoPasarela;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 

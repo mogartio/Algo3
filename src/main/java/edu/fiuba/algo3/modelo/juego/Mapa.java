@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.lectorJSON;
+package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.ObserverPropio.*;

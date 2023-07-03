@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo.parcelas;
 
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigos.Movimiento;
-import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
 import javafx.scene.paint.Color;
 
 public class Meta implements TipoPasarela{

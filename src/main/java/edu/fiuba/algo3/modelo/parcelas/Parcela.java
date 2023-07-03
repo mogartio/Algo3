@@ -1,12 +1,8 @@
 package edu.fiuba.algo3.modelo.parcelas;
 
 
-import edu.fiuba.algo3.modelo.Enemigos.Movimiento;
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.Defensas.Defensa;
-
-import java.util.Hashtable;
-import java.util.Map;
 
 public abstract class Parcela {
     protected Coordenada coordenada;

@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.Creador;
 
 
 import edu.fiuba.algo3.modelo.Enemigos.*;
-import edu.fiuba.algo3.modelo.lectorJSON.Lector;
+import edu.fiuba.algo3.modelo.juego.Lector;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

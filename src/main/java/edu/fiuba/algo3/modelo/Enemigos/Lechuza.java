@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoCateto;
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoHipotenusa;
 import edu.fiuba.algo3.modelo.juego.Juego;
 
 public class Lechuza extends Enemigo{
@@ -28,7 +30,6 @@ public class Lechuza extends Enemigo{
     @Override
     public void daniarJugador() {
         super.daniarJugador();
-        System.out.print("\n estoy destruyendo \n\n");
         Juego.getInstance().destruirDefensaMasAntigua();
     }
 

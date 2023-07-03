@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoPasarela;
 import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Arania extends Enemigo {

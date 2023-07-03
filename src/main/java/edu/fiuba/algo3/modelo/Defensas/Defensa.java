@@ -1,4 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
+import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EnConstruccion;
+import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EstadoConstruccion;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import java.util.ArrayList;
 
