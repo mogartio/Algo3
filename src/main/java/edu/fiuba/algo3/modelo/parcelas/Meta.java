@@ -16,6 +16,7 @@ public class Meta implements TipoPasarela{
 
     @Override
     public Color getColor() {
+        System.out.println("sadfkljasdf");
         return Color.PINK;
     }
 }

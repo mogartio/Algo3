@@ -12,6 +12,7 @@ public class Pasarela extends Parcela {
 
     public Pasarela(Coordenada coordenada,Pasarela siguientePasarela, TipoPasarela tipo)  {
         super(coordenada, tipo.getConstruible());
+        this.color = tipo.getColor();
         this.siguientePasarela = siguientePasarela;
         this.tipo = tipo;
     }

@@ -16,17 +16,18 @@ import edu.fiuba.algo3.modelo.parcelas.Tierra;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 
 public class CreadorDeMapa {
     public Camino camino;
     public Mapa mapa;
-    private VisualizadorDeMapa visualizador;
 
-    public CreadorDeMapa(VisualizadorDeMapa visualizadorDeMapa){
+    public CreadorDeMapa(){
         mapa = new Mapa();
          //cuidado se parte del supuesto de que el mapa es cuadrado (misma cantidad de celdas tanto en Y como en X)
-        this.visualizador = visualizadorDeMapa;
-
     }
 
     public Mapa crearMapa(String path, int tamanioMax) throws NoHayCamino, NoHayInicial {
@@ -52,14 +53,12 @@ public class CreadorDeMapa {
 
         for(int coordenadaX = 1; coordenadaX <= fila.size(); coordenadaX++){
             crearParcela((String) fila.get(coordenadaX - 1), coordenadaY, coordenadaX);
-
         }
     }
 
     private void crearParcela(String tipoDeTerreno, int coordY, int coordX){
 
         Coordenada nuevaCoordenada = new Coordenada(coordX, coordY);
-
         switch (tipoDeTerreno) {
             case "Rocoso":
                 mapa.agregar(nuevaCoordenada, new Rocosa(nuevaCoordenada));
@@ -72,7 +71,5 @@ public class CreadorDeMapa {
                 mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));
                 break;
         }
-
-        visualizador.agregarParcela(tipoDeTerreno, coordX, coordY);
     }
 }

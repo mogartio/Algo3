@@ -50,23 +50,12 @@ public class Juego extends Observable {
     }
 
     public void comprarDefensa(String unaDefensa, Coordenada coordenada) {
-    //    Defensa nuevaDefensa = jugador.comprar(unaDefensa);
-    //    nuevaDefensa.asignarPosicion(coordenada);
-    //    nuevaDefensa.addObserver(observerParaDefensas);
-    //    estadoJuego.introducirDefensa(nuevaDefensa);
-    //    //System.out.println(String.format("Se ha agregado una Defensa %s en %s", unaDefensa, coordenada.representacionString()));
-    //    setChanged();
         Defensa nuevaDefensa = jugador.comprar(unaDefensa);
         nuevaDefensa.asignarPosicion(coordenada);
         nuevaDefensa.addObserver( observerParaDefensas);
         estadoJuego.introducirDefensa(nuevaDefensa);
         setChanged();
         mapa.ver(coordenada).construirDefensa();
-
-        System.out.println(String.format("se agrego %s", unaDefensa));
-
-        //nuevaDefensa.agregarSubscriptor(this.logger);
-        //this.emisor.notificarSubscriptores("log", "Se agrega al juego una nueva defensa: " + unaDefensa + " en " + coordenada.representacionString());
     }
 
     public boolean esInicioOFinal(Parcela pasarela) {return mapa.esInicioOFinal(pasarela); }

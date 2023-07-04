@@ -26,12 +26,12 @@ public class CreadorDeJuego {
     public static void crearJuego(String pathArchivoEnemigos, String pathArchivoMapa, int tamanioMapa, String nombreDelJugador) throws NoHayCamino, NoHayInicial {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
+        CreadorDeMapa creadorMapa = new CreadorDeMapa();
+        Mapa mapa = creadorMapa.crearMapa(pathArchivoMapa, tamanioMapa);
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
-        CreadorDeMapa creadorMapa = new CreadorDeMapa(visualizadorDeMapa);
         ControladorCompra.getInstance().setVisualizadorMapa(visualizadorDeMapa);
 
-        Mapa mapa = creadorMapa.crearMapa(pathArchivoMapa, tamanioMapa);
         LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos, vistaSprays);
 
         mapa.cargarOleadas(enemigos);
@@ -54,6 +54,7 @@ public class CreadorDeJuego {
 
         Juego.getInstance().notifyObservers();
 
+        visualizadorDeMapa.cargarMapa(mapa);
         visualizadorDeMapa.mostrar();
     }
 }

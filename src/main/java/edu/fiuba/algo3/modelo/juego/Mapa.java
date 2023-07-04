@@ -23,13 +23,16 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
         this.oleadas = new LinkedList<ArrayList<Enemigo>>();
         this.pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
         //Para que el mapa quede en estado consistente, en un caso de uso real, la pasarelaInicial quedará determinada
-
         this.logger = new Logger();
     }
 
     public void setPasarelaInicialFinal(Pasarela pasarelaInicial, Pasarela pasarelaFinal) {
         this.pasarelaInicial = pasarelaInicial;
         this.pasarelaFinal = pasarelaFinal;
+    }
+
+    public HashMap<Coordenada, Parcela> getParcelas(){
+        return mapa;
     }
 
     public void cargarOleadas(LinkedList< ArrayList<Enemigo> > oleadas) {
@@ -76,4 +79,5 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
         }
     }
 
+    public Parcela verFinalCamino() {return pasarelaFinal; }
 }

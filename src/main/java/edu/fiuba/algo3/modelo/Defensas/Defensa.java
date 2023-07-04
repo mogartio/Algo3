@@ -21,12 +21,6 @@ public abstract class Defensa extends Sprayable {
         this.rangoAtaque = rangoAtaque;
         this.estadoDeConstruccion = new EnConstruccion(tiempoDeConstruccion);
         this.tipoDeDefensa = tipoDeDefensa;
-
-        //CAMBIAR ESTO
-        //Logger logger = new Logger();
-        //this.emisor = new Emisor();
-        //this.emisor.subcribir(logger);
-
     }
 
     public Defensa(Coordenada posicion, int tiempoDeConstruccion, int rangoAtaque){
@@ -40,7 +34,6 @@ public abstract class Defensa extends Sprayable {
     }
 
     public void pasarTurno(){
-        //this.estadoDeConstruccion = estadoDeConstruccion.pasoUnTurno(this.emisor, this);
         this.estadoDeConstruccion = estadoDeConstruccion.pasoUnTurno(this);
     }
 
@@ -64,7 +57,6 @@ public abstract class Defensa extends Sprayable {
             datos.add(this.posicion.representacionString());
             datos.add(this.estadoDeConstruccion.versonido());
         }
-
         return datos;
     }
 

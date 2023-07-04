@@ -3,14 +3,19 @@ package edu.fiuba.algo3.modelo.parcelas;
 
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import javafx.scene.paint.Color;
 
 public abstract class Parcela {
     protected Coordenada coordenada;
     protected Construible construible;
+    public Color color;
 
     public Parcela(Coordenada coordenada, Construible construible){
         this.coordenada = coordenada;
         this.construible = construible;
+    }
+
+    public Color getColor() { return color;
     }
 
     public void construirDefensa(){
@@ -19,8 +24,8 @@ public abstract class Parcela {
         this.construible = new NoDisponible();
     }
 
-    public boolean equals(Object pasarela){
-        return false;
+    public boolean equals(Parcela parcela){
+        return (verificarPosicion(parcela.coordenada));
     }
 
     public boolean verificarPosicion(Coordenada coordenada){

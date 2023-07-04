@@ -22,9 +22,8 @@ public class ConstanteImagenes {
                 "TrampaArenosa", "ImagenesGUI/trampaArena.png",
                 "Ganado", "ImagenesGUI/victoria.png",
                 "Perdido", "ImagenesGUI/Derrota.png",
-                "Jugando", "");
+                "meta", "ImagenesGUI/meta.png");
     }
-
     public static ImageView getImagen(String imagenBuscada) throws FileNotFoundException {
         InputStream stream = new FileInputStream((String) diccionarioImagenes.get(imagenBuscada));
         ImageView image = new ImageView((new Image(stream)));

@@ -35,7 +35,7 @@ public class VistaEstadoJuego implements Observer {
             AudioPlayer.playEfectoSonido(estadoJuego.versionString());
 
         } catch (FileNotFoundException e) {
-
+        } catch (NullPointerException e){
         }
     }
 }

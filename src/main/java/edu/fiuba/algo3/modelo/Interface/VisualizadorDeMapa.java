@@ -3,7 +3,10 @@ package edu.fiuba.algo3.modelo.Interface;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.modelo.parcelas.Parcela;
+import edu.fiuba.algo3.vista.ConstanteImagenes;
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
@@ -21,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
@@ -32,6 +36,8 @@ public class VisualizadorDeMapa {
     private GridPane grilla;
     private BorderPane layout;
     private ArrayList<Coordenada> coordenadasSpraysDelTurno;
+    private Coordenada coordenadaMeta;
+
     public VisualizadorDeMapa(){
         layout = new BorderPane();
         panelTienda = VisualizadorTienda.crearPanelTienda();
@@ -50,23 +56,11 @@ public class VisualizadorDeMapa {
         panelTienda = VisualizadorTienda.updateInfo();
     }
 
-    public void agregarParcela(String tipoDeParcela, int coordX, int coordY){
-        Color color = Color.GREY;
-        switch (tipoDeParcela) {
-            case "Rocoso":
-                color = Color.GREY;
-                break;
-            case "Pasarela":
-                color = Color.ORANGE;
-                break;
-            case "Tierra":
-                color = Color.GREEN;
-                break;
-        }
+    public void agregarParcela(Parcela tipoDeParcela, int coordX, int coordY){
+        Color color = tipoDeParcela.getColor();
         Rectangle rect = new Rectangle(56, 56, color);
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
-
          rect.setOnMouseClicked(mouseEvent -> {
                      ControladorCompra controladorCompra = ControladorCompra.getInstance();
                      controladorCompra.ponerDefensaEn(coordX, coordY);
@@ -87,6 +81,9 @@ public class VisualizadorDeMapa {
 
     public void agregarSpray(ImageView spray, int coordX, int coordY){
         Coordenada coordenada = new Coordenada(coordX, coordY);
+        if (coordenada.equals(coordenadaMeta)){
+            return;
+        }
         coordenadasSpraysDelTurno.add(coordenada);
         grilla.add(spray, coordX, coordY);
     }
@@ -102,7 +99,6 @@ public class VisualizadorDeMapa {
                     break;
                 }
             }
-
         }
     }
 
@@ -119,5 +115,27 @@ public class VisualizadorDeMapa {
         ft.setToValue(0);
         panelTienda.getChildren().add(mensajeError);
         ft.play();
+    }
+
+    public void cargarMapa(Mapa mapa) {
+        HashMap<Coordenada, Parcela> parcelas = mapa.getParcelas();
+        Set<Coordenada> claves = parcelas.keySet();
+        for (Coordenada clave : claves) {
+            if (parcelas.get(clave).equals(mapa.verFinalCamino())) {
+                coordenadaMeta = clave;
+                mostrarMeta(parcelas.get(clave), clave.getAbscisa(), clave.getOrdenada());
+                continue;
+            }
+            agregarParcela(parcelas.get(clave), clave.getAbscisa(), clave.getOrdenada());
+        }
+    }
+
+    private void mostrarMeta(Parcela parcela, int abscisa, int ordenada) {
+        try {
+            ImageView meta = ConstanteImagenes.getImagen("meta");
+            grilla.add(meta, abscisa, ordenada);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
