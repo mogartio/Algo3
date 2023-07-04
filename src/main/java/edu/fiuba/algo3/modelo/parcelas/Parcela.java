@@ -25,7 +25,7 @@ public abstract class Parcela {
     }
 
     public boolean equals(Parcela parcela){
-        return (verificarPosicion(parcela.coordenada));
+        return (verificarPosicion(parcela.coordenada) && this.getClass().equals(parcela.getClass()));
     }
 
     public boolean verificarPosicion(Coordenada coordenada){

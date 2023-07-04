@@ -27,7 +27,7 @@ public class CasosDeUso3Test {
     @Test
     public void test21aCuatroToposLlegandoAMetaEnTurnoImparMatanAJugador() throws NoHayCamino, NoHayInicial {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -50,7 +50,7 @@ public class CasosDeUso3Test {
     @Test
     public void test21bNueveToposLlegandoAMetaEnTurnoParNoMatanAJugador() throws NoHayCamino, NoHayInicial {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -74,7 +74,7 @@ public class CasosDeUso3Test {
     @Test
     public void test21cDiezToposLlegandoAMetaEnTurnoParMatanAJugador() throws NoHayCamino, NoHayInicial {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -101,7 +101,7 @@ public class CasosDeUso3Test {
         //json de enemigos con 2 hormigas y 10 topos
 
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa(visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
@@ -137,7 +137,7 @@ public class CasosDeUso3Test {
         //(si la torre fue destruida correctamente entonces deberian llegar todas las hormigas)
 
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test23/mapaTest23",6);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
@@ -174,7 +174,7 @@ public class CasosDeUso3Test {
         // a la meta dado el movimiento hipotenuza entonces deberian llegar todas las hormigas)
 
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
