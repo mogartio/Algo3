@@ -9,7 +9,6 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 
 public abstract class Defensa extends Sprayable {
-    private  String sonido;
     protected Coordenada posicion;
     protected EstadoConstruccion estadoDeConstruccion;
     protected int rangoAtaque;
@@ -22,7 +21,6 @@ public abstract class Defensa extends Sprayable {
         this.rangoAtaque = rangoAtaque;
         this.estadoDeConstruccion = new EnConstruccion(tiempoDeConstruccion);
         this.tipoDeDefensa = tipoDeDefensa;
-        this.sonido = this.estadoDeConstruccion.verSonido();
     }
 
     public Defensa(Coordenada posicion, int tiempoDeConstruccion, int rangoAtaque){

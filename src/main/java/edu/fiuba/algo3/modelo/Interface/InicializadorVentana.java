@@ -9,7 +9,6 @@ public class InicializadorVentana {
     public static void start(Stage stage) throws Exception {
 
         stage.setTitle("TowerDefense: El juego!");
-        stage.setFullScreen(false);
 
         //se crea la escena inicial
         BorderPane layout = new BorderPane();

@@ -28,6 +28,7 @@ public class VistaSprays implements Observer {
         Sprayable sprayable = (Sprayable) o;
 
         ArrayList<String> datos = verDatos(sprayable);
+        System.out.println(datos);
 
         if(datos.size() == 3){ //Cuando no es 3 es porque no debe mostrar el spray}
             try {
@@ -40,7 +41,6 @@ public class VistaSprays implements Observer {
                 int x = Integer.parseInt(coordenadas[0]); // x
                 int y = Integer.parseInt(coordenadas[1]); // y
                 AudioPlayer.playEfectoSonido(pathAudio);
-
                 visualizadorDeMapa.agregarSpray(imagen, x, y);
 
             } catch (FileNotFoundException e) {
@@ -85,6 +85,7 @@ public class VistaSprays implements Observer {
         }
 
         try {
+            System.out.println(datos);
             field = sprayable.getClass().getSuperclass().getDeclaredField("tipoMovimiento");
             field.setAccessible(true);
             Movimiento mov = (Movimiento) field.get(sprayable);
@@ -96,15 +97,16 @@ public class VistaSprays implements Observer {
         }
 
         try {
+            System.out.println(datos);
             field = sprayable.getClass().getSuperclass().getDeclaredField("posicion");
             field.setAccessible(true);
             pos = (Coordenada) field.get(sprayable);
-            System.out.println(datos);
             datos.add(2, pos.representacionString());
+            datos.forEach(dato -> System.out.println(dato));
         } catch (NoSuchFieldException e) {
         } catch (IllegalAccessException e) {
         }
-        datos.forEach(dato -> System.out.println(dato));
+
         return datos;
     }
 }
