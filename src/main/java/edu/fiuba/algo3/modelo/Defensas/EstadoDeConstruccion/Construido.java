@@ -24,7 +24,7 @@ public class Construido implements EstadoConstruccion {
     }
 
     @Override
-    public String versonido() {
+    public String verSonido() {
         return sonido;
     }
 

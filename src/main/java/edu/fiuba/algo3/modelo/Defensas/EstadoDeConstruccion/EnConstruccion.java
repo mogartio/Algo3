@@ -27,7 +27,7 @@ public class EnConstruccion implements EstadoConstruccion{
     public void setSonido() {}
 
     @Override
-    public String versonido() {
+    public String verSonido() {
         return null;
     }
 
