@@ -1,10 +1,12 @@
 package edu.fiuba.algo3.adicionales;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
 import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
+import edu.fiuba.algo3.modelo.Interface.ControladorCompra;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
@@ -22,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class CasosDeUso3Test {
+public class CasosDeUso3Test extends App {
      //agregar verificacion de turno impar
     @Test
     public void test21aCuatroToposLlegandoAMetaEnTurnoImparMatanAJugador() throws NoHayCamino, NoHayInicial {
@@ -117,10 +119,15 @@ public class CasosDeUso3Test {
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
+        ControladorCompra mockControl = mock(ControladorCompra.class);
 
-        juego.comprarDefensa("TorrePlateada", new Coordenada(1,2));
-        juego.comprarDefensa("TorrePlateada", new Coordenada(3,3));
-        juego.comprarDefensa("TorrePlateada", new Coordenada(2,1));
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(1, 2);
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(3, 3);
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(2,1);
+
 
         for ( int i = 0 ; i <= 8 ; i++ ){
             turnero.jugarTurnoMaquina();
@@ -131,10 +138,11 @@ public class CasosDeUso3Test {
 
 
     @Test
-    public void test23LechuzaDestruyeLaPrimerTorreConstruidaAlLlegarALaMetaY20HormigasMatanAlJugador() throws NoHayCamino, NoHayInicial {
+    public void test23LechuzaDestruyeLaPrimerTorreConstruidaAlLlegarALaMetaY20HormigasMatanAlJugador() throws NoHayCamino, NoHayInicial{
         // en el primer turno aparece la lechuza q destruira la primer torre
         // despues apareceran las 20 hormigas qur le quitaran la vida al jugador
         //(si la torre fue destruida correctamente entonces deberian llegar todas las hormigas)
+
 
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
@@ -153,7 +161,6 @@ public class CasosDeUso3Test {
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
-
         juego.comprarDefensa("TorreBlanca", new Coordenada(1, 2));
 
         for (int i = 0; i <= 10; i++) {
@@ -161,7 +168,6 @@ public class CasosDeUso3Test {
 
             turnero.jugarTurnoMaquina();
         }
-
         assertFalse(juego.jugadorVivo());
     }
 
@@ -190,9 +196,11 @@ public class CasosDeUso3Test {
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
-
-        juego.comprarDefensa("TorrePlateada", new Coordenada(10, 12));
-        juego.comprarDefensa("TorreBlanca", new Coordenada(6, 12));
+        ControladorCompra mockControl = mock(ControladorCompra.class);
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(10, 12);
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(6, 12);
 
         for (int i = 0; i <= 29; i++) {
             //es la cantidad de turnos necesarios para q las hormigas lleguen a la meta

@@ -38,8 +38,8 @@ public class    InicializadorPantallaInicio {
 
         // Creación del fondo
         BackgroundImage myBI= new BackgroundImage(image,
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                new BackgroundSize(500, 1500, true, true, true, false));
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                new BackgroundSize(900, 680, false, false, false, false));
         Background bg = new Background(myBI);
         layout.setBackground(bg);
     }

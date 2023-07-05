@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Defensas.Ataque;
+import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoPasarela;
 import edu.fiuba.algo3.modelo.juego.Juego;
@@ -20,15 +23,19 @@ public class Hormiga extends Enemigo{
         this.tipoMovimiento.actualizarPosicion(posicionActual);
     }
 
-    @Override
-    public String verSonido() {
-        return sonido;
-    }
 
     public void morir(){
         //emisor.notificarSubscriptores("log", "Hormiga muere y otorga " + CREDITOS_HORMIGA + " créditos al jugador");
         Juego.getInstance().agregarARachaDeHormigas();
         this.sonido = "Morir";
         setChanged();
+    }
+
+    public boolean esVisiblePara(Trampa tipo){
+        return true;
+    }
+
+    public boolean esVisiblePara(Ataque ataque){
+        return true;
     }
 }

@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Defensas.Ataque;
+import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoPasarela;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
@@ -26,16 +29,19 @@ public class Arania extends Enemigo {
         this.generadorRandom = generadorRandom;
     }
 
-    @Override
-    public String verSonido() {
-        return sonido;
-    }
-
     public void morir(){
         int cantidadARecompensar = generadorRandom.obtenerUnNumero();
         //this.emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");
         Juego.getInstance().recompensarJugador(cantidadARecompensar); // devuelve int entre 0 y 10
         sonido = "Morir";
         setChanged();
+    }
+
+    public boolean esVisiblePara(Trampa tipo){
+        return true;
+    }
+
+    public boolean esVisiblePara(Ataque ataque){
+        return true;
     }
 }

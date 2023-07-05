@@ -15,11 +15,9 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         VentanaDeJuego.setVentanaDelJuego(stage);
-
-        stage.setWidth(1150);
-        stage.setHeight(957);
+        stage.setWidth(900);
+        stage.setHeight(715);
         stage.setResizable(false);
-
         InicializadorVentana.start(stage);
     }
 }
