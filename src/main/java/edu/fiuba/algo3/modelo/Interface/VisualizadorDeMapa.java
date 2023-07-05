@@ -58,7 +58,7 @@ public class VisualizadorDeMapa {
 
     public void agregarParcela(Parcela tipoDeParcela, int coordX, int coordY){
         Color color = tipoDeParcela.getColor();
-        Rectangle rect = new Rectangle(56, 56, color);
+        Rectangle rect = new Rectangle(40, 40, color);
         rect.setStroke(Paint.valueOf("#CCCCCC"));
         rect.setStyle("-fx-stroke-width: 1;");
          rect.setOnMouseClicked(mouseEvent -> {
