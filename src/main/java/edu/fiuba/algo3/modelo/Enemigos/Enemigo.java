@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo.Enemigos;
+import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
 import edu.fiuba.algo3.modelo.Enemigos.Efecto.Efecto;
 import edu.fiuba.algo3.modelo.Enemigos.Efecto.Ninguno;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
@@ -11,7 +12,7 @@ import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
 import java.util.ArrayList;
 
-public abstract class Enemigo extends Sprayable {
+public abstract class Enemigo extends Sprayable implements Visitor{
     protected Vida vida;
     protected int cantidadMovimientos;
     protected int poderAtaque;
@@ -70,6 +71,10 @@ public abstract class Enemigo extends Sprayable {
         setChanged();
     }
 
+    public boolean estaEnRango(Coordenada posicion, int distancia, TipoDeDefensa tipo ){
+        return (this.tipoMovimiento.estaEnRango(posicion, distancia) && tipo.accept(this));
+    }
+
     public boolean estaEnRango(Coordenada posicion, int distancia){
         return this.tipoMovimiento.estaEnRango(posicion, distancia);
     }
@@ -91,5 +96,9 @@ public abstract class Enemigo extends Sprayable {
             datos.add(verSonido());
         }
         return datos;
+    }
+
+    public boolean esVisiblePara(TipoDeDefensa tipo){
+        return true;
     }
 }

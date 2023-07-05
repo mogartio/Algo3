@@ -55,7 +55,7 @@ public abstract class Defensa extends Sprayable {
         if(this.estadoDeConstruccion.estoyConstruida()){
             datos.add(this.representationString());
             datos.add(this.posicion.representacionString());
-            datos.add(this.estadoDeConstruccion.versonido());
+            datos.add(this.estadoDeConstruccion.verSonido());
         }
         return datos;
     }
