@@ -160,7 +160,7 @@ public class CasosDeUso2Test {
     @Test
     public void test16CreadorDeMapaCreaLasParcelasYLasDisponeCorrectamenteEnElMapa(){
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = null;
 
         try {
@@ -206,7 +206,7 @@ public class CasosDeUso2Test {
     @Test
     public void test17JuegoSeTerminaConLaCantidadMinimaDeEnemigos() throws NoHayCamino, NoHayInicial {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -238,7 +238,7 @@ public class CasosDeUso2Test {
     @Test
     public void test18SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -274,7 +274,7 @@ public class CasosDeUso2Test {
     @Test
     public void test18bSeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosPeroIgualGanaLaPartida() throws NoHayCamino, NoHayInicial {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
@@ -301,7 +301,7 @@ public class CasosDeUso2Test {
     @Test
     public void test19SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosYPierdeLaPartida() throws NoHayCamino, NoHayInicial {
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa( visualizadorDeMapa);
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 

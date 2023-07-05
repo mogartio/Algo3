@@ -6,7 +6,11 @@ public class TorreBlanca extends Defensa{
 
     public TorreBlanca(){
         super(1, 3, new Ataque(1));
-        this.representacionString = "TorreBlanca";
+        if (!estadoDeConstruccion.estoyConstruida()) {
+            this.representacionString = "construccion";
+        } else{
+            this.representacionString = "TorreBlanca";
+        }
     }
 
     public TorreBlanca(Coordenada posicion){
