@@ -4,10 +4,12 @@ import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
+import edu.fiuba.algo3.vista.Sprayable;
 
 import java.util.ArrayList;
 
 public class EnConstruccion implements EstadoConstruccion{
+    public String sonido = "construccion";
     private int turnosHastaTerminar;
     public EnConstruccion(int turnosHastaTerminar) { this.turnosHastaTerminar = turnosHastaTerminar; }
 
@@ -33,4 +35,8 @@ public class EnConstruccion implements EstadoConstruccion{
 
     @Override
     public void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre){}
+
+    public String representacionString(Sprayable sprayable) {
+        return "enConstruccion";
+    }
 }

@@ -12,17 +12,19 @@ public class ConstanteImagenes {
     private static Map<String, String> diccionarioImagenes;
 
     static {
-        diccionarioImagenes =  Map.of(
-                "Araña", "ImagenesGUI/arania.png",
-                "Hormiga", "ImagenesGUI/hormiga.png",
-                "Lechuza", "ImagenesGUI/lechuza.png",
-                "Topo", "ImagenesGUI/topo.png",
-                "TorreBlanca", "ImagenesGUI/torreBlanca.png",
-                "TorrePlateada", "ImagenesGUI/torrePlateada.png",
-                "TrampaArenosa", "ImagenesGUI/trampaArena.png",
-                "Ganado", "ImagenesGUI/victoria.png",
-                "Perdido", "ImagenesGUI/Derrota.png",
-                "meta", "ImagenesGUI/meta.png");
+        diccionarioImagenes = Map.ofEntries(
+                Map.entry("Araña", "ImagenesGUI/arania.png"),
+                Map.entry("Hormiga", "ImagenesGUI/hormiga.png"),
+                Map.entry("Lechuza", "ImagenesGUI/lechuza.png"),
+                Map.entry("Topo", "ImagenesGUI/topo.png"),
+                Map.entry("TorreBlanca", "ImagenesGUI/torreBlanca.png"),
+                Map.entry("TorrePlateada", "ImagenesGUI/torrePlateada.png"),
+                Map.entry("TrampaArenosa", "ImagenesGUI/trampaArena.png"),
+                Map.entry("Ganado", "ImagenesGUI/victoria.png"),
+                Map.entry("Perdido", "ImagenesGUI/Derrota.png"),
+                Map.entry("meta", "ImagenesGUI/meta.png"),
+                Map.entry("enConstruccion", "ImagenesGUI/enConstruccion.png")
+        );
     }
     public static ImageView getImagen(String imagenBuscada) throws FileNotFoundException {
         InputStream stream = new FileInputStream((String) diccionarioImagenes.get(imagenBuscada));

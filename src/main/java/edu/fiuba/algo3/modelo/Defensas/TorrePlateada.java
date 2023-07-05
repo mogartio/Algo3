@@ -6,11 +6,11 @@ public class TorrePlateada extends Defensa{
 
     public TorrePlateada(){
         super(2,5, new Ataque(2));
-        this.representacionString = "TorrePlateada";
+        this.sprayID = "TorrePlateada";
     }
     public TorrePlateada(Coordenada posicion){
         super(posicion, 2, 5);
-        this.representacionString = "TorrePlateada";
+        this.sprayID = "TorrePlateada";
     }
 
 

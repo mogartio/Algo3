@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EstadoConstruccion;
+import edu.fiuba.algo3.modelo.Defensas.TorreBlanca;
+import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
-import edu.fiuba.algo3.modelo.Enemigos.Sprayable;
 import edu.fiuba.algo3.modelo.Interface.AudioPlayer;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
@@ -10,6 +11,8 @@ import javafx.scene.image.ImageView;
 
 import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -26,22 +29,29 @@ public class VistaSprays implements Observer {
     public void update(Observable o, Object arg) {
 
         Sprayable sprayable = (Sprayable) o;
-
+        if (sprayable instanceof TorrePlateada){
+            System.out.println("antes de datos: ");
+        }
         ArrayList<String> datos = verDatos(sprayable);
-        System.out.println(datos);
+        if (sprayable instanceof TorrePlateada){
+            System.out.println("datos: " + datos);
+        }
+
 
         if(datos.size() == 3){ //Cuando no es 3 es porque no debe mostrar el spray}
             try {
-                ImageView imagen = ConstanteImagenes.getImagen(datos.get(0));
+                if(datos.get(0) != "") {
+                    ImageView imagen = ConstanteImagenes.getImagen(datos.get(0));
 
-                String coordenadasComoString = datos.get(2);
-                String pathAudio = datos.get(1);
+                    String coordenadasComoString = datos.get(2);
+                    String pathAudio = datos.get(1);
 
-                String[] coordenadas = coordenadasComoString.substring(1, coordenadasComoString.length() - 1).split(",");
-                int x = Integer.parseInt(coordenadas[0]); // x
-                int y = Integer.parseInt(coordenadas[1]); // y
-                AudioPlayer.playEfectoSonido(pathAudio);
-                visualizadorDeMapa.agregarSpray(imagen, x, y);
+                    String[] coordenadas = coordenadasComoString.substring(1, coordenadasComoString.length() - 1).split(",");
+                    int x = Integer.parseInt(coordenadas[0]); // x
+                    int y = Integer.parseInt(coordenadas[1]); // y
+                    AudioPlayer.playEfectoSonido(pathAudio);
+                    visualizadorDeMapa.agregarSpray(imagen, x, y);
+                }
 
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
@@ -62,6 +72,35 @@ public class VistaSprays implements Observer {
             datos.add(0, nombre);
         } catch (IllegalAccessException e) {
         } catch (NoSuchFieldException e) {
+        }
+//        try {
+//            Method method = sprayable.getClass().getSuperclass().getDeclaredMethod("representacionString");
+//            method.setAccessible(true);
+//            nombre = (String) method.invoke(sprayable);
+//            System.out.println("Agrego nombre: " + nombre);
+//            datos.add(0, nombre);
+//        } catch (IllegalAccessException e) {
+//        } catch (NoSuchMethodException e) {
+//        } catch (InvocationTargetException e) {
+//        }
+        try {
+            field = sprayable.getClass().getSuperclass().getDeclaredField("estadoDeConstruccion");
+            field.setAccessible(true);
+            EstadoConstruccion est = (EstadoConstruccion) field.get(sprayable);
+            Method method = est.getClass().getDeclaredMethod("representacionString", Sprayable.class);
+            nombre = (String) method.invoke(est, sprayable);
+            datos.add(0, nombre);
+//            System.out.println("Paso agregado en datos");
+//            field.set(est, "");
+//            System.out.println("Paso set");
+        } catch (NoSuchFieldException e){
+            System.out.println("NoSuchFieldException");
+        } catch (IllegalAccessException e){
+            System.out.println("IllegalAccessException");
+        } catch (NoSuchMethodException e) {
+            System.out.println("NoSuchMethodException");
+        } catch (InvocationTargetException e) {
+            System.out.println("InvocationTargetException");
         }
 
         try {
