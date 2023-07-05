@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
+import edu.fiuba.algo3.modelo.Interface.ControladorCompra;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
@@ -117,10 +118,15 @@ public class CasosDeUso3Test {
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
+        ControladorCompra mockControl = mock(ControladorCompra.class);
 
-        juego.comprarDefensa("TorrePlateada", new Coordenada(1,2));
-        juego.comprarDefensa("TorrePlateada", new Coordenada(3,3));
-        juego.comprarDefensa("TorrePlateada", new Coordenada(2,1));
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(1, 2);
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(3, 3);
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(2,1);
+
 
         for ( int i = 0 ; i <= 8 ; i++ ){
             turnero.jugarTurnoMaquina();
@@ -190,9 +196,11 @@ public class CasosDeUso3Test {
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
-
-        juego.comprarDefensa("TorrePlateada", new Coordenada(10, 12));
-        juego.comprarDefensa("TorreBlanca", new Coordenada(6, 12));
+        ControladorCompra mockControl = mock(ControladorCompra.class);
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(10, 12);
+        mockControl.seleccionarDefensa("TorrePlateada");
+        mockControl.ponerDefensaEn(6, 12);
 
         for (int i = 0; i <= 29; i++) {
             //es la cantidad de turnos necesarios para q las hormigas lleguen a la meta

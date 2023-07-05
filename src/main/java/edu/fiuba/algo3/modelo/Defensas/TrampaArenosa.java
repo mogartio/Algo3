@@ -6,6 +6,4 @@ public class TrampaArenosa extends Defensa{
         super(0, 0, new Trampa(0.5));
         this.representacionString = "TrampaArenosa";
     }
-
-
 }
