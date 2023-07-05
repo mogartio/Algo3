@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Defensas.Ataque;
+import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoCateto;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoHipotenusa;
 import edu.fiuba.algo3.modelo.juego.Juego;
@@ -36,6 +39,14 @@ public class Lechuza extends Enemigo{
 
     public void morir(){
         sonido = "Morir";
+    }
+
+    public boolean esVisiblePara(Trampa tipo){
+        return false;
+    }
+
+    public boolean esVisiblePara(Ataque ataque){
+        return true;
     }
 
 }
