@@ -23,10 +23,6 @@ public class Hormiga extends Enemigo{
         this.tipoMovimiento.actualizarPosicion(posicionActual);
     }
 
-    @Override
-    public String verSonido() {
-        return sonido;
-    }
 
     public void morir(){
         //emisor.notificarSubscriptores("log", "Hormiga muere y otorga " + CREDITOS_HORMIGA + " créditos al jugador");

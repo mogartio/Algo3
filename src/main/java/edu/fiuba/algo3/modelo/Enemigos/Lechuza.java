@@ -27,11 +27,6 @@ public class Lechuza extends Enemigo{
     }
 
     @Override
-    public String verSonido() {
-        return sonido;
-    }
-
-    @Override
     public void daniarJugador() {
         super.daniarJugador();
         Juego.getInstance().destruirDefensaMasAntigua();
