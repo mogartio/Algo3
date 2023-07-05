@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.lectorJSON;
+package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.ObserverPropio.*;
@@ -23,7 +23,6 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
         this.oleadas = new LinkedList<ArrayList<Enemigo>>();
         this.pasarelaInicial = new Pasarela(new Coordenada(0, 0), new Normal());
         //Para que el mapa quede en estado consistente, en un caso de uso real, la pasarelaInicial quedará determinada
-
         this.logger = new Logger();
     }
 
@@ -32,8 +31,16 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
         this.pasarelaFinal = pasarelaFinal;
     }
 
+    public HashMap<Coordenada, Parcela> getParcelas(){
+        return mapa;
+    }
+
     public void cargarOleadas(LinkedList< ArrayList<Enemigo> > oleadas) {
         this.oleadas = oleadas;
+    }
+
+    public boolean noHayMasEnemigos(){
+        return oleadas.isEmpty();
     }
 
     public void agregarEnemigosDelTurno(ArrayList<Enemigo> enemigosDelJuego) {
@@ -63,6 +70,7 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
         return (mapa.get(coordenada));
     }
 
+
     public boolean esInicioOFinal(Parcela pasarela) {
         try {
             return (pasarelaFinal.esIgual((Pasarela) pasarela) || pasarelaInicial.esIgual((Pasarela) pasarela));
@@ -70,4 +78,6 @@ public class Mapa extends ObservablePropio { //Hay que cambiarlo a Observable
             return false;
         }
     }
+
+    public Parcela verFinalCamino() {return pasarelaFinal; }
 }

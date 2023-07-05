@@ -3,8 +3,6 @@ package edu.fiuba.algo3.modelo.juego;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
-import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -16,7 +14,7 @@ public class Jugando implements EstadoJuego {
     ArrayList<Enemigo> enemigos;
     LinkedList<Defensa> defensas;
     Mapa mapa;
-    public Jugando(){ //hay q sacarlo
+    public Jugando(){
         this.mapa = new Mapa();
         this.enemigos = new ArrayList<>();
         this.defensas = new LinkedList<>();
@@ -51,7 +49,7 @@ public class Jugando implements EstadoJuego {
     private EstadoJuego actualizarSegunEstadoDeJugador(boolean jugadorVivo) {
         if (!jugadorVivo)
             return new Perdido();
-        else if (enemigos.isEmpty())
+        else if (enemigos.isEmpty() && mapa.noHayMasEnemigos())
             return new Ganado();
         else
             return this;

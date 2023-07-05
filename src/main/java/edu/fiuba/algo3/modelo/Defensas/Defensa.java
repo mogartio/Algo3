@@ -1,4 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
+import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EnConstruccion;
+import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EstadoConstruccion;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import java.util.ArrayList;
 
@@ -11,19 +13,14 @@ public abstract class Defensa extends Sprayable {
     protected EstadoConstruccion estadoDeConstruccion;
     protected int rangoAtaque;
     protected TipoDeDefensa tipoDeDefensa;
-    private String sonidoCorrespondiente;
+
+    protected String representacionString;
 
     public Defensa(int tiempoDeConstruccion, int rangoAtaque, TipoDeDefensa tipoDeDefensa){
         this.posicion = null;
         this.rangoAtaque = rangoAtaque;
         this.estadoDeConstruccion = new EnConstruccion(tiempoDeConstruccion);
         this.tipoDeDefensa = tipoDeDefensa;
-
-        //CAMBIAR ESTO
-        //Logger logger = new Logger();
-        //this.emisor = new Emisor();
-        //this.emisor.subcribir(logger);
-
     }
 
     public Defensa(Coordenada posicion, int tiempoDeConstruccion, int rangoAtaque){
@@ -37,7 +34,6 @@ public abstract class Defensa extends Sprayable {
     }
 
     public void pasarTurno(){
-        //this.estadoDeConstruccion = estadoDeConstruccion.pasoUnTurno(this.emisor, this);
         this.estadoDeConstruccion = estadoDeConstruccion.pasoUnTurno(this);
     }
 
@@ -51,7 +47,7 @@ public abstract class Defensa extends Sprayable {
         setChanged();
     }
 
-    public abstract String representationString();
+    public String representationString() { return this.representacionString; };
 
     public ArrayList<String> ObtenerSprayIDYPosicion(){
         ArrayList<String> datos = new ArrayList<>();
@@ -61,7 +57,6 @@ public abstract class Defensa extends Sprayable {
             datos.add(this.posicion.representacionString());
             datos.add(this.estadoDeConstruccion.versonido());
         }
-
         return datos;
     }
 

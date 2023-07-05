@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo.Enemigos;
+import edu.fiuba.algo3.modelo.Enemigos.Efecto.Efecto;
+import edu.fiuba.algo3.modelo.Enemigos.Efecto.Ninguno;
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
 import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
+import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.modelo.miscelanea.Vida;
@@ -15,6 +17,8 @@ public abstract class Enemigo extends Sprayable {
     protected int poderAtaque;
     protected Efecto efectoEnemigo;
     protected Movimiento tipoMovimiento;
+    protected String representacionString;
+    protected String sonido;
 
     public Enemigo( int puntosVida, int ataque, int cantidadMovimientos){
         super();
@@ -59,7 +63,7 @@ public abstract class Enemigo extends Sprayable {
 
     public abstract void morir();
 
-    public abstract String representacionString();
+    public String representacionString() { return representacionString; }
 
     public void avanzar(Mapa mapa) throws PasarelaInexistente{
         this.efectoEnemigo = this.efectoEnemigo.avanzar(this.cantidadMovimientos, this.tipoMovimiento, mapa);

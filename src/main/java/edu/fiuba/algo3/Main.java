@@ -15,12 +15,11 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         VentanaDeJuego.setVentanaDelJuego(stage);
-        Stage ventanaDeJuego = VentanaDeJuego.getInstance(); // hacemos que el stage del main sea global
 
-        ventanaDeJuego.setWidth(1150);
-        ventanaDeJuego.setHeight(957);
-        ventanaDeJuego.setResizable(false);
+        stage.setWidth(1150);
+        stage.setHeight(957);
+        stage.setResizable(false);
 
-        InicializadorVentana.start(ventanaDeJuego);
+        InicializadorVentana.start(stage);
     }
 }

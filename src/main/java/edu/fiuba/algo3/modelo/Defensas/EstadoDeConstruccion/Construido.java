@@ -1,14 +1,14 @@
-package edu.fiuba.algo3.modelo.Defensas;
+package edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion;
 
+import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigos.Topo;
-import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 import java.util.ArrayList;
 
 public class Construido implements EstadoConstruccion {
-    private String sonido = "Construir";
+    public String sonido = "Construir";
 
     public EstadoConstruccion pasoUnTurno(Defensa defensa){
         return this;
@@ -30,14 +30,8 @@ public class Construido implements EstadoConstruccion {
 
     @Override
     public void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre){
-        for (Enemigo enemigo : enemigos) {
-            if ( enemigo.estaEnRango(coordenada, rangoAtaque) ){
 
-                //emisor.notificarSubscriptores("log", nombre + " ataca a " + enemigo.representacionString() + " en " + enemigo.represtacionUbicacion());
-                tipoDeDefensa.atacar(enemigo);
-                setSonido();
-                break;
-            }
-        }
+        tipoDeDefensa.atacar(enemigos, coordenada, rangoAtaque);
+        this.setSonido();
     }
 }

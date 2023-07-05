@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.lectorJSON;
+package edu.fiuba.algo3.modelo.juego;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;

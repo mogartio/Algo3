@@ -1,13 +1,10 @@
 package edu.fiuba.algo3.modelo.parcelas;
 
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.Enemigos.Movimiento;
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Pasarela extends Parcela {
     private TipoPasarela tipo;
@@ -15,6 +12,7 @@ public class Pasarela extends Parcela {
 
     public Pasarela(Coordenada coordenada,Pasarela siguientePasarela, TipoPasarela tipo)  {
         super(coordenada, tipo.getConstruible());
+        this.color = tipo.getColor();
         this.siguientePasarela = siguientePasarela;
         this.tipo = tipo;
     }

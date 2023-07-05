@@ -1,14 +1,15 @@
-package edu.fiuba.algo3.modelo.Enemigos;
+package edu.fiuba.algo3.modelo.Enemigos.Movimiento;
 
+import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
+import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 
-public class MovimientoPasarela implements Movimiento{
+public class MovimientoPasarela implements Movimiento {
 
     private Coordenada meta;
-    private Coordenada posicionActual;
+    public Coordenada posicionActual;
 
     private Parcela parcelaActual;
 

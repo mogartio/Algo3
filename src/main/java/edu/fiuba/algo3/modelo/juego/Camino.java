@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.lectorJSON;
+package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;

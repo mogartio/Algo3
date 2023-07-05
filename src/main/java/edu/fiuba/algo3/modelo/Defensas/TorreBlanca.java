@@ -6,14 +6,15 @@ public class TorreBlanca extends Defensa{
 
     public TorreBlanca(){
         super(1, 3, new Ataque(1));
+        if (!estadoDeConstruccion.estoyConstruida()) {
+            this.representacionString = "construccion";
+        } else{
+            this.representacionString = "TorreBlanca";
+        }
     }
 
     public TorreBlanca(Coordenada posicion){
         super(posicion, 1, 3);
-    }
-
-    @Override
-    public String representationString(){
-        return "TorreBlanca";
+        this.representacionString = "TorreBlanca";
     }
 }

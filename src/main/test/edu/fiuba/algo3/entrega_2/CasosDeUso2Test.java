@@ -9,14 +9,11 @@ import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
-import edu.fiuba.algo3.modelo.ObserverPropio.Logger;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
-import edu.fiuba.algo3.modelo.lectorJSON.Lector;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
+import edu.fiuba.algo3.modelo.juego.Lector;
+import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.*;
 import edu.fiuba.algo3.vista.VistaSprays;
 import org.json.simple.JSONArray;
@@ -162,12 +159,12 @@ public class CasosDeUso2Test {
     }
     @Test
     public void test16CreadorDeMapaCreaLasParcelasYLasDisponeCorrectamenteEnElMapa(){
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(5);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapaDePrueba",5, visualizadorDeMapa);
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = null;
 
         try {
-            mapa = creadorDeMapa.crearMapa();
+            mapa = creadorDeMapa.crearMapa("ArchivosJson/mapaDePrueba",5);
         } catch (NoHayCamino | NoHayInicial er){}
 
         // primer fila
@@ -208,9 +205,9 @@ public class CasosDeUso2Test {
 
     @Test
     public void test17JuegoSeTerminaConLaCantidadMinimaDeEnemigos() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -240,9 +237,9 @@ public class CasosDeUso2Test {
 
     @Test
     public void test18SeSimulaUnaPartidaEnDondeElJugadorGanaElJuego() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -276,9 +273,9 @@ public class CasosDeUso2Test {
 
     @Test
     public void test18bSeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosPeroIgualGanaLaPartida() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
@@ -303,9 +300,9 @@ public class CasosDeUso2Test {
 
     @Test
     public void test19SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosYPierdeLaPartida() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
-        CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
-        Mapa mapa = creadorDeMapa.crearMapa();
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();

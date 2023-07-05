@@ -1,11 +1,9 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoPasarela;
 import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Arania extends Enemigo {
@@ -17,7 +15,7 @@ public class Arania extends Enemigo {
         this.tipoMovimiento = new MovimientoPasarela(this);
 
         this.generadorRandom = generadorRandom;
-        this.sprayID = "Araña";
+        this.representacionString = "Araña";
     }
 
     public Arania(Pasarela posicionActual,RandomGenerator generadorRandom) { //Constructor para test
@@ -39,9 +37,5 @@ public class Arania extends Enemigo {
         Juego.getInstance().recompensarJugador(cantidadARecompensar); // devuelve int entre 0 y 10
         sonido = "Morir";
         setChanged();
-    }
-
-    public String representacionString() {
-        return "Araña";
     }
 }

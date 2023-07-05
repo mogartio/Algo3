@@ -1,45 +1,51 @@
 @startuml
 
 abstract class Enemigo{
-- cantPasos:Int
+# vida:Vida
+# cantidadMovimientos:Int
+# poderAtaque:Int
+
++ boolean estaVivo():Boolean
++ recibirDanio(int danio)
++ daniarJugador()
++ avanzar(Mapa mapa)
++ estaEnRango(Coordenada posicion, int distancia):Boolean
++ setEfectoEnemigo(Efecto nuevoEfecto)
 }
 
 interface Efecto{
-+ aplicarEfecto(cantPasos):Int
++ avanzar(int cantPasos, Movimiento movimientoEnemigo, Mapa mapa):Efecto
 }
 
 class Relentizado{
 - porcentajeRelentizado : Int
-
 + Relentizado(porcentajeRelentizado : Int)
-+ aplicarEfecto():Int
 }
 
 class SinEfecto{
-+ aplicarEfecto():Int
 }
 
 interface Movimiento{
-+ avanzar(cantPasos:Int)
++ reasignarPosiciones(Coordenada coordInicial, Coordenada coordFinal)
++ actualizarPosicion(Parcela parcelaSiguiente)
++ avanzar(int cantidadPasos, Mapa mapa)
++ daniarJugador()
++ estaEnRango(Coordenada posicion, int distancia):Boolean
++ setMovimiento(Movimiento otroMovimiento):Movimiento
++ representarUbicacion():String
 }
 
 class SeguirPasarela{
 - posicionActuial:Coordenada
 
-+ SeguirPasarela(posicionActual:Coordenada)
-+ avanzar(cantPasos:Int)
 }
 class MovimientoCateto{
 - posicionActuial:Coordenada
 
-+ MovimientoCateto(posicionActual:Coordenada)
-+ avanzar(cantPasos:Int)
 }
 class MovimientoHipotenusa{
 - posicionActuial:Coordenada
 
-+ MovimientoHipotenusa(posicionActual:Coordenada)
-+ avanzar(cantPasos:Int)
 }
 
 class Arania{}
@@ -47,21 +53,6 @@ class Hormiga{}
 class Topo{}
 class Lechuza{}
 
-class Coordenada{
-- coordX:Int
-- coordY:Int
-
-+ Coordenada(int: X, int: Y)
-+ equals(Coordenada: coordenada):Boolean
-+ estaEnRango(Coordenada: coordenada, int: rango):Boolean
-+ aumentarX(int: numero):Void
-+ aumentarY(int: numero):Void
-+ mismaColumna(Coordenada: coordenada):Boolean
-+ mismaFila(Coordenada: coordenada):Boolean
-- verificarIgualdad(int: X, int: Y):Boolean
-- verificarRango(int: X, int: Y, int: rango):Boolean
-
-}
 
 
 MovimientoCateto ..|> Movimiento

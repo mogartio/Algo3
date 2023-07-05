@@ -5,35 +5,34 @@ package edu.fiuba.algo3.modelo.Creador;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
-import edu.fiuba.algo3.modelo.lectorJSON.Camino;
-import edu.fiuba.algo3.modelo.lectorJSON.Lector;
-import edu.fiuba.algo3.modelo.lectorJSON.Mapa;
+import edu.fiuba.algo3.modelo.juego.Camino;
+import edu.fiuba.algo3.modelo.juego.Lector;
+import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Normal;
 import edu.fiuba.algo3.modelo.parcelas.Pasarela;
 import edu.fiuba.algo3.modelo.parcelas.Rocosa;
 import edu.fiuba.algo3.modelo.parcelas.Tierra;
-import edu.fiuba.algo3.vista.VistaSprays;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 
 public class CreadorDeMapa {
     public Camino camino;
     public Mapa mapa;
-    String path;
-    private VisualizadorDeMapa visualizador;
 
-    public CreadorDeMapa(String path, int tamanioMax, VisualizadorDeMapa visualizadorDeMapa){
+    public CreadorDeMapa(){
         mapa = new Mapa();
-        camino = new Camino(tamanioMax); //cuidado se parte del supuesto de que el mapa es cuadrado (misma cantidad de celdas tanto en Y como en X)
-        this.path = path;
-        this.visualizador = visualizadorDeMapa;
-
+         //cuidado se parte del supuesto de que el mapa es cuadrado (misma cantidad de celdas tanto en Y como en X)
     }
 
-    public Mapa crearMapa() throws NoHayCamino, NoHayInicial {
-        JSONArray jsonArray = Lector.leer(this.path);
+    public Mapa crearMapa(String path, int tamanioMax) throws NoHayCamino, NoHayInicial {
+        JSONArray jsonArray = Lector.leer( path );
+        camino = new Camino(tamanioMax);
         crearMapa((JSONObject) jsonArray.get(1));
         return mapa;
     }
@@ -54,14 +53,12 @@ public class CreadorDeMapa {
 
         for(int coordenadaX = 1; coordenadaX <= fila.size(); coordenadaX++){
             crearParcela((String) fila.get(coordenadaX - 1), coordenadaY, coordenadaX);
-
         }
     }
 
     private void crearParcela(String tipoDeTerreno, int coordY, int coordX){
 
         Coordenada nuevaCoordenada = new Coordenada(coordX, coordY);
-
         switch (tipoDeTerreno) {
             case "Rocoso":
                 mapa.agregar(nuevaCoordenada, new Rocosa(nuevaCoordenada));
@@ -74,7 +71,5 @@ public class CreadorDeMapa {
                 mapa.agregar(nuevaCoordenada, new Tierra(nuevaCoordenada));
                 break;
         }
-
-        visualizador.agregarParcela(tipoDeTerreno, coordX, coordY);
     }
 }
