@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
+import edu.fiuba.algo3.modelo.Enemigos.Visitor;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ public class Ataque  implements TipoDeDefensa{
     public Ataque(int danio){
         this.danio = danio;
     }
-    @Override
     public void atacar(ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque){
 
         for (Enemigo enemigo : enemigos) {
@@ -23,6 +23,10 @@ public class Ataque  implements TipoDeDefensa{
                 break;
             }
         }
+    }
+
+    public boolean accept(Visitor enemigo){
+        return enemigo.esVisiblePara(this);
     }
 
 }

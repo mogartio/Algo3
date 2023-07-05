@@ -50,8 +50,8 @@ public class Topo extends Enemigo{
 
     }
 
-    @Override
-    public boolean esVisiblePara(TipoDeDefensa tipo){
+
+    public boolean esVisiblePara(Trampa tipo){
         return true;
     }
 

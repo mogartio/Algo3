@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.Defensas;
 
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 
+import edu.fiuba.algo3.modelo.Enemigos.Visitor;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import java.util.ArrayList;
 import edu.fiuba.algo3.modelo.Enemigos.Efecto.Relentizado;
@@ -24,5 +25,9 @@ public class Trampa implements TipoDeDefensa{
                 enemigo.setEfectoEnemigo(new Relentizado(1, this.porcentajeRelentizacion));
             }
         }
+    }
+
+    public boolean accept(Visitor enemigo){
+        return enemigo.esVisiblePara(this);
     }
 }

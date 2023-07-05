@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Defensas.Ataque;
 import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
 import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoCateto;
@@ -40,13 +41,12 @@ public class Lechuza extends Enemigo{
         sonido = "Morir";
     }
 
-    @Override
-    public boolean esVisiblePara(TipoDeDefensa tipo){
-        return true;
+    public boolean esVisiblePara(Trampa tipo){
+        return false;
     }
 
-    public boolean esVisiblePara(Trampa trampa){
-        return false;
+    public boolean esVisiblePara(Ataque ataque){
+        return true;
     }
 
 }

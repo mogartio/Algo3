@@ -12,7 +12,7 @@ import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
 import java.util.ArrayList;
 
-public abstract class Enemigo extends Sprayable {
+public abstract class Enemigo extends Sprayable implements Visitor{
     protected Vida vida;
     protected int cantidadMovimientos;
     protected int poderAtaque;
@@ -72,7 +72,11 @@ public abstract class Enemigo extends Sprayable {
     }
 
     public boolean estaEnRango(Coordenada posicion, int distancia, TipoDeDefensa tipo ){
-        return (this.tipoMovimiento.estaEnRango(posicion, distancia) && esVisiblePara(tipo));
+        return (this.tipoMovimiento.estaEnRango(posicion, distancia) && tipo.accept(this));
+    }
+
+    public boolean estaEnRango(Coordenada posicion, int distancia){
+        return this.tipoMovimiento.estaEnRango(posicion, distancia);
     }
 
     public String represtacionUbicacion(){
@@ -94,5 +98,7 @@ public abstract class Enemigo extends Sprayable {
         return datos;
     }
 
-    public abstract boolean esVisiblePara(TipoDeDefensa tipo);
+    public boolean esVisiblePara(TipoDeDefensa tipo){
+        return true;
+    }
 }
