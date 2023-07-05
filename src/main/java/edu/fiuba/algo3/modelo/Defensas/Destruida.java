@@ -24,7 +24,7 @@ public class Destruida implements EstadoConstruccion {
     }
 
     @Override
-    public String versonido() {
+    public String verSonido() {
         return null;
     }
 

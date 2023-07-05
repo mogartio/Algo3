@@ -99,6 +99,7 @@ public class VistaSprays implements Observer {
             field = sprayable.getClass().getSuperclass().getDeclaredField("posicion");
             field.setAccessible(true);
             pos = (Coordenada) field.get(sprayable);
+            System.out.println(datos);
             datos.add(2, pos.representacionString());
         } catch (NoSuchFieldException e) {
         } catch (IllegalAccessException e) {
