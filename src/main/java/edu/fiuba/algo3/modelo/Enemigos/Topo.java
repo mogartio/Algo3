@@ -33,11 +33,6 @@ public class Topo extends Enemigo{
     }
 
     @Override
-    public String verSonido() {
-        return null;
-    }
-
-    @Override
     public void actualizarPosicionActual(Parcela parcelaSiguiente) {
         super.actualizarPosicionActual(parcelaSiguiente);
         cambiarAtaque();

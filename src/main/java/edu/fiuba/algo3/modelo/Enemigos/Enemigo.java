@@ -10,8 +10,6 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.modelo.miscelanea.Vida;
 
-import java.util.ArrayList;
-
 public abstract class Enemigo extends Sprayable implements Visitor{
     protected Vida vida;
     protected int cantidadMovimientos;
@@ -46,8 +44,6 @@ public abstract class Enemigo extends Sprayable implements Visitor{
         }
     }
 
-    public abstract String verSonido();
-
     public void actualizarPosicionActual(Parcela parcelaSiguiente) {
         this.tipoMovimiento.actualizarPosicion(parcelaSiguiente);
     }
@@ -79,23 +75,8 @@ public abstract class Enemigo extends Sprayable implements Visitor{
         return this.tipoMovimiento.estaEnRango(posicion, distancia);
     }
 
-    public String represtacionUbicacion(){
-        return this.tipoMovimiento.representarUbicacion();
-    }
-
     public void setEfectoEnemigo(Efecto nuevoEfecto){
         this.efectoEnemigo = nuevoEfecto;
-    }
-
-    @Override
-    public ArrayList<String> ObtenerSprayIDYPosicion() {
-        ArrayList<String> datos = new ArrayList<>();
-        if(this.estaVivo()) {
-            datos.add(this.representacionString());
-            datos.add(this.represtacionUbicacion());
-            datos.add(verSonido());
-        }
-        return datos;
     }
 
     public boolean esVisiblePara(TipoDeDefensa tipo){
