@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoPasarela;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
@@ -37,5 +38,10 @@ public class Arania extends Enemigo {
         Juego.getInstance().recompensarJugador(cantidadARecompensar); // devuelve int entre 0 y 10
         sonido = "Morir";
         setChanged();
+    }
+
+    @Override
+    public boolean esVisiblePara(TipoDeDefensa tipo){
+        return true;
     }
 }

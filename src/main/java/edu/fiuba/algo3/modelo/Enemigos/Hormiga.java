@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Enemigos;
 
+import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.MovimientoPasarela;
 import edu.fiuba.algo3.modelo.juego.Juego;
@@ -30,5 +31,10 @@ public class Hormiga extends Enemigo{
         Juego.getInstance().agregarARachaDeHormigas();
         this.sonido = "Morir";
         setChanged();
+    }
+
+    @Override
+    public boolean esVisiblePara(TipoDeDefensa tipo){
+        return true;
     }
 }

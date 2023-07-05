@@ -16,7 +16,7 @@ public class Ataque  implements TipoDeDefensa{
     public void atacar(ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque){
 
         for (Enemigo enemigo : enemigos) {
-            if ( enemigo.estaEnRango(coordenada, rangoAtaque) ){
+            if ( enemigo.estaEnRango(coordenada, rangoAtaque, this) ){
 
                 //emisor.notificarSubscriptores("log", nombre + " ataca a " + enemigo.representacionString() + " en " + enemigo.represtacionUbicacion());
                 enemigo.recibirDanio(this.danio);
