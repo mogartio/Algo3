@@ -29,11 +29,6 @@ public class Arania extends Enemigo {
         this.generadorRandom = generadorRandom;
     }
 
-    @Override
-    public String verSonido() {
-        return sonido;
-    }
-
     public void morir(){
         int cantidadARecompensar = generadorRandom.obtenerUnNumero();
         //this.emisor.notificarSubscriptores("log", "Araña muere y otorga " + cantidadARecompensar + " créditos al jugador");

@@ -12,6 +12,4 @@ public class TorrePlateada extends Defensa{
         super(posicion, 2, 5);
         this.sprayID = "TorrePlateada";
     }
-
-
 }

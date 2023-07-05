@@ -38,8 +38,8 @@ public class VisualizadorTienda {
             ImageView nuevaDefensa = null;
             try {
                 nuevaDefensa = ConstanteImagenes.getImagen(defensa);
-                nuevaDefensa.setFitHeight(200);
-                nuevaDefensa.setFitWidth(150);
+                nuevaDefensa.setFitHeight(150);
+                nuevaDefensa.setFitWidth(100);
                 nuevaDefensa.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {

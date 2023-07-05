@@ -45,8 +45,6 @@ public abstract class Enemigo extends Sprayable implements Visitor{
         }
     }
 
-    public abstract String verSonido();
-
     public void actualizarPosicionActual(Parcela parcelaSiguiente) {
         this.tipoMovimiento.actualizarPosicion(parcelaSiguiente);
     }
@@ -102,5 +100,9 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 //    }
     public String obtenerSprayID(){
         return this.sprayID;
+    }
+    
+    public boolean esVisiblePara(TipoDeDefensa tipo){
+        return true;
     }
 }

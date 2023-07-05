@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class EnConstruccion implements EstadoConstruccion{
     public String sonido = "construccion";
     private int turnosHastaTerminar;
+    public String sonido = null;
     public EnConstruccion(int turnosHastaTerminar) { this.turnosHastaTerminar = turnosHastaTerminar; }
 
     public EstadoConstruccion pasoUnTurno(Defensa defensa){

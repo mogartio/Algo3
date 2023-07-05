@@ -53,15 +53,4 @@ public abstract class Defensa extends Sprayable {
         return this.sprayID;
     }
 
-//    public ArrayList<String> ObtenerSprayIDYPosicion(){
-//        ArrayList<String> datos = new ArrayList<>();
-//
-////        if(this.estadoDeConstruccion.estoyConstruida()){
-//        datos.add(this.estadoDeConstruccion.representacionString(this));
-//        datos.add(this.posicion.representacionString());
-//        datos.add(this.estadoDeConstruccion.verSonido());
-////        }
-//        return datos;
-//    }
-
 }
