@@ -202,4 +202,70 @@ public class CasosDeUso3Test {
 
         assertFalse(juego.jugadorVivo());
     }
+
+    @Test
+    public void test25aLaTrampaDeArenaRetiene20Hormigas3TurnosProlongandoLaVidaDelJugadorEnDichaCantidad() throws NoHayCamino, NoHayInicial {
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
+
+        CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test25/enemigosTest25a", mockObserver);
+
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
+        juego.setMapa(mapa);
+        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.setOleadasDelNivel(enemigos);
+
+        Turnero turnero = new Turnero();
+
+        juego.comprarDefensa("TrampaArenosa", new Coordenada(14,12 ));
+
+        for (int i = 0; i <= 23; i++) {
+            //es la cantidad de turnos necesarios para q las hormigas lleguen a la con adicion de dos turnos para
+            //verificar sepervivencia del jugador hasta contar 3 turnos adicionales a los casos donde no se coloca la trampa
+            turnero.jugarTurnoMaquina();
+            assertTrue(juego.jugadorVivo());
+        }
+
+        turnero.jugarTurnoMaquina();
+        assertFalse(juego.jugadorVivo());
+    }
+/*
+    @Test
+    public void test25bLaTrampaDeArenaRetieneTopos3TurnosProlongandoLaVidaDelJugadorEnDichaCantidad() throws NoHayCamino, NoHayInicial {
+        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
+        CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
+        Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
+        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
+
+        CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
+
+        Observer mockObserver = mock(Observer.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test25/enemigosTest25b", mockObserver);
+
+        Juego juego = Juego.getInstance();
+        juego.reestablecerJuego();
+        juego.setMapa(mapa);
+        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.setOleadasDelNivel(enemigos);
+
+        Turnero turnero = new Turnero();
+
+        juego.comprarDefensa("TrampaArenosa", new Coordenada(15,12 ));
+
+        for (int i = 0; i <= 25; i++) {
+            //es la cantidad de turnos necesarios para q las hormigas lleguen a la con adicion de dos turnos para
+            //verificar sepervivencia del jugador hasta contar 3 turnos adicionales a los casos donde no se coloca la trampa
+            turnero.jugarTurnoMaquina();
+            assertTrue(juego.jugadorVivo());
+        }
+
+        turnero.jugarTurnoMaquina();
+        assertFalse(juego.jugadorVivo());
+    }*/
 }
