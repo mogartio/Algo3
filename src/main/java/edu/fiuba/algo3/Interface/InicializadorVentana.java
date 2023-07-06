@@ -12,7 +12,7 @@ public class InicializadorVentana {
 
         //se crea la escena inicial
         BorderPane layout = new BorderPane();
-        Scene scene = new Scene(layout, Color.GREENYELLOW);
+        Scene scene = new Scene(layout);
 
         stage.setScene(scene);
 

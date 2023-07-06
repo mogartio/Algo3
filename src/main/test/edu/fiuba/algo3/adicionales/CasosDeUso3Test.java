@@ -29,8 +29,8 @@ public class CasosDeUso3Test extends App {
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
@@ -51,8 +51,8 @@ public class CasosDeUso3Test extends App {
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/tests/Test21/mapaTest21",4);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21b", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21b", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
@@ -75,8 +75,8 @@ public class CasosDeUso3Test extends App {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21c", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test21/enemigosTest21c", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
@@ -101,13 +101,12 @@ public class CasosDeUso3Test extends App {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test22/enemigosTest22", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test22/enemigosTest22", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -141,13 +140,12 @@ public class CasosDeUso3Test extends App {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test23/enemigosTest23a", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test23/enemigosTest23a", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -174,13 +172,12 @@ public class CasosDeUso3Test extends App {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test24/enemigosTest24", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test24/enemigosTest24", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -206,13 +203,12 @@ public class CasosDeUso3Test extends App {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test25/enemigosTest25a", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test25/enemigosTest25a", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -241,13 +237,12 @@ public class CasosDeUso3Test extends App {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test25/enemigosTest25b", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test25/enemigosTest25b", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -275,13 +270,12 @@ public class CasosDeUso3Test extends App {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test25/enemigosTest25c", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test25/enemigosTest25c", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -310,13 +304,12 @@ public class CasosDeUso3Test extends App {
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
-        Observer mockObserver = mock(Observer.class);
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test26/enemigosTest26", mockObserver);
+        ArrayList mockObservers = mock(ArrayList.class);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel("ArchivosJson/tests/Test26/enemigosTest26", mockObservers);
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();

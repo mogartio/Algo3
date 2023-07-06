@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-public class    InicializadorPantallaInicio {
+public class InicializadorPantallaInicio {
     public static void start(BorderPane layout) throws Exception {
 
         crearPanelInteractivo(layout);

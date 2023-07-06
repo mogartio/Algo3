@@ -1,32 +1,28 @@
 package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
-import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
-import edu.fiuba.algo3.vista.VistaSprays;
+import edu.fiuba.algo3.vista.Loggeable;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Observable;
 import java.util.Observer;
 
-public class Juego extends Observable {
+public class Juego extends Loggeable {
     private static final Juego INSTANCE = new Juego();
     Jugador jugador;
-    EstadoJuego estadoJuego;
-    // Se me ocurre que reciba la lista de observers para las entidades (en un principio será solo para sprays)
-    // ArrayList<Observer> observersParaEntidades;
-    VistaSprays vistaSprays;
+    public EstadoJuego estadoJuego;
     Mapa mapa;
-    Observer observerParaDefensas;
+    ArrayList<Observer> observersParaDefensas;
 
     private Juego() {
         super();
         this.jugador = new Jugador();
         this.mapa = new Mapa();
         estadoJuego = new Jugando();
+        this.observersParaDefensas = new ArrayList<>();
     }
 
     public static Juego getInstance() {
@@ -34,13 +30,13 @@ public class Juego extends Observable {
     }
 
     public void notificar(String tipo) {
-        this.notifyObservers(tipo);
+        notifyObservers(tipo);
         jugador.notifyObservers();
         this.estadoJuego.notificar();
     }
 
     public void cargarObserverParaDefensas(Observer observer){
-        this.observerParaDefensas = observer;
+        this.observersParaDefensas.add(observer);
     }
 
     public void cargarObserverParaJugador(Observer observer){
@@ -53,9 +49,13 @@ public class Juego extends Observable {
     public void comprarDefensa(String unaDefensa, Coordenada coordenada) {
         Defensa nuevaDefensa = jugador.comprar(unaDefensa);
         nuevaDefensa.asignarPosicion(coordenada);
-        nuevaDefensa.addObserver( observerParaDefensas);
+        if (observersParaDefensas.size() != 0) {
+            for(Observer observer : observersParaDefensas){
+            nuevaDefensa.addObserver(observer);
+            }
+        }
         estadoJuego.introducirDefensa(nuevaDefensa);
-        setChanged();
+        this.aniadirEvento("Se posiciona una defensa " + unaDefensa + " en la posicion: " + coordenada.representacionString());
         mapa.ver(coordenada).construirDefensa();
     }
 
@@ -63,10 +63,7 @@ public class Juego extends Observable {
 
     public void nuevoEnemigo(Enemigo nuevoEnemigo) {
         estadoJuego = this.estadoJuego.introducirEnemigo(nuevoEnemigo);
-        setChanged();
-
-        //nuevoEnemigo.agregarSubscriptor(this.logger);
-        //this.emisor.notificarSubscriptores("log", "Se agrega a la partida un nuevo enemigo " + nuevoEnemigo.representacionString());
+        this.aniadirEvento("Se introduce un nuevo enemigo " + nuevoEnemigo);
     }
 
     public boolean finalizado() {
@@ -75,13 +72,7 @@ public class Juego extends Observable {
 
     public void jugarTurno(int numeroTurno) {
         this.estadoJuego = estadoJuego.jugarTurno(jugador.estaVivo(), numeroTurno);
-        setChanged();
-    }
-
-    //Esto claramente esta mal, lo pongo para el observer, deberia devolver informacion relevante sobre el estado del juego pero sin
-    //dar a conocer el estado total
-    public EstadoJuego obtenerNuevoEstado(){
-        return this.estadoJuego;
+        this.aniadirEvento("Se juega el turno n " + numeroTurno);
     }
 
     public void recompensarJugador(int unNumero) {
@@ -102,14 +93,6 @@ public class Juego extends Observable {
 
     public void agregarARachaDeHormigas() {
         jugador.agregarARachaDeHormigas();
-    }
-
-    public String getNombreDelJugador() {
-        return jugador.getNombre();
-    }
-
-    public int getVidaDelJugador() {
-        return jugador.getVida();
     }
 
     public boolean jugadorVivo() {
@@ -142,11 +125,10 @@ public class Juego extends Observable {
         estadoJuego.destruirDefensaMasAntigua();
     }
 
-    public int getCreditosDelJugador() { return jugador.getCreditos(); }
-
     public Parcela verParcelaEn(Coordenada coordenada) { return mapa.ver(coordenada); }
 
     public void destruirTrampa(Defensa unaTrampa){
         estadoJuego.quitarTrampa(unaTrampa);
+        this.aniadirEvento("Se destruye la trampa " + unaTrampa.representacionString());
     }
 }

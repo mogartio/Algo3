@@ -20,7 +20,6 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
 
     public void handle(ActionEvent actionEvent) {
         // Create and configure the new scene
-        System.out.println("¡ Me han clickeado !");
 
         //VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa(15);
         //CreadorDeMapa creadorDeMapa = new CreadorDeMapa("ArchivosJson/mapa.json",15, visualizadorDeMapa);
@@ -28,9 +27,10 @@ public class BotonDeInicioDeJuego implements EventHandler<ActionEvent>{
         try {
 
             CreadorDeJuego.crearJuego("ArchivosJson/enemigos.json", "ArchivosJson/mapa.json",15, nombreJugador);
+            VisualizadorLogger.getInstance().InicializarPanelLogger();
 
         } catch (NoHayCamino | NoHayInicial ex) {
-            System.out.println("sarasa MAPA"); // catchear correctemente
+            System.out.println("No se encontro algun json");
         }
     }
 

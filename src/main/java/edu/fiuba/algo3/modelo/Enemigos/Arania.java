@@ -18,7 +18,7 @@ public class Arania extends Enemigo {
         this.tipoMovimiento = new MovimientoPasarela(this);
 
         this.generadorRandom = generadorRandom;
-        this.representacionString = "Araña";
+        this.representacionString = "Arania";
     }
 
     public Arania(Pasarela posicionActual,RandomGenerator generadorRandom) { //Constructor para test

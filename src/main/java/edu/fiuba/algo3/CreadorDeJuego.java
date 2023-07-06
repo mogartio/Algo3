@@ -13,10 +13,12 @@ import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.vista.VistaEstadoJuego;
 import edu.fiuba.algo3.vista.VistaJugador;
+import edu.fiuba.algo3.vista.VistaLogger;
 import edu.fiuba.algo3.vista.VistaSprays;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Observer;
 
 
 //
@@ -32,15 +34,23 @@ public class CreadorDeJuego {
         Mapa mapa = creadorMapa.crearMapa(pathArchivoMapa, tamanioMapa);
         VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
+        VistaLogger vistaLogger = new VistaLogger();
+
+        ArrayList<Observer> observersParaEntidades = new ArrayList<>();
+        observersParaEntidades.add(vistaSprays);
+        observersParaEntidades.add(vistaLogger);
+
         ControladorCompra.getInstance().setVisualizadorMapa(visualizadorDeMapa);
 
-        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos, vistaSprays);
+        LinkedList<ArrayList<Enemigo>> enemigos = creadorEnemigos.crearEnemigosDeNivel(pathArchivoEnemigos, observersParaEntidades);
 
         mapa.cargarOleadas(enemigos);
 
         Juego.getInstance().reestablecerJuego();
         Juego.getInstance().setMapa(mapa);
         Juego.getInstance().cargarObserverParaDefensas(vistaSprays);
+        Juego.getInstance().cargarObserverParaDefensas(vistaLogger);
+        Juego.getInstance().addObserver(vistaLogger);
         Juego.getInstance().addObserver(new VistaEstadoJuego(visualizadorDeMapa));
         Juego.getInstance().setNombreDelJugador(nombreDelJugador);
 
@@ -53,6 +63,7 @@ public class CreadorDeJuego {
         VistaJugador vistaJugador = new VistaJugador(visualizadorPanelJugador);
 
         Juego.getInstance().cargarObserverParaJugador(vistaJugador);
+        Juego.getInstance().cargarObserverParaJugador(vistaLogger);
 
         Juego.getInstance().notifyObservers();
 

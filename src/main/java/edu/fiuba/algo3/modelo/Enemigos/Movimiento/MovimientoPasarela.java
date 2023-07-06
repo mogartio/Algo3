@@ -17,6 +17,7 @@ public class MovimientoPasarela implements Movimiento {
 
     public MovimientoPasarela(Enemigo enemigo){
         this.enemigo = enemigo;
+        this.posicionActual = new Coordenada(0, 0);
     }
 
     @Override

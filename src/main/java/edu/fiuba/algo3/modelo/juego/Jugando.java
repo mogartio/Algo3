@@ -15,6 +15,7 @@ public class Jugando implements EstadoJuego {
     ArrayList<Enemigo> enemigos;
     LinkedList<Defensa> defensas;
     Mapa mapa;
+    public String versionString = "Jugando";
     public Jugando(){
         this.mapa = new Mapa();
         this.enemigos = new ArrayList<>();
@@ -95,8 +96,8 @@ public class Jugando implements EstadoJuego {
 //            defensas.add(defensaRemovida);
 //        }
     }
-    @Override
-    public String versionString() { return "Jugando"; }
+//    @Override
+//    public String versionString() { return "Jugando"; }
 
     @Override
     public void quitarTrampa(Defensa unaTrampa) {
