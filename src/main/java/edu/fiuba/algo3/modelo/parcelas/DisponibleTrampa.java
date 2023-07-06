@@ -18,10 +18,12 @@ public class DisponibleTrampa implements Construible{
     public void construir(Coordenada coordenadaParcela,  Parcela parcela){
         parcela.setConstruible(new NoDisponible());
     }
+
     @Override
     public boolean puedeConstruir(String unaDefensa){
         return defensasAdmitidas.get(unaDefensa);
     }
+
     @Override
     public boolean ocupada() {
         return false;
