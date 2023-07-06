@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo.Defensas;
+import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.Construido;
 import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EnConstruccion;
 import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EstadoConstruccion;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
@@ -20,12 +21,19 @@ public abstract class Defensa extends Sprayable {
         this.rangoAtaque = rangoAtaque;
         this.estadoDeConstruccion = new EnConstruccion(tiempoDeConstruccion);
         this.tipoDeDefensa = tipoDeDefensa;
+        if (tiempoDeConstruccion == 0){
+            this.estadoDeConstruccion  = new Construido();
+        }
+
     }
 
     public Defensa(Coordenada posicion, int tiempoDeConstruccion, int rangoAtaque){
         this.posicion = posicion;
         this.rangoAtaque = rangoAtaque;
         this.estadoDeConstruccion = new EnConstruccion(tiempoDeConstruccion);
+        if (tiempoDeConstruccion == 0){
+            this.estadoDeConstruccion  = new Construido();
+        }
     }
 
     public void asignarPosicion(Coordenada nuevaPosicion){

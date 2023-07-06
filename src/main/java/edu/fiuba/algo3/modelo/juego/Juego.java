@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
@@ -144,4 +145,8 @@ public class Juego extends Observable {
     public int getCreditosDelJugador() { return jugador.getCreditos(); }
 
     public Parcela verParcelaEn(Coordenada coordenada) { return mapa.ver(coordenada); }
+
+    public void destruirTrampa(Defensa unaTrampa){
+        estadoJuego.quitarTrampa(unaTrampa);
+    }
 }

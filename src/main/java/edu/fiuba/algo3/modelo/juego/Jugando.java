@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.PasarelaInexistente;
 
@@ -56,6 +57,13 @@ public class Jugando implements EstadoJuego {
     }
 
     public EstadoJuego jugarTurno(boolean jugadorVivo, int numeroTurno){
+        if (!defensas.isEmpty()){
+           defensas.forEach(defensa -> {
+                defensa.atacar(enemigos);
+                defensa.pasarTurno();
+            });
+        }
+
 
         if (!enemigos.isEmpty()){
 
@@ -67,16 +75,10 @@ public class Jugando implements EstadoJuego {
             });
         }
 
-        this.limpiezaEnemigosMuertos();
+
         mapa.agregarEnemigosDelTurno(this.enemigos);
 
-        if (!defensas.isEmpty()){
 
-            defensas.forEach(defensa -> {
-                defensa.atacar(enemigos);
-                defensa.pasarTurno();
-            });
-        }
         this.limpiezaEnemigosMuertos();
 
         return actualizarSegunEstadoDeJugador(jugadorVivo);
@@ -93,4 +95,9 @@ public class Jugando implements EstadoJuego {
     }
     @Override
     public String versionString() { return "Jugando"; }
+
+    @Override
+    public void quitarTrampa(Defensa unaTrampa) {
+        defensas.remove(unaTrampa);
+    }
 }

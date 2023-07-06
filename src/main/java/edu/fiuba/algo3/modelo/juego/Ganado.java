@@ -27,4 +27,7 @@ public class Ganado implements EstadoJuego {
 
     @Override
     public String versionString() { return "Ganado"; }
+
+    @Override
+    public void quitarTrampa(Defensa unaTrampa) {}
 }
