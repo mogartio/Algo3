@@ -9,7 +9,7 @@ import edu.fiuba.algo3.vista.Sprayable;
 import java.util.ArrayList;
 
 public class Construido implements EstadoConstruccion {
-    public String sonido = "Construir";
+    public String sonido = "Atacar";
 
     public EstadoConstruccion pasoUnTurno(Defensa defensa){
         return this;
@@ -20,24 +20,13 @@ public class Construido implements EstadoConstruccion {
     }
 
     @Override
-    public void setSonido() {
-        this.sonido = "Atacar";
-    }
-
-    @Override
-    public String verSonido() {
-        return sonido;
-    }
-
-    @Override
     public void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre){
 
         tipoDeDefensa.atacar(enemigos, coordenada, rangoAtaque);
-        this.setSonido();
     }
     @Override
-    public String representacionString(Sprayable sprayable) {
-        return sprayable.obtenerSprayID();
+    public String sprayID(Sprayable sprayable) {
+        return sprayable.sprayID();
     }
 
 }

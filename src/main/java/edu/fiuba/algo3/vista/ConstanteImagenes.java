@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.util.Map;
 
 public class ConstanteImagenes {
-    private static Map<String, String> diccionarioImagenes;
+    private static final Map<String, String> diccionarioImagenes;
 
     static {
         diccionarioImagenes = Map.ofEntries(
@@ -27,7 +27,7 @@ public class ConstanteImagenes {
         );
     }
     public static ImageView getImagen(String imagenBuscada) throws FileNotFoundException {
-        InputStream stream = new FileInputStream((String) diccionarioImagenes.get(imagenBuscada));
+        InputStream stream = new FileInputStream(diccionarioImagenes.get(imagenBuscada));
         ImageView image = new ImageView((new Image(stream)));
         image.setFitHeight(40);
         image.setFitWidth(40);

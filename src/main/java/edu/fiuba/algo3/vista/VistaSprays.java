@@ -29,18 +29,16 @@ public class VistaSprays implements Observer {
     public void update(Observable o, Object arg) {
 
         Sprayable sprayable = (Sprayable) o;
-        if (sprayable instanceof TorrePlateada){
-            System.out.println("antes de datos: ");
+        if(sprayable instanceof TorrePlateada || sprayable instanceof TorreBlanca) {
+            System.out.println("Soy instancia de torre");
         }
         ArrayList<String> datos = verDatos(sprayable);
-        if (sprayable instanceof TorrePlateada){
-            System.out.println("datos: " + datos);
-        }
-
+        System.out.println("datos = " + datos);
 
         if(datos.size() == 3){ //Cuando no es 3 es porque no debe mostrar el spray}
             try {
-                if(datos.get(0) != "") {
+                System.out.println("datos(0) = " + datos.get(0));
+                if(!datos.get(0).equals("")) {
                     ImageView imagen = ConstanteImagenes.getImagen(datos.get(0));
 
                     String coordenadasComoString = datos.get(2);
@@ -60,47 +58,17 @@ public class VistaSprays implements Observer {
     }
 
     private ArrayList<String> verDatos(Sprayable sprayable){
-        ArrayList<String> datos = new ArrayList<String>();
+        ArrayList<String> datos = new ArrayList<>();
         String nombre;
         String sonido;
         Coordenada pos;
-        Field field = null;
+        Field field;
+
         try {
-            field = sprayable.getClass().getSuperclass().getDeclaredField("representacionString");
-            field.setAccessible(true);
-            nombre = (String) field.get(sprayable);
+            Method method = sprayable.getClass().getSuperclass().getDeclaredMethod("representacionString");
+            nombre = (String) method.invoke(sprayable);
             datos.add(0, nombre);
-        } catch (IllegalAccessException e) {
-        } catch (NoSuchFieldException e) {
-        }
-//        try {
-//            Method method = sprayable.getClass().getSuperclass().getDeclaredMethod("representacionString");
-//            method.setAccessible(true);
-//            nombre = (String) method.invoke(sprayable);
-//            System.out.println("Agrego nombre: " + nombre);
-//            datos.add(0, nombre);
-//        } catch (IllegalAccessException e) {
-//        } catch (NoSuchMethodException e) {
-//        } catch (InvocationTargetException e) {
-//        }
-        try {
-            field = sprayable.getClass().getSuperclass().getDeclaredField("estadoDeConstruccion");
-            field.setAccessible(true);
-            EstadoConstruccion est = (EstadoConstruccion) field.get(sprayable);
-            Method method = est.getClass().getDeclaredMethod("representacionString", Sprayable.class);
-            nombre = (String) method.invoke(est, sprayable);
-            datos.add(0, nombre);
-//            System.out.println("Paso agregado en datos");
-//            field.set(est, "");
-//            System.out.println("Paso set");
-        } catch (NoSuchFieldException e){
-            System.out.println("NoSuchFieldException");
-        } catch (IllegalAccessException e){
-            System.out.println("IllegalAccessException");
-        } catch (NoSuchMethodException e) {
-            System.out.println("NoSuchMethodException");
-        } catch (InvocationTargetException e) {
-            System.out.println("InvocationTargetException");
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
         }
 
         try {
@@ -108,8 +76,7 @@ public class VistaSprays implements Observer {
             field.setAccessible(true);
             sonido = (String) field.get(sprayable);
             datos.add(1, sonido);
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchFieldException | IllegalAccessException e) {
         }
         try {
             field = sprayable.getClass().getSuperclass().getDeclaredField("estadoDeConstruccion");
@@ -119,31 +86,25 @@ public class VistaSprays implements Observer {
             sonido = (String) field.get(est);
             datos.add(1, sonido);
             field.set(est, "");
-        } catch (NoSuchFieldException e){
-        } catch (IllegalAccessException e){
+        } catch (NoSuchFieldException | IllegalAccessException e){
         }
 
         try {
-            System.out.println(datos);
             field = sprayable.getClass().getSuperclass().getDeclaredField("tipoMovimiento");
             field.setAccessible(true);
             Movimiento mov = (Movimiento) field.get(sprayable);
             field = mov.getClass().getDeclaredField("posicionActual");
             pos = (Coordenada) field.get(mov);
             datos.add(2, pos.representacionString());
-        } catch (NoSuchFieldException e) {
-        }catch (IllegalAccessException e) {
+        } catch (NoSuchFieldException | IllegalAccessException e) {
         }
 
         try {
-            System.out.println(datos);
             field = sprayable.getClass().getSuperclass().getDeclaredField("posicion");
             field.setAccessible(true);
             pos = (Coordenada) field.get(sprayable);
             datos.add(2, pos.representacionString());
-            datos.forEach(dato -> System.out.println(dato));
-        } catch (NoSuchFieldException e) {
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchFieldException | IllegalAccessException e) {
         }
 
         return datos;

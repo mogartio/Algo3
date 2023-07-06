@@ -1,14 +1,12 @@
 package edu.fiuba.algo3.modelo.miscelanea;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class AlgoritmoDeBresenham {
 
     public static LinkedList<Coordenada> getCamino(Coordenada puntoInicial, Coordenada puntoFinal) {
 
-        LinkedList<Coordenada> camino = new LinkedList<Coordenada>();
+        LinkedList<Coordenada> camino = new LinkedList<>();
 
         int x1 = puntoInicial.getAbscisa();
         int y1 = puntoInicial.getOrdenada();

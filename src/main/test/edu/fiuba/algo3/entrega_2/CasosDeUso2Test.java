@@ -273,10 +273,8 @@ public class CasosDeUso2Test {
 
     @Test
     public void test18bSeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosPeroIgualGanaLaPartida() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
-        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -285,7 +283,7 @@ public class CasosDeUso2Test {
 
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
-        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.cargarObserverParaDefensas(mockObserver);
         juego.setMapa(mapa);
         juego.setOleadasDelNivel(enemigos);
         Turnero turnero = new Turnero();
@@ -300,10 +298,8 @@ public class CasosDeUso2Test {
 
     @Test
     public void test19SeSimulaUnaPartidaEnDondeRecibeDanioDeLosEnemigosYPierdeLaPartida() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
-        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -313,7 +309,7 @@ public class CasosDeUso2Test {
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
         Turnero turnero = new Turnero();
 

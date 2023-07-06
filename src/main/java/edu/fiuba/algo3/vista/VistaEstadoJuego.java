@@ -31,8 +31,7 @@ public class VistaEstadoJuego implements Observer {
             visualizadorDeMapa.mostrarMensajeFinal(mensajeFinal);
             AudioPlayer.playEfectoSonido(estadoJuego.versionString());
 
-        } catch (FileNotFoundException e) {
-        } catch (NullPointerException e){
+        } catch (FileNotFoundException | NullPointerException e) {
         }
     }
 }
