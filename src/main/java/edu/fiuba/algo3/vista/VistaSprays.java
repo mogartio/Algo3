@@ -37,17 +37,16 @@ public class VistaSprays implements Observer {
 
         if(datos.size() == 3){ //Cuando no es 3 es porque no debe mostrar el spray}
             try {
-                System.out.println("datos(0) = " + datos.get(0));
                 if(!datos.get(0).equals("")) {
                     ImageView imagen = ConstanteImagenes.getImagen(datos.get(0));
 
-                    String coordenadasComoString = datos.get(2);
                     String pathAudio = datos.get(1);
+                    AudioPlayer.playEfectoSonido(pathAudio);
 
+                    String coordenadasComoString = datos.get(2);
                     String[] coordenadas = coordenadasComoString.substring(1, coordenadasComoString.length() - 1).split(",");
                     int x = Integer.parseInt(coordenadas[0]); // x
                     int y = Integer.parseInt(coordenadas[1]); // y
-                    AudioPlayer.playEfectoSonido(pathAudio);
                     visualizadorDeMapa.agregarSpray(imagen, x, y);
                 }
 
@@ -87,6 +86,7 @@ public class VistaSprays implements Observer {
             datos.add(1, sonido);
             field.set(est, "");
         } catch (NoSuchFieldException | IllegalAccessException e){
+            System.out.println(e.getMessage());
         }
 
         try {

@@ -30,4 +30,10 @@ public class EnConstruccion implements EstadoConstruccion{
     public String sprayID(Sprayable sprayable) {
         return "enConstruccion";
     }
+
+    @Override
+    public boolean destruir( Defensa defensa) {
+        defensa.actualizarEstado(new Destruida());
+        return true;
+    }
 }

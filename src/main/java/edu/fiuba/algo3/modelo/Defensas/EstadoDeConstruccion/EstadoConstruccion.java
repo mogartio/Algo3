@@ -13,4 +13,5 @@ public interface EstadoConstruccion {
     boolean estoyConstruida();
     void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre);
     String sprayID(Sprayable sprayable);
+    boolean destruir(Defensa defensa);
 }
