@@ -35,7 +35,7 @@ public class VisualizadorDeMapa {
         grilla = new GridPane();
         grilla.setGridLinesVisible(false);
         StackPane st = new StackPane();
-        st.getChildren().addAll(grilla, visualizadorLogger.InicializarPanelLogger() );
+        st.getChildren().addAll(visualizadorLogger.InicializarPanelLogger(), grilla );
         layout.setLeft(st);
         layout.setCenter(panelTienda);
         coordenadasSpraysDelTurno = new ArrayList<>();
