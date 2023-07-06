@@ -19,8 +19,7 @@ public class CreadorEnemigos {
         this.lector = new Lector();
     }
 
-
-    public LinkedList<ArrayList<Enemigo>> crearEnemigosDeNivel(String direccionDeArchivo, Observer observerParaEnemigos) {
+    public LinkedList<ArrayList<Enemigo>> crearEnemigosDeNivel(String direccionDeArchivo, ArrayList<Observer> observersParaEnemigos) {
 
         LinkedList< ArrayList<Enemigo> > enemigosDelNivel = new LinkedList<ArrayList<Enemigo>>();
         JSONArray lectura = (JSONArray) Lector.leer(direccionDeArchivo);
@@ -32,12 +31,12 @@ public class CreadorEnemigos {
             //pensar el JSONObject como un diccionario
             JSONObject informacionDelTurno = (JSONObject) lectura.get(fila - 1); // obtiene la informacion de la fila correspondiente
 
-            agregarEnemigosEnTurno(enemigosDelNivel, informacionDelTurno, observerParaEnemigos);
+            agregarEnemigosEnTurno(enemigosDelNivel, informacionDelTurno, observersParaEnemigos);
         }
         return enemigosDelNivel;
     }
 
-    private void agregarEnemigosEnTurno(LinkedList<ArrayList<Enemigo>> enemigosDelNivel,JSONObject informacionDelTurno, Observer observerParaEnemigos){
+    private void agregarEnemigosEnTurno(LinkedList<ArrayList<Enemigo>> enemigosDelNivel,JSONObject informacionDelTurno, ArrayList<Observer> observersParaEnemigos){
 
         String numeroDeTurno = informacionDelTurno.get("turno").toString();
         JSONObject enemigosEnTurno = (JSONObject) informacionDelTurno.get("enemigos");// obtiene el value asociado a al key "enemigos"
@@ -51,7 +50,11 @@ public class CreadorEnemigos {
             for (int i = 0 ; i < cantidadDelTipoEnInt ; i++){
                 Enemigo enemigoAAgregar = crearInstanciaDeEnemigo( tipoDeEnemigo.toString() , Integer.parseInt(numeroDeTurno) );
 
-                enemigoAAgregar.addObserver(observerParaEnemigos);
+                if (observersParaEnemigos.size() != 0) {
+                    for(Observer observer : observersParaEnemigos){
+                        enemigoAAgregar.addObserver(observer);
+                    }
+                }
 
                 enemigosAAgregarEnEsteTurno.add( enemigoAAgregar );
             }

@@ -6,6 +6,8 @@ import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
 
 public class Perdido implements EstadoJuego {
 
+    public String versionString = "Perdido";
+
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
         return this;
     }
@@ -26,8 +28,8 @@ public class Perdido implements EstadoJuego {
     @Override
     public void destruirDefensaMasAntigua() {}
 
-    @Override
-    public String versionString() { return "Perdido"; }
+//    @Override
+//    public String versionString() { return "Perdido"; }
 
     @Override
     public void quitarTrampa(Defensa unaTrampa) {}

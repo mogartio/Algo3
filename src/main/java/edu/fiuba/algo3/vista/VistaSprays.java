@@ -29,11 +29,7 @@ public class VistaSprays implements Observer {
     public void update(Observable o, Object arg) {
 
         Sprayable sprayable = (Sprayable) o;
-        if(sprayable instanceof TorrePlateada || sprayable instanceof TorreBlanca) {
-            System.out.println("Soy instancia de torre");
-        }
         ArrayList<String> datos = verDatos(sprayable);
-        System.out.println("datos = " + datos);
 
         if(datos.size() == 3){ //Cuando no es 3 es porque no debe mostrar el spray}
             try {
@@ -86,7 +82,6 @@ public class VistaSprays implements Observer {
             datos.add(1, sonido);
             field.set(est, "");
         } catch (NoSuchFieldException | IllegalAccessException e){
-            System.out.println(e.getMessage());
         }
 
         try {
