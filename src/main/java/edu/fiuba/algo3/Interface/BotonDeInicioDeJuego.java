@@ -1,6 +1,6 @@
-package edu.fiuba.algo3.modelo.Interface;
+package edu.fiuba.algo3.Interface;
 
-import edu.fiuba.algo3.modelo.Creador.CreadorDeJuego;
+import edu.fiuba.algo3.CreadorDeJuego;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import javafx.event.ActionEvent;

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.adicionales.testUnitarios;
 
+import edu.fiuba.algo3.modelo.Defensas.Ataque;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
@@ -26,7 +27,7 @@ public class testDefensa {
 
         listaDeEnemigos.add(enemigoMockeado);
 
-        when(enemigoMockeado.estaEnRango(coordenadaMockeada,5)).thenReturn(true);
+        when(enemigoMockeado.estaEnRango(coordenadaMockeada,5, new Ataque(2))).thenReturn(true);
         defensa.atacar(listaDeEnemigos);
 
         verify(enemigoMockeado , times(1)).recibirDanio(2);
@@ -43,10 +44,10 @@ public class testDefensa {
         Enemigo enemigoMockeado3 = mock(Enemigo.class);
         Enemigo enemigoMockeado4 = mock(Enemigo.class);
 
-        when(enemigoMockeado1.estaEnRango(coordenadaMockeada,5)).thenReturn(true);
-        when(enemigoMockeado2.estaEnRango(coordenadaMockeada,5)).thenReturn(true);
-        when(enemigoMockeado3.estaEnRango(coordenadaMockeada,5)).thenReturn(true);
-        when(enemigoMockeado4.estaEnRango(coordenadaMockeada,5)).thenReturn(true);
+        when(enemigoMockeado1.estaEnRango(coordenadaMockeada,5, new Ataque(2))).thenReturn(true);
+        when(enemigoMockeado2.estaEnRango(coordenadaMockeada,5, new Ataque(2))).thenReturn(true);
+        when(enemigoMockeado3.estaEnRango(coordenadaMockeada,5, new Ataque(2))).thenReturn(true);
+        when(enemigoMockeado4.estaEnRango(coordenadaMockeada,5, new Ataque(2))).thenReturn(true);
 
         listaDeEnemigos.add(enemigoMockeado1);
         listaDeEnemigos.add(enemigoMockeado2);
@@ -71,9 +72,10 @@ public class testDefensa {
         Enemigo enemigoMockeado2 = mock(Enemigo.class);
         Enemigo enemigoMockeado3 = mock(Enemigo.class);
 
-        when(enemigoMockeado1.estaEnRango(coordenadaMockeada,5)).thenReturn(false);
-        when(enemigoMockeado2.estaEnRango(coordenadaMockeada,5)).thenReturn(false);
-        when(enemigoMockeado3.estaEnRango(coordenadaMockeada,5)).thenReturn(false);
+
+        when(enemigoMockeado1.estaEnRango(coordenadaMockeada,5, new Ataque(2))).thenReturn(false);
+        when(enemigoMockeado2.estaEnRango(coordenadaMockeada,5, new Ataque(2))).thenReturn(false);
+        when(enemigoMockeado3.estaEnRango(coordenadaMockeada,5, new Ataque(2))).thenReturn(false);
 
         listaDeEnemigos.add(enemigoMockeado1);
         listaDeEnemigos.add(enemigoMockeado2);

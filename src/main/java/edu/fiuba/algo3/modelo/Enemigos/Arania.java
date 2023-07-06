@@ -36,12 +36,4 @@ public class Arania extends Enemigo {
         sonido = "Morir";
         setChanged();
     }
-
-    public boolean esVisiblePara(Trampa tipo){
-        return true;
-    }
-
-    public boolean esVisiblePara(Ataque ataque){
-        return true;
-    }
 }

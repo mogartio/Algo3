@@ -33,7 +33,7 @@ public abstract class Parcela {
     }
 
     public void actualizarUbicacion(Movimiento movimientoEnemigo){
-        movimientoEnemigo.actualizarUbicacion(this.coordenada);
+        movimientoEnemigo.actualizarCoordenadaActual(this.coordenada);
     }
 
     public void actulizarMeta(Movimiento movimientoEnemigo){
