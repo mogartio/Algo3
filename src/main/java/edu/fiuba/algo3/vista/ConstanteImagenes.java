@@ -23,7 +23,8 @@ public class ConstanteImagenes {
                 Map.entry("Ganado", "ImagenesGUI/victoria.png"),
                 Map.entry("Perdido", "ImagenesGUI/Derrota.png"),
                 Map.entry("meta", "ImagenesGUI/meta.png"),
-                Map.entry("enConstruccion", "ImagenesGUI/enConstruccion.png")
+                Map.entry("enConstruccion", "ImagenesGUI/enConstruccion.png"),
+                Map.entry("destruida", "ImagenesGUI/destruida.png")
         );
     }
     public static ImageView getImagen(String imagenBuscada) throws FileNotFoundException {

@@ -36,6 +36,10 @@ public abstract class Defensa extends Sprayable {
         }
     }
 
+    public void actualizarEstado(EstadoConstruccion nuevoEstado) {
+        this.estadoDeConstruccion = nuevoEstado;
+    }
+
     public void asignarPosicion(Coordenada nuevaPosicion){
         this.posicion = nuevaPosicion;
     }
@@ -52,6 +56,10 @@ public abstract class Defensa extends Sprayable {
     public void atacar(ArrayList<Enemigo> enemigos ){
         this.estadoDeConstruccion.atacar(tipoDeDefensa, enemigos, this.posicion, this.rangoAtaque, this.representacionString());
         setChanged();
+    }
+
+    public boolean destruir() {
+        return this.estadoDeConstruccion.destruir(this);
     }
 
     public String representacionString() { return this.estadoDeConstruccion.sprayID(this); }

@@ -89,9 +89,11 @@ public class Jugando implements EstadoJuego {
     }
 
     public void destruirDefensaMasAntigua(){
-        if ( !defensas.isEmpty() ) {
-            defensas.removeFirst();
-        }
+//        if ( !defensas.isEmpty() ) {
+        for (int i = 0; i < defensas.size(); i++) if (defensas.get(i).destruir()) break;
+//            Defensa defensaRemovida = defensas.removeFirst();
+//            defensas.add(defensaRemovida);
+//        }
     }
     @Override
     public String versionString() { return "Jugando"; }
