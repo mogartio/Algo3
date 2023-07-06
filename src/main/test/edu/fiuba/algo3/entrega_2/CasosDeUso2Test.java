@@ -8,14 +8,13 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Enemigos.Hormiga;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
+import edu.fiuba.algo3.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Lector;
 import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.*;
-import edu.fiuba.algo3.vista.VistaSprays;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.*;
@@ -318,7 +317,7 @@ public class CasosDeUso2Test {
         }
 
         assertTrue(juego.finalizado());
-        // assertFalse(juego.jugadorVivo()); MODIFICAR LA IMPLEMENTACION DE GANADO -> GANA EL JUEGO INCOMPLETO
+        assertFalse(juego.jugadorVivo()); //MODIFICAR LA IMPLEMENTACION DE GANADO -> GANA EL JUEGO INCOMPLETO
     }
 /*
     @Test

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.modelo.Interface.VisualizadorPanelJugador;
+import edu.fiuba.algo3.Interface.VisualizadorPanelJugador;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 
 import java.util.Observable;

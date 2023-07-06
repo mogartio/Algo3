@@ -7,16 +7,15 @@ import edu.fiuba.algo3.modelo.parcelas.Parcela;
 
 public interface Movimiento {
 
+    void establecerInicioYMeta(Parcela parcelaInicial, Parcela parcelaFinal);
+
     void reasignarPosiciones(Coordenada coordInicial, Coordenada coordFinal);
 
     void actualizarPosicion(Parcela parcelaSiguiente);
 
-    // Se utilizara para añadir a los enemigos al mapa luego se utiliza el otro metodo
-    void actualizarPosicion(Parcela parcelaInicial, Parcela parcelaFinal);
+    void actualizarCoordenadaActual(Coordenada posicionNueva);
 
     void avanzar(int cantidadPasos, Mapa mapa) throws PasarelaInexistente;
-
-    void actualizarUbicacion(Coordenada posicionNueva);
 
     void establecerMeta(Coordenada coordenada);
 

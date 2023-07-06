@@ -26,17 +26,28 @@ public class MovimientoPasarela implements Movimiento {
     }
 
     @Override
+    public void establecerInicioYMeta(Parcela parcelaInicial, Parcela parcelaFinal){
+        this.parcelaActual = parcelaInicial;
+        parcelaInicial.actualizarUbicacion(this);
+        parcelaFinal.actulizarMeta(this);
+    }
+
+    @Override
     public void actualizarPosicion(Parcela parcelaSiguiente){
         this.parcelaActual = parcelaSiguiente;
         parcelaSiguiente.actualizarUbicacion(this);
     }
 
     @Override
-    public void actualizarPosicion(Parcela parcelaInicial, Parcela parcelaFinal){
-        this.parcelaActual = parcelaInicial;
-        parcelaInicial.actualizarUbicacion(this);
-        parcelaFinal.actulizarMeta(this);
+    public void actualizarCoordenadaActual(Coordenada posicionNueva){
+        this.posicionActual = posicionNueva;
     }
+
+    @Override
+    public void establecerMeta(Coordenada coordenada){
+        this.meta = coordenada;
+    }
+
     @Override
     public void avanzar(int cantidadPasos, Mapa mapa) throws PasarelaInexistente {
         for(int pasos = 0; pasos < cantidadPasos; pasos++){
@@ -48,20 +59,11 @@ public class MovimientoPasarela implements Movimiento {
     }
 
     @Override
-    public void actualizarUbicacion(Coordenada posicionNueva){
-        this.posicionActual = posicionNueva;
-    }
-
-    @Override
-    public void establecerMeta(Coordenada coordenada){
-        this.meta = coordenada;
-    }
-
-    @Override
     public void daniarJugador(){
         this.enemigo.daniarJugador();
     }
 
+    @Override
     public boolean estaEnRango(Coordenada coordenada, int distancia){
         return this.posicionActual.estaEnRango(coordenada, distancia);
     }

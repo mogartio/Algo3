@@ -1,11 +1,13 @@
-package edu.fiuba.algo3.modelo.Creador;
+package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
+import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.Interface.ControladorCompra;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorPanelJugador;
+import edu.fiuba.algo3.Interface.ControladorCompra;
+import edu.fiuba.algo3.Interface.VisualizadorDeMapa;
+import edu.fiuba.algo3.Interface.VisualizadorPanelJugador;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Mapa;

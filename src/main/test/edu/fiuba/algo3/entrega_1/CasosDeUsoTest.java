@@ -412,10 +412,10 @@ public class CasosDeUsoTest {
 
        juego.jugarTurno(1);
 
-       assertTrue(hormigaDos.estaEnRango(coordenadaSegunda, 0));
-       assertTrue(hormigaUno.estaEnRango(coordenadaFinal, 0));
-       assertTrue(araniaDos.estaEnRango(coordenadaFinal, 0));
-       assertTrue(araniaUno.estaEnRango(coordenadaTercera, 0));
+       assertTrue(hormigaDos.estaEnRango(coordenadaSegunda, 0, new Ataque(1)));
+       assertTrue(hormigaUno.estaEnRango(coordenadaFinal, 0, new Ataque(1)));
+       assertTrue(araniaDos.estaEnRango(coordenadaFinal, 0, new Ataque(1)));
+       assertTrue(araniaUno.estaEnRango(coordenadaTercera, 0, new Ataque(1)));
 
     }
 

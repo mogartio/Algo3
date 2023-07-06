@@ -4,7 +4,6 @@ package edu.fiuba.algo3.modelo.Creador;
 
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.juego.Camino;
 import edu.fiuba.algo3.modelo.juego.Lector;
 import edu.fiuba.algo3.modelo.juego.Mapa;
@@ -15,10 +14,6 @@ import edu.fiuba.algo3.modelo.parcelas.Rocosa;
 import edu.fiuba.algo3.modelo.parcelas.Tierra;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 
 
 public class CreadorDeMapa {

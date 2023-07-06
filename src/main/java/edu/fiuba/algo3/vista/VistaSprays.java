@@ -4,8 +4,8 @@ import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EstadoConstruccion;
 import edu.fiuba.algo3.modelo.Defensas.TorreBlanca;
 import edu.fiuba.algo3.modelo.Defensas.TorrePlateada;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
-import edu.fiuba.algo3.modelo.Interface.AudioPlayer;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
+import edu.fiuba.algo3.Interface.AudioPlayer;
+import edu.fiuba.algo3.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import javafx.scene.image.ImageView;
 
