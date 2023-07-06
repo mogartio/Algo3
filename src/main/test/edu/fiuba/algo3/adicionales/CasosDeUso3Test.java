@@ -204,10 +204,8 @@ public class CasosDeUso3Test extends App {
 
     @Test
     public void test25aLaTrampaDeArenaRetiene20Hormigas3TurnosProlongandoLaVidaDelJugadorEnDichaCantidad() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json",15);
-        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -217,7 +215,7 @@ public class CasosDeUso3Test extends App {
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -241,10 +239,8 @@ public class CasosDeUso3Test extends App {
 
     @Test
     public void test25bLaTrampaDeArenaRetieneTopos3TurnosProlongandoLaVidaDelJugadorEnDichaCantidad() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json", 15);
-        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -254,7 +250,7 @@ public class CasosDeUso3Test extends App {
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -277,10 +273,8 @@ public class CasosDeUso3Test extends App {
     }
     @Test
     public void test25cLaTrampaDeArenaLePermiteSubrevivirUnTurnoMasAlJugador() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json", 15);
-        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -290,7 +284,7 @@ public class CasosDeUso3Test extends App {
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -314,10 +308,8 @@ public class CasosDeUso3Test extends App {
     }
     @Test
     public void test26LaTrampaDeArenaNoAfectaALaLechuzaDestruyendoATiempoDefensasQueMatarianHormigas() throws NoHayCamino, NoHayInicial {
-        VisualizadorDeMapa visualizadorDeMapa = new VisualizadorDeMapa();
         CreadorDeMapa creadorDeMapa = new CreadorDeMapa();
         Mapa mapa = creadorDeMapa.crearMapa("ArchivosJson/mapa.json", 15);
-        VistaSprays vistaSprays = new VistaSprays(visualizadorDeMapa);
 
         CreadorEnemigos creadorEnemigos = new CreadorEnemigos();
 
@@ -327,7 +319,7 @@ public class CasosDeUso3Test extends App {
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
         juego.setMapa(mapa);
-        juego.cargarObserverParaDefensas(vistaSprays);
+        juego.cargarObserverParaDefensas(mockObserver);
         juego.setOleadasDelNivel(enemigos);
 
         Turnero turnero = new Turnero();
@@ -341,8 +333,6 @@ public class CasosDeUso3Test extends App {
 
         juego.comprarDefensa("TrampaArenosa", new Coordenada(10, 11));
         juego.comprarDefensa("TrampaArenosa", new Coordenada(9, 11));
-
-
 
 
         for (int i = 0; i <= 28; i++) {

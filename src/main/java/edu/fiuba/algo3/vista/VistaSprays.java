@@ -63,32 +63,13 @@ public class VistaSprays implements Observer {
         String sonido;
         Coordenada pos;
         Field field;
-//        try {
-//            field = sprayable.getClass().getSuperclass().getDeclaredField("representacionString");
-//            field.setAccessible(true);
-//            nombre = (String) field.get(sprayable);
-//            datos.add(0, nombre);
-//        } catch (IllegalAccessException | NoSuchFieldException e) {
-//            System.out.println("No deberia entrar 1");
-//        }
+
         try {
             Method method = sprayable.getClass().getSuperclass().getDeclaredMethod("representacionString");
-            System.out.println("Paso metodo");
             nombre = (String) method.invoke(sprayable);
             datos.add(0, nombre);
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            System.out.println("Deberia entrar 1");
         }
-//        try {
-//            field = sprayable.getClass().getSuperclass().getDeclaredField("estadoDeConstruccion");
-//            field.setAccessible(true);
-//            EstadoConstruccion est = (EstadoConstruccion) field.get(sprayable);
-//            Method method = est.getClass().getDeclaredMethod("sprayID", Sprayable.class);
-//            nombre = (String) method.invoke(est, sprayable);
-//            datos.add(0, nombre);
-//        } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e){
-//            System.out.println("Deberia entrar 1");
-//        }
 
         try {
             field = sprayable.getClass().getSuperclass().getDeclaredField("sonido");
@@ -96,7 +77,6 @@ public class VistaSprays implements Observer {
             sonido = (String) field.get(sprayable);
             datos.add(1, sonido);
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            System.out.println("No deberia entrar 2");
         }
         try {
             field = sprayable.getClass().getSuperclass().getDeclaredField("estadoDeConstruccion");
@@ -107,7 +87,6 @@ public class VistaSprays implements Observer {
             datos.add(1, sonido);
             field.set(est, "");
         } catch (NoSuchFieldException | IllegalAccessException e){
-            System.out.println("Deberia entrar 2");
         }
 
         try {
@@ -118,7 +97,6 @@ public class VistaSprays implements Observer {
             pos = (Coordenada) field.get(mov);
             datos.add(2, pos.representacionString());
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            System.out.println("No deberia entrar 3");
         }
 
         try {
@@ -127,7 +105,6 @@ public class VistaSprays implements Observer {
             pos = (Coordenada) field.get(sprayable);
             datos.add(2, pos.representacionString());
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            System.out.println("Deberia entrar 3");
         }
 
         return datos;

@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.Defensas;
 
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.juego.Juego;
-
-import java.util.ArrayList;
 
 public class TrampaArenosa extends Defensa {
     int duracion;

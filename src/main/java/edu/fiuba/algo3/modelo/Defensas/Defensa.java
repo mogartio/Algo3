@@ -58,8 +58,4 @@ public abstract class Defensa extends Sprayable {
 
     public String sprayID() { return this.sprayID; }
 
-//    public String representacionString(){
-//        return this.sprayID;
-//    }
-
 }

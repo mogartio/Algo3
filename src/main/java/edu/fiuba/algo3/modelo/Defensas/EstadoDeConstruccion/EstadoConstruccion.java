@@ -11,8 +11,6 @@ import java.util.ArrayList;
 public interface EstadoConstruccion {
     EstadoConstruccion pasoUnTurno(Defensa defensa);
     boolean estoyConstruida();
-    void setSonido();
-    String verSonido();
     void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre);
     String sprayID(Sprayable sprayable);
 }

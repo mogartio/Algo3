@@ -9,7 +9,7 @@ import edu.fiuba.algo3.modelo.Enemigos.Efecto.Relentizado;
 
 
 public class Trampa implements TipoDeDefensa{
-    private double porcentajeRelentizacion;
+    private final double porcentajeRelentizacion;
 
     public Trampa(double porcentajeRelentizacion){
         this.porcentajeRelentizacion = porcentajeRelentizacion;
@@ -21,7 +21,6 @@ public class Trampa implements TipoDeDefensa{
         for (Enemigo enemigo : enemigos) {
             if ( enemigo.estaEnRango(coordenada, rangoAtaque, this) ){
 
-                //emisor.notificarSubscriptores("log", nombre + " ataca a " + enemigo.representacionString() + " en " + enemigo.represtacionUbicacion());
                 enemigo.setEfectoEnemigo(new Relentizado(1, this.porcentajeRelentizacion));
             }
         }
