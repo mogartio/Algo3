@@ -14,5 +14,5 @@ public interface EstadoConstruccion {
     void setSonido();
     String verSonido();
     void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre);
-    String representacionString(Sprayable sprayable);
+    String sprayID(Sprayable sprayable);
 }

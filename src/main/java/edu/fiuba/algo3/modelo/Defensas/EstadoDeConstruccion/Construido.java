@@ -36,8 +36,8 @@ public class Construido implements EstadoConstruccion {
         this.setSonido();
     }
     @Override
-    public String representacionString(Sprayable sprayable) {
-        return sprayable.obtenerSprayID();
+    public String sprayID(Sprayable sprayable) {
+        return sprayable.sprayID();
     }
 
 }

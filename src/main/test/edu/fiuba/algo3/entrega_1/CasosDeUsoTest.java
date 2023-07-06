@@ -12,7 +12,6 @@ import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.miscelanea.RandomGenerator;
 import edu.fiuba.algo3.modelo.parcelas.*;
-import edu.fiuba.algo3.vista.VistaSprays;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,7 +19,6 @@ import java.util.LinkedList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class CasosDeUsoTest {
@@ -102,8 +100,8 @@ public class CasosDeUsoTest {
 
         Tierra tierra = new Tierra(coordTierra);
         Rocosa rocosa = new Rocosa(coordRocosa);
-        assertTrue(tierra.puedeConstruir(torre.representationString()));
-        assertFalse(rocosa.puedeConstruir(torre.representationString()));
+        assertTrue(tierra.puedeConstruir(torre.sprayID()));
+        assertFalse(rocosa.puedeConstruir(torre.sprayID()));
     }
 
     @Test
@@ -353,7 +351,7 @@ public class CasosDeUsoTest {
     }
 
     @Test
-    public void test09UnaAraniaAlLlegarALaMetaDejaDeMoverse() throws PasarelaInexistente {
+    public void test09UnaAraniaAlLlegarALaMetaDejaDeMoverse() {
         Mapa mapa = new Mapa();
 
         Coordenada coordenadaMeta = new Coordenada(1, 1);
@@ -363,7 +361,7 @@ public class CasosDeUsoTest {
 
         try{
             arania.avanzar(mapa);
-        }catch (PasarelaInexistente e) {
+        } catch (PasarelaInexistente e) {
             fail("Pasarela inexistente");
         }
     }
@@ -403,8 +401,6 @@ public class CasosDeUsoTest {
        LinkedList<ArrayList<Enemigo>> oleadas = new LinkedList<>();
        mapaJuego.cargarOleadas(oleadas);
 
-       //Logger logger = new Logger();
-       VistaSprays mockVistaSprays = mock(VistaSprays.class);
        Juego juego =  Juego.getInstance();
        juego.reestablecerJuego();
 
@@ -429,12 +425,6 @@ public class CasosDeUsoTest {
         jugador.reestablecerEstadoInicial();
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        //Logger logger = new Logger();
-        Mapa mapa = new Mapa();
-
-        //Juego juego = new Juego(mapa, logger);
-        //juego.agregarSubscriptor(logger);
-        VistaSprays mockVistaSprays = mock(VistaSprays.class);
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
 
@@ -471,9 +461,6 @@ public class CasosDeUsoTest {
         jugador.reestablecerEstadoInicial();
         RandomGenerator generadorRandom = new RandomGenerator(0,10);
 
-        //Logger logger = new Logger();
-        Mapa mapa = new Mapa();
-
         Coordenada coordenada = new Coordenada(2, 2);
         Pasarela pasarelaFinal = new Pasarela(coordenada, new Meta());
         Pasarela pasarelaQuinta = new Pasarela(coordenada, pasarelaFinal, new Normal());
@@ -502,9 +489,6 @@ public class CasosDeUsoTest {
         enemigos.add(HormigaTres);
         enemigos.add(HormigaCuatro);
 
-        //Juego juego = new Juego(mapa, logger);
-        //juego.agregarSubscriptor(logger);
-        VistaSprays mockVistaSprays = mock(VistaSprays.class);
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
 
@@ -532,12 +516,6 @@ public class CasosDeUsoTest {
         Jugador jugador = new Jugador();
         jugador.reestablecerEstadoInicial();
 
-        //Logger logger = new Logger();
-        Mapa mapa = new Mapa();
-
-        //Juego juego = new Juego(mapa, logger);
-        //juego.agregarSubscriptor(logger);
-        VistaSprays mockVistaSprays = mock(VistaSprays.class);
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
 
@@ -559,9 +537,7 @@ public class CasosDeUsoTest {
 
     @Test
     public void test12ElJugadorMuereYPierdeElJuego() {
-        Mapa mapa = new Mapa();
 
-        VistaSprays mockVistaSprays = mock(VistaSprays.class);
         Juego juego = Juego.getInstance();
         juego.reestablecerJuego();
 

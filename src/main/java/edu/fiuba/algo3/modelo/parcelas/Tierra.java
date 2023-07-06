@@ -4,8 +4,6 @@ import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.Defensas.Defensa;
 import javafx.scene.paint.Color;
 
-import java.util.Map;
-
 public class Tierra extends Parcela{
 
     public Tierra(Coordenada coordenada){

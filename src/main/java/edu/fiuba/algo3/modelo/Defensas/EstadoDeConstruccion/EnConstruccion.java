@@ -36,7 +36,7 @@ public class EnConstruccion implements EstadoConstruccion{
     @Override
     public void atacar(TipoDeDefensa tipoDeDefensa, ArrayList<Enemigo> enemigos, Coordenada coordenada, int rangoAtaque, String nombre){}
 
-    public String representacionString(Sprayable sprayable) {
+    public String sprayID(Sprayable sprayable) {
         return "enConstruccion";
     }
 }

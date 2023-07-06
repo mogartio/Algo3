@@ -2,11 +2,9 @@ package edu.fiuba.algo3.modelo.miscelanea;
 
 import java.util.Objects;
 
-import static java.lang.Math.abs;
-
 public class Coordenada {
-    private int coordX;
-    private int coordY;
+    private final int coordX;
+    private final int coordY;
 
     public Coordenada(int x, int y){
         this.coordX = x;
@@ -44,9 +42,9 @@ public class Coordenada {
         return (otraCoordenada.verificarDistancia(this.coordX, this.coordY, rango));
     }
 
-    public int calcularDistancia(Coordenada coordenada){
-        return coordenada.distancia(this.coordX, this.coordY);
-    }
+//    public int calcularDistancia(Coordenada coordenada){
+//        return coordenada.distancia(this.coordX, this.coordY);
+//    }
 
     public int distancia(int coordX, int coordY){
         int distanciaX = Math.abs(this.coordX - coordX);
@@ -55,12 +53,12 @@ public class Coordenada {
         return distanciaX + distanciaY;
     }
 
-    public boolean verificarCoordenadas(int coordX, int coordY){
-        return (this.coordX == coordX && this.coordY == coordY);
-    }
+//    public boolean verificarCoordenadas(int coordX, int coordY){
+//        return (this.coordX == coordX && this.coordY == coordY);
+//    }
 
     public String representacionString(){
-        return ("(" + Integer.toString(this.coordX) + "," + Integer.toString(this.coordY) + ")");
+        return ("(" + this.coordX + "," + this.coordY + ")");
     }
 
     public int getAbscisa(){

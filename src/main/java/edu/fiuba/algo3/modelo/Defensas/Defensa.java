@@ -13,8 +13,7 @@ public abstract class Defensa extends Sprayable {
     protected EstadoConstruccion estadoDeConstruccion;
     protected int rangoAtaque;
     protected TipoDeDefensa tipoDeDefensa;
-
-//    protected String representacionString;
+    protected String representacionString;
 
     public Defensa(int tiempoDeConstruccion, int rangoAtaque, TipoDeDefensa tipoDeDefensa){
         this.posicion = null;
@@ -43,14 +42,16 @@ public abstract class Defensa extends Sprayable {
     }
 
     public void atacar(ArrayList<Enemigo> enemigos ){
-        this.estadoDeConstruccion.atacar(tipoDeDefensa, enemigos, this.posicion, this.rangoAtaque, this.representationString());
+        this.estadoDeConstruccion.atacar(tipoDeDefensa, enemigos, this.posicion, this.rangoAtaque, this.representacionString());
         setChanged();
     }
 
-    public String representationString() { return this.estadoDeConstruccion.representacionString(this); };
+    public String representacionString() { return this.estadoDeConstruccion.sprayID(this); }
 
-    public String obtenerSprayID(){
-        return this.sprayID;
-    }
+    public String sprayID() { return this.sprayID; }
+
+//    public String representacionString(){
+//        return this.sprayID;
+//    }
 
 }

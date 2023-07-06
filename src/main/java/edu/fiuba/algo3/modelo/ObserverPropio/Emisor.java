@@ -7,11 +7,6 @@ public class Emisor {
 
     private final List<Subscriptor> subscriptores;
 
-    /*public Emisor(String... codigosOperacion) {
-        for (String codigoOperacion : codigosOperacion) {
-            this.subscriptores.put(codigoOperacion, new ArrayList<>());
-        }
-    }*/
     public Emisor() {
         subscriptores = new ArrayList<>();
     }

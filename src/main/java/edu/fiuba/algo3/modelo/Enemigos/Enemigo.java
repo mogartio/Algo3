@@ -61,6 +61,7 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 
     public abstract void morir();
 
+    public String sprayID() { return representacionString; }
     public String representacionString() { return representacionString; }
 
     public void avanzar(Mapa mapa) throws PasarelaInexistente{
@@ -98,9 +99,9 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 //    public boolean esVisiblePara(TipoDeDefensa tipo){
 //        return true;
 //    }
-    public String obtenerSprayID(){
-        return this.sprayID;
-    }
+//    public String representacionString(){
+//        return this.sprayID;
+//    }
     
     public boolean esVisiblePara(TipoDeDefensa tipo){
         return true;
