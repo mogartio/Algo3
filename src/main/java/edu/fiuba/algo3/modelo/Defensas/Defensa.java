@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Defensas.EstadoDeConstruccion.EstadoConstruccion;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import java.util.ArrayList;
 
-import edu.fiuba.algo3.modelo.Enemigos.Sprayable;
+import edu.fiuba.algo3.vista.Sprayable;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 
 
@@ -15,7 +15,7 @@ public abstract class Defensa extends Sprayable {
     protected int rangoAtaque;
     protected TipoDeDefensa tipoDeDefensa;
 
-    protected String representacionString;
+//    protected String representacionString;
 
     public Defensa(int tiempoDeConstruccion, int rangoAtaque, TipoDeDefensa tipoDeDefensa){
         this.posicion = null;
@@ -55,5 +55,10 @@ public abstract class Defensa extends Sprayable {
         setChanged();
     }
 
-    public String representationString() { return this.representacionString; };
+    public String representationString() { return this.estadoDeConstruccion.representacionString(this); };
+
+    public String obtenerSprayID(){
+        return this.sprayID;
+    }
+
 }

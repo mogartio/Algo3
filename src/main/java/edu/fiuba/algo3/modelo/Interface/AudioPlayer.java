@@ -22,7 +22,8 @@ public class AudioPlayer {
                 "Derrota", "ArchivosAudio/Derrota.mp3",
                 "Construir" , "ArchivosAudio/DefensaConstruida.mp3",
                 "Ganado", "ArchivosAudio/Victoria.mp3",
-                "Perdido", "ArchivosAudio/Derrota.mp3");
+                "Perdido", "ArchivosAudio/Derrota.mp3",
+                "construccion", "ArchivosAudio/construccion.mp3");
     }
     public static void playBGMusic() {
         String musicFile = "ArchivosAudio/BGMusic.mp3";

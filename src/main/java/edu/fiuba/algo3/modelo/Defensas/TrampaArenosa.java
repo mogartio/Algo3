@@ -11,7 +11,7 @@ public class TrampaArenosa extends Defensa {
     public TrampaArenosa() {
         super(0, 0, new Trampa(0.5));
         duracion = 3;
-        this.representacionString = "TrampaArenosa";
+        this.sprayID = "TrampaArenosa";
     }
 
 
