@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Interface;
+package edu.fiuba.algo3.Interface;
 
 import edu.fiuba.algo3.modelo.Jugable;
 import edu.fiuba.algo3.modelo.Turnero;

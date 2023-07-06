@@ -1,7 +1,7 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.Interface.InicializadorVentana;
-import edu.fiuba.algo3.modelo.Interface.VentanaDeJuego;
+import edu.fiuba.algo3.Interface.InicializadorVentana;
+import edu.fiuba.algo3.Interface.VentanaDeJuego;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

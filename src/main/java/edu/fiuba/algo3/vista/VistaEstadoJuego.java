@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.modelo.Interface.AudioPlayer;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
+import edu.fiuba.algo3.Interface.AudioPlayer;
+import edu.fiuba.algo3.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.juego.EstadoJuego;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import javafx.scene.image.ImageView;

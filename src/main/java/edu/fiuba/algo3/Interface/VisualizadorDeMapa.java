@@ -1,21 +1,14 @@
-package edu.fiuba.algo3.modelo.Interface;
+package edu.fiuba.algo3.Interface;
 
-import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
-import edu.fiuba.algo3.modelo.juego.Juego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
 import edu.fiuba.algo3.modelo.parcelas.Parcela;
 import edu.fiuba.algo3.vista.ConstanteImagenes;
 import javafx.animation.FadeTransition;
-import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -26,9 +19,6 @@ import javafx.util.Duration;
 
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class VisualizadorDeMapa {
 
