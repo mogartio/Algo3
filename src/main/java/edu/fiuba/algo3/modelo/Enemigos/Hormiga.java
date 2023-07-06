@@ -31,11 +31,4 @@ public class Hormiga extends Enemigo{
         setChanged();
     }
 
-    public boolean esVisiblePara(Trampa tipo){
-        return true;
-    }
-
-    public boolean esVisiblePara(Ataque ataque){
-        return true;
-    }
 }

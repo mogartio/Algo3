@@ -36,12 +36,10 @@ public class Lechuza extends Enemigo{
         sonido = "Morir";
     }
 
+    @Override
     public boolean esVisiblePara(Trampa tipo){
         return false;
     }
 
-    public boolean esVisiblePara(Ataque ataque){
-        return true;
-    }
 
 }

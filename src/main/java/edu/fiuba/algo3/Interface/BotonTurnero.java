@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Interface;
+package edu.fiuba.algo3.Interface;
 
 import edu.fiuba.algo3.modelo.Jugable;
 import edu.fiuba.algo3.modelo.Turnero;
@@ -17,5 +17,6 @@ public class BotonTurnero implements EventHandler<ActionEvent> {
 
     public void handle(ActionEvent actionEvent) {
         jugable.finTurnoJugador();
+        ControladorCompra.getInstance().actualizarPanelTienda();
     }
 }

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigos;
+import edu.fiuba.algo3.modelo.Defensas.Ataque;
 import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Efecto.Efecto;
 import edu.fiuba.algo3.modelo.Enemigos.Efecto.Ninguno;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
@@ -32,7 +34,7 @@ public abstract class Enemigo extends Sprayable implements Visitor{
     }
 
     public void establecerInicioYMeta(Parcela inicial, Parcela pFinal){
-        this.tipoMovimiento.actualizarPosicion(inicial, pFinal);
+        this.tipoMovimiento.establecerInicioYMeta(inicial, pFinal);
         this.setChanged();
     }
 
@@ -73,10 +75,6 @@ public abstract class Enemigo extends Sprayable implements Visitor{
         return (this.tipoMovimiento.estaEnRango(posicion, distancia) && tipo.accept(this));
     }
 
-    public boolean estaEnRango(Coordenada posicion, int distancia){
-        return this.tipoMovimiento.estaEnRango(posicion, distancia);
-    }
-
 //    public String represtacionUbicacion(){
 //        return this.tipoMovimiento.representarUbicacion();
 //    }
@@ -102,8 +100,12 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 //    public String representacionString(){
 //        return this.sprayID;
 //    }
-    
-    public boolean esVisiblePara(TipoDeDefensa tipo){
+
+    public boolean esVisiblePara(Trampa tipo){
+        return true;
+    }
+
+    public boolean esVisiblePara(Ataque ataque){
         return true;
     }
 }
