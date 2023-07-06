@@ -29,7 +29,7 @@ public class VisualizadorDeMapa {
     private Coordenada coordenadaMeta;
 
     public VisualizadorDeMapa(){
-        edu.fiuba.algo3.modelo.Interface.VisualizadorLogger visualizadorLogger = new edu.fiuba.algo3.modelo.Interface.VisualizadorLogger();
+        edu.fiuba.algo3.Interface.VisualizadorLogger visualizadorLogger = new edu.fiuba.algo3.Interface.VisualizadorLogger();
         layout = new BorderPane();
         panelTienda = VisualizadorTienda.crearPanelTienda();
         grilla = new GridPane();
