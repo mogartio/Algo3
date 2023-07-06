@@ -28,4 +28,7 @@ public class Perdido implements EstadoJuego {
 
     @Override
     public String versionString() { return "Perdido"; }
+
+    @Override
+    public void quitarTrampa(Defensa unaTrampa) {}
 }
