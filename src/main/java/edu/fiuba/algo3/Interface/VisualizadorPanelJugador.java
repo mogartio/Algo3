@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.Interface;
 
 import edu.fiuba.algo3.modelo.Jugable;
+import edu.fiuba.algo3.modelo.juego.Juego;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
