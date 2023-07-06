@@ -1,5 +1,7 @@
-package edu.fiuba.algo3.modelo.Creador;
+package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.modelo.Creador.CreadorDeMapa;
+import edu.fiuba.algo3.modelo.Creador.CreadorEnemigos;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;

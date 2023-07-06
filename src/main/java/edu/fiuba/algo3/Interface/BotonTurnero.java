@@ -17,5 +17,6 @@ public class BotonTurnero implements EventHandler<ActionEvent> {
 
     public void handle(ActionEvent actionEvent) {
         jugable.finTurnoJugador();
+        ControladorCompra.getInstance().actualizarPanelTienda();
     }
 }
