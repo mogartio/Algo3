@@ -318,7 +318,7 @@ public class CasosDeUso2Test {
         }
 
         assertTrue(juego.finalizado());
-        // assertFalse(juego.jugadorVivo()); MODIFICAR LA IMPLEMENTACION DE GANADO -> GANA EL JUEGO INCOMPLETO
+        assertFalse(juego.jugadorVivo()); //MODIFICAR LA IMPLEMENTACION DE GANADO -> GANA EL JUEGO INCOMPLETO
     }
 /*
     @Test

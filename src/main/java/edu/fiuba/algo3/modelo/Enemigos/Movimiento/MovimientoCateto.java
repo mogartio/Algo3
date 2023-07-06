@@ -21,10 +21,20 @@ public class MovimientoCateto implements Movimiento {
         this.enemigo = enemigo;
     }
 
-    @Override //es para asignar las posiciones en caso de crear un nuevo tipo de movimiento
+    @Override
     public void reasignarPosiciones(Coordenada coordInicial, Coordenada coordFinal){
         this.posicionActual = coordInicial;
         this.meta = coordFinal;
+    }
+
+    @Override
+    public void establecerInicioYMeta(Parcela parcelaInicial, Parcela parcelaFinal){
+        this.parcelaActual = parcelaInicial;
+        parcelaInicial.actualizarUbicacion(this);
+        parcelaFinal.actulizarMeta(this);
+
+        this.vertice = new Coordenada(this.meta.getAbscisa(), this.posicionActual.getOrdenada());
+        this.camino = AlgoritmoDeBresenham.getCamino(this.posicionActual, this.vertice);
     }
 
     @Override
@@ -34,13 +44,13 @@ public class MovimientoCateto implements Movimiento {
     }
 
     @Override
-    public void actualizarPosicion(Parcela parcelaInicial, Parcela parcelaFinal){
-        this.parcelaActual = parcelaInicial;
-        parcelaInicial.actualizarUbicacion(this);
-        parcelaFinal.actulizarMeta(this);
+    public void actualizarCoordenadaActual(Coordenada posicionNueva){
+        this.posicionActual = posicionNueva;
+    }
 
-        this.vertice = new Coordenada(this.meta.getAbscisa(), this.posicionActual.getOrdenada());
-        this.camino = AlgoritmoDeBresenham.getCamino(this.posicionActual, this.vertice);
+    @Override
+    public void establecerMeta(Coordenada coordenada){
+        this.meta = coordenada;
     }
 
     @Override
@@ -59,21 +69,7 @@ public class MovimientoCateto implements Movimiento {
                 enemigo.daniarJugador();
                 break;
             }
-
-
         }
-
-
-    }
-
-    @Override
-    public void actualizarUbicacion(Coordenada posicionNueva){
-        this.posicionActual = posicionNueva;
-    }
-
-    @Override
-    public void establecerMeta(Coordenada coordenada){
-        this.meta = coordenada;
     }
 
     @Override
@@ -81,6 +77,7 @@ public class MovimientoCateto implements Movimiento {
         this.enemigo.daniarJugador();
     }
 
+    @Override
     public boolean estaEnRango(Coordenada coordenada, int distancia){
         return this.posicionActual.estaEnRango(coordenada, distancia);
     }

@@ -7,12 +7,10 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayCamino;
 import edu.fiuba.algo3.modelo.Excepciones.NoHayInicial;
 import edu.fiuba.algo3.modelo.Interface.ControladorCompra;
-import edu.fiuba.algo3.modelo.Interface.VisualizadorDeMapa;
 import edu.fiuba.algo3.modelo.Turnero;
 import edu.fiuba.algo3.modelo.juego.Juego;
 import edu.fiuba.algo3.modelo.juego.Mapa;
 import edu.fiuba.algo3.modelo.miscelanea.Coordenada;
-import edu.fiuba.algo3.vista.VistaSprays;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -22,7 +20,6 @@ import java.util.Observer;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 public class CasosDeUso3Test extends App {
      //agregar verificacion de turno impar

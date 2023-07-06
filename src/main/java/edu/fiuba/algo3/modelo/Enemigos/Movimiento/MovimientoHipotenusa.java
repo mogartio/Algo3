@@ -30,18 +30,28 @@ public class MovimientoHipotenusa implements Movimiento {
         this.camino = AlgoritmoDeBresenham.getCamino(this.posicionActual, this.meta);
     }
     @Override
+    public void establecerInicioYMeta(Parcela parcelaInicial, Parcela parcelaFinal){
+        this.parcelaActual = parcelaInicial;
+        parcelaInicial.actualizarUbicacion(this);
+        parcelaFinal.actulizarMeta(this);
+
+        this.camino = AlgoritmoDeBresenham.getCamino(this.posicionActual, this.meta);
+    }
+
+    @Override
     public void actualizarPosicion(Parcela parcelaSiguiente){
         this.parcelaActual = parcelaSiguiente;
         parcelaSiguiente.actualizarUbicacion(this);
     }
 
     @Override
-    public void actualizarPosicion(Parcela parcelaInicial, Parcela parcelaFinal){
-        this.parcelaActual = parcelaInicial;
-        parcelaInicial.actualizarUbicacion(this);
-        parcelaFinal.actulizarMeta(this);
+    public void actualizarCoordenadaActual(Coordenada posicionNueva){
+        this.posicionActual = posicionNueva;
+    }
 
-        this.camino = AlgoritmoDeBresenham.getCamino(this.posicionActual, this.meta);
+    @Override
+    public void establecerMeta(Coordenada coordenada){
+        this.meta = coordenada;
     }
 
     @Override
@@ -58,18 +68,6 @@ public class MovimientoHipotenusa implements Movimiento {
             }
 
         }
-
-
-    }
-
-    @Override
-    public void actualizarUbicacion(Coordenada posicionNueva){
-        this.posicionActual = posicionNueva;
-    }
-
-    @Override
-    public void establecerMeta(Coordenada coordenada){
-        this.meta = coordenada;
     }
 
     @Override
@@ -77,6 +75,7 @@ public class MovimientoHipotenusa implements Movimiento {
         this.enemigo.daniarJugador();
     }
 
+    @Override
     public boolean estaEnRango(Coordenada coordenada, int distancia){
         return this.posicionActual.estaEnRango(coordenada, distancia);
     }

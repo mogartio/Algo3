@@ -34,7 +34,7 @@ public abstract class Enemigo extends Sprayable implements Visitor{
     }
 
     public void establecerInicioYMeta(Parcela inicial, Parcela pFinal){
-        this.tipoMovimiento.actualizarPosicion(inicial, pFinal);
+        this.tipoMovimiento.establecerInicioYMeta(inicial, pFinal);
         this.setChanged();
     }
 
@@ -73,10 +73,6 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 
     public boolean estaEnRango(Coordenada posicion, int distancia, TipoDeDefensa tipo ){
         return (this.tipoMovimiento.estaEnRango(posicion, distancia) && tipo.accept(this));
-    }
-
-    public boolean estaEnRango(Coordenada posicion, int distancia){
-        return this.tipoMovimiento.estaEnRango(posicion, distancia);
     }
 
 //    public String represtacionUbicacion(){
