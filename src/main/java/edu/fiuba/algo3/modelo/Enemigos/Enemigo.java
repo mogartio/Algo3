@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.Enemigos;
+import edu.fiuba.algo3.modelo.Defensas.Ataque;
 import edu.fiuba.algo3.modelo.Defensas.TipoDeDefensa;
+import edu.fiuba.algo3.modelo.Defensas.Trampa;
 import edu.fiuba.algo3.modelo.Enemigos.Efecto.Efecto;
 import edu.fiuba.algo3.modelo.Enemigos.Efecto.Ninguno;
 import edu.fiuba.algo3.modelo.Enemigos.Movimiento.Movimiento;
@@ -102,8 +104,12 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 //    public String representacionString(){
 //        return this.sprayID;
 //    }
-    
-    public boolean esVisiblePara(TipoDeDefensa tipo){
+
+    public boolean esVisiblePara(Trampa tipo){
+        return true;
+    }
+
+    public boolean esVisiblePara(Ataque ataque){
         return true;
     }
 }
