@@ -29,4 +29,9 @@ public class Construido implements EstadoConstruccion {
         return sprayable.sprayID();
     }
 
+    @Override
+    public boolean destruir( Defensa defensa) {
+        defensa.actualizarEstado(new Destruida());
+        return true;
+    }
 }
