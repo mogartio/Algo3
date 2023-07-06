@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.Interface.AudioPlayer;
+import edu.fiuba.algo3.Interface.VisualizadorLogger;
 import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.juego.EstadoJuego;
 import edu.fiuba.algo3.modelo.juego.Juego;
@@ -20,7 +21,7 @@ public class VistaLogger implements Observer {
         ArrayList<String> mensajes = obtenerMensajes(o);
         if(mensajes.size() != 0) {
             for (String mensaje : mensajes) {
-                System.out.println("Log: " + mensaje);
+                VisualizadorLogger.getInstance().mostrarMensaje("Log: " + mensaje);
             }
         }
     }

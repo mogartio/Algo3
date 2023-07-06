@@ -31,7 +31,7 @@ public class VistaEstadoJuego implements Observer {
             visualizadorDeMapa.borrarEnemigosDelTurnoAnterior();
         }
         try {
-            ImageView mensajeFinal = ConstanteImagenes.getImagen(estadoJuego.versionString());
+            ImageView mensajeFinal = ConstanteImagenes.getImagen(representacionEstado);
             mensajeFinal.setFitWidth(700);
             mensajeFinal.setFitHeight(200);
             visualizadorDeMapa.mostrarMensajeFinal(mensajeFinal);

@@ -22,7 +22,7 @@ public class VisualizadorPanelJugador {
         public VisualizadorPanelJugador(VisualizadorDeMapa visualizadorGeneral) {
                 this.visualizadorGeneral =  visualizadorGeneral;
                 this.textoCreditos = actualizarCreditos(100);
-                this.textoNombreYVida = actualizarVida(Juego.getInstance().getNombreDelJugador(), Juego.getInstance().getVidaDelJugador());
+                this.textoNombreYVida = actualizarVida("adfsg", 12);
         }
 
         private Text actualizarCreditos(int creditos){
