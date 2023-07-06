@@ -35,7 +35,6 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 
     public void establecerInicioYMeta(Parcela inicial, Parcela pFinal){
         this.tipoMovimiento.establecerInicioYMeta(inicial, pFinal);
-        this.setChanged();
     }
 
     public void recibirDanio(int danio){
@@ -43,7 +42,7 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 
         if (!vida.sigueVivo()) {
             this.morir();
-            setChanged();
+            this.aniadirEvento(this.representacionString() + " en posicion " + this.tipoMovimiento.representarUbicacion() + " muere");
         }
     }
 
@@ -68,38 +67,17 @@ public abstract class Enemigo extends Sprayable implements Visitor{
 
     public void avanzar(Mapa mapa) throws PasarelaInexistente{
         this.efectoEnemigo = this.efectoEnemigo.avanzar(this.cantidadMovimientos, this.tipoMovimiento, mapa);
-        setChanged();
+        this.aniadirEvento(this.representacionString() + " avanza a posicion " + this.tipoMovimiento.representarUbicacion());
     }
 
     public boolean estaEnRango(Coordenada posicion, int distancia, TipoDeDefensa tipo ){
         return (this.tipoMovimiento.estaEnRango(posicion, distancia) && tipo.accept(this));
     }
 
-//    public String represtacionUbicacion(){
-//        return this.tipoMovimiento.representarUbicacion();
-//    }
-
     public void setEfectoEnemigo(Efecto nuevoEfecto){
         this.efectoEnemigo = nuevoEfecto;
     }
 
-//    @Override
-//    public ArrayList<String> ObtenerSprayIDYPosicion() {
-//        ArrayList<String> datos = new ArrayList<>();
-//        if(this.estaVivo()) {
-//            datos.add(this.representacionString());
-//            datos.add(this.represtacionUbicacion());
-//            datos.add(verSonido());
-//        }
-//        return datos;
-//    }
-
-//    public boolean esVisiblePara(TipoDeDefensa tipo){
-//        return true;
-//    }
-//    public String representacionString(){
-//        return this.sprayID;
-//    }
 
     public boolean esVisiblePara(Trampa tipo){
         return true;

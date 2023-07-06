@@ -13,7 +13,7 @@ public class ConstanteImagenes {
 
     static {
         diccionarioImagenes = Map.ofEntries(
-                Map.entry("Araña", "ImagenesGUI/arania.png"),
+                Map.entry("Arania", "ImagenesGUI/arania.png"),
                 Map.entry("Hormiga", "ImagenesGUI/hormiga.png"),
                 Map.entry("Lechuza", "ImagenesGUI/lechuza.png"),
                 Map.entry("Topo", "ImagenesGUI/topo.png"),

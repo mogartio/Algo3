@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Enemigos.Enemigo;
 import edu.fiuba.algo3.modelo.ObserverPropio.Emisor;
 
 public class Ganado implements EstadoJuego {
+    public String versionString = "Ganado";
     public EstadoJuego introducirEnemigo(Enemigo enemigo) {
         return this;
     }
@@ -25,8 +26,8 @@ public class Ganado implements EstadoJuego {
     @Override
     public void destruirDefensaMasAntigua() {}
 
-    @Override
-    public String versionString() { return "Ganado"; }
+//    @Override
+//    public String versionString() { return "Ganado"; }
 
     @Override
     public void quitarTrampa(Defensa unaTrampa) {}

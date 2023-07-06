@@ -38,6 +38,7 @@ public abstract class Defensa extends Sprayable {
 
     public void actualizarEstado(EstadoConstruccion nuevoEstado) {
         this.estadoDeConstruccion = nuevoEstado;
+        this.aniadirEvento(this.sprayID() + " en posicion " + this.posicion.representacionString() + " esta ahora como " + nuevoEstado);
     }
 
     public void asignarPosicion(Coordenada nuevaPosicion){
@@ -54,8 +55,8 @@ public abstract class Defensa extends Sprayable {
     }
 
     public void atacar(ArrayList<Enemigo> enemigos ){
+        this.aniadirEvento("torre en estado " + this.representacionString() + " en posicion " + this.posicion.representacionString() + " ataca");
         this.estadoDeConstruccion.atacar(tipoDeDefensa, enemigos, this.posicion, this.rangoAtaque, this.representacionString());
-        setChanged();
     }
 
     public boolean destruir() {

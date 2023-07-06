@@ -73,7 +73,6 @@ public class VisualizadorDeMapa {
     }
 
     public void agregarSpray(ImageView spray, int coordX, int coordY){
-        System.out.println("Agrego spray");
         Coordenada coordenada = new Coordenada(coordX, coordY);
         if (coordenada.equals(coordenadaMeta)){
             return;

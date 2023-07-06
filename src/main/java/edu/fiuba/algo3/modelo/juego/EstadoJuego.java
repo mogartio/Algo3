@@ -18,6 +18,6 @@ public interface EstadoJuego {
     void destruirDefensaMasAntigua();
     void quitarTrampa(Defensa unaTrampa);
 
-    String versionString();
+//    String versionString();
 }
 
