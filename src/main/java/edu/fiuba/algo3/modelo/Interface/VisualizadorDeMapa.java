@@ -39,11 +39,14 @@ public class VisualizadorDeMapa {
     private Coordenada coordenadaMeta;
 
     public VisualizadorDeMapa(){
+        VisualizadorLogger visualizadorLogger = new VisualizadorLogger();
         layout = new BorderPane();
         panelTienda = VisualizadorTienda.crearPanelTienda();
         grilla = new GridPane();
         grilla.setGridLinesVisible(false);
-        layout.setLeft(grilla);
+        StackPane st = new StackPane();
+        st.getChildren().addAll(grilla, visualizadorLogger.InicializarPanelLogger() );
+        layout.setLeft(st);
         layout.setCenter(panelTienda);
         coordenadasSpraysDelTurno = new ArrayList<>();
     }

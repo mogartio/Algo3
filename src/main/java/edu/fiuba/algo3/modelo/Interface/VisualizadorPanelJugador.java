@@ -22,36 +22,39 @@ public class VisualizadorPanelJugador {
         Text textoNombreYVida;
         public VisualizadorPanelJugador(VisualizadorDeMapa visualizadorGeneral) {
                 this.visualizadorGeneral =  visualizadorGeneral;
+                this.textoCreditos = actualizarCreditos(100);
+                this.textoNombreYVida = actualizarVida(Juego.getInstance().getNombreDelJugador(), Juego.getInstance().getVidaDelJugador());
+        }
 
+        private Text actualizarCreditos(int creditos){
                 Text creditosDisponibles = new Text();
                 creditosDisponibles.setTextAlignment(TextAlignment.CENTER);
                 creditosDisponibles.setFont(Font.font("Arial", FontWeight.BOLD, 20));
                 creditosDisponibles.setFill(Color.RED);
-                creditosDisponibles.setWrappingWidth(400);
+                creditosDisponibles.setText(String.format("Créditos disponibles:\n%d", creditos));
+                return creditosDisponibles;
+        }
 
-                this.textoCreditos = creditosDisponibles;
-
+        private Text actualizarVida(String nombreJugador, int vidaJugador){
                 Text nombreYVidaJugador = new Text();
                 nombreYVidaJugador.setFont(Font.font("Arial", FontWeight.BOLD, 20));
                 nombreYVidaJugador.setFill(Color.RED);
-                nombreYVidaJugador.setWrappingWidth(400);
                 nombreYVidaJugador.setTextAlignment(TextAlignment.CENTER);
-
-                this.textoNombreYVida = nombreYVidaJugador;
+                nombreYVidaJugador.setText(String.format("La vida de %s es: \n%s",nombreJugador , vidaJugador));
+                return nombreYVidaJugador;
         }
-
         public void inicializarPanelJugador(Jugable turnero) {
                 HBox hboxJugador = new HBox();
                 hboxJugador.setStyle("-fx-background-color: #000000;");
-                hboxJugador.setPadding(new Insets(0, 0, 20, 0));
+                hboxJugador.setPadding(new Insets(10, 0, 10, 70));
+                hboxJugador.setSpacing(80);
 
                 Button botonFinalizarTurno = new Button();
                 BotonTurnero funcion = new BotonTurnero(turnero);
-                botonFinalizarTurno.setAlignment(Pos.CENTER);
 
                 botonFinalizarTurno.setText("Finalizar turno");
                 botonFinalizarTurno.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
-                botonFinalizarTurno.setPrefSize(400, 40);
+                botonFinalizarTurno.setPrefSize(200, 40);
                 botonFinalizarTurno.setAlignment(Pos.CENTER);
                 botonFinalizarTurno.setOnAction(funcion);
 
@@ -65,10 +68,11 @@ public class VisualizadorPanelJugador {
         public void updateInfo(String nombre, int puntosVida, int creditos) {
                 HBox hboxJugador = new HBox();
                 hboxJugador.setStyle("-fx-background-color: #000000;");
-                hboxJugador.setPadding(new Insets(0, 0, 20, 100));
+                hboxJugador.setPadding(new Insets(10, 0, 10, 70));
+                hboxJugador.setSpacing(80);
 
-                textoCreditos.setText(String.format("Créditos disponibles:\n%d", creditos));
-                textoNombreYVida.setText(String.format("\nLa vida de %s es %s",nombre , puntosVida));
+                textoCreditos = actualizarCreditos(creditos);
+                textoNombreYVida = actualizarVida(nombre, puntosVida);
 
                 hboxJugador.getChildren().addAll(textoNombreYVida, botonTerminarTurno, textoCreditos);
                 visualizadorGeneral.actualizarPanelJugador(hboxJugador);
