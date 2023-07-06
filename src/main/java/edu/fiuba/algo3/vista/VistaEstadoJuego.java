@@ -26,7 +26,7 @@ public class VistaEstadoJuego implements Observer {
         }
         try {
             ImageView mensajeFinal = ConstanteImagenes.getImagen(estadoJuego.versionString());
-            mensajeFinal.setFitWidth(1000);
+            mensajeFinal.setFitWidth(700);
             mensajeFinal.setFitHeight(200);
             visualizadorDeMapa.mostrarMensajeFinal(mensajeFinal);
             AudioPlayer.playEfectoSonido(estadoJuego.versionString());

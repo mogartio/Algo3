@@ -9,7 +9,9 @@ import java.util.Map;
 
 public class AudioPlayer {
 
-    private static MediaPlayer mediaPlayer;
+    private static MediaPlayer cancionFondo;
+
+    private static MediaPlayer efectos;
 
     private static Map<String, String> diccionarioSonidos;
 
@@ -28,17 +30,17 @@ public class AudioPlayer {
     public static void playBGMusic() {
         String musicFile = "ArchivosAudio/BGMusic.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
-        mediaPlayer = new MediaPlayer(sound);
-        //mediaPlayer.play();
-        mediaPlayer.setCycleCount(10000);
+        cancionFondo = new MediaPlayer(sound);
+        cancionFondo.play();
+        cancionFondo.setCycleCount(10000);
     }
 
     public static void playEfectoSonido(String unEfecto) {
         try {
             String soundFile = diccionarioSonidos.get(unEfecto);
             Media sound = new Media(new File(soundFile).toURI().toString());
-            mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
+            efectos = new MediaPlayer(sound);
+            efectos.play();
         } catch (Exception e){
 
         }

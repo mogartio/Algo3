@@ -29,11 +29,14 @@ public class VisualizadorDeMapa {
     private Coordenada coordenadaMeta;
 
     public VisualizadorDeMapa(){
+        edu.fiuba.algo3.Interface.VisualizadorLogger visualizadorLogger = new edu.fiuba.algo3.Interface.VisualizadorLogger();
         layout = new BorderPane();
         panelTienda = VisualizadorTienda.crearPanelTienda();
         grilla = new GridPane();
         grilla.setGridLinesVisible(false);
-        layout.setLeft(grilla);
+        StackPane st = new StackPane();
+        st.getChildren().addAll(visualizadorLogger.InicializarPanelLogger(), grilla );
+        layout.setLeft(st);
         layout.setCenter(panelTienda);
         coordenadasSpraysDelTurno = new ArrayList<>();
     }
